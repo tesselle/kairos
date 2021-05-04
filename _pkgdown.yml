@@ -1,0 +1,24 @@
+url: https://khronos.tesselle.org
+development:
+  mode: auto
+
+template:
+  package: preferably
+  opengraph:
+    twitter:
+      creator: "@nfrerebeau"
+      card: summary_large_image
+
+reference:
+- title: Dating
+  contents:
+  - has_concept("dating")
+- title: Classes
+  contents:
+  - has_concept("class")
+- title: Visualization
+  contents:
+  - has_concept("plot")
+- title: Getters and Setters
+  contents:
+  - has_concept("mutator")
