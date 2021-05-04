@@ -1,12 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# khronos
+# fasti
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/tesselle/khronos/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/khronos/actions)
-[![codecov](https://codecov.io/gh/tesselle/khronos/branch/master/graph/badge.svg)](https://codecov.io/gh/tesselle/khronos)
+[![R-CMD-check](https://github.com/tesselle/fasti/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/fasti/actions)
+[![codecov](https://codecov.io/gh/tesselle/fasti/branch/master/graph/badge.svg)](https://codecov.io/gh/tesselle/fasti)
 
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
@@ -23,32 +23,32 @@ archaeological assemblages from count data.
 
 ## Installation
 
-You can install the released version of **khronos** from
+You can install the released version of **fasti** from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("khronos")
+install.packages("fasti")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("tesselle/khronos")
+remotes::install_github("tesselle/fasti")
 ```
 
 ## Usage
 
 ``` r
 ## Load packages
-library(khronos)
+library(fasti)
 
 library(folio) # Datasets
 library(ggplot2)
 library(magrittr)
 ```
 
-**khronos** uses a set of S4 classes that represent different special
+**fasti** uses a set of S4 classes that represent different special
 types of matrix. Please refer to the documentation of the
 [**arkhe**](https://github.com/tesselle/arkhe) package where these
 classes are defined.
@@ -93,6 +93,6 @@ plot_date(event, type = "tempo", select = "LZ1105") +
 
 ## Contributing
 
-Please note that the **khronos** project is released with a [Contributor
+Please note that the **fasti** project is released with a [Contributor
 Code of Conduct](https://www.tesselle.org/conduct.html). By contributing
 to this project, you agree to abide by its terms.

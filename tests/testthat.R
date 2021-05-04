@@ -1,4 +1,4 @@
 library(testthat)
-library(khronos)
+library(fasti)
 
-test_check("khronos")
+test_check("fasti")

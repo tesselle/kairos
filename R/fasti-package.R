@@ -1,6 +1,6 @@
 #' @details
 #' \tabular{ll}{
-#'  **Package:** \tab khronos \cr
+#'  **Package:** \tab fasti \cr
 #'  **Type:** \tab Package \cr
 #'  **Version:** \tab 0.0.0.9000 \cr
 #'  **License:** \tab GPL-3 \cr
@@ -25,8 +25,8 @@
 #' Université Bordeaux Montaigne\cr
 #' F-33607 Pessac cedex\cr
 #' France
-#' @name khronos-package
-#' @aliases khronos
+#' @name fasti-package
+#' @aliases fasti
 #' @docType package
 #' @keywords internal
 "_PACKAGE"

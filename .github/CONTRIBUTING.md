@@ -1,6 +1,6 @@
 # Contributing
 
-This outlines how to propose a change to khronos. For more detailed info about contributing to this, and other tesselle packages, please see the [**development contributing guide**](https://www.tesselle.org/contributing.html).
+This outlines how to propose a change to fasti. For more detailed info about contributing to this, and other tesselle packages, please see the [**development contributing guide**](https://www.tesselle.org/contributing.html).
 
 ## Fixing typos
 
@@ -12,7 +12,7 @@ If you want to make a bigger change, it's a good idea to first file an issue and
 
 ### Pull request process
 
-* Fork the package and clone onto your computer. If you haven't done this before, we recommend using `usethis::create_from_github("tesselle/khronos", fork = TRUE)`.
+* Fork the package and clone onto your computer. If you haven't done this before, we recommend using `usethis::create_from_github("tesselle/fasti", fork = TRUE)`.
 * Install all development dependencies with `devtools::install_dev_deps()`, and then make sure the package passes R CMD check by running `devtools::check()`.  If R CMD check doesn't pass cleanly, it's a good idea to ask for help before continuing.
 * Create a Git branch for your pull request (PR). We recommend using `usethis::pr_init("brief-description-of-change")`.
 * Make your changes, commit to git, and then create a PR by running `usethis::pr_push()`, and following the prompts in your browser. The title of your PR should briefly describe the change. The body of your PR should contain `Fixes #issue-number`.
@@ -26,4 +26,4 @@ If you want to make a bigger change, it's a good idea to first file an issue and
 
 ## Code of Conduct
 
-Please note that the khronos project is released with a [Contributor Code of Conduct](https://www.tesselle.org/conduct.html). By contributing to this project you agree to abide by its terms.
+Please note that the fasti project is released with a [Contributor Code of Conduct](https://www.tesselle.org/conduct.html). By contributing to this project you agree to abide by its terms.
