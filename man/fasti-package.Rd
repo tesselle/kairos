@@ -5,7 +5,7 @@
 \alias{fasti-package}
 \alias{_PACKAGE}
 \alias{fasti}
-\title{fasti: Time Point Estimate and Analysis of Chronological Patterns from Count Data}
+\title{fasti: Analysis of Chronological Patterns from Archaeological Count Data}
 \description{
 A toolkit for absolute dating and analysis of chronological
     patterns. This package includes functions for chronological modeling

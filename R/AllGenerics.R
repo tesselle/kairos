@@ -233,7 +233,7 @@ setGeneric(
 
 # Plot =========================================================================
 ## Plot abundance --------------------------------------------------------------
-#' Time Plot
+#' Abundance vs Time Plot
 #'
 #' Produces an abundance *vs* time diagram.
 #' @param object A [CountMatrix-class] object.

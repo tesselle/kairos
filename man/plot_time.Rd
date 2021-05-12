@@ -7,7 +7,7 @@
 \alias{plot_time,CountMatrix,numeric-method}
 \alias{plot_time,DateMCD,missing-method}
 \alias{plot_time,IncrementTest,missing-method}
-\title{Time Plot}
+\title{Abundance vs Time Plot}
 \usage{
 plot_time(object, dates, ...)
 

@@ -13,12 +13,15 @@ reference:
 - title: Dating
   contents:
   - has_concept("dating")
-- title: Classes
+- title: Chronological Patterns
   contents:
-  - has_concept("class")
+  - has_concept("statistics")
 - title: Visualization
   contents:
   - has_concept("plot")
+- title: Classes
+  contents:
+  - has_concept("class")
 - title: Getters and Setters
   contents:
   - has_concept("mutator")
