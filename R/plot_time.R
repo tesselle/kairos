@@ -3,7 +3,7 @@
 NULL
 
 #' @export
-#' @rdname plot_date
+#' @rdname plot_time
 #' @aliases plot_time,CountMatrix,numeric-method
 setMethod(
   f = "plot_time",
@@ -39,7 +39,20 @@ setMethod(
 )
 
 #' @export
-#' @rdname test_fit
+#' @rdname plot_time
+#' @aliases plot_time,DateMCD,missing-method
+setMethod(
+  f = "plot_time",
+  signature = signature(object = "DateMCD", dates = "missing"),
+  definition = function(object, facet = FALSE) {
+    counts <- object[["counts"]]
+    dates <- object[["mcd"]]
+    methods::callGeneric(object = counts, dates = dates, facet = facet)
+  }
+)
+
+#' @export
+#' @rdname plot_time
 #' @aliases plot_time,IncrementTest,missing-method
 setMethod(
   f = "plot_time",

@@ -81,10 +81,10 @@ zuni_dates <- c(
 event <- date_event(zuni_counts, dates = zuni_dates, cutoff = 90)
 
 ## Plot activity and tempo distributions
-plot_date(event, type = "activity", select = "LZ1105") +
+plot_event(event, type = "activity", select = "LZ1105") +
   ggplot2::labs(title = "Activity plot") +
   ggplot2::theme_bw()
-plot_date(event, type = "tempo", select = "LZ1105") +
+plot_event(event, type = "tempo", select = "LZ1105") +
   ggplot2::labs(title = "Tempo plot") +
   ggplot2::theme_bw()
 ```

@@ -40,15 +40,15 @@ test_that("Event Date", {
   skip_if_not_installed("vdiffr")
   # Event plot
   for (i in c(TRUE, FALSE)) {
-    gg_date_act <- plot_date(model, type = "activity", event = i,
-                             select = "LZ1105")
+    gg_date_act <- plot_event(model, type = "activity", event = i,
+                              select = "LZ1105")
     vdiffr::expect_doppelganger(paste0("date_activity_event-", i), gg_date_act)
   }
 
   # Activity plot
-  gg_date_tempo <- plot_date(model, type = "tempo", select = "LZ1105")
+  gg_date_tempo <- plot_event(model, type = "tempo", select = "LZ1105")
   vdiffr::expect_doppelganger("date_tempo", gg_date_tempo)
 
   # Errors
-  expect_error(plot_date(model, select = "X"), "Wrong selection")
+  expect_error(plot_event(model, select = "X"), "Wrong selection")
 })

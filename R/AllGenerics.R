@@ -232,40 +232,21 @@ setGeneric(
 )
 
 # Plot =========================================================================
-#' Date and Time Plot
+## Plot abundance --------------------------------------------------------------
+#' Time Plot
 #'
-#' `plot_date()` produces an activity or tempo plot.
-#'
-#' `plot_time()` produces an abundance *vs* time diagram.
-#' @param object An object of class [DateEvent-class] to be plotted.
+#' Produces an abundance *vs* time diagram.
+#' @param object A [CountMatrix-class] object.
 #' @param dates A [`numeric`] vector of dates.
-#' @param type A [`character`] string indicating the type of plot.
-#'  It must be one of "`activity`" (default) or "`tempo`".
-#'  Any unambiguous substring can be given.
-#' @param select A [`numeric`] or [`character`] vector giving the selection of
-#'  the assemblage that are drawn.
-#' @param n A length-one non-negative [`numeric`] vector giving the desired
-#'  length of the vector of quantiles for density computation.
-#' @param event A [`logical`] scalar: should the distribution of the event date
-#'  be displayed? Only used if type is "`activity`".
 #' @param facet A [`logical`] scalar: should a matrix of panels defined by
-#'  type/taxon be drawn? Only used if `highlight` is `NULL`.
-#' @param ... Further arguments to be passed to internal methods.
-#' @section Event and Acccumulation Dates:
-#'  `plot_date()` plots the probability estimate density curves of
-#'  archaeological assemblage dates (*event* and *accumulation* dates; Bellanger
-#'  and Husi 2012). The *event* date is plotted as a line, while the
-#'  *accumulation* date is shown as a grey filled area.
-#'
-#'  The accumulation date can be displayed as a tempo plot (Dye 2016) or an
-#'  activity plot (Philippe and Vibet 2017):
-#'  \describe{
-#'   \item{Tempo plot}{A tempo plot estimates the cumulative occurrence of
-#'   archaeological events, such as the slope of the plot directly reflects the
-#'   pace of change.}
-#'   \item{Activity plot}{An activity plot displays the first derivative of the
-#'   tempo plot.}
-#'  }
+#'  type/taxon be drawn?
+#' @param level A length-one [`numeric`] vector giving the
+#'  confidence level.
+#' @param roll A [`logical`] scalar: should each time series be
+#'  subsetted to look for episodes of selection?
+#' @param window An odd [`integer`] giving the size of the rolling
+#'  window. Only used if `roll` is `TRUE`.
+#' @param ... Currently not used.
 #' @section Detection of Selective Processes:
 #'  Results of the frequency increment test can be displayed on an abundance
 #'  *vs* time diagram aid in the detection and quantification of selective
@@ -279,6 +260,50 @@ setGeneric(
 #' @note
 #'  Displaying FIT results on an abundance *vs* time diagram is adapted from Ben
 #'  Marwick's original [idea](https://github.com/benmarwick/signatselect/).
+#' @example inst/examples/ex-plot_time.R
+#' @author N. Frerebeau
+#' @family plot
+#' @seealso [date_mcd()], [test_fit()]
+#' @docType methods
+#' @rdname plot_time
+#' @aliases plot_time-method
+setGeneric(
+  name = "plot_time",
+  def = function(object, dates, ...) standardGeneric("plot_time")
+)
+
+## Plot events -----------------------------------------------------------------
+#' Event Plot
+#'
+#' Produces an activity or tempo plot.
+#' @param object An object of class [DateEvent-class] to be plotted.
+#' @param type A [`character`] string indicating the type of plot.
+#'  It must be one of "`activity`" (default) or "`tempo`".
+#'  Any unambiguous substring can be given.
+#' @param select A [`numeric`] or [`character`] vector giving the selection of
+#'  the assemblage that are drawn.
+#' @param n A length-one non-negative [`numeric`] vector giving the desired
+#'  length of the vector of quantiles for density computation.
+#' @param event A [`logical`] scalar: should the distribution of the event date
+#'  be displayed? Only used if type is "`activity`".
+#' @param ... Currently not used.
+#' @section Event and Acccumulation Dates:
+#'  `plot_event()` plots the probability estimate density curves of
+#'  archaeological assemblage dates (*event* and *accumulation* dates; Bellanger
+#'  and Husi 2012). The *event* date is plotted as a line, while the
+#'  *accumulation* date is shown as a grey filled area.
+#'
+#'  The accumulation date can be displayed as a tempo plot (Dye 2016) or an
+#'  activity plot (Philippe and Vibet 2017):
+#'  \describe{
+#'   \item{Tempo plot}{A tempo plot estimates the cumulative occurrence of
+#'   archaeological events, such as the slope of the plot directly reflects the
+#'   pace of change.}
+#'   \item{Activity plot}{An activity plot displays the first derivative of the
+#'   tempo plot.}
+#'  }
+#' @return
+#'  A [ggplot2::ggplot] object.
 #' @references
 #'  Bellanger, L. & Husi, P. (2012). Statistical Tool for Dating and
 #'  Interpreting Archaeological Contexts Using Pottery. *Journal of
@@ -291,27 +316,16 @@ setGeneric(
 #'  Philippe, A. & Vibet, M.-A. (2017). Analysis of Archaeological Phases Using
 #'  the R Package ArchaeoPhases. *Journal of Statistical Software, Code
 #'  Snippets*, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
-#' @example inst/examples/ex-plot_line.R
+#' @example inst/examples/ex-date_event.R
 #' @author N. Frerebeau
 #' @family plot
-#' @seealso [date_event()], [test_fit()]
+#' @seealso [date_event()]
 #' @docType methods
-#' @name plot_date
-#' @rdname plot_date
-NULL
-
-#' @rdname plot_date
-#' @aliases plot_date-method
+#' @rdname plot_event
+#' @aliases plot_event-method
 setGeneric(
-  name = "plot_date",
-  def = function(object, ...) standardGeneric("plot_date")
-)
-
-#' @rdname plot_date
-#' @aliases plot_time-method
-setGeneric(
-  name = "plot_time",
-  def = function(object, dates, ...) standardGeneric("plot_time")
+  name = "plot_event",
+  def = function(object, ...) standardGeneric("plot_event")
 )
 
 # Frequency Increment Test =====================================================
@@ -319,21 +333,14 @@ setGeneric(
 #'
 #' @param object A \eqn{m \times p}{m x p} matrix of count data.
 #' @param dates A [`numeric`] vector of dates.
-#' @param level A length-one [`numeric`] vector giving the
-#'  confidence level.
-#' @param roll A [`logical`] scalar: should each time series be
-#'  subsetted to look for episodes of selection?
-#'  Only used if \code{highlight} is "\code{FIT}" (see details).
-#' @param window An odd [`integer`] giving the size of the rolling
-#'  window. Only used if \code{roll} is \code{TRUE}.
 #' @param ... Currently not used.
 #' @details
 #'  The Frequency Increment Test (FIT) rejects neutrality if the distribution
 #'  of normalized variant frequency increments exhibits a mean that deviates
 #'  significantly from zero.
 #' @return
-#'  If \code{simplify} is \code{FALSE}, returns a list (default), else returns
-#'  a matrix.
+#'  If `simplify` is `FALSE`, returns a list (default), else returns a
+#'  [`matrix`].
 #' @example inst/examples/ex-test_fit.R
 #' @author N. Frerebeau
 #' @references

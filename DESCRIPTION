@@ -43,7 +43,7 @@ Collate:
     'date_event.R'
     'date_mcd.R'
     'fasti-package.R'
-    'plot_date.R'
+    'plot_event.R'
     'plot_time.R'
     'reexport.R'
     'refine_event.R'

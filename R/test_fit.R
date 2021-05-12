@@ -7,7 +7,7 @@ NULL
 setMethod(
   f = "test_fit",
   signature = signature(object = "CountMatrix"),
-  definition = function(object, dates, ...) {
+  definition = function(object, dates) {
     ## Validation
     if (length(dates) != nrow(object))
       stop(sprintf("%s must be of length %d; not %d.",
@@ -97,18 +97,17 @@ testFIT <- function(x, time, roll = FALSE, window = 3, ...) {
 #'
 #' @param v A [`numeric`] vector of frequencies.
 #' @param t A [`numeric`] vector of time coordinates.
-#' @param ... Extra parameter passed to \code{\link[=stats]{t.test}}.
+#' @param ... Extra parameter passed to [stats::t.test()].
 #' @return A [`numeric`] vector containing the following components:
 #'  \describe{
-#'   \item{\code{t}}{the value of the test statistic.}
-#'   \item{\code{p.value}}{the p-value for the test.}
+#'   \item{`t`}{the value of the test statistic.}
+#'   \item{`p.value`}{the p-value for the test.}
 #'  }
 #' @author N. Frerebeau
 #' @references
 #'  Feder, A. F., Kryazhimskiy, S. & Plotkin, J. B. (2014). Identifying
-#'  Signatures of Selection in Genetic Time Series. \emph{Genetics}, 196(2),
-#'  509-522.
-#'  DOI: \doi{10.1534/genetics.113.158220}.
+#'  Signatures of Selection in Genetic Time Series. *Genetics*, 196(2),
+#'  509-522. \doi{10.1534/genetics.113.158220}.
 #' @keywords internal
 #' @noRd
 FIT <- function(v, t, ...) {

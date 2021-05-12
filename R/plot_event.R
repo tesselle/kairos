@@ -3,10 +3,10 @@
 NULL
 
 #' @export
-#' @rdname plot_date
-#' @aliases plot_date,DateModel-method
+#' @rdname plot_event
+#' @aliases plot_event,DateModel-method
 setMethod(
-  f = "plot_date",
+  f = "plot_event",
   signature = c(object = "DateEvent"),
   definition = function(object, type = c("activity", "tempo"),
                         event = FALSE, select = 1, n = 500) {

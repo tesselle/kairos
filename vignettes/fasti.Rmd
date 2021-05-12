@@ -235,11 +235,11 @@ head(acc)
 
 ```{r event-plot, fig.show="hold"}
 ## Activity plot
-plot_date(model, type = "activity", event = TRUE, select = "LZ1105") +
+plot_event(model, type = "activity", event = TRUE, select = "LZ1105") +
   ggplot2::theme_bw()
 
 ## Tempo plot
-plot_date(model, type = "tempo", select = "LZ1105") +
+plot_event(model, type = "tempo", select = "LZ1105") +
   ggplot2::theme_bw()
 ```
 
