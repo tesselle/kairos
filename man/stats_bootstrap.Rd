@@ -7,7 +7,7 @@
 stats_bootstrap(x, do, probs = c(0.05, 0.95), n = 1000, na.rm = FALSE, ...)
 }
 \arguments{
-\item{x}{A vector.}
+\item{x}{A \code{\link{numeric}} vector.}
 
 \item{do}{A \code{\link{function}} that takes \code{x} as an argument
 and returns a single numeric value.}

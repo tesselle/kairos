@@ -17,7 +17,6 @@ numeric value.}
 \value{
 A \code{numeric} vector with the following elements:
 \describe{
-\item{\code{values}}{The \eqn{n} leave-one-out values.}
 \item{\code{mean}}{The jackknife estimate of mean.}
 \item{\code{bias}}{The jackknife estimate of bias.}
 \item{\code{error}}{he jackknife estimate of standard error.}

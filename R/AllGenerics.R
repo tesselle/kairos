@@ -28,7 +28,6 @@ NULL
 #' @param object A [CountMatrix-class] or a [DateEvent-class] object.
 #' @param dates A [`numeric`] vector of dates. If named, the names must match
 #'  the row names of `object`.
-#' @param errors A [`numeric`] vector giving the absolute error of `dates`.
 #' @inheritParams stats_bootstrap
 #' @param ... Currently not used.
 #' @details
@@ -47,7 +46,7 @@ NULL
 #' @return
 #'  `date_mcd()` returns a [DateMCD-class] object.
 #'
-#'  `bootstrap_mcd()` returns a `data.frame`.
+#'  `bootstrap_mcd()` and `jackknife_mcd()` return a `data.frame`.
 #' @references
 #'  South, S. A. (1977). *Method and Theory in Historical Archaeology*.
 #'  New York: Academic Press.
@@ -67,7 +66,15 @@ setGeneric(
 #' @aliases bootstrap_mcd-method
 setGeneric(
   name = "bootstrap_mcd",
-  def = function(object, dates, ...) standardGeneric("bootstrap_mcd"),
+  def = function(object, ...) standardGeneric("bootstrap_mcd"),
+  valueClass = "data.frame"
+)
+
+#' @rdname date_mcd
+#' @aliases jackknife_mcd-method
+setGeneric(
+  name = "jackknife_mcd",
+  def = function(object, ...) standardGeneric("jackknife_mcd"),
   valueClass = "data.frame"
 )
 

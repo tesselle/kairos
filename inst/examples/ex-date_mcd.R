@@ -20,5 +20,9 @@ mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 mc_dates <- date_mcd(counts, dates = mid)
 
 ## Bootstrap resampling
-boot <- bootstrap_mcd(counts, dates = mid)
+boot <- bootstrap_mcd(mc_dates, n = 30)
 head(boot)
+
+## Jackknife resampling
+jack <- jackknife_mcd(mc_dates)
+head(jack)

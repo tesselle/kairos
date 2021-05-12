@@ -6,17 +6,24 @@
 \alias{date_mcd-method}
 \alias{bootstrap_mcd}
 \alias{bootstrap_mcd-method}
+\alias{jackknife_mcd}
+\alias{jackknife_mcd-method}
 \alias{date_mcd,CountMatrix,numeric-method}
-\alias{bootstrap_mcd,CountMatrix,numeric-method}
+\alias{bootstrap_mcd,DateMCD-method}
+\alias{jackknife_mcd,DateMCD-method}
 \title{Mean Ceramic Date}
 \usage{
 date_mcd(object, dates, ...)
 
-bootstrap_mcd(object, dates, ...)
+bootstrap_mcd(object, ...)
 
-\S4method{date_mcd}{CountMatrix,numeric}(object, dates, errors = NULL, ...)
+jackknife_mcd(object, ...)
 
-\S4method{bootstrap_mcd}{CountMatrix,numeric}(object, dates, probs = c(0.05, 0.95), n = 1000)
+\S4method{date_mcd}{CountMatrix,numeric}(object, dates)
+
+\S4method{bootstrap_mcd}{DateMCD}(object, probs = c(0.05, 0.95), n = 1000)
+
+\S4method{jackknife_mcd}{DateMCD}(object)
 }
 \arguments{
 \item{object}{A \linkS4class{CountMatrix} or a \linkS4class{DateEvent} object.}
@@ -25,8 +32,6 @@ bootstrap_mcd(object, dates, ...)
 the row names of \code{object}.}
 
 \item{...}{Currently not used.}
-
-\item{errors}{A \code{\link{numeric}} vector giving the absolute error of \code{dates}.}
 
 \item{probs}{A \code{\link{numeric}} vector of probabilities with values in
 \eqn{[0,1]} (see \code{\link[stats:quantile]{stats::quantile()}}).}
@@ -37,7 +42,7 @@ replications.}
 \value{
 \code{date_mcd()} returns a \linkS4class{DateMCD} object.
 
-\code{bootstrap_mcd()} returns a \code{data.frame}.
+\code{bootstrap_mcd()} and \code{jackknife_mcd()} return a \code{data.frame}.
 }
 \description{
 Estimates the Mean Ceramic Date of an assemblage.
@@ -79,8 +84,12 @@ mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 mc_dates <- date_mcd(counts, dates = mid)
 
 ## Bootstrap resampling
-boot <- bootstrap_mcd(counts, dates = mid)
+boot <- bootstrap_mcd(mc_dates, n = 30)
 head(boot)
+
+## Jackknife resampling
+jack <- jackknife_mcd(mc_dates)
+head(jack)
 }
 \references{
 South, S. A. (1977). \emph{Method and Theory in Historical Archaeology}.

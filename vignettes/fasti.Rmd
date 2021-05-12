@@ -1,5 +1,5 @@
 ---
-title: "Dating Methods"
+title: "Manual"
 author: "N. Frerebeau"
 date: "`r Sys.Date()`"
 output:
@@ -12,7 +12,7 @@ header-includes:
    - \usepackage{amssymb}
 bibliography: bibliography.bib
 vignette: >
-  %\VignetteIndexEntry{Dating Methods}
+  %\VignetteIndexEntry{Manual}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
@@ -70,11 +70,6 @@ The Mean Ceramic Date (MCD) is a point estimate of the occupation of an archaeol
 The MCD is defined as:
 $$ 
 t^{MCD}_i = \sum_{j = 1}^{p} t_j \times \frac{x_{ij}}{x_{i \cdot}}
-$$
-
-The MCD error is defined as:
-$$
-\delta t^{MCD}_i = \sqrt{ \sum_{j = 1}^{p} \left( \delta t_j \times \frac{x_{ij}}{x_{i \cdot}} \right)^2 }
 $$
 
 ## Limitation

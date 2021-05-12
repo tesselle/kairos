@@ -1,46 +1,13 @@
 # CLASSES DEFINITION AND INITIALIZATION
 NULL
 
-# IncrementTest ================================================================
-#' Frequency Increment Test
-#'
-#' An S4 class to represent a Frequency Increment Test results.
-#' @slot data A [`numeric`] matrix of count data.
-#' @slot dates A [`numeric`] vector of dates.
-#' @slot statistic A [`numeric`] vector giving the values of the t-statistic.
-#' @slot parameter An [`integer`] giving the degrees of freedom for the
-#'  t-statistic.
-#' @slot p_value A [`numeric`] vector giving the the p-value for the test.
-#' @section Subset:
-#'  In the code snippets below, `x` is a `IncrementTest` object.
-#'  \describe{
-#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript
-#'   `i`. `i` is a length-one [`character`] vector. Returns the corresponding
-#'   slot values.}
-#'  }
-#' @author N. Frerebeau
-#' @family class
-#' @docType class
-#' @aliases IncrementTest-class
-.IncrementTest <- setClass(
-  Class = "IncrementTest",
-  slots = c(
-    data = "matrix",
-    dates = "numeric",
-    statistic = "numeric",
-    parameter = "integer",
-    p_value = "numeric"
-  )
-)
-
 # DateMCD ======================================================================
 #' Mean Ceramic Date
 #'
 #' S4 classes to store the Mean Ceramic Date of archaeological assemblages.
-#' @slot data A [`numeric`] matrix of count data.
+#' @slot counts A [`numeric`] matrix of count data.
 #' @slot dates A [`numeric`] vector of dates.
-#' @slot mcd_values A [`numeric`] vector of errors.
-#' @slot mcd_errors A [`numeric`] vector of errors.
+#' @slot mcd A [`numeric`] vector giving the mean ceramic dates.
 #' @section Subset:
 #'  In the code snippets below, `x` is a `DateMCD` object.
 #'  \describe{
@@ -49,16 +16,16 @@ NULL
 #'   slot values.}
 #'  }
 #' @author N. Frerebeau
+#' @seealso [`date_mcd()`]
 #' @family class
 #' @docType class
 #' @aliases DateMCD-class
 .DateMCD <- setClass(
   Class = "DateMCD",
   slots = c(
-    data = "matrix",
+    counts = "matrix",
     dates = "numeric",
-    mcd_values = "numeric",
-    mcd_errors = "numeric"
+    mcd = "numeric"
   )
 )
 
@@ -117,4 +84,36 @@ NULL
     keep = "integer"
   ),
   contains = "CA"
+)
+
+# IncrementTest ================================================================
+#' Frequency Increment Test
+#'
+#' An S4 class to represent a Frequency Increment Test results.
+#' @slot data A [`numeric`] matrix of count data.
+#' @slot dates A [`numeric`] vector of dates.
+#' @slot statistic A [`numeric`] vector giving the values of the t-statistic.
+#' @slot parameter An [`integer`] giving the degrees of freedom for the
+#'  t-statistic.
+#' @slot p_value A [`numeric`] vector giving the the p-value for the test.
+#' @section Subset:
+#'  In the code snippets below, `x` is a `IncrementTest` object.
+#'  \describe{
+#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript
+#'   `i`. `i` is a length-one [`character`] vector. Returns the corresponding
+#'   slot values.}
+#'  }
+#' @author N. Frerebeau
+#' @family class
+#' @docType class
+#' @aliases IncrementTest-class
+.IncrementTest <- setClass(
+  Class = "IncrementTest",
+  slots = c(
+    data = "matrix",
+    dates = "numeric",
+    statistic = "numeric",
+    parameter = "integer",
+    p_value = "numeric"
+  )
 )

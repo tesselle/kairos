@@ -11,13 +11,11 @@ S4 classes to store the Mean Ceramic Date of archaeological assemblages.
 \section{Slots}{
 
 \describe{
-\item{\code{data}}{A \code{\link{numeric}} matrix of count data.}
+\item{\code{counts}}{A \code{\link{numeric}} matrix of count data.}
 
 \item{\code{dates}}{A \code{\link{numeric}} vector of dates.}
 
-\item{\code{mcd_values}}{A \code{\link{numeric}} vector of errors.}
-
-\item{\code{mcd_errors}}{A \code{\link{numeric}} vector of errors.}
+\item{\code{mcd}}{A \code{\link{numeric}} vector giving the mean ceramic dates.}
 }}
 
 \section{Subset}{
@@ -31,6 +29,8 @@ slot values.}
 }
 
 \seealso{
+\code{\link[=date_mcd]{date_mcd()}}
+
 Other class: 
 \code{\link{DateEvent-class}},
 \code{\link{IncrementTest-class}}

@@ -10,7 +10,6 @@ NULL
 #' @param ... Extra arguments passed to `do`.
 #' @return A `numeric` vector with the following elements:
 #'  \describe{
-#'   \item{`values`}{The \eqn{n} leave-one-out values.}
 #'   \item{`mean`}{The jackknife estimate of mean.}
 #'   \item{`bias`}{The jackknife estimate of bias.}
 #'   \item{`error`}{he jackknife estimate of standard error.}
@@ -40,7 +39,7 @@ stats_jackknife <- function(x, do, ...) {
 
 #' Bootstrap Estimation
 #'
-#' @param x A vector.
+#' @param x A [`numeric`] vector.
 #' @param do A [`function`] that takes `x` as an argument
 #'  and returns a single numeric value.
 #' @param probs A [`numeric`] vector of probabilities with values in

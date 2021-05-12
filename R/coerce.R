@@ -18,9 +18,8 @@ as.data.frame.IncrementTest <- function(x, ..., stringsAsFactors = default.strin
 #' @export
 as.data.frame.DateMCD <- function(x, ..., stringsAsFactors = default.stringsAsFactors()) {
   data.frame(
-    date = x@mcd_values,
-    error = x@mcd_errors,
-    row.names = rownames(x@data),
+    date = x@mcd,
+    row.names = rownames(x@counts),
     stringsAsFactors = FALSE
   )
 }
