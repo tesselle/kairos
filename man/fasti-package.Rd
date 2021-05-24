@@ -22,6 +22,7 @@ A toolkit for absolute dating and analysis of chronological
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://packages.tesselle.org/fasti}
   \item \url{https://github.com/tesselle/fasti}
   \item Report bugs at \url{https://github.com/tesselle/fasti/issues}
 }

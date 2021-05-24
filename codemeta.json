@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "fasti",
   "description": "A toolkit for absolute dating and analysis of chronological\n    patterns. This package includes functions for chronological modeling\n    and dating of archaeological assemblages from count data.",
@@ -13,7 +16,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
+  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
   "author": [
     {
       "@type": "Person",
@@ -190,8 +193,14 @@
     }
   ],
   "readme": "https://github.com/tesselle/fasti/blob/master/README.md",
-  "fileSize": "608.332KB",
+  "fileSize": "570.543KB",
   "contIntegration": "https://codecov.io/gh/tesselle/fasti",
   "developmentStatus": "https://www.repostatus.org/#wip",
-  "keywords": ["r-package", "archaeology", "archaeological-science", "chronology"]
+  "keywords": [
+    "r-package",
+    "archaeology",
+    "archaeological-science",
+    "chronology"
+  ],
+  "relatedLink": "https://packages.tesselle.org/fasti"
 }
