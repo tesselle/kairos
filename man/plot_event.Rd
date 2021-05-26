@@ -83,10 +83,10 @@ Snippets}, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
 \seealso{
 \code{\link[=date_event]{date_event()}}
 
-Other plot: 
+Other plotting methods: 
 \code{\link{plot_time}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{plot}
+\concept{plotting methods}

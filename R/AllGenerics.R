@@ -2,6 +2,10 @@
 #' @include AllClasses.R
 NULL
 
+# S4 dispatch to base S3 generic ===============================================
+if (!isGeneric("plot"))
+  setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
+
 # Extract ======================================================================
 ## Subset ----------------------------------------------------------------------
 #' Extract or Replace Parts of an Object
@@ -16,12 +20,13 @@ NULL
 # @example inst/examples/ex-mutator.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family mutator
+#' @family mutators
 #' @name subset
 #' @rdname subset
 NULL
 
-# Mean Ceramic Date ============================================================
+# Dating Methods ===============================================================
+## Mean Ceramic Date -----------------------------------------------------------
 #' Mean Ceramic Date
 #'
 #' Estimates the Mean Ceramic Date of an assemblage.
@@ -44,15 +49,15 @@ NULL
 #'  upper and lower boundaries of the confidence interval associated with each
 #'  MCD are then returned.
 #' @return
-#'  `date_mcd()` returns a [DateMCD-class] object.
-#'
-#'  `bootstrap_mcd()` and `jackknife_mcd()` return a `data.frame`.
+#'  * `date_mcd()` returns a [DateMCD-class] object.
+#'  * `bootstrap_mcd()` and `jackknife_mcd()` return a `data.frame`.
+#' @seealso [plot_time()]
 #' @references
 #'  South, S. A. (1977). *Method and Theory in Historical Archaeology*.
 #'  New York: Academic Press.
 #' @example inst/examples/ex-date_mcd.R
 #' @author N. Frerebeau
-#' @family dating
+#' @family dating methods
 #' @docType methods
 #' @rdname date_mcd
 #' @aliases date_mcd-method
@@ -78,14 +83,13 @@ setGeneric(
   valueClass = "data.frame"
 )
 
-# Event Model ==================================================================
+## Event Model -----------------------------------------------------------------
 #' Event and Accumulation Dates
 #'
 #' @description
-#'  `date_event()` fit a date event model.
-#'
-#'  `predict_event()` and `predict_accumulation()` estimates the event and
-#'  accumulation dates of an assemblage.
+#'  * `date_event()` fit a date event model.
+#'  * `predict_event()` and `predict_accumulation()` estimates the event and
+#'    accumulation dates of an assemblage.
 #' @param object A [CountMatrix-class] or a [DateEvent-class] object.
 #' @param data A [CountMatrix-class] object for which to predict event and
 #'  accumulation dates.
@@ -156,10 +160,10 @@ setGeneric(
 #'  considered **experimental** and subject to major changes in a future
 #'  release.
 #' @return
-#'  `date_event()` returns a [DateEvent-class] object.
-#'
-#'  `predict_event()`, `predict_accumulation()`, `bootstrap_event()`
-#'  and `jackknife_event()` return a `data.frame`.
+#'  * `date_event()` returns a [DateEvent-class] object.
+#'  * `predict_event()`, `predict_accumulation()`, `bootstrap_event()`
+#'    and `jackknife_event()` return a `data.frame`.
+#' @seealso [plot_event()]
 #' @references
 #'  Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans
 #'  la matière à partir d'une source matérielle : la céramique médiévale.
@@ -186,7 +190,7 @@ setGeneric(
 #'  *The Digital Heritage of Archaeology*. Athens: Hellenic Ministry of Culture.
 #' @example inst/examples/ex-date_event.R
 #' @author N. Frerebeau
-#' @family dating
+#' @family dating methods
 #' @docType methods
 #' @name event
 #' @rdname event
@@ -231,6 +235,58 @@ setGeneric(
   valueClass = "data.frame"
 )
 
+# Aoristic Analysis ============================================================
+#' Aoristic Analysis
+#'
+#' Computes the aoristic sum.
+#' @param x A [`numeric`] vector. If `y` is missing, must be a [`list`] (or a
+#'  [`data.frame`]) with `numeric` components (columns) `from` and `to`.
+#' @param y A [`numeric`] vector. If missing, an attempt is made to interpret
+#'  `x` in a suitable way.
+#' @param step A length-one [`integer`] vector giving the step size, i.e. the
+#'  width of each time step in the time series (in years AD; defaults to
+#'  \eqn{1}).
+#' @param start A length-one [`numeric`] vector giving the beginning of the time
+#'  window (in years AD).
+#' @param stop A length-one [`numeric`] vector giving the end of the time
+#'  window (in years AD).
+#' @param weight A [`logical`] scalar: . Defaults to `FALSE` (the aoristic sum
+#'  is the number of elements within a time step).
+#' @param groups A [`factor`] vector in the sense that `as.factor(groups)`
+#'  defines the grouping. If `x` is a `list` (or a `data.frame`), `groups` can
+#'  be a length-one vector giving the index of the grouping component (column)
+#'  of `x`.
+#' @param ... Currently not used.
+#' @return
+#'  An [AoristicSum-class] object.
+#' @seealso [plot_time()]
+#' @references
+#'  Johnson, I. (2004). Aoristic Analysis: Seeds of a New Approach to Mapping
+#'  Archaeological Distributions through Time. *In* Ausserer, K. F., Börner, W.,
+#'  Goriany, M. & Karlhuber-Vöckl, L. (ed.), *Enter the Past - The E-Way into
+#'  the Four Dimensions of Cultural Heritage*, Oxford: Archaeopress, p. 448-52.
+#'  BAR International Series 1227.
+#'  \doi{http://dx.doi.org/10.15496/publikation-2085}
+#'
+#'  Ratcliffe, J. H. (2000). Aoristic Analysis: The Spatial Interpretation of
+#'  Unspecific Temporal Events. *International Journal of Geographical
+#'  Information Science*, 14(7): 669-79. \doi{10.1080/136588100424963}.
+#' @example inst/examples/ex-sum_aoristic.R
+#' @author N. Frerebeau
+#' @family chronological analysis
+#' @docType methods
+#' @name aoristic
+#' @rdname aoristic
+NULL
+
+#' @rdname aoristic
+#' @aliases sum_aoristic-method
+setGeneric(
+  name = "sum_aoristic",
+  def = function(x, y, ...) standardGeneric("sum_aoristic"),
+  valueClass = "AoristicSum"
+)
+
 # Plot =========================================================================
 ## Plot abundance --------------------------------------------------------------
 #' Abundance vs Time Plot
@@ -260,10 +316,10 @@ setGeneric(
 #' @note
 #'  Displaying FIT results on an abundance *vs* time diagram is adapted from Ben
 #'  Marwick's original [idea](https://github.com/benmarwick/signatselect/).
+#' @seealso [date_mcd()], [sum_aoristic()], [test_fit()]
 #' @example inst/examples/ex-plot_time.R
 #' @author N. Frerebeau
-#' @family plot
-#' @seealso [date_mcd()], [test_fit()]
+#' @family plotting methods
 #' @docType methods
 #' @rdname plot_time
 #' @aliases plot_time-method
@@ -318,7 +374,7 @@ setGeneric(
 #'  Snippets*, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
 #' @example inst/examples/ex-date_event.R
 #' @author N. Frerebeau
-#' @family plot
+#' @family plotting methods
 #' @seealso [date_event()]
 #' @docType methods
 #' @rdname plot_event
@@ -339,23 +395,24 @@ setGeneric(
 #'  of normalized variant frequency increments exhibits a mean that deviates
 #'  significantly from zero.
 #' @return
-#'  If `simplify` is `FALSE`, returns a list (default), else returns a
-#'  [`matrix`].
+#'  An [`IncrementTest-class`] object.
 #' @example inst/examples/ex-test_fit.R
-#' @author N. Frerebeau
+#' @seealso [plot_time()]
 #' @references
 #'  Feder, A. F., Kryazhimskiy, S. & Plotkin, J. B. (2014). Identifying
 #'  Signatures of Selection in Genetic Time Series. *Genetics*, 196(2),
 #'  509-522. \doi{10.1534/genetics.113.158220}.
-#' @family statistics
+#' @author N. Frerebeau
+#' @family chronological analysis
 #' @docType methods
-#' @name test_fit
-#' @rdname test_fit
+#' @name fit
+#' @rdname fit
 NULL
 
-#' @rdname test_fit
+#' @rdname fit
 #' @aliases test_fit-method
 setGeneric(
   name = "test_fit",
-  def = function(object, ...) standardGeneric("test_fit")
+  def = function(object, ...) standardGeneric("test_fit"),
+  valueClass = "IncrementTest"
 )

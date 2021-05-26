@@ -52,6 +52,7 @@ Collate:
     'refine_event.R'
     'statistics.R'
     'subset.R'
+    'sum_aoristic.R'
     'test_fit.R'
     'utilities.R'
     'zzz.R'

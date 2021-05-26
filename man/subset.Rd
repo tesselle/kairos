@@ -3,16 +3,19 @@
 \docType{methods}
 \name{subset}
 \alias{subset}
-\alias{[[,IncrementTest,ANY,missing-method}
+\alias{[[,AoristicSum,ANY,missing-method}
 \alias{[[,DateMCD,ANY,missing-method}
 \alias{[[,DateEvent,ANY,missing-method}
+\alias{[[,IncrementTest,ANY,missing-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[[}{IncrementTest,ANY,missing}(x, i)
+\S4method{[[}{AoristicSum,ANY,missing}(x, i)
 
 \S4method{[[}{DateMCD,ANY,missing}(x, i)
 
 \S4method{[[}{DateEvent,ANY,missing}(x, i)
+
+\S4method{[[}{IncrementTest,ANY,missing}(x, i)
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace
@@ -30,4 +33,4 @@ Operators acting on objects to extract or replace parts.
 \author{
 N. Frerebeau
 }
-\concept{mutator}
+\concept{mutators}

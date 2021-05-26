@@ -25,20 +25,29 @@ t-statistic.}
 
 \section{Subset}{
 
-In the code snippets below, \code{x} is a \code{IncrementTest} object.
+In the code snippets below, \code{x} is an \code{IncrementTest} object.
 \describe{
-\item{\code{x[[i]]}}{Extracts information from a slot selected by subscript
-\code{i}. \code{i} is a length-one \code{\link{character}} vector. Returns the corresponding
-slot values.}
+\item{\code{x[[i]]}}{Extracts information from a slot selected by subscript \code{i}.
+\code{i} is a length-one \code{\link{character}} vector. Returns the corresponding slot
+values.}
+}
+}
+
+\section{Coerce}{
+
+In the code snippets below, \code{x} is an \code{IncrementTest} object.
+\describe{
+\item{\code{as.data.frame(x)}}{Coerces to a \code{\link{data.frame}}.}
 }
 }
 
 \seealso{
-Other class: 
+Other classes: 
+\code{\link{AoristicSum-class}},
 \code{\link{DateEvent-class}},
 \code{\link{DateMCD-class}}
 }
 \author{
 N. Frerebeau
 }
-\concept{class}
+\concept{classes}

@@ -88,16 +88,18 @@ will be applied over: \code{1} indicates rows, \code{2} indicates columns.}
 replications.}
 }
 \value{
-\code{date_event()} returns a \linkS4class{DateEvent} object.
-
-\code{predict_event()}, \code{predict_accumulation()}, \code{bootstrap_event()}
+\itemize{
+\item \code{date_event()} returns a \linkS4class{DateEvent} object.
+\item \code{predict_event()}, \code{predict_accumulation()}, \code{bootstrap_event()}
 and \code{jackknife_event()} return a \code{data.frame}.
 }
+}
 \description{
-\code{date_event()} fit a date event model.
-
-\code{predict_event()} and \code{predict_accumulation()} estimates the event and
+\itemize{
+\item \code{date_event()} fit a date event model.
+\item \code{predict_event()} and \code{predict_accumulation()} estimates the event and
 accumulation dates of an assemblage.
+}
 }
 \details{
 This is an implementation of the chronological modeling method proposed by
@@ -191,10 +193,12 @@ for Seriation of Sagalassos Tablewares. In Doerr, M. & Apostolis, S. (eds.),
 \emph{The Digital Heritage of Archaeology}. Athens: Hellenic Ministry of Culture.
 }
 \seealso{
-Other dating: 
+\code{\link[=plot_event]{plot_event()}}
+
+Other dating methods: 
 \code{\link{date_mcd}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{dating}
+\concept{dating methods}

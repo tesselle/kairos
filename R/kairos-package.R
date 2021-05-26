@@ -38,7 +38,7 @@
 #' @import dimensio
 #' @importFrom ggplot2 ggplot aes facet_wrap geom_area geom_line geom_point
 #' scale_x_continuous scale_y_continuous vars
-#' @importFrom methods as callNextMethod new setClass setGeneric
+#' @importFrom methods as callGeneric callNextMethod new setClass setGeneric
 #' setMethod validObject .valueClassTest
 #' @importFrom rlang .data
 NULL

@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "kairos",
-  "description": "A toolkit for absolute dating and analysis of chronological\n    patterns. This package includes functions for chronological modeling\n    and dating of archaeological assemblages from count data.",
+  "description": "A toolkit for absolute dating and analysis of chronological\n    patterns. This package includes functions for chronological modeling\n    and dating of archaeological assemblages from count data. It allows to\n    compute time point estimates (e.g. Mean Ceramic Date) and density\n    estimates of the occupation and duration of an archaeological site.",
   "name": "kairos: Analysis of Chronological Patterns from Archaeological Count Data",
   "codeRepository": "https://github.com/tesselle/kairos",
   "relatedLink": "https://packages.tesselle.org/kairos/",
@@ -193,7 +193,7 @@
       "name": "stats"
     }
   ],
-  "fileSize": "570.588KB",
+  "fileSize": "586.066KB",
   "contIntegration": "https://codecov.io/gh/tesselle/kairos",
   "developmentStatus": "https://www.repostatus.org/#wip",
   "readme": "https://github.com/tesselle/kairos/blob/master/README.md",

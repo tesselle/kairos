@@ -40,9 +40,10 @@ the row names of \code{object}.}
 replications.}
 }
 \value{
-\code{date_mcd()} returns a \linkS4class{DateMCD} object.
-
-\code{bootstrap_mcd()} and \code{jackknife_mcd()} return a \code{data.frame}.
+\itemize{
+\item \code{date_mcd()} returns a \linkS4class{DateMCD} object.
+\item \code{bootstrap_mcd()} and \code{jackknife_mcd()} return a \code{data.frame}.
+}
 }
 \description{
 Estimates the Mean Ceramic Date of an assemblage.
@@ -83,6 +84,9 @@ mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 ## Calculate MCD
 mc_dates <- date_mcd(counts, dates = mid)
 
+## Plot
+plot_time(mc_dates)
+
 ## Bootstrap resampling
 boot <- bootstrap_mcd(mc_dates, n = 30)
 head(boot)
@@ -96,10 +100,12 @@ South, S. A. (1977). \emph{Method and Theory in Historical Archaeology}.
 New York: Academic Press.
 }
 \seealso{
-Other dating: 
+\code{\link[=plot_time]{plot_time()}}
+
+Other dating methods: 
 \code{\link{event}}
 }
 \author{
 N. Frerebeau
 }
-\concept{dating}
+\concept{dating methods}

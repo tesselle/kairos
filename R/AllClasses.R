@@ -11,13 +11,18 @@ NULL
 #' @section Subset:
 #'  In the code snippets below, `x` is a `DateMCD` object.
 #'  \describe{
-#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript
-#'   `i`. `i` is a length-one [`character`] vector. Returns the corresponding
-#'   slot values.}
+#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript `i`.
+#'   `i` is a length-one [`character`] vector. Returns the corresponding slot
+#'   values.}
+#'  }
+#' @section Coerce:
+#'  In the code snippets below, `x` is a `DateMCD` object.
+#'  \describe{
+#'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
 #'  }
 #' @author N. Frerebeau
 #' @seealso [`date_mcd()`]
-#' @family class
+#' @family classes
 #' @docType class
 #' @aliases DateMCD-class
 .DateMCD <- setClass(
@@ -29,7 +34,7 @@ NULL
   )
 )
 
-# DateModel ====================================================================
+# DateEvent ====================================================================
 #' Date Model
 #'
 #' S4 classes to store the event and accumulation times of archaeological
@@ -67,12 +72,13 @@ NULL
 #' @section Subset:
 #'  In the code snippets below, `x` is a `DateEvent` object.
 #'  \describe{
-#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript
-#'   `i`. `i` is a length-one [`character`] vector. Returns the corresponding
-#'   slot values.}
+#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript `i`.
+#'   `i` is a length-one [`character`] vector. Returns the corresponding slot
+#'   values.}
 #'  }
+#' @seealso [`dimensio::CA-class`]
 #' @author N. Frerebeau
-#' @family class
+#' @family classes
 #' @docType class
 #' @aliases DateEvent-class
 .DateEvent <- setClass(
@@ -86,6 +92,44 @@ NULL
   contains = "CA"
 )
 
+# AoristicSum ==================================================================
+#' Aoristic Sum
+#'
+#' An S4 class to represent an aoristic analysis results.
+#' @slot from A [`numeric`] vector.
+#' @slot to A [`numeric`] vector.
+#' @slot weights A [`numeric`] vector.
+#' @slot groups A [`character`] vector.
+#' @slot dates A [`numeric`] vector.
+#' @slot sum A [`numeric`] vector.
+#' @section Subset:
+#'  In the code snippets below, `x` is an `AoristicSum` object.
+#'  \describe{
+#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript `i`.
+#'   `i` is a length-one [`character`] vector. Returns the corresponding slot
+#'   values.}
+#'  }
+#' @section Coerce:
+#'  In the code snippets below, `x` is an `AoristicSum` object.
+#'  \describe{
+#'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
+#'  }
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @aliases AoristicSum-class
+.AoristicSum <- setClass(
+  Class = "AoristicSum",
+  slots = c(
+    from = "numeric",
+    to = "numeric",
+    weights = "numeric",
+    groups = "character",
+    dates = "numeric",
+    sum = "numeric"
+  )
+)
+
 # IncrementTest ================================================================
 #' Frequency Increment Test
 #'
@@ -97,14 +141,19 @@ NULL
 #'  t-statistic.
 #' @slot p_value A [`numeric`] vector giving the the p-value for the test.
 #' @section Subset:
-#'  In the code snippets below, `x` is a `IncrementTest` object.
+#'  In the code snippets below, `x` is an `IncrementTest` object.
 #'  \describe{
-#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript
-#'   `i`. `i` is a length-one [`character`] vector. Returns the corresponding
-#'   slot values.}
+#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript `i`.
+#'   `i` is a length-one [`character`] vector. Returns the corresponding slot
+#'   values.}
+#'  }
+#' @section Coerce:
+#'  In the code snippets below, `x` is an `IncrementTest` object.
+#'  \describe{
+#'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
 #'  }
 #' @author N. Frerebeau
-#' @family class
+#' @family classes
 #' @docType class
 #' @aliases IncrementTest-class
 .IncrementTest <- setClass(

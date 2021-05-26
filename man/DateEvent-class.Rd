@@ -56,18 +56,21 @@ point estimate of the accumulation dates and the corresponding error.}
 
 In the code snippets below, \code{x} is a \code{DateEvent} object.
 \describe{
-\item{\code{x[[i]]}}{Extracts information from a slot selected by subscript
-\code{i}. \code{i} is a length-one \code{\link{character}} vector. Returns the corresponding
-slot values.}
+\item{\code{x[[i]]}}{Extracts information from a slot selected by subscript \code{i}.
+\code{i} is a length-one \code{\link{character}} vector. Returns the corresponding slot
+values.}
 }
 }
 
 \seealso{
-Other class: 
+\code{\link[dimensio:CA-class]{dimensio::CA}}
+
+Other classes: 
+\code{\link{AoristicSum-class}},
 \code{\link{DateMCD-class}},
 \code{\link{IncrementTest-class}}
 }
 \author{
 N. Frerebeau
 }
-\concept{class}
+\concept{classes}

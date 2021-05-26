@@ -22,20 +22,29 @@ S4 classes to store the Mean Ceramic Date of archaeological assemblages.
 
 In the code snippets below, \code{x} is a \code{DateMCD} object.
 \describe{
-\item{\code{x[[i]]}}{Extracts information from a slot selected by subscript
-\code{i}. \code{i} is a length-one \code{\link{character}} vector. Returns the corresponding
-slot values.}
+\item{\code{x[[i]]}}{Extracts information from a slot selected by subscript \code{i}.
+\code{i} is a length-one \code{\link{character}} vector. Returns the corresponding slot
+values.}
+}
+}
+
+\section{Coerce}{
+
+In the code snippets below, \code{x} is a \code{DateMCD} object.
+\describe{
+\item{\code{as.data.frame(x)}}{Coerces to a \code{\link{data.frame}}.}
 }
 }
 
 \seealso{
 \code{\link[=date_mcd]{date_mcd()}}
 
-Other class: 
+Other classes: 
+\code{\link{AoristicSum-class}},
 \code{\link{DateEvent-class}},
 \code{\link{IncrementTest-class}}
 }
 \author{
 N. Frerebeau
 }
-\concept{class}
+\concept{classes}

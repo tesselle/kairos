@@ -40,6 +40,42 @@ setMethod(
 
 #' @export
 #' @rdname plot_time
+#' @aliases plot_time,AoristicSum,numeric-method
+setMethod(
+  f = "plot_time",
+  signature = signature(object = "AoristicSum"),
+  definition = function(object, facet = FALSE) {
+    ## Prepare data
+    data <- as.data.frame(object)
+    data$x <- data$dates
+    data$y <- data$sum
+
+    ## ggplot
+    if (facet) {
+      facet <- ggplot2::facet_wrap(
+        facets = ggplot2::vars(.data$groups),
+        scales = "free_y"
+      )
+      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
+    } else {
+      facet <- NULL
+      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y, colour = .data$groups)
+    }
+    if (all(is.na(data$groups))) {
+      facet <- NULL
+      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
+    }
+
+    ggplot2::ggplot(data = data, mapping = aes_plot) +
+      ggplot2::geom_line() +
+      ggplot2::scale_x_continuous(name = "Time") +
+      ggplot2::scale_y_continuous(name = "Aoristic value") +
+      facet
+  }
+)
+
+#' @export
+#' @rdname plot_time
 #' @aliases plot_time,DateMCD,missing-method
 setMethod(
   f = "plot_time",
