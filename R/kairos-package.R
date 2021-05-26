@@ -1,12 +1,15 @@
 #' @details
 #' \tabular{ll}{
-#'  **Package:** \tab fasti \cr
+#'  **Package:** \tab kairos \cr
 #'  **Type:** \tab Package \cr
 #'  **Version:** \tab 0.0.0.9000 \cr
 #'  **License:** \tab GPL-3 \cr
 #' }
 #'
-# \doi{xxx}
+#' @section Package options:
+#'  `kairos` uses the following [options()] to configure behavior:
+#'  * `kairos.progress`: a [`logical`] scalar. Should progress bars be
+#'    displayed?
 #'
 #' @author
 #' **Full list of authors and contributors** (alphabetic order)
@@ -25,8 +28,8 @@
 #' Université Bordeaux Montaigne\cr
 #' F-33607 Pessac cedex\cr
 #' France
-#' @name fasti-package
-#' @aliases fasti
+#' @name kairos-package
+#' @aliases kairos
 #' @docType package
 #' @keywords internal
 "_PACKAGE"

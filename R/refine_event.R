@@ -9,7 +9,7 @@ setMethod(
   f = "jackknife_event",
   signature = signature(object = "DateEvent"),
   definition = function(object, level = 0.95,
-                        progress = getOption("fasti.progress"), ...) {
+                        progress = getOption("kairos.progress"), ...) {
     ## Get data
     fit_model <- object[["model"]]
     fit_data <- object[["data"]]
@@ -46,7 +46,7 @@ setMethod(
   f = "bootstrap_event",
   signature = signature(object = "DateEvent"),
   definition = function(object, level = 0.95, probs = c(0.05, 0.95), n = 1000,
-                        progress = getOption("fasti.progress"), ...) {
+                        progress = getOption("kairos.progress"), ...) {
     ## Get data
     fit_model <- object[["model"]]
     fit_dim <- object[["dimension"]]
@@ -121,7 +121,7 @@ compute_date_boot <- function(x, axes, model, level, probs = c(0.05, 0.95)) {
 #' @keywords internal
 #' @noRd
 compute_date_jack <- function(x, dates, cutoff = 90,
-                              progress = getOption("fasti.progress"), ...) {
+                              progress = getOption("kairos.progress"), ...) {
   m <- ncol(x)
   k <- seq_len(m)
   jack <- vector(mode = "list", length = m)

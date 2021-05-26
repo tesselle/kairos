@@ -1,10 +1,10 @@
 .onLoad <- function(libname, pkgname){
   op <- options()
-  op.fasti <- list(
-    fasti.progress = TRUE
+  op.kairos <- list(
+    kairos.progress = TRUE
   )
-  toset <- !(names(op.fasti) %in% names(op))
-  if(any(toset)) options(op.fasti[toset])
+  toset <- !(names(op.kairos) %in% names(op))
+  if(any(toset)) options(op.kairos[toset])
 
   invisible()
 }

@@ -1,12 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# fasti
+# kairos
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/tesselle/fasti/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/fasti/actions)
-[![codecov](https://codecov.io/gh/tesselle/fasti/branch/master/graph/badge.svg)](https://codecov.io/gh/tesselle/fasti)
+[![R-CMD-check](https://github.com/tesselle/kairos/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/kairos/actions)
+[![codecov](https://codecov.io/gh/tesselle/kairos/branch/master/graph/badge.svg)](https://codecov.io/gh/tesselle/kairos)
 
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
@@ -23,32 +23,32 @@ archaeological assemblages from count data.
 
 ## Installation
 
-You can install the released version of **fasti** from
+You can install the released version of **kairos** from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("fasti")
+install.packages("kairos")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("tesselle/fasti")
+remotes::install_github("tesselle/kairos")
 ```
 
 ## Usage
 
 ``` r
 ## Load packages
-library(fasti)
+library(kairos)
 
 library(folio) # Datasets
 library(ggplot2)
 library(magrittr)
 ```
 
-**fasti** uses a set of S4 classes that represent different special
+**kairos** uses a set of S4 classes that represent different special
 types of matrix. Please refer to the documentation of the
 [**arkhe**](https://github.com/tesselle/arkhe) package where these
 classes are defined.
@@ -93,6 +93,6 @@ plot_event(event, type = "tempo", select = "LZ1105") +
 
 ## Contributing
 
-Please note that the **fasti** project is released with a [Contributor
+Please note that the **kairos** project is released with a [Contributor
 Code of Conduct](https://www.tesselle.org/conduct.html). By contributing
 to this project, you agree to abide by its terms.

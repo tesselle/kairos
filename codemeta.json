@@ -4,11 +4,12 @@
     "http://schema.org"
   ],
   "@type": "SoftwareSourceCode",
-  "identifier": "fasti",
+  "identifier": "kairos",
   "description": "A toolkit for absolute dating and analysis of chronological\n    patterns. This package includes functions for chronological modeling\n    and dating of archaeological assemblages from count data.",
-  "name": "fasti: Analysis of Chronological Patterns from Archaeological Count Data",
-  "codeRepository": "https://github.com/tesselle/fasti",
-  "issueTracker": "https://github.com/tesselle/fasti/issues",
+  "name": "kairos: Analysis of Chronological Patterns from Archaeological Count Data",
+  "codeRepository": "https://github.com/tesselle/kairos",
+  "relatedLink": "https://packages.tesselle.org/kairos/",
+  "issueTracker": "https://github.com/tesselle/kairos/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.0.0.9000",
   "programmingLanguage": {
@@ -130,7 +131,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.3"
+      "version": ">= 3.4"
     },
     {
       "@type": "SoftwareApplication",
@@ -192,15 +193,14 @@
       "name": "stats"
     }
   ],
-  "readme": "https://github.com/tesselle/fasti/blob/master/README.md",
-  "fileSize": "570.543KB",
-  "contIntegration": "https://codecov.io/gh/tesselle/fasti",
+  "fileSize": "570.588KB",
+  "contIntegration": "https://codecov.io/gh/tesselle/kairos",
   "developmentStatus": "https://www.repostatus.org/#wip",
+  "readme": "https://github.com/tesselle/kairos/blob/master/README.md",
   "keywords": [
     "r-package",
     "archaeology",
     "archaeological-science",
     "chronology"
-  ],
-  "relatedLink": "https://packages.tesselle.org/fasti"
+  ]
 }

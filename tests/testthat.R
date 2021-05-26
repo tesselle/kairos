@@ -1,4 +1,4 @@
 library(testthat)
-library(fasti)
+library(kairos)
 
-test_check("fasti")
+test_check("kairos")

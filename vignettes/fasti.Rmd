@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 
 ```{r packages}
 ## Load packages
-library(fasti)
+library(kairos)
 library(folio) # Datasets
 library(magrittr)
 ```

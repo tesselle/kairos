@@ -45,7 +45,7 @@ jackknife_event(object, ...)
 \S4method{jackknife_event}{DateEvent}(
   object,
   level = 0.95,
-  progress = getOption("fasti.progress"),
+  progress = getOption("kairos.progress"),
   ...
 )
 
@@ -54,7 +54,7 @@ jackknife_event(object, ...)
   level = 0.95,
   probs = c(0.05, 0.95),
   n = 1000,
-  progress = getOption("fasti.progress"),
+  progress = getOption("kairos.progress"),
   ...
 )
 }
@@ -162,7 +162,7 @@ with the following columns:
 ## Event and accumulation dates (Bellanger et al.)
 ## See the vignette:
 \dontrun{
-utils::vignette("fasti")
+utils::vignette("kairos")
 }
 }
 \references{

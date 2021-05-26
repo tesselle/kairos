@@ -1,4 +1,4 @@
-Package: fasti
+Package: kairos
 Title: Analysis of Chronological Patterns from Archaeological Count Data
 Version: 0.0.0.9000
 Authors@R: 
@@ -11,10 +11,10 @@ Description: A toolkit for absolute dating and analysis of chronological
     patterns. This package includes functions for chronological modeling
     and dating of archaeological assemblages from count data.
 License: GPL-3
-URL: https://packages.tesselle.org/fasti, https://github.com/tesselle/fasti
-BugReports: https://github.com/tesselle/fasti/issues
+URL: https://packages.tesselle.org/kairos/, https://github.com/tesselle/kairos
+BugReports: https://github.com/tesselle/kairos/issues
 Depends: 
-    R (>= 3.3)
+    R (>= 3.4)
 Imports:
     arkhe (>= 0.3.0),
     dimensio,
@@ -42,7 +42,7 @@ Collate:
     'coerce.R'
     'date_event.R'
     'date_mcd.R'
-    'fasti-package.R'
+    'kairos-package.R'
     'plot_event.R'
     'plot_time.R'
     'reexport.R'
