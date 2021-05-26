@@ -9,7 +9,9 @@
 \description{
 A toolkit for absolute dating and analysis of chronological
     patterns. This package includes functions for chronological modeling
-    and dating of archaeological assemblages from count data.
+    and dating of archaeological assemblages from count data. It allows to
+    compute time point estimates (e.g. Mean Ceramic Date) and density
+    estimates of the occupation and duration of an archaeological site.
 }
 \details{
 \tabular{ll}{

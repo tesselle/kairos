@@ -17,7 +17,9 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 
 A toolkit for absolute dating and analysis of chronological patterns.
 This package includes functions for chronological modeling and dating of
-archaeological assemblages from count data.
+archaeological assemblages from count data. It allows to compute time
+point estimates (e.g. Mean Ceramic Date) and density estimates of the
+occupation and duration of an archaeological site.
 
 **Initial development is in progress.**
 
