@@ -72,6 +72,6 @@ jobs:
           mkdir -p tmp/${REPO}
           cp -r docs/* tmp/${REPO}/
           cd tmp
-          git add .
+          git add -A
           git commit -m "Built site for ${REPO}@$(echo ${GITHUB_SHA} | cut -c1-7)"
           git push origin gh-pages
