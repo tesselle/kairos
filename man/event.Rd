@@ -59,15 +59,15 @@ jackknife_event(object, ...)
 )
 }
 \arguments{
-\item{object}{A \linkS4class{CountMatrix} or a \linkS4class{DateEvent} object.}
+\item{object}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} or a \linkS4class{DateEvent} object.}
 
 \item{dates}{A \code{\link{numeric}} vector of dates. If named, the names must match
 the row names of \code{object}.}
 
 \item{...}{Further arguments to be passed to internal methods.}
 
-\item{data}{A \linkS4class{CountMatrix} object for which to predict event and
-accumulation dates.}
+\item{data}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} object for which to predict event
+and accumulation dates.}
 
 \item{cutoff}{An \code{\link{integer}} giving the cumulative percentage of variance
 used to select CA factorial components for linear model fitting (see

@@ -130,6 +130,26 @@ NULL
   )
 )
 
+# AoristicSum ==================================================================
+#' Aoristic Sum
+#'
+#' An S4 class to represent an artifact apportioning results.
+#' @slot p An [`array`] giving the probability of apportioning an artifact type
+#'  to a given period.
+#' @slot a An [`array`] giving the apportioning of artifact types per site and
+#'  per period.
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @aliases CountApportion-class
+.CountApportion <- setClass(
+  Class = "CountApportion",
+  slots = c(
+    p = "array",
+    a = "array"
+  )
+)
+
 # IncrementTest ================================================================
 #' Frequency Increment Test
 #'

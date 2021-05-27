@@ -1,3 +1,4 @@
+# FREQUENCY INCREMENT TEST
 #' @include AllGenerics.R AllClasses.R
 NULL
 

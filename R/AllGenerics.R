@@ -30,7 +30,7 @@ NULL
 #' Mean Ceramic Date
 #'
 #' Estimates the Mean Ceramic Date of an assemblage.
-#' @param object A [CountMatrix-class] or a [DateEvent-class] object.
+#' @param object A [arkhe::CountMatrix-class] or a [DateEvent-class] object.
 #' @param dates A [`numeric`] vector of dates. If named, the names must match
 #'  the row names of `object`.
 #' @inheritParams stats_bootstrap
@@ -90,9 +90,9 @@ setGeneric(
 #'  * `date_event()` fit a date event model.
 #'  * `predict_event()` and `predict_accumulation()` estimates the event and
 #'    accumulation dates of an assemblage.
-#' @param object A [CountMatrix-class] or a [DateEvent-class] object.
-#' @param data A [CountMatrix-class] object for which to predict event and
-#'  accumulation dates.
+#' @param object A [arkhe::CountMatrix-class] or a [DateEvent-class] object.
+#' @param data A [arkhe::CountMatrix-class] object for which to predict event
+#'  and accumulation dates.
 #' @param dates A [`numeric`] vector of dates. If named, the names must match
 #'  the row names of `object`.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
@@ -235,7 +235,8 @@ setGeneric(
   valueClass = "data.frame"
 )
 
-# Aoristic Analysis ============================================================
+# Chronological Modelling ======================================================
+## Aoristic Analysis -----------------------------------------------------------
 #' Aoristic Analysis
 #'
 #' Computes the aoristic sum.
@@ -287,12 +288,88 @@ setGeneric(
   valueClass = "AoristicSum"
 )
 
+## Apportion -------------------------------------------------------------------
+#' Chronological Apportioning
+#'
+#' @param object An \eqn{m \times p}{m x p} [arkhe::CountMatrix-class] object.
+#' @param s0 A length-\eqn{m} [`numeric`] vector giving the site beginning dates
+#'  (in years AD).
+#' @param s1 A length-\eqn{m} [`numeric`] vector giving the site end dates
+#'  (in years AD).
+#' @param t0 A length-\eqn{p} [`numeric`] vector giving the type end dates
+#'  (in years AD).
+#' @param t1 A length-\eqn{p} [`numeric`] vector giving the type end dates
+#'  (in years AD).
+#' @param from A length-one [`numeric`] vector.
+#' @param to A length-one [`numeric`] vector.
+#' @param step A length-one [`integer`] vector giving the step size, i.e. the
+#'  width of each time step for apportioning (in years AD; defaults to
+#'  \eqn{25}).
+#' @param method A [`character`] string specifying the distribution to be used.
+#'  It must be one of "`uniform`" (uniform distribution) or "`truncated`"
+#'  (truncated standard normal distribution).
+#'  Any unambiguous substring can be given.
+#' @param z An [`integer`] value giving the lower and upper truncation points
+#'  (defaults to \eqn{2}).
+#' @param ... Currently not used.
+#' @references
+#'  Roberts, J. M., Mills, B. J., Clark, J. J., Haas, W. R., Huntley, D. L. &
+#'  Trowbridge, M. A. (2012). A Method for Chronological Apportioning of Ceramic
+#'  Assemblages. *Journal of Archaeological Science*, 39(5): 1513-20.
+#'  \doi{10.1016/j.jas.2011.12.022}.
+#' @author N. Frerebeau
+#' @family chronological analysis
+#' @docType methods
+#' @name apportion
+#' @rdname apportion
+NULL
+
+#' @rdname apportion
+#' @aliases apportion-method
+setGeneric(
+  name = "apportion",
+  def = function(object, ...) standardGeneric("apportion")
+)
+
+## Frequency Increment Test ----------------------------------------------------
+#' Frequency Increment Test
+#'
+#' @param object A [arkhe::CountMatrix-class] object.
+#' @param dates A [`numeric`] vector of dates.
+#' @param ... Currently not used.
+#' @details
+#'  The Frequency Increment Test (FIT) rejects neutrality if the distribution
+#'  of normalized variant frequency increments exhibits a mean that deviates
+#'  significantly from zero.
+#' @return
+#'  An [IncrementTest-class] object.
+#' @example inst/examples/ex-test_fit.R
+#' @seealso [plot_time()]
+#' @references
+#'  Feder, A. F., Kryazhimskiy, S. & Plotkin, J. B. (2014). Identifying
+#'  Signatures of Selection in Genetic Time Series. *Genetics*, 196(2):
+#'  509-522. \doi{10.1534/genetics.113.158220}.
+#' @author N. Frerebeau
+#' @family chronological analysis
+#' @docType methods
+#' @name fit
+#' @rdname fit
+NULL
+
+#' @rdname fit
+#' @aliases test_fit-method
+setGeneric(
+  name = "test_fit",
+  def = function(object, ...) standardGeneric("test_fit"),
+  valueClass = "IncrementTest"
+)
+
 # Plot =========================================================================
 ## Plot abundance --------------------------------------------------------------
 #' Abundance vs Time Plot
 #'
 #' Produces an abundance *vs* time diagram.
-#' @param object A [CountMatrix-class] object.
+#' @param object A [arkhe::CountMatrix-class] object.
 #' @param dates A [`numeric`] vector of dates.
 #' @param facet A [`logical`] scalar: should a matrix of panels defined by
 #'  type/taxon be drawn?
@@ -382,37 +459,4 @@ setGeneric(
 setGeneric(
   name = "plot_event",
   def = function(object, ...) standardGeneric("plot_event")
-)
-
-# Frequency Increment Test =====================================================
-#' Frequency Increment Test
-#'
-#' @param object A \eqn{m \times p}{m x p} matrix of count data.
-#' @param dates A [`numeric`] vector of dates.
-#' @param ... Currently not used.
-#' @details
-#'  The Frequency Increment Test (FIT) rejects neutrality if the distribution
-#'  of normalized variant frequency increments exhibits a mean that deviates
-#'  significantly from zero.
-#' @return
-#'  An [`IncrementTest-class`] object.
-#' @example inst/examples/ex-test_fit.R
-#' @seealso [plot_time()]
-#' @references
-#'  Feder, A. F., Kryazhimskiy, S. & Plotkin, J. B. (2014). Identifying
-#'  Signatures of Selection in Genetic Time Series. *Genetics*, 196(2),
-#'  509-522. \doi{10.1534/genetics.113.158220}.
-#' @author N. Frerebeau
-#' @family chronological analysis
-#' @docType methods
-#' @name fit
-#' @rdname fit
-NULL
-
-#' @rdname fit
-#' @aliases test_fit-method
-setGeneric(
-  name = "test_fit",
-  def = function(object, ...) standardGeneric("test_fit"),
-  valueClass = "IncrementTest"
 )

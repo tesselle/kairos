@@ -26,6 +26,7 @@ Depends:
 Imports:
     arkhe (>= 0.3.0),
     dimensio,
+    extraDistr,
     ggplot2,
     methods,
     rlang,
@@ -47,6 +48,7 @@ RoxygenNote: 7.1.1
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
+    'apportion.R'
     'coerce.R'
     'date_event.R'
     'date_mcd.R'

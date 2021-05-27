@@ -26,7 +26,7 @@ jackknife_mcd(object, ...)
 \S4method{jackknife_mcd}{DateMCD}(object)
 }
 \arguments{
-\item{object}{A \linkS4class{CountMatrix} or a \linkS4class{DateEvent} object.}
+\item{object}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} or a \linkS4class{DateEvent} object.}
 
 \item{dates}{A \code{\link{numeric}} vector of dates. If named, the names must match
 the row names of \code{object}.}

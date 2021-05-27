@@ -44,6 +44,7 @@ In the code snippets below, \code{x} is an \code{IncrementTest} object.
 \seealso{
 Other classes: 
 \code{\link{AoristicSum-class}},
+\code{\link{CountApportion-class}},
 \code{\link{DateEvent-class}},
 \code{\link{DateMCD-class}}
 }

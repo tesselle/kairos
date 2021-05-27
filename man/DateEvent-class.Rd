@@ -67,6 +67,7 @@ values.}
 
 Other classes: 
 \code{\link{AoristicSum-class}},
+\code{\link{CountApportion-class}},
 \code{\link{DateMCD-class}},
 \code{\link{IncrementTest-class}}
 }

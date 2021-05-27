@@ -13,14 +13,14 @@ test_fit(object, ...)
 \S4method{test_fit}{CountMatrix}(object, dates)
 }
 \arguments{
-\item{object}{A \eqn{m \times p}{m x p} matrix of count data.}
+\item{object}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} object.}
 
 \item{...}{Currently not used.}
 
 \item{dates}{A \code{\link{numeric}} vector of dates.}
 }
 \value{
-An \code{\linkS4class{IncrementTest}} object.
+An \linkS4class{IncrementTest} object.
 }
 \description{
 Frequency Increment Test
@@ -54,14 +54,15 @@ plot_time(freq, roll = TRUE, window = 5)
 }
 \references{
 Feder, A. F., Kryazhimskiy, S. & Plotkin, J. B. (2014). Identifying
-Signatures of Selection in Genetic Time Series. \emph{Genetics}, 196(2),
+Signatures of Selection in Genetic Time Series. \emph{Genetics}, 196(2):
 509-522. \doi{10.1534/genetics.113.158220}.
 }
 \seealso{
 \code{\link[=plot_time]{plot_time()}}
 
 Other chronological analysis: 
-\code{\link{aoristic}}
+\code{\link{aoristic}},
+\code{\link{apportion}()}
 }
 \author{
 N. Frerebeau

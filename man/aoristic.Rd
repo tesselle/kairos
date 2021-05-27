@@ -58,7 +58,7 @@ be a length-one vector giving the index of the grouping component (column)
 of \code{x}.}
 }
 \value{
-An \code{\linkS4class{AoristicSum}} object.
+An \linkS4class{AoristicSum} object.
 }
 \description{
 Computes the aoristic sum.
@@ -113,12 +113,13 @@ BAR International Series 1227.
 
 Ratcliffe, J. H. (2000). Aoristic Analysis: The Spatial Interpretation of
 Unspecific Temporal Events. \emph{International Journal of Geographical
-Information Science}, 14 (7): 669-79. \doi{10.1080/136588100424963}.
+Information Science}, 14(7): 669-79. \doi{10.1080/136588100424963}.
 }
 \seealso{
 \code{\link[=plot_time]{plot_time()}}
 
 Other chronological analysis: 
+\code{\link{apportion}()},
 \code{\link{fit}}
 }
 \author{

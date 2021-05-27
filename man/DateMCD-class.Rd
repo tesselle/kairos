@@ -41,6 +41,7 @@ In the code snippets below, \code{x} is a \code{DateMCD} object.
 
 Other classes: 
 \code{\link{AoristicSum-class}},
+\code{\link{CountApportion-class}},
 \code{\link{DateEvent-class}},
 \code{\link{IncrementTest-class}}
 }

@@ -22,7 +22,7 @@ plot_time(object, dates, ...)
 \S4method{plot_time}{IncrementTest,missing}(object, level = 0.95, roll = FALSE, window = 3)
 }
 \arguments{
-\item{object}{A \linkS4class{CountMatrix} object.}
+\item{object}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} object.}
 
 \item{dates}{A \code{\link{numeric}} vector of dates.}
 

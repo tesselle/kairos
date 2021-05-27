@@ -44,6 +44,7 @@ In the code snippets below, \code{x} is an \code{AoristicSum} object.
 
 \seealso{
 Other classes: 
+\code{\link{CountApportion-class}},
 \code{\link{DateEvent-class}},
 \code{\link{DateMCD-class}},
 \code{\link{IncrementTest-class}}
