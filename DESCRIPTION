@@ -2,11 +2,16 @@ Package: kairos
 Title: Analysis of Chronological Patterns from Archaeological Count Data
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Nicolas",
-           family = "Frerebeau",
-           role = c("aut", "cre"),
-           email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
-           comment = c(ORCID = "0000-0001-5759-4944"))
+    c(person(given = "Nicolas",
+             family = "Frerebeau",
+             role = c("aut", "cre"),
+             email = "nicolas.frerebeau@u-bordeaux-montaigne.fr",
+             comment = c(ORCID = "0000-0001-5759-4944")),
+      person(given = "Brice",
+             family = "Lebrun",
+             role = "ctb",
+             email = "brice.lebrun@u-bordeaux-montaigne.fr",
+             comment = c(ORCID = "0000-0001-7503-8685")))
 Description: A toolkit for absolute dating and analysis of chronological
     patterns. This package includes functions for chronological modeling
     and dating of archaeological assemblages from count data. It allows to
