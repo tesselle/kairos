@@ -10,9 +10,9 @@ as.data.frame.AoristicSum <- function(x, ..., stringsAsFactors = default.strings
   data.frame(
     dates = x@dates,
     sum = x@sum,
-    groups = rep(grp, each = length(x@dates) / length(grp)),
+    groups = rep(grp, each = length(x@sum) / length(grp)),
     row.names = NULL,
-    stringsAsFactors = FALSE
+    stringsAsFactors = stringsAsFactors
   )
 }
 
@@ -22,7 +22,7 @@ as.data.frame.DateMCD <- function(x, ..., stringsAsFactors = default.stringsAsFa
   data.frame(
     date = x@mcd,
     row.names = rownames(x@counts),
-    stringsAsFactors = FALSE
+    stringsAsFactors = stringsAsFactors
   )
 }
 
@@ -33,6 +33,6 @@ as.data.frame.IncrementTest <- function(x, ..., stringsAsFactors = default.strin
     t = x@statistic,
     p.value = x@p_value,
     row.names = colnames(x@data),
-    stringsAsFactors = FALSE
+    stringsAsFactors = stringsAsFactors
   )
 }

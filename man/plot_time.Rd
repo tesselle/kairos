@@ -15,7 +15,7 @@ plot_time(object, dates, ...)
 
 \S4method{plot_time}{CountMatrix,numeric}(object, dates, facet = FALSE)
 
-\S4method{plot_time}{AoristicSum,ANY}(object, facet = FALSE)
+\S4method{plot_time}{AoristicSum,ANY}(object, facet = TRUE)
 
 \S4method{plot_time}{DateMCD,missing}(object, facet = FALSE)
 

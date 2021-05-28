@@ -42,6 +42,7 @@ setMethod(
 
     dates <- seq(from = start, to = stop, by = step)
     ao_sum <- vector(mode = "list", length = m)
+
     for (k in seq_len(m)) {
       s <- spl[[k]]
       ao_sum[[k]] <- vapply(

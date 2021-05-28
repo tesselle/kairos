@@ -44,7 +44,7 @@ setMethod(
 setMethod(
   f = "plot_time",
   signature = signature(object = "AoristicSum"),
-  definition = function(object, facet = FALSE) {
+  definition = function(object, facet = TRUE) {
     ## Prepare data
     data <- as.data.frame(object)
     data$x <- data$dates
@@ -59,7 +59,7 @@ setMethod(
       aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
     } else {
       facet <- NULL
-      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y, colour = .data$groups)
+      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y, fill = .data$groups)
     }
     if (all(is.na(data$groups))) {
       facet <- NULL
@@ -67,7 +67,7 @@ setMethod(
     }
 
     ggplot2::ggplot(data = data, mapping = aes_plot) +
-      ggplot2::geom_line() +
+      ggplot2::geom_col() +
       ggplot2::scale_x_continuous(name = "Time") +
       ggplot2::scale_y_continuous(name = "Aoristic value") +
       facet

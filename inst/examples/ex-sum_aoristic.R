@@ -30,9 +30,9 @@ span <- apply(
 span <- as.data.frame(t(span))
 
 ## Calculate aoristic sum (normal)
-aorist_raw <- sum_aoristic(span, step = 25, weight = FALSE)
+aorist_raw <- sum_aoristic(span, step = 50, weight = FALSE)
 plot_time(aorist_raw)
 
 ## Calculate aoristic sum (weights)
-aorist_weigth <- sum_aoristic(span, step = 25, weight = TRUE)
+aorist_weigth <- sum_aoristic(span, step = 50, weight = TRUE)
 plot_time(aorist_weigth)
