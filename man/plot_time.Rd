@@ -7,6 +7,8 @@
 \alias{plot_time,CountMatrix,numeric-method}
 \alias{plot_time,AoristicSum,ANY-method}
 \alias{plot_time,AoristicSum,numeric-method}
+\alias{plot_time,RateOfChange,ANY-method}
+\alias{plot_time,RateOfChange,numeric-method}
 \alias{plot_time,DateMCD,missing-method}
 \alias{plot_time,IncrementTest,missing-method}
 \title{Abundance vs Time Plot}
@@ -16,6 +18,8 @@ plot_time(object, dates, ...)
 \S4method{plot_time}{CountMatrix,numeric}(object, dates, facet = FALSE)
 
 \S4method{plot_time}{AoristicSum,ANY}(object, facet = TRUE)
+
+\S4method{plot_time}{RateOfChange,ANY}(object, facet = TRUE)
 
 \S4method{plot_time}{DateMCD,missing}(object, facet = FALSE)
 

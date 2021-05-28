@@ -101,7 +101,9 @@ NULL
 #' @slot weights A [`numeric`] vector.
 #' @slot groups A [`character`] vector.
 #' @slot dates A [`numeric`] vector.
-#' @slot sum A [`numeric`] vector.
+#' @slot p A [`numeric`] [`array`] giving the aorisitic probabilities.
+#' @slot sum A [`numeric`] [`matrix`] giving the aorisitic sums (one group per
+#'  columns).
 #' @section Subset:
 #'  In the code snippets below, `x` is an `AoristicSum` object.
 #'  \describe{
@@ -126,7 +128,32 @@ NULL
     weights = "numeric",
     groups = "character",
     dates = "numeric",
-    sum = "numeric"
+    p = "array",
+    sum = "matrix"
+  )
+)
+
+#' Rate of Change
+#'
+#' An S4 class to represent rates of change from an aoristic analysis.
+#' @slot blocks A [`character`] vector giving the time-blocks.
+#' @slot rates A [`numeric`] [`array`] giving the rates of change.
+#' @section Subset:
+#'  In the code snippets below, `x` is an `RateOfChange` object.
+#'  \describe{
+#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript `i`.
+#'   `i` is a length-one [`character`] vector. Returns the corresponding slot
+#'   values.}
+#'  }
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @aliases RateOfChange-class
+.RateOfChange <- setClass(
+  Class = "RateOfChange",
+  slots = c(
+    blocks = "character",
+    rates = "array"
   )
 )
 

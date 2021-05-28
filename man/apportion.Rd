@@ -72,7 +72,8 @@ Assemblages. \emph{Journal of Archaeological Science}, 39(5): 1513-20.
 \seealso{
 Other chronological analysis: 
 \code{\link{aoristic}},
-\code{\link{fit}}
+\code{\link{fit}},
+\code{\link{roc}}
 }
 \author{
 N. Frerebeau

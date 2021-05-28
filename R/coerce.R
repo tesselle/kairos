@@ -6,14 +6,8 @@ NULL
 #' @method as.data.frame AoristicSum
 #' @export
 as.data.frame.AoristicSum <- function(x, ..., stringsAsFactors = default.stringsAsFactors()) {
-  grp <- unique(x@groups)
-  data.frame(
-    dates = x@dates,
-    sum = x@sum,
-    groups = rep(grp, each = length(x@sum) / length(grp)),
-    row.names = NULL,
-    stringsAsFactors = stringsAsFactors
-  )
+  x <- t(x@sum)
+  as.data.frame(x, stringsAsFactors = stringsAsFactors)
 }
 
 #' @method as.data.frame DateMCD

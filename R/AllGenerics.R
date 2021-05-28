@@ -260,14 +260,18 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return
 #'  An [AoristicSum-class] object.
-#' @seealso [plot_time()]
+#' @seealso [rate_roc()], [plot_time()]
 #' @references
+#'  Crema, E. R. (2012). Modelling Temporal Uncertainty in Archaeological
+#'  Analysis. *Journal of Archaeological Method and Theory*, 19(3): 440-61.
+#'  \doi{10.1007/s10816-011-9122-3}.
+#'
 #'  Johnson, I. (2004). Aoristic Analysis: Seeds of a New Approach to Mapping
 #'  Archaeological Distributions through Time. *In* Ausserer, K. F., Börner, W.,
 #'  Goriany, M. & Karlhuber-Vöckl, L. (ed.), *Enter the Past - The E-Way into
 #'  the Four Dimensions of Cultural Heritage*, Oxford: Archaeopress, p. 448-52.
 #'  BAR International Series 1227.
-#'  \doi{http://dx.doi.org/10.15496/publikation-2085}
+#'  \doi{10.15496/publikation-2085}
 #'
 #'  Ratcliffe, J. H. (2000). Aoristic Analysis: The Spatial Interpretation of
 #'  Unspecific Temporal Events. *International Journal of Geographical
@@ -286,6 +290,42 @@ setGeneric(
   name = "sum_aoristic",
   def = function(x, y, ...) standardGeneric("sum_aoristic"),
   valueClass = "AoristicSum"
+)
+
+## Rate of Change --------------------------------------------------------------
+#' Rate of Change
+#'
+#' Computes the rate of change from an aoristic analysis.
+#' @param object An [`AoristicSum-class`] object.
+#' @param n A non-negative [`integer`] giving the number of replications (see
+#'  details).
+#' @param ... Currently not used.
+#' @return
+#'  A [RateOfChange-class] object.
+#' @seealso [sum_aoristic()], [plot_time()]
+#' @references
+#'  Baxter, M. J. & Cool, H. E. M. (2016). Reinventing the Wheel? Modelling
+#'  Temporal Uncertainty with Applications to Brooch Distributions in Roman
+#'  Britain. *Journal of Archaeological Science*, 66: 120-27.
+#'  \doi{10.1016/j.jas.2015.12.007}.
+#'
+#'  Crema, E. R. (2012). Modelling Temporal Uncertainty in Archaeological
+#'  Analysis. *Journal of Archaeological Method and Theory*, 19(3): 440-61.
+#'  \doi{10.1007/s10816-011-9122-3}.
+#' @example inst/examples/ex-sum_aoristic.R
+#' @author N. Frerebeau
+#' @family chronological analysis
+#' @docType methods
+#' @name roc
+#' @rdname roc
+NULL
+
+#' @rdname roc
+#' @aliases rate_roc-method
+setGeneric(
+  name = "rate_roc",
+  def = function(object, ...) standardGeneric("rate_roc"),
+  valueClass = "RateOfChange"
 )
 
 ## Apportion -------------------------------------------------------------------

@@ -61,3 +61,12 @@ setMethod(
   signature = c(x = "IncrementTest", i = "ANY", j = "missing"),
   definition = extract_slot
 )
+
+#' @export
+#' @rdname subset
+#' @aliases [[,RateOfChange,ANY,missing-method
+setMethod(
+  f = "[[",
+  signature = c(x = "RateOfChange", i = "ANY", j = "missing"),
+  definition = extract_slot
+)

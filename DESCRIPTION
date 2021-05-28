@@ -30,7 +30,8 @@ Imports:
     ggplot2,
     methods,
     rlang,
-    stats
+    stats,
+    utils
 Suggests:
     covr,
     folio,

@@ -1,0 +1,20 @@
+---
+title: "Bibliography"
+subtitle: "Comprehensive list of references cited in the package"
+author: "N. Frerebeau"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+bibliography: bibliography.bib
+nocite: '@*'
+vignette: >
+  %\VignetteIndexEntry{Bibliography}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```

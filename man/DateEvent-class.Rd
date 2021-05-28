@@ -69,7 +69,8 @@ Other classes:
 \code{\link{AoristicSum-class}},
 \code{\link{CountApportion-class}},
 \code{\link{DateMCD-class}},
-\code{\link{IncrementTest-class}}
+\code{\link{IncrementTest-class}},
+\code{\link{RateOfChange-class}}
 }
 \author{
 N. Frerebeau

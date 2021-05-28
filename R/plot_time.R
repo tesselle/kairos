@@ -46,22 +46,20 @@ setMethod(
   signature = signature(object = "AoristicSum"),
   definition = function(object, facet = TRUE) {
     ## Prepare data
-    data <- as.data.frame(object)
-    data$x <- data$dates
-    data$y <- data$sum
+    data <- prepare_aoristic(object)
 
     ## ggplot
     if (facet) {
       facet <- ggplot2::facet_wrap(
-        facets = ggplot2::vars(.data$groups),
+        facets = ggplot2::vars(.data$group),
         scales = "free_y"
       )
       aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
     } else {
       facet <- NULL
-      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y, fill = .data$groups)
+      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y, fill = .data$group)
     }
-    if (all(is.na(data$groups))) {
+    if (anyNA(data$group)) {
       facet <- NULL
       aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
     }
@@ -69,7 +67,42 @@ setMethod(
     ggplot2::ggplot(data = data, mapping = aes_plot) +
       ggplot2::geom_col() +
       ggplot2::scale_x_continuous(name = "Time") +
-      ggplot2::scale_y_continuous(name = "Aoristic value") +
+      ggplot2::scale_y_continuous(name = "Aoristic sum") +
+      facet
+  }
+)
+
+#' @export
+#' @rdname plot_time
+#' @aliases plot_time,RateOfChange,numeric-method
+setMethod(
+  f = "plot_time",
+  signature = signature(object = "RateOfChange"),
+  definition = function(object, facet = TRUE) {
+    ## Prepare data
+    data <- prepare_roc(object)
+
+    ## ggplot2
+    if (facet) {
+      facet <- ggplot2::facet_wrap(
+        facets = ggplot2::vars(.data$group),
+        scales = "free_y"
+      )
+      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
+    } else {
+      facet <- NULL
+      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y, colour = .data$group)
+    }
+    if (anyNA(data$group)) {
+      facet <- NULL
+      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
+    }
+
+    ggplot2::ggplot(data = data, mapping = aes_plot) +
+      ggplot2::geom_hline(yintercept = 0, linetype = 3) +
+      ggplot2::geom_boxplot() +
+      ggplot2::scale_x_discrete(name = "Time") +
+      ggplot2::scale_y_continuous(name = "Rate of Change") +
       facet
   }
 )
@@ -167,10 +200,45 @@ setMethod(
   }
 )
 
-## Prepare data for time plot
-## Must return a data.frame
+# Prepare data =================================================================
+## Build a long table for ggplot2
+## * Must return a data.frame
+## * Must preserve original ordering
+
+prepare_aoristic <- function(object) {
+  aoristic <- object[["sum"]]
+  dates <- object[["dates"]]
+  groups <- object[["groups"]]
+
+  grp <- unique(groups)
+  data.frame(
+    x = dates,
+    y = as.vector(aoristic),
+    group = rep(grp, each = nrow(aoristic))
+  )
+}
+
+prepare_roc <- function(object) {
+  rates <- object[["rates"]]
+  blocks <- object[["blocks"]]
+  blocks <- factor(blocks, levels = unique(blocks))
+
+  m <- dim(rates)[[1]]
+  p <- dim(rates)[[2]]
+  q <- dim(rates)[[3]]
+  n <- m * p
+
+  grp <- dimnames(rates)[[3]]
+  if (is.null(grp)) grp <- rep(NA_character_, q)
+
+  data.frame(
+    x = rep(rep(blocks, each = m), q),
+    y = as.vector(rates),
+    group = rep(grp, each = n)
+  )
+}
+
 prepare_time <- function(object, dates) {
-  ## Build a long table for ggplot2 (preserve original ordering)
   data <- arkhe::as_long(object, factor = TRUE)
 
   data$x <- data$dates <- dates

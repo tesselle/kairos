@@ -21,7 +21,10 @@ An S4 class to represent an aoristic analysis results.
 
 \item{\code{dates}}{A \code{\link{numeric}} vector.}
 
-\item{\code{sum}}{A \code{\link{numeric}} vector.}
+\item{\code{p}}{A \code{\link{numeric}} \code{\link{array}} giving the aorisitic probabilities.}
+
+\item{\code{sum}}{A \code{\link{numeric}} \code{\link{matrix}} giving the aorisitic sums (one group per
+columns).}
 }}
 
 \section{Subset}{
@@ -47,7 +50,8 @@ Other classes:
 \code{\link{CountApportion-class}},
 \code{\link{DateEvent-class}},
 \code{\link{DateMCD-class}},
-\code{\link{IncrementTest-class}}
+\code{\link{IncrementTest-class}},
+\code{\link{RateOfChange-class}}
 }
 \author{
 N. Frerebeau

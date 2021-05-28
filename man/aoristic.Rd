@@ -17,7 +17,7 @@ sum_aoristic(x, y, ...)
   step = 1,
   start = min(x, na.rm = TRUE),
   stop = max(y, na.rm = TRUE),
-  weight = FALSE,
+  weight = TRUE,
   groups = NULL
 )
 
@@ -102,25 +102,37 @@ plot_time(aorist_raw)
 ## Calculate aoristic sum (weights)
 aorist_weigth <- sum_aoristic(span, step = 50, weight = TRUE)
 plot_time(aorist_weigth)
+
+## Rate of change
+aorist_roc <- rate_roc(aorist_weigth, n = 30)
+plot_time(aorist_roc) +
+  ggplot2::theme(
+    axis.text.x = ggplot2::element_text(angle = 90, hjust = 1, vjust = 0.5)
+  )
 }
 \references{
+Crema, E. R. (2012). Modelling Temporal Uncertainty in Archaeological
+Analysis. \emph{Journal of Archaeological Method and Theory}, 19(3): 440-61.
+\doi{10.1007/s10816-011-9122-3}.
+
 Johnson, I. (2004). Aoristic Analysis: Seeds of a New Approach to Mapping
 Archaeological Distributions through Time. \emph{In} Ausserer, K. F., Börner, W.,
 Goriany, M. & Karlhuber-Vöckl, L. (ed.), \emph{Enter the Past - The E-Way into
 the Four Dimensions of Cultural Heritage}, Oxford: Archaeopress, p. 448-52.
 BAR International Series 1227.
-\doi{http://dx.doi.org/10.15496/publikation-2085}
+\doi{10.15496/publikation-2085}
 
 Ratcliffe, J. H. (2000). Aoristic Analysis: The Spatial Interpretation of
 Unspecific Temporal Events. \emph{International Journal of Geographical
 Information Science}, 14(7): 669-79. \doi{10.1080/136588100424963}.
 }
 \seealso{
-\code{\link[=plot_time]{plot_time()}}
+\code{\link[=rate_roc]{rate_roc()}}, \code{\link[=plot_time]{plot_time()}}
 
 Other chronological analysis: 
 \code{\link{apportion}()},
-\code{\link{fit}}
+\code{\link{fit}},
+\code{\link{roc}}
 }
 \author{
 N. Frerebeau

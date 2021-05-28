@@ -46,7 +46,8 @@ Other classes:
 \code{\link{AoristicSum-class}},
 \code{\link{CountApportion-class}},
 \code{\link{DateEvent-class}},
-\code{\link{DateMCD-class}}
+\code{\link{DateMCD-class}},
+\code{\link{RateOfChange-class}}
 }
 \author{
 N. Frerebeau
