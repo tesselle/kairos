@@ -28,6 +28,15 @@ setMethod(
 
 #' @export
 #' @rdname subset
+#' @aliases [[,CountApportion,ANY,missing-method
+setMethod(
+  f = "[[",
+  signature = c(x = "CountApportion", i = "ANY", j = "missing"),
+  definition = extract_slot
+)
+
+#' @export
+#' @rdname subset
 #' @aliases [[,DateMCD,ANY,missing-method
 setMethod(
   f = "[[",

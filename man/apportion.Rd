@@ -19,7 +19,8 @@ apportion(object, ...)
   to = max(s1),
   step = 25,
   method = c("uniform", "truncated"),
-  z = 2
+  z = 2,
+  progress = getOption("kairos.progress")
 )
 }
 \arguments{
@@ -39,21 +40,25 @@ apportion(object, ...)
 \item{t1}{A length-\eqn{p} \code{\link{numeric}} vector giving the type end dates
 (in years AD).}
 
-\item{from}{A length-one \code{\link{numeric}} vector.}
+\item{from}{A length-one \code{\link{numeric}} vector giving the beginning of the
+period of interest (in years AD).}
 
-\item{to}{A length-one \code{\link{numeric}} vector.}
+\item{to}{A length-one \code{\link{numeric}} vector giving the end of the period of
+interest (in years AD).}
 
 \item{step}{A length-one \code{\link{integer}} vector giving the step size, i.e. the
 width of each time step for apportioning (in years AD; defaults to
 \eqn{25}).}
 
-\item{method}{A \code{\link{character}} string specifying the distribution to be used.
-It must be one of "\code{uniform}" (uniform distribution) or "\code{truncated}"
-(truncated standard normal distribution).
+\item{method}{A \code{\link{character}} string specifying the distribution to be used
+(type popularity curve). It must be one of "\code{uniform}" (uniform
+distribution) or "\code{truncated}" (truncated standard normal distribution).
 Any unambiguous substring can be given.}
 
 \item{z}{An \code{\link{integer}} value giving the lower and upper truncation points
-(defaults to \eqn{2}).}
+(defaults to \eqn{2}). Only used if \code{method} is "\code{truncated}".}
+
+\item{progress}{A \code{\link{logical}} scalar: should a progress bar be displayed?}
 }
 \description{
 Chronological Apportioning

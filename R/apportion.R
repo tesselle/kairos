@@ -9,7 +9,8 @@ setMethod(
   f = "apportion",
   signature = signature(object = "CountMatrix"),
   definition = function(object, s0, s1, t0, t1, from = min(s0), to = max(s1),
-                        step = 25, method = c("uniform", "truncated"), z = 2) {
+                        step = 25, method = c("uniform", "truncated"), z = 2,
+                        progress = getOption("kairos.progress")) {
     ## Validation
     method <- match.arg(method, several.ok = FALSE)
     n_site <- nrow(object)
@@ -51,6 +52,10 @@ setMethod(
     ## Apportion
     k_site <- seq_len(n_site)
     k_type <- seq_len(n_type)
+
+    progress_bar <- interactive() && progress
+    if (progress_bar) pbar <- utils::txtProgressBar(max = n_site, style = 3)
+
     for (i in k_site) {
       for (j in k_type) {
         ## If the type lies outside the known site occupation or study interval
@@ -68,14 +73,26 @@ setMethod(
 
         p[i, j, ] <- fun(vj0, vj1, qjt0, qjt1, g[j], m[j], z)
       }
+
+      if (progress_bar) utils::setTxtProgressBar(pbar, i)
     }
 
+    if (progress_bar) close(pbar)
+
+    ## Remove negative values
+    p[p < 0] <- 0
+
+    ## Apportion
     a[] <- apply(X = p, MARGIN = 3, FUN = function(x, counts) x * counts,
                  counts = object)
 
     .CountApportion(
       p = p,
-      a = a
+      apportion = a,
+      method = method,
+      from = from,
+      to = to,
+      step = step
     )
   }
 )

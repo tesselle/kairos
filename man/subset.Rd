@@ -4,12 +4,15 @@
 \name{subset}
 \alias{subset}
 \alias{[[,AoristicSum,ANY,missing-method}
+\alias{[[,CountApportion,ANY,missing-method}
 \alias{[[,DateMCD,ANY,missing-method}
 \alias{[[,DateEvent,ANY,missing-method}
 \alias{[[,IncrementTest,ANY,missing-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
 \S4method{[[}{AoristicSum,ANY,missing}(x, i)
+
+\S4method{[[}{CountApportion,ANY,missing}(x, i)
 
 \S4method{[[}{DateMCD,ANY,missing}(x, i)
 

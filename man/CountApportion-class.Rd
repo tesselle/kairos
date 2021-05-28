@@ -4,7 +4,7 @@
 \name{CountApportion-class}
 \alias{CountApportion-class}
 \alias{.CountApportion}
-\title{Aoristic Sum}
+\title{Count Apportioning}
 \description{
 An S4 class to represent an artifact apportioning results.
 }
@@ -14,8 +14,20 @@ An S4 class to represent an artifact apportioning results.
 \item{\code{p}}{An \code{\link{array}} giving the probability of apportioning an artifact type
 to a given period.}
 
-\item{\code{a}}{An \code{\link{array}} giving the apportioning of artifact types per site and
-per period.}
+\item{\code{apportion}}{An \code{\link{array}} giving the apportioning of artifact types per
+site and per period.}
+
+\item{\code{method}}{A \code{\link{character}} string specifying the distribution used for
+apportioning (type popularity curve).}
+
+\item{\code{from}}{A length-one \code{\link{numeric}} vector giving the beginning of the
+period of interest (in years AD).}
+
+\item{\code{to}}{A length-one \code{\link{numeric}} vector giving the end of the period of
+interest (in years AD).}
+
+\item{\code{step}}{A length-one \code{\link{integer}} vector giving the step size, i.e. the
+width of each time step for apportioning (in years AD).}
 }}
 
 \seealso{

@@ -130,14 +130,22 @@ NULL
   )
 )
 
-# AoristicSum ==================================================================
-#' Aoristic Sum
+# CountApportion ==================================================================
+#' Count Apportioning
 #'
 #' An S4 class to represent an artifact apportioning results.
 #' @slot p An [`array`] giving the probability of apportioning an artifact type
 #'  to a given period.
-#' @slot a An [`array`] giving the apportioning of artifact types per site and
-#'  per period.
+#' @slot apportion An [`array`] giving the apportioning of artifact types per
+#'  site and per period.
+#' @slot method A [`character`] string specifying the distribution used for
+#'  apportioning (type popularity curve).
+#' @slot from A length-one [`numeric`] vector giving the beginning of the
+#'  period of interest (in years AD).
+#' @slot to A length-one [`numeric`] vector giving the end of the period of
+#'  interest (in years AD).
+#' @slot step A length-one [`integer`] vector giving the step size, i.e. the
+#'  width of each time step for apportioning (in years AD).
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -146,7 +154,11 @@ NULL
   Class = "CountApportion",
   slots = c(
     p = "array",
-    a = "array"
+    apportion = "array",
+    method = "character",
+    from = "numeric",
+    to = "numeric",
+    step = "numeric"
   )
 )
 

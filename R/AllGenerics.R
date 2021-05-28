@@ -300,17 +300,20 @@ setGeneric(
 #'  (in years AD).
 #' @param t1 A length-\eqn{p} [`numeric`] vector giving the type end dates
 #'  (in years AD).
-#' @param from A length-one [`numeric`] vector.
-#' @param to A length-one [`numeric`] vector.
+#' @param from A length-one [`numeric`] vector giving the beginning of the
+#'  period of interest (in years AD).
+#' @param to A length-one [`numeric`] vector giving the end of the period of
+#'  interest (in years AD).
 #' @param step A length-one [`integer`] vector giving the step size, i.e. the
 #'  width of each time step for apportioning (in years AD; defaults to
 #'  \eqn{25}).
-#' @param method A [`character`] string specifying the distribution to be used.
-#'  It must be one of "`uniform`" (uniform distribution) or "`truncated`"
-#'  (truncated standard normal distribution).
+#' @param method A [`character`] string specifying the distribution to be used
+#'  (type popularity curve). It must be one of "`uniform`" (uniform
+#'  distribution) or "`truncated`" (truncated standard normal distribution).
 #'  Any unambiguous substring can be given.
 #' @param z An [`integer`] value giving the lower and upper truncation points
-#'  (defaults to \eqn{2}).
+#'  (defaults to \eqn{2}). Only used if `method` is "`truncated`".
+#' @param progress A [`logical`] scalar: should a progress bar be displayed?
 #' @param ... Currently not used.
 #' @references
 #'  Roberts, J. M., Mills, B. J., Clark, J. J., Haas, W. R., Huntley, D. L. &
@@ -328,7 +331,8 @@ NULL
 #' @aliases apportion-method
 setGeneric(
   name = "apportion",
-  def = function(object, ...) standardGeneric("apportion")
+  def = function(object, ...) standardGeneric("apportion"),
+  valueClass = "CountApportion"
 )
 
 ## Frequency Increment Test ----------------------------------------------------
