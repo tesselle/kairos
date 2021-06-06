@@ -3,6 +3,7 @@
 NULL
 
 # S4 dispatch to base S3 generic ===============================================
+setGeneric("autoplot", function(object, ...) standardGeneric("autoplot"))
 if (!isGeneric("plot"))
   setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 
@@ -276,7 +277,7 @@ setGeneric(
 #'  Ratcliffe, J. H. (2000). Aoristic Analysis: The Spatial Interpretation of
 #'  Unspecific Temporal Events. *International Journal of Geographical
 #'  Information Science*, 14(7): 669-79. \doi{10.1080/136588100424963}.
-#' @example inst/examples/ex-sum_aoristic.R
+#' @example inst/examples/ex-aoristic.R
 #' @author N. Frerebeau
 #' @family chronological analysis
 #' @docType methods
@@ -312,7 +313,7 @@ setGeneric(
 #'  Crema, E. R. (2012). Modelling Temporal Uncertainty in Archaeological
 #'  Analysis. *Journal of Archaeological Method and Theory*, 19(3): 440-61.
 #'  \doi{10.1007/s10816-011-9122-3}.
-#' @example inst/examples/ex-sum_aoristic.R
+#' @example inst/examples/ex-aoristic.R
 #' @author N. Frerebeau
 #' @family chronological analysis
 #' @docType methods
@@ -413,7 +414,7 @@ setGeneric(
 #' Abundance vs Time Plot
 #'
 #' Produces an abundance *vs* time diagram.
-#' @param object A [arkhe::CountMatrix-class] object.
+#' @param object,x An object to be plotted.
 #' @param dates A [`numeric`] vector of dates.
 #' @param facet A [`logical`] scalar: should a matrix of panels defined by
 #'  type/taxon be drawn?
@@ -433,7 +434,10 @@ setGeneric(
 #'  selection. If so, shading highlights the data points where
 #'  [test_fit()] identifies selection.
 #' @return
-#'  A [ggplot2::ggplot] object.
+#'  * `plot_time()` returns a [ggplot2::ggplot] object.
+#'  * `autoplot()` returns a [ggplot2::ggplot] object.
+#'  * `plot()` is called it for its side-effects: it results in a graphic being
+#'  displayed (invisibly returns `x`).
 #' @note
 #'  Displaying FIT results on an abundance *vs* time diagram is adapted from Ben
 #'  Marwick's original [idea](https://github.com/benmarwick/signatselect/).
@@ -442,18 +446,22 @@ setGeneric(
 #' @author N. Frerebeau
 #' @family plotting methods
 #' @docType methods
+#' @name plot_time
+#' @rdname plot_time
+NULL
+
 #' @rdname plot_time
 #' @aliases plot_time-method
 setGeneric(
   name = "plot_time",
-  def = function(object, dates, ...) standardGeneric("plot_time")
+  def = function(object, ...) standardGeneric("plot_time")
 )
 
 ## Plot events -----------------------------------------------------------------
 #' Event Plot
 #'
-#' Produces an activity or tempo plot.
-#' @param object An object of class [DateEvent-class] to be plotted.
+#' Produces an activity or a tempo plot.
+#' @param object,x A [DateEvent-class] object.
 #' @param type A [`character`] string indicating the type of plot.
 #'  It must be one of "`activity`" (default) or "`tempo`".
 #'  Any unambiguous substring can be given.
@@ -480,7 +488,9 @@ setGeneric(
 #'   tempo plot.}
 #'  }
 #' @return
-#'  A [ggplot2::ggplot] object.
+#'  * `autoplot()` returns a [ggplot2::ggplot] object.
+#'  * `plot()` is called it for its side-effects: it results in a graphic being
+#'  displayed (invisibly returns `x`).
 #' @references
 #'  Bellanger, L. & Husi, P. (2012). Statistical Tool for Dating and
 #'  Interpreting Archaeological Contexts Using Pottery. *Journal of
@@ -498,9 +508,6 @@ setGeneric(
 #' @family plotting methods
 #' @seealso [date_event()]
 #' @docType methods
+#' @name plot_event
 #' @rdname plot_event
-#' @aliases plot_event-method
-setGeneric(
-  name = "plot_event",
-  def = function(object, ...) standardGeneric("plot_event")
-)
+NULL

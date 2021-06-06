@@ -4,33 +4,43 @@
 \name{plot_time}
 \alias{plot_time}
 \alias{plot_time-method}
-\alias{plot_time,CountMatrix,numeric-method}
-\alias{plot_time,AoristicSum,ANY-method}
-\alias{plot_time,AoristicSum,numeric-method}
-\alias{plot_time,RateOfChange,ANY-method}
-\alias{plot_time,RateOfChange,numeric-method}
-\alias{plot_time,DateMCD,missing-method}
-\alias{plot_time,IncrementTest,missing-method}
+\alias{plot_time,CountMatrix-method}
+\alias{autoplot,AoristicSum-method}
+\alias{plot,AoristicSum,missing-method}
+\alias{autoplot,RateOfChange-method}
+\alias{plot,RateOfChange,missing-method}
+\alias{autoplot,DateMCD-method}
+\alias{plot,DateMCD,missing-method}
+\alias{autoplot,IncrementTest-method}
+\alias{plot,IncrementTest,missing-method}
 \title{Abundance vs Time Plot}
 \usage{
-plot_time(object, dates, ...)
+plot_time(object, ...)
 
-\S4method{plot_time}{CountMatrix,numeric}(object, dates, facet = FALSE)
+\S4method{plot_time}{CountMatrix}(object, dates, facet = FALSE)
 
-\S4method{plot_time}{AoristicSum,ANY}(object, facet = TRUE)
+\S4method{autoplot}{AoristicSum}(object, ..., facet = TRUE)
 
-\S4method{plot_time}{RateOfChange,ANY}(object, facet = TRUE)
+\S4method{plot}{AoristicSum,missing}(x, facet = TRUE)
 
-\S4method{plot_time}{DateMCD,missing}(object, facet = FALSE)
+\S4method{autoplot}{RateOfChange}(object, ..., facet = TRUE)
 
-\S4method{plot_time}{IncrementTest,missing}(object, level = 0.95, roll = FALSE, window = 3)
+\S4method{plot}{RateOfChange,missing}(x, facet = TRUE)
+
+\S4method{autoplot}{DateMCD}(object, ..., facet = FALSE)
+
+\S4method{plot}{DateMCD,missing}(x, facet = TRUE)
+
+\S4method{autoplot}{IncrementTest}(object, ..., level = 0.95, roll = FALSE, window = 3)
+
+\S4method{plot}{IncrementTest,missing}(x, level = 0.95, roll = FALSE, window = 3)
 }
 \arguments{
-\item{object}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} object.}
-
-\item{dates}{A \code{\link{numeric}} vector of dates.}
+\item{object, x}{An object to be plotted.}
 
 \item{...}{Currently not used.}
+
+\item{dates}{A \code{\link{numeric}} vector of dates.}
 
 \item{facet}{A \code{\link{logical}} scalar: should a matrix of panels defined by
 type/taxon be drawn?}
@@ -45,7 +55,12 @@ subsetted to look for episodes of selection?}
 window. Only used if \code{roll} is \code{TRUE}.}
 }
 \value{
-A \link[ggplot2:ggplot]{ggplot2::ggplot} object.
+\itemize{
+\item \code{plot_time()} returns a \link[ggplot2:ggplot]{ggplot2::ggplot} object.
+\item \code{autoplot()} returns a \link[ggplot2:ggplot]{ggplot2::ggplot} object.
+\item \code{plot()} is called it for its side-effects: it results in a graphic being
+displayed (invisibly returns \code{x}).
+}
 }
 \description{
 Produces an abundance \emph{vs} time diagram.
@@ -85,7 +100,7 @@ plot_time(counts, dates, facet = TRUE)
 \code{\link[=date_mcd]{date_mcd()}}, \code{\link[=sum_aoristic]{sum_aoristic()}}, \code{\link[=test_fit]{test_fit()}}
 
 Other plotting methods: 
-\code{\link{plot_event}()}
+\code{\link{plot_event}}
 }
 \author{
 N. Frerebeau

@@ -15,19 +15,3 @@ arkhe::as_features
 #' @importFrom arkhe CountMatrix
 #' @export
 arkhe::CountMatrix
-
-#' @importFrom arkhe replace_NA
-#' @export
-arkhe::replace_NA
-
-#' @importFrom arkhe remove_NA
-#' @export
-arkhe::remove_NA
-
-#' @importFrom arkhe remove_zero
-#' @export
-arkhe::remove_zero
-
-#' @importFrom arkhe remove_empty
-#' @export
-arkhe::remove_empty

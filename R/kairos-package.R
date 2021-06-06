@@ -37,8 +37,8 @@
 #' @import arkhe
 #' @import dimensio
 #' @importFrom extraDistr ptnorm
-#' @importFrom ggplot2 ggplot aes facet_wrap geom_area geom_line geom_point
-#' scale_x_continuous scale_y_continuous vars
+#' @importFrom ggplot2 autoplot ggplot aes facet_wrap geom_area geom_line
+#' geom_point scale_x_continuous scale_y_continuous theme theme_bw vars
 #' @importFrom methods as callGeneric callNextMethod new setClass setGeneric
 #' setMethod validObject .valueClassTest
 #' @importFrom rlang .data

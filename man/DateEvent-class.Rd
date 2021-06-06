@@ -12,55 +12,16 @@ assemblages.
 \section{Slots}{
 
 \describe{
-\item{\code{data}}{A \code{\link{numeric}} matrix of count data.}
-
 \item{\code{dates}}{A \code{\link{numeric}} vector of dates.}
 
 \item{\code{model}}{A \link[stats:lm]{multiple linear model}: the Gaussian
 multiple linear regression model fitted for event date estimation and
 prediction.}
 
-\item{\code{cutoff}}{An \code{\link{integer}} vector giving the cutoff value.}
+\item{\code{cutoff}}{An length-one \code{\link{integer}} vector giving the cutoff value.}
 
-\item{\code{dimension}}{An \code{\link{integer}} vector giving the CA dimensions
-kept.}
-
-\item{\code{level}}{A length-one \code{\link{numeric}} vector giving the
-confidence level.}
-
-\item{\code{row_events}}{A four columns \code{\link{numeric}} matrix giving the
-predicted event dates for each archaeological assemblage, with the following
-columns:
-\describe{
-\item{date}{The event date estimation.}
-\item{lower}{The lower boundary of the confidence interval.}
-\item{upper}{The upper boundary of the confidence interval.}
-\item{error}{The standard error of predicted dates.}
+\item{\code{keep}}{An \code{\link{integer}} vector.}
 }}
-
-\item{\code{column_events}}{A four columns \code{\link{numeric}} matrix giving the
-predicted event dates for each archaeological type or fabric, with the
-following columns:
-\describe{
-\item{date}{The event date estimation.}
-\item{lower}{The lower boundary of the confidence interval.}
-\item{upper}{The upper boundary of the confidence interval.}
-\item{error}{The standard error of predicted dates.}
-}}
-
-\item{\code{accumulation}}{A two columns \code{\link{numeric}} matrix giving the
-point estimate of the accumulation dates and the corresponding error.}
-}}
-
-\section{Subset}{
-
-In the code snippets below, \code{x} is a \code{DateEvent} object.
-\describe{
-\item{\code{x[[i]]}}{Extracts information from a slot selected by subscript \code{i}.
-\code{i} is a length-one \code{\link{character}} vector. Returns the corresponding slot
-values.}
-}
-}
 
 \seealso{
 \code{\link[dimensio:CA-class]{dimensio::CA}}

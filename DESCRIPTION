@@ -49,6 +49,7 @@ RoxygenNote: 7.1.1
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
+    'aoristic.R'
     'apportion.R'
     'coerce.R'
     'date_event.R'
@@ -60,7 +61,6 @@ Collate:
     'refine_event.R'
     'statistics.R'
     'subset.R'
-    'sum_aoristic.R'
     'test_fit.R'
     'utilities.R'
     'zzz.R'

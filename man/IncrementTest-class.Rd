@@ -11,9 +11,9 @@ An S4 class to represent a Frequency Increment Test results.
 \section{Slots}{
 
 \describe{
-\item{\code{data}}{A \code{\link{numeric}} matrix of count data.}
+\item{\code{data}}{A \eqn{m \times p}{m x p} \code{\link{numeric}} matrix of count data.}
 
-\item{\code{dates}}{A \code{\link{numeric}} vector of dates.}
+\item{\code{dates}}{A length-\eqn{m} \code{\link{numeric}} vector of dates.}
 
 \item{\code{statistic}}{A \code{\link{numeric}} vector giving the values of the t-statistic.}
 

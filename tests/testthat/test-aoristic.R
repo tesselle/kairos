@@ -33,11 +33,11 @@ test_that("Aoristic Sum", {
 
   ## Calculate aoristic sum (normal)
   aorist_raw <- sum_aoristic(span, step = 25, weight = FALSE)
-  gg_raw <- plot_time(aorist_raw)
+  gg_raw <- autoplot(aorist_raw)
   vdiffr::expect_doppelganger("aoristic_raw", gg_raw)
 
   ## Calculate aoristic sum (weights)
   aorist_weigth <- sum_aoristic(span, step = 25, weight = TRUE)
-  gg_weight <- plot_time(aorist_weigth)
+  gg_weight <- autoplot(aorist_weigth)
   vdiffr::expect_doppelganger("aoristic_weight", gg_weight)
 })

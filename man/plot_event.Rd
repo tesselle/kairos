@@ -3,23 +3,23 @@
 \docType{methods}
 \name{plot_event}
 \alias{plot_event}
-\alias{plot_event-method}
-\alias{plot_event,DateEvent-method}
-\alias{plot_event,DateModel-method}
+\alias{autoplot,DateEvent-method}
+\alias{plot,DateEvent,missing-method}
 \title{Event Plot}
 \usage{
-plot_event(object, ...)
-
-\S4method{plot_event}{DateEvent}(
+\S4method{autoplot}{DateEvent}(
   object,
+  ...,
   type = c("activity", "tempo"),
   event = FALSE,
   select = 1,
   n = 500
 )
+
+\S4method{plot}{DateEvent,missing}(x, type = c("activity", "tempo"), event = FALSE, select = 1, n = 500)
 }
 \arguments{
-\item{object}{An object of class \linkS4class{DateEvent} to be plotted.}
+\item{object, x}{A \linkS4class{DateEvent} object.}
 
 \item{...}{Currently not used.}
 
@@ -37,10 +37,14 @@ the assemblage that are drawn.}
 length of the vector of quantiles for density computation.}
 }
 \value{
-A \link[ggplot2:ggplot]{ggplot2::ggplot} object.
+\itemize{
+\item \code{autoplot()} returns a \link[ggplot2:ggplot]{ggplot2::ggplot} object.
+\item \code{plot()} is called it for its side-effects: it results in a graphic being
+displayed (invisibly returns \code{x}).
+}
 }
 \description{
-Produces an activity or tempo plot.
+Produces an activity or a tempo plot.
 }
 \section{Event and Acccumulation Dates}{
 

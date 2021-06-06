@@ -10,10 +10,7 @@ setMethod(
   signature = signature(object = "CountMatrix"),
   definition = function(object, dates) {
     ## Validation
-    if (length(dates) != nrow(object))
-      stop(sprintf("%s must be of length %d; not %d.",
-                   sQuote("dates"), nrow(object), length(dates)), call. = FALSE)
-
+    arkhe::assert_length(dates, nrow(object))
     x <- as.matrix(object)
 
     ## Compute test
@@ -113,10 +110,10 @@ testFIT <- function(x, time, roll = FALSE, window = 3, ...) {
 #' @noRd
 FIT <- function(v, t, ...) {
   # Validation
-  if (!is.numeric(v) || !is.numeric(t))
-    stop("`v` and `t` must be of numeric type.", call. = FALSE)
-  if (length(v) != length(t))
-    stop("`v` and `t` must have the same length.", call. = FALSE)
+  arkhe::assert_type(v, "numeric")
+  arkhe::assert_type(t, "numeric")
+  arkhe::assert_length(t, length(v))
+
   # Remove zeros
   index <- v > 0
   v <- v[index]

@@ -21,13 +21,9 @@ test_that("FIT", {
   freq <- test_fit(counts, dates)
 
   ## Plot time vs abundance and highlight selection
-  gg_fit <- plot_time(freq)
+  gg_fit <- autoplot(freq)
   vdiffr::expect_doppelganger("time_fit", gg_fit)
 
-  gg_roll <- plot_time(freq, roll = TRUE, window = 5)
+  gg_roll <- autoplot(freq, roll = TRUE, window = 5)
   vdiffr::expect_doppelganger("time_roll", gg_roll)
-
-
-  # Errors
-  expect_error(plot_time(counts, dates[-1]), "must be of length")
 })

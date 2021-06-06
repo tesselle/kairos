@@ -10,9 +10,7 @@ setMethod(
   signature = signature(object = "CountMatrix", dates = "numeric"),
   definition = function(object, dates) {
     ## Validation
-    if (length(dates) != ncol(object))
-      stop(sprintf("%s must be of length %d; not %d.", sQuote("dates"),
-                   ncol(object), length(dates)), call. = FALSE)
+    arkhe::assert_length(dates, ncol(object))
 
     ## Calculate MCD
     mcd_dates <- apply(

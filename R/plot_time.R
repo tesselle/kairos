@@ -2,17 +2,17 @@
 #' @include AllClasses.R AllGenerics.R
 NULL
 
+# CountMatrix ==================================================================
 #' @export
 #' @rdname plot_time
-#' @aliases plot_time,CountMatrix,numeric-method
+#' @aliases plot_time,CountMatrix-method
 setMethod(
   f = "plot_time",
-  signature = signature(object = "CountMatrix", dates = "numeric"),
+  signature = signature(object = "CountMatrix"),
   definition = function(object, dates, facet = FALSE) {
     ## Validation
-    if (length(dates) != nrow(object))
-      stop(sprintf("%s must be of length %d; not %d.",
-                   sQuote("dates"), nrow(object), length(dates)), call. = FALSE)
+    arkhe::assert_type(dates, "numeric")
+    arkhe::assert_length(dates, nrow(object))
 
     ## Prepare data
     data <- prepare_time(object, dates)
@@ -38,165 +38,222 @@ setMethod(
   }
 )
 
+# AoristicSum ==================================================================
+#' @export
+#' @method autoplot AoristicSum
+autoplot.AoristicSum <- function(object, ..., facet = TRUE) {
+  ## Prepare data
+  data <- prepare_aoristic(object)
+
+  ## ggplot
+  if (facet) {
+    facet <- ggplot2::facet_wrap(
+      facets = ggplot2::vars(.data$group),
+      scales = "free_y"
+    )
+    aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
+  } else {
+    facet <- NULL
+    aes_plot <- ggplot2::aes(x = .data$x, y = .data$y, fill = .data$group)
+  }
+  if (anyNA(data$group)) {
+    facet <- NULL
+    aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
+  }
+
+  ggplot2::ggplot(data = data, mapping = aes_plot) +
+    ggplot2::geom_col() +
+    ggplot2::scale_x_continuous(name = "Time") +
+    ggplot2::scale_y_continuous(name = "Aoristic sum") +
+    facet
+}
+
 #' @export
 #' @rdname plot_time
-#' @aliases plot_time,AoristicSum,numeric-method
+setMethod("autoplot", "AoristicSum", autoplot.AoristicSum)
+
+#' @export
+#' @rdname plot_time
+#' @aliases plot,AoristicSum,missing-method
 setMethod(
-  f = "plot_time",
-  signature = signature(object = "AoristicSum"),
-  definition = function(object, facet = TRUE) {
-    ## Prepare data
-    data <- prepare_aoristic(object)
-
-    ## ggplot
-    if (facet) {
-      facet <- ggplot2::facet_wrap(
-        facets = ggplot2::vars(.data$group),
-        scales = "free_y"
-      )
-      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
-    } else {
-      facet <- NULL
-      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y, fill = .data$group)
-    }
-    if (anyNA(data$group)) {
-      facet <- NULL
-      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
-    }
-
-    ggplot2::ggplot(data = data, mapping = aes_plot) +
-      ggplot2::geom_col() +
-      ggplot2::scale_x_continuous(name = "Time") +
-      ggplot2::scale_y_continuous(name = "Aoristic sum") +
-      facet
+  f = "plot",
+  signature = c(x = "AoristicSum", y = "missing"),
+  definition = function(x, facet = TRUE) {
+    gg <- autoplot(object = x, facet = facet) +
+      ggplot2::theme_bw()
+    print(gg)
+    invisible(x)
   }
 )
 
+# RateOfChange =================================================================
+#' @export
+#' @method autoplot RateOfChange
+autoplot.RateOfChange <- function(object, ..., facet = TRUE) {
+  ## Prepare data
+  data <- prepare_roc(object)
+
+  ## ggplot2
+  if (facet) {
+    facet <- ggplot2::facet_wrap(
+      facets = ggplot2::vars(.data$group),
+      scales = "free_y"
+    )
+    aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
+  } else {
+    facet <- NULL
+    aes_plot <- ggplot2::aes(x = .data$x, y = .data$y, colour = .data$group)
+  }
+  if (anyNA(data$group)) {
+    facet <- NULL
+    aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
+  }
+
+  ggplot2::ggplot(data = data, mapping = aes_plot) +
+    ggplot2::geom_hline(yintercept = 0, linetype = 3) +
+    ggplot2::geom_boxplot() +
+    ggplot2::scale_x_discrete(name = "Time") +
+    ggplot2::scale_y_continuous(name = "Rate of Change") +
+    facet
+}
+
 #' @export
 #' @rdname plot_time
-#' @aliases plot_time,RateOfChange,numeric-method
+setMethod("autoplot", "RateOfChange", autoplot.RateOfChange)
+
+#' @export
+#' @rdname plot_time
+#' @aliases plot,RateOfChange,missing-method
 setMethod(
-  f = "plot_time",
-  signature = signature(object = "RateOfChange"),
-  definition = function(object, facet = TRUE) {
-    ## Prepare data
-    data <- prepare_roc(object)
-
-    ## ggplot2
-    if (facet) {
-      facet <- ggplot2::facet_wrap(
-        facets = ggplot2::vars(.data$group),
-        scales = "free_y"
+  f = "plot",
+  signature = c(x = "RateOfChange", y = "missing"),
+  definition = function(x, facet = TRUE) {
+    gg <- autoplot(object = x, facet = facet) +
+      ggplot2::theme_bw() +
+      ggplot2::theme(
+        axis.text.x = ggplot2::element_text(angle = 90, hjust = 1, vjust = 0.5)
       )
-      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
-    } else {
-      facet <- NULL
-      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y, colour = .data$group)
-    }
-    if (anyNA(data$group)) {
-      facet <- NULL
-      aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
-    }
-
-    ggplot2::ggplot(data = data, mapping = aes_plot) +
-      ggplot2::geom_hline(yintercept = 0, linetype = 3) +
-      ggplot2::geom_boxplot() +
-      ggplot2::scale_x_discrete(name = "Time") +
-      ggplot2::scale_y_continuous(name = "Rate of Change") +
-      facet
+    print(gg)
+    invisible(x)
   }
 )
 
+# DateMCD ======================================================================
+#' @export
+#' @method autoplot DateMCD
+autoplot.DateMCD <- function(object, ..., facet = FALSE) {
+  counts <- object[["counts"]]
+  dates <- object[["mcd"]]
+  plot_time(object = counts, dates = dates, facet = facet)
+}
+
 #' @export
 #' @rdname plot_time
-#' @aliases plot_time,DateMCD,missing-method
+setMethod("autoplot", "DateMCD", autoplot.DateMCD)
+
+#' @export
+#' @rdname plot_time
+#' @aliases plot,DateMCD,missing-method
 setMethod(
-  f = "plot_time",
-  signature = signature(object = "DateMCD", dates = "missing"),
-  definition = function(object, facet = FALSE) {
-    counts <- object[["counts"]]
-    dates <- object[["mcd"]]
-    methods::callGeneric(object = counts, dates = dates, facet = facet)
+  f = "plot",
+  signature = c(x = "DateMCD", y = "missing"),
+  definition = function(x, facet = TRUE) {
+    gg <- autoplot(object = x, facet = facet) +
+      ggplot2::theme_bw()
+    print(gg)
+    invisible(x)
   }
 )
 
+# IncrementTest ================================================================
+#' @export
+#' @method autoplot IncrementTest
+autoplot.IncrementTest <- function(object, ..., level = 0.95, roll = FALSE,
+                                   window = 3) {
+  ## Prepare data
+  alpha <- 1 - level
+  counts <- object[["data"]]
+  dates <- object[["dates"]]
+  data <- prepare_time(counts, dates)
+
+  signature_fit <- as.data.frame(object)
+  signature_fit$signature <- ifelse(signature_fit$p.value <= alpha,
+                                    "selection", "neutral")
+
+  data <- merge(x = data, y = signature_fit, by.x = "column", by.y = 0,
+                all.x = TRUE, all.y = FALSE)
+
+  if (roll) {
+    roll_fit <- testFIT(counts, dates, roll = roll, window = window)
+
+    roll_fit <- do.call(rbind.data.frame, roll_fit)
+    roll_fit$signature <- roll_fit$p.value <= alpha
+
+    data <- merge(x = data, y = roll_fit, by = c("column", "dates"),
+                  all.x = TRUE, all.y = FALSE, sort = TRUE,
+                  suffixes = c("","_roll"))
+
+    data <- by(
+      data,
+      INDICES = data$column,
+      FUN = function(x, half_window) {
+        x$signature_sub <- vapply(
+          X = seq_along(x$signature_roll),
+          FUN = function(x, y, k) {
+            max <- length(y)
+            lower <- x - k
+            lower[lower < 1] <- 1
+            upper <- x + k
+            upper[upper > max] <- max
+            any(y[lower:upper], na.rm = TRUE)
+          },
+          FUN.VALUE = logical(1),
+          y = x$signature_roll,
+          k = half_window
+        )
+        x
+      },
+      half_window = (window - 1) / 2
+    )
+    data <- do.call(rbind.data.frame, data)
+
+    gg_roll <- ggplot2::geom_line(
+      data = data[data$signature_sub, ],
+      mapping = ggplot2::aes(group = .data$column),
+      size = 5, colour = "grey80", lineend = "round"
+    )
+  } else {
+    gg_roll <- NULL
+  }
+
+  ## ggplot
+  ggplot2::ggplot(data = data) +
+    ggplot2::aes(x = .data$x, y = .data$y, colour = .data$signature) +
+    gg_roll +
+    ggplot2::geom_point() +
+    ggplot2::geom_line() +
+    ggplot2::scale_x_continuous(name = "Time") +
+    ggplot2::scale_y_continuous(name = "Frequency") +
+    ggplot2::facet_wrap(
+      facets = ggplot2::vars(.data$column),
+      scales = "free_y"
+    )
+}
+
 #' @export
 #' @rdname plot_time
-#' @aliases plot_time,IncrementTest,missing-method
+setMethod("autoplot", "IncrementTest", autoplot.IncrementTest)
+
+#' @export
+#' @rdname plot_time
+#' @aliases plot,IncrementTest,missing-method
 setMethod(
-  f = "plot_time",
-  signature = signature(object = "IncrementTest", dates = "missing"),
-  definition = function(object, level = 0.95, roll = FALSE, window = 3) {
-
-    alpha <- 1 - level
-
-    ## Prepare data
-    counts <- object[["data"]]
-    dates <- object[["dates"]]
-    data <- prepare_time(counts, dates)
-
-    signature_fit <- as.data.frame(object)
-    signature_fit$signature <- ifelse(signature_fit$p.value <= alpha,
-                                      "selection", "neutral")
-
-    data <- merge(x = data, y = signature_fit, by.x = "column", by.y = 0,
-                  all.x = TRUE, all.y = FALSE)
-
-    if (roll) {
-      roll_fit <- testFIT(counts, dates, roll = roll, window = window)
-
-      roll_fit <- do.call(rbind.data.frame, roll_fit)
-      roll_fit$signature <- roll_fit$p.value <= alpha
-
-      data <- merge(x = data, y = roll_fit, by = c("column", "dates"),
-                    all.x = TRUE, all.y = FALSE, sort = TRUE,
-                    suffixes = c("","_roll"))
-
-      data <- by(
-        data,
-        INDICES = data$column,
-        FUN = function(x, half_window) {
-          x$signature_sub <- vapply(
-            X = seq_along(x$signature_roll),
-            FUN = function(x, y, k) {
-              max <- length(y)
-              lower <- x - k
-              lower[lower < 1] <- 1
-              upper <- x + k
-              upper[upper > max] <- max
-              any(y[lower:upper], na.rm = TRUE)
-            },
-            FUN.VALUE = logical(1),
-            y = x$signature_roll,
-            k = half_window
-          )
-          x
-        },
-        half_window = (window - 1) / 2
-      )
-      data <- do.call(rbind.data.frame, data)
-
-      gg_roll <- ggplot2::geom_line(
-        data = data[data$signature_sub, ],
-        mapping = ggplot2::aes(group = .data$column),
-        size = 5, colour = "grey80", lineend = "round"
-      )
-    } else {
-      gg_roll <- NULL
-    }
-
-    ## ggplot
-    ggplot2::ggplot(data = data) +
-      ggplot2::aes(x = .data$x, y = .data$y, colour = .data$signature) +
-      gg_roll +
-      ggplot2::geom_point() +
-      ggplot2::geom_line() +
-      ggplot2::scale_x_continuous(name = "Time") +
-      ggplot2::scale_y_continuous(name = "Frequency") +
-      ggplot2::facet_wrap(
-        facets = ggplot2::vars(.data$column),
-        scales = "free_y"
-      )
+  f = "plot",
+  signature = c(x = "IncrementTest", y = "missing"),
+  definition = function(x, level = 0.95, roll = FALSE, window = 3) {
+    gg <- autoplot(object = x, level = level, roll = roll, window = window)
+    print(gg)
+    invisible(x)
   }
 )
 

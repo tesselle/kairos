@@ -245,11 +245,11 @@ head(acc)
 
 ```{r event-plot}
 ## Activity plot
-plot_event(model, type = "activity", event = TRUE, select = "LZ1105") +
+autoplot(model, type = "activity", event = TRUE, select = "LZ1105") +
   ggplot2::theme_bw()
 
 ## Tempo plot
-plot_event(model, type = "tempo", select = "LZ1105") +
+autoplot(model, type = "tempo", select = "LZ1105") +
   ggplot2::theme_bw()
 ```
 

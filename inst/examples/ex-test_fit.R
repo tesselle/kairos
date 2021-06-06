@@ -16,5 +16,5 @@ plot_time(counts, dates, facet = TRUE)
 freq <- test_fit(counts, dates)
 
 ## Plot time vs abundance and highlight selection
-plot_time(freq)
-plot_time(freq, roll = TRUE, window = 5)
+plot(freq)
+plot(freq, roll = TRUE, window = 5)

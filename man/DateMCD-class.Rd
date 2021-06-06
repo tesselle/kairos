@@ -11,11 +11,11 @@ S4 classes to store the Mean Ceramic Date of archaeological assemblages.
 \section{Slots}{
 
 \describe{
-\item{\code{counts}}{A \code{\link{numeric}} matrix of count data.}
+\item{\code{counts}}{A \eqn{m \times p}{m x p} \code{\link{numeric}} matrix of count data.}
 
-\item{\code{dates}}{A \code{\link{numeric}} vector of dates.}
+\item{\code{dates}}{A length-\eqn{p} \code{\link{numeric}} vector of dates.}
 
-\item{\code{mcd}}{A \code{\link{numeric}} vector giving the mean ceramic dates.}
+\item{\code{mcd}}{A length-\eqn{m} \code{\link{numeric}} vector giving the mean ceramic dates.}
 }}
 
 \section{Subset}{

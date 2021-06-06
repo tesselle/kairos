@@ -39,6 +39,27 @@ And the development version from [GitHub](https://github.com/) with:
 remotes::install_github("tesselle/kairos")
 ```
 
+## Usage
+
+``` r
+## Load packages
+library(kairos)
+library(folio) # Datasets
+```
+
+**kairos** uses a set of S4 classes that represent different special
+types of matrix. Please refer to the documentation of the
+[**arkhe**](https://github.com/tesselle/arkhe) package where these
+classes are defined.
+
+*It assumes that you keep your data tidy*: each variable (type/taxa)
+must be saved in its own column and each observation (sample/case) must
+be saved in its own row.
+
+<img src="man/figures/README-aoristic-1.png" width="50%" /><img src="man/figures/README-aoristic-2.png" width="50%" />
+
+<img src="man/figures/README-event-1.png" width="50%" /><img src="man/figures/README-event-2.png" width="50%" />
+
 ## Contributing
 
 Please note that the **kairos** project is released with a [Contributor

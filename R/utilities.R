@@ -14,8 +14,7 @@
 #' @noRd
 roll <- function(x, window = 3) {
   ## Validation
-  if (window %% 2 == 0)
-    stop(sprintf("%s must be an odd integer.", sQuote("window")), call. = FALSE)
+  arkhe::assert_numeric(window, "odd")
 
   n <- if (is.matrix(x) || is.data.frame(x)) nrow(x) else length(x)
   i <- seq_len(n) # Indices of the rows

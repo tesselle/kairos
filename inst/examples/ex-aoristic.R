@@ -31,15 +31,12 @@ span <- as.data.frame(t(span))
 
 ## Calculate aoristic sum (normal)
 aorist_raw <- sum_aoristic(span, step = 50, weight = FALSE)
-plot_time(aorist_raw)
+plot(aorist_raw)
 
 ## Calculate aoristic sum (weights)
 aorist_weigth <- sum_aoristic(span, step = 50, weight = TRUE)
-plot_time(aorist_weigth)
+plot(aorist_weigth)
 
 ## Rate of change
 aorist_roc <- rate_roc(aorist_weigth, n = 30)
-plot_time(aorist_roc) +
-  ggplot2::theme(
-    axis.text.x = ggplot2::element_text(angle = 90, hjust = 1, vjust = 0.5)
-  )
+plot(aorist_roc)
