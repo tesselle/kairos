@@ -31,12 +31,12 @@ knitr::opts_chunk$set(
 ## Load packages
 library(kairos)
 library(folio) # Datasets
-library(magrittr)
+library(magrittr) # Pipes
 ```
 
 # Not All Dates Are Created Equal
 
-This vignette presents different methods for dating archaeological assemblages using artifact count data. Here, dating refers to "the placement in time of events relative to one another or to any established scale of temporal measurement" [@dean1978]. This involves distinguishing between *relative* (that provide only a chronological sequence of events) and *absolute* dating methods (that yield a calendric indication and may provide the duration of an event) [@obrien2002]. Strictly speaking, there is no absolute dating given how dates are produced and given that any date refers to a scale. The distinction between absolute and relative time can be rephrased more clearly as quantifiable vs. non-quantifiable [@obrien2002]: absolute dates "are expressed as points on standard scales of time measurement" [@dean1978].
+This vignette presents different methods for dating archaeological assemblages using artifact count data. Here, dating refers to "the placement in time of events relative to one another or to any established scale of temporal measurement" [@dean1978]. This involves distinguishing between *relative* (that provide only a chronological sequence of events) and *absolute* dating methods (that yield a calendric indication and may provide the duration of an event) [@obrien2002]. Strictly speaking, there is no absolute dating given how dates are produced and given that any date refers to a scale. The distinction between absolute and relative time can be rephrased more clearly as quantifiable *vs* non-quantifiable [@obrien2002]: absolute dates "are expressed as points on standard scales of time measurement" [@dean1978].
 
 We will keep here the distinction between a date an age as formulated by @colman1987: "a *date* is a specific point in time, whereas an *age* is an interval of time measured back from the present." Dealing with dates in archaeology can be tricky if one does not take into account the sources of the chronological information. In most cases, a date represents a *terminus* for a given archaeological assemblage. That is, a date before (*terminus ante-quem*) or after (*terminus post-quem*) which the formation process of the assemblage took place. This in mind, one obvious question that should underlie any investigation is what does the date represent?
 
