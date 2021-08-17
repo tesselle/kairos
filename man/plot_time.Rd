@@ -56,8 +56,8 @@ window. Only used if \code{roll} is \code{TRUE}.}
 }
 \value{
 \itemize{
-\item \code{plot_time()} returns a \link[ggplot2:ggplot]{ggplot2::ggplot} object.
-\item \code{autoplot()} returns a \link[ggplot2:ggplot]{ggplot2::ggplot} object.
+\item \code{plot_time()} returns a \code{\link[ggplot2:ggplot]{ggplot}} object.
+\item \code{autoplot()} returns a \code{\link[ggplot2:ggplot]{ggplot}} object.
 \item \code{plot()} is called it for its side-effects: it results in a graphic being
 displayed (invisibly returns \code{x}).
 }

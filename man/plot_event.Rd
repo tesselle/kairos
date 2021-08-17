@@ -38,7 +38,7 @@ length of the vector of quantiles for density computation.}
 }
 \value{
 \itemize{
-\item \code{autoplot()} returns a \link[ggplot2:ggplot]{ggplot2::ggplot} object.
+\item \code{autoplot()} returns a \code{\link[ggplot2:ggplot]{ggplot}} object.
 \item \code{plot()} is called it for its side-effects: it results in a graphic being
 displayed (invisibly returns \code{x}).
 }

@@ -105,7 +105,10 @@ NULL
 #' Rate of Change
 #'
 #' An S4 class to represent rates of change from an aoristic analysis.
+#' @slot replicates A non-negative [`integer`] giving the number of
+#'  replications.
 #' @slot blocks A [`character`] vector giving the time-blocks.
+#' @slot groups A [`character`] vector.
 #' @slot rates A [`numeric`] [`array`] giving the rates of change.
 #' @section Subset:
 #'  In the code snippets below, `x` is an `RateOfChange` object.
@@ -121,7 +124,9 @@ NULL
 .RateOfChange <- setClass(
   Class = "RateOfChange",
   slots = c(
+    replicates = "integer",
     blocks = "character",
+    groups = "character",
     rates = "array"
   )
 )
@@ -130,6 +135,7 @@ NULL
 #' Count Apportioning
 #'
 #' An S4 class to represent an artifact apportioning results.
+#' @slot counts A \eqn{m \times p}{m x p} [`numeric`] matrix of count data.
 #' @slot p An [`array`] giving the probability of apportioning an artifact type
 #'  to a given period.
 #' @slot apportion An [`array`] giving the apportioning of artifact types per
@@ -149,6 +155,7 @@ NULL
 .CountApportion <- setClass(
   Class = "CountApportion",
   slots = c(
+    counts = "matrix",
     p = "array",
     apportion = "array",
     method = "character",
@@ -162,7 +169,7 @@ NULL
 #' Frequency Increment Test
 #'
 #' An S4 class to represent a Frequency Increment Test results.
-#' @slot data A \eqn{m \times p}{m x p} [`numeric`] matrix of count data.
+#' @slot counts A \eqn{m \times p}{m x p} [`numeric`] matrix of count data.
 #' @slot dates A length-\eqn{m} [`numeric`] vector of dates.
 #' @slot statistic A [`numeric`] vector giving the values of the t-statistic.
 #' @slot parameter An [`integer`] giving the degrees of freedom for the
@@ -187,7 +194,7 @@ NULL
 .IncrementTest <- setClass(
   Class = "IncrementTest",
   slots = c(
-    data = "matrix",
+    counts = "matrix",
     dates = "numeric",
     statistic = "numeric",
     parameter = "integer",

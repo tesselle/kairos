@@ -36,10 +36,9 @@ Suggests:
     covr,
     folio,
     knitr,
-    magrittr,
     rmarkdown,
     testthat (>= 3.0.0),
-    vdiffr
+    vdiffr (>= 1.0.0)
 remotes:
     tesselle/arkhe
 VignetteBuilder: 
@@ -65,4 +64,5 @@ Collate:
     'subset.R'
     'test_fit.R'
     'utilities.R'
+    'validate.R'
     'zzz.R'

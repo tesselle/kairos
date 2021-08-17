@@ -11,6 +11,8 @@ An S4 class to represent an artifact apportioning results.
 \section{Slots}{
 
 \describe{
+\item{\code{counts}}{A \eqn{m \times p}{m x p} \code{\link{numeric}} matrix of count data.}
+
 \item{\code{p}}{An \code{\link{array}} giving the probability of apportioning an artifact type
 to a given period.}
 

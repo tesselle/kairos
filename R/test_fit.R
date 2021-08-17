@@ -25,7 +25,7 @@ setMethod(
     }
 
     .IncrementTest(
-      data = x,
+      counts = x,
       dates = dates,
       statistic = results$t,
       parameter = 1L,

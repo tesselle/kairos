@@ -19,8 +19,8 @@ setMethod(
     # TODO: check all(s0 <= s1) all(t0 <= t1)
     span <- to - from
     if (span <= 0) {
-      msg <- ""
-      stop(msg, call. = FALSE)
+      msg <- "The duration of the period of interest cannot be negative (%g)!"
+      stop(sprintf(msg, span), call. = FALSE)
     }
 
     ## Number of periods (rounded toward the smallest integer)
@@ -87,6 +87,7 @@ setMethod(
                  counts = object)
 
     .CountApportion(
+      counts = as.matrix(object),
       p = p,
       apportion = a,
       method = method,

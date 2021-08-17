@@ -172,7 +172,7 @@ autoplot.IncrementTest <- function(object, ..., level = 0.95, roll = FALSE,
                                    window = 3) {
   ## Prepare data
   alpha <- 1 - level
-  counts <- object[["data"]]
+  counts <- object[["counts"]]
   dates <- object[["dates"]]
   data <- prepare_time(counts, dates)
 

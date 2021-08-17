@@ -11,7 +11,7 @@ dates <- list(
   PINER = c(1275, 1325), HESH = c(1275, 1450), KWAK = c(1275, 1450)
 )
 
-## Keep only assemblages that have a sample size of at least 50
+## Keep only assemblages that have a sample size of at least 10
 keep <- apply(X = zuni, MARGIN = 1, FUN = function(x) sum(x) >= 10)
 
 ## Calculate date ranges for each assemblage
@@ -36,6 +36,11 @@ plot(aorist_raw)
 ## Calculate aoristic sum (weights)
 aorist_weigth <- sum_aoristic(span, step = 50, weight = TRUE)
 plot(aorist_weigth)
+
+## Calculate aoristic sum (weights) with groups
+groups <- sample(1:3, size = nrow(span), replace = TRUE)
+aorist_groups <- sum_aoristic(span, step = 50, weight = TRUE, groups = groups)
+plot(aorist_groups)
 
 ## Rate of change
 aorist_roc <- rate_roc(aorist_weigth, n = 30)

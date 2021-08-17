@@ -26,7 +26,7 @@ as.data.frame.IncrementTest <- function(x, ..., stringsAsFactors = default.strin
   data.frame(
     t = x@statistic,
     p.value = x@p_value,
-    row.names = colnames(x@data),
+    row.names = colnames(x@counts),
     stringsAsFactors = stringsAsFactors
   )
 }

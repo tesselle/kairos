@@ -19,6 +19,8 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/tesselle/kairos/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/kairos/actions)
 [![codecov](https://codecov.io/gh/tesselle/kairos/branch/master/graph/badge.svg)](https://codecov.io/gh/tesselle/kairos)
 
+[![r-universe](https://tesselle.r-universe.dev/badges/kairos)](https://tesselle.r-universe.dev)
+
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 <!-- badges: end -->
 
@@ -69,7 +71,7 @@ dates <- list(
   PINER = c(1275, 1325), HESH = c(1275, 1450), KWAK = c(1275, 1450)
 )
 
-## Keep only assemblages that have a sample size of at least 50
+## Keep only assemblages that have a sample size of at least 10
 keep <- apply(X = zuni, MARGIN = 1, FUN = function(x) sum(x) >= 10)
 
 ## Calculate date ranges for each assemblage

@@ -4,6 +4,11 @@
       app_uni
     Output
       An object of class "CountApportion"
+      Slot "counts":
+      <CountMatrix: 1 x 9>
+              CWW CBW LMGRW LTB MMS  PBW RRW SCBW TBBW
+      Bayless   4 333    11  11  13 1605 252    9   48
+      
       Slot "p":
       , , 1200_1250
       
@@ -61,6 +66,11 @@
       app_trunc
     Output
       An object of class "CountApportion"
+      Slot "counts":
+      <CountMatrix: 1 x 9>
+              CWW CBW LMGRW LTB MMS  PBW RRW SCBW TBBW
+      Bayless   4 333    11  11  13 1605 252    9   48
+      
       Slot "p":
       , , 1200_1250
       

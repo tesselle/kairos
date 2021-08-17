@@ -11,7 +11,7 @@ An S4 class to represent a Frequency Increment Test results.
 \section{Slots}{
 
 \describe{
-\item{\code{data}}{A \eqn{m \times p}{m x p} \code{\link{numeric}} matrix of count data.}
+\item{\code{counts}}{A \eqn{m \times p}{m x p} \code{\link{numeric}} matrix of count data.}
 
 \item{\code{dates}}{A length-\eqn{m} \code{\link{numeric}} vector of dates.}
 

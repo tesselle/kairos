@@ -14,17 +14,12 @@ setMethod(
                         groups = NULL) {
     ## Validation
     n <- length(x)
-    if (n != length(y)) {
-      msg <- sprintf("%s must be of length %d; not %d.",
-                     sQuote("y"), n, length(y))
-      stop(msg, call. = FALSE)
-    }
+    arkhe::assert_length(y, n)
     if (!is.null(groups)) {
-      if (n != length(groups)) {
-        msg <- sprintf("%s must be of length %d; not %d.",
-                       sQuote("groups"), n, length(groups))
-        stop(msg, call. = FALSE)
-      }
+      arkhe::assert_length(groups, n)
+      ## TODO
+      message("Computing by group is not implemented yet and will be ignored.")
+      groups <- rep(NA_character_, n)
     } else {
       groups <- rep(NA_character_, n)
     }
@@ -50,7 +45,7 @@ setMethod(
     ## Aoristic probability
     for (k in seq_len(m)) {
       s <- spl[[k]]
-      ao_probs[, , k] <- vapply(
+      tmp <- vapply(
         X = dates,
         FUN = function(x, from, to, weights) {
           w <- numeric(length(weights))
@@ -63,6 +58,7 @@ setMethod(
         to = y[s],
         weights = z[s]
       )
+      ao_probs[, , k] <- tmp
     }
 
     ## Aoristic sum
@@ -131,6 +127,7 @@ setMethod(
     ## Get aoristic weights
     w <- object[["p"]]
 
+    n <- as.integer(n)
     m <- dim(w)[1]
     p <- dim(w)[2]
     q <- dim(w)[3]
@@ -156,7 +153,9 @@ setMethod(
     blocks <- paste(utils::head(dates, -1), utils::tail(dates, -1), sep = "_")
 
     .RateOfChange(
+      replicates = n,
       blocks = blocks,
+      groups = object[["groups"]],
       rates = roc / step
     )
   }

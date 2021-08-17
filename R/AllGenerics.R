@@ -434,8 +434,8 @@ setGeneric(
 #'  selection. If so, shading highlights the data points where
 #'  [test_fit()] identifies selection.
 #' @return
-#'  * `plot_time()` returns a [ggplot2::ggplot] object.
-#'  * `autoplot()` returns a [ggplot2::ggplot] object.
+#'  * `plot_time()` returns a [`ggplot`][`ggplot2::ggplot`] object.
+#'  * `autoplot()` returns a [`ggplot`][`ggplot2::ggplot`] object.
 #'  * `plot()` is called it for its side-effects: it results in a graphic being
 #'  displayed (invisibly returns `x`).
 #' @note
@@ -488,7 +488,7 @@ setGeneric(
 #'   tempo plot.}
 #'  }
 #' @return
-#'  * `autoplot()` returns a [ggplot2::ggplot] object.
+#'  * `autoplot()` returns a [`ggplot`][`ggplot2::ggplot`] object.
 #'  * `plot()` is called it for its side-effects: it results in a graphic being
 #'  displayed (invisibly returns `x`).
 #' @references

@@ -31,7 +31,6 @@ knitr::opts_chunk$set(
 ## Load packages
 library(kairos)
 library(folio) # Datasets
-library(magrittr) # Pipes
 ```
 
 # Not All Dates Are Created Equal
@@ -100,9 +99,7 @@ zuni_mid <- vapply(X = zuni_dates, FUN = mean, FUN.VALUE = numeric(1))
 ## Calculate MCD
 zuni_mcd <- date_mcd(zuni_counts, dates = zuni_mid)
 
-zuni_mcd %>% 
-  as.data.frame() %>% 
-  head()
+head(as.data.frame(zuni_mcd))
 ```
 
 # Event & Accumulation Date
@@ -245,12 +242,10 @@ head(acc)
 
 ```{r event-plot}
 ## Activity plot
-autoplot(model, type = "activity", event = TRUE, select = "LZ1105") +
-  ggplot2::theme_bw()
+plot(model, type = "activity", event = TRUE, select = "LZ1105")
 
 ## Tempo plot
-autoplot(model, type = "tempo", select = "LZ1105") +
-  ggplot2::theme_bw()
+plot(model, type = "tempo", select = "LZ1105")
 ```
 
 Resampling methods can be used to check the stability of the resulting model. If `jackknife_event()` is used, one type/fabric is removed at a time and all statistics are recalculated. In this way, one can assess whether certain type/fabric has a substantial influence on the date estimate. If `bootstrap_event()` is used, a large number of new bootstrap assemblages is created, with the same sample size, by resampling the original assemblage with replacement. Then, examination of the bootstrap statistics makes it possible to pinpoint assemblages that require further investigation.
