@@ -46,6 +46,8 @@ Useful links:
 
 \tabular{ll}{
 Nicolas Frerebeau \tab \emph{Université Bordeaux Montaigne, France} \cr
+Ben Marwick \tab \emph{University of Washington, USA} \cr
+Anne Philippe \tab \emph{Université de Nantes, France} \cr
 }
 
 \strong{Package maintainer}

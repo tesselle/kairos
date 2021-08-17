@@ -11,7 +11,17 @@ Authors@R:
              family = "Lebrun",
              role = "ctb",
              email = "brice.lebrun@u-bordeaux-montaigne.fr",
-             comment = c(ORCID = "0000-0001-7503-8685")))
+             comment = c(ORCID = "0000-0001-7503-8685")),
+      person(given = "Ben",
+             family = "Marwick",
+             role = "ctb",
+             email = "bmarwick@uw.edu",
+             comment = c(ORCID = "0000-0001-7879-4531")),
+      person(given = "Anne",
+             family = "Philippe",
+             role = "ctb",
+             email = "anne.philippe@univ-nantes.fr",
+             comment = c(ORCID = "0000-0002-5331-5087")))
 Description: A toolkit for absolute dating and analysis of chronological
     patterns. This package includes functions for chronological modeling
     and dating of archaeological assemblages from count data. It allows to

@@ -16,6 +16,8 @@
 #'
 #' \tabular{ll}{
 #'  Nicolas Frerebeau \tab *Université Bordeaux Montaigne, France* \cr
+#'  Ben Marwick \tab *University of Washington, USA* \cr
+#'  Anne Philippe \tab *Université de Nantes, France* \cr
 #' }
 #'
 #' **Package maintainer**
