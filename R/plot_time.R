@@ -49,6 +49,7 @@ autoplot.AoristicSum <- function(object, ..., facet = TRUE) {
   if (facet) {
     facet <- ggplot2::facet_wrap(
       facets = ggplot2::vars(.data$group),
+      nrow = length(unique(data$group)),
       scales = "free_y"
     )
     aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
@@ -97,6 +98,7 @@ autoplot.RateOfChange <- function(object, ..., facet = TRUE) {
   if (facet) {
     facet <- ggplot2::facet_wrap(
       facets = ggplot2::vars(.data$group),
+      nrow = length(unique(data$group)),
       scales = "free_y"
     )
     aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)

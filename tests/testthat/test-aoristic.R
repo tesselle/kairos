@@ -1,7 +1,7 @@
 test_that("Aoristic Sum", {
   skip_if_not_installed("folio")
   data("zuni", package = "folio")
-  counts <- arkhe::as_count(zuni)
+  counts <- as_count(zuni)
 
   ## Set the start and end dates for each ceramic type
   dates <- list(
@@ -40,4 +40,14 @@ test_that("Aoristic Sum", {
   aorist_weigth <- sum_aoristic(span, step = 25, weight = TRUE)
   gg_weight <- autoplot(aorist_weigth)
   vdiffr::expect_doppelganger("aoristic_weight", gg_weight)
+
+  ## Calculate aoristic sum (weights) by group
+  groups <- rep(c("A", "B", "C"), times = c(50, 90, 139))
+  aorist_groups <- sum_aoristic(span, step = 25, weight = TRUE, groups = groups)
+  for (i in c(TRUE, FALSE)) {
+    gg_groups <- autoplot(aorist_groups, facet = i)
+    vdiffr::expect_doppelganger(paste0("aoristic_groups_facet-", i), gg_groups)
+  }
+
+  expect_error(sum_aoristic(span, groups = groups[1:10]))
 })

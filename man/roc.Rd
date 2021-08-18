@@ -66,14 +66,18 @@ plot(aorist_raw)
 aorist_weigth <- sum_aoristic(span, step = 50, weight = TRUE)
 plot(aorist_weigth)
 
-## Calculate aoristic sum (weights) with groups
-groups <- sample(1:3, size = nrow(span), replace = TRUE)
+## Calculate aoristic sum (weights) by group
+groups <- rep(c("A", "B", "C"), times = c(50, 90, 139))
 aorist_groups <- sum_aoristic(span, step = 50, weight = TRUE, groups = groups)
 plot(aorist_groups)
 
 ## Rate of change
-aorist_roc <- rate_roc(aorist_weigth, n = 30)
-plot(aorist_roc)
+roc_weigth <- rate_roc(aorist_weigth, n = 30)
+plot(roc_weigth)
+
+## Rate of change by group
+roc_groups <- rate_roc(aorist_groups, n = 30)
+plot(roc_groups, facet = FALSE)
 }
 \references{
 Baxter, M. J. & Cool, H. E. M. (2016). Reinventing the Wheel? Modelling

@@ -17,9 +17,7 @@ setMethod(
     arkhe::assert_length(y, n)
     if (!is.null(groups)) {
       arkhe::assert_length(groups, n)
-      ## TODO
-      message("Computing by group is not implemented yet and will be ignored.")
-      groups <- rep(NA_character_, n)
+      groups <- as.character(groups)
     } else {
       groups <- rep(NA_character_, n)
     }
@@ -53,20 +51,20 @@ setMethod(
           w[i] <- weights[i]
           w
         },
-        FUN.VALUE = numeric(length(s)),
+        FUN.VALUE = numeric(n),
         from = x[s],
         to = y[s],
-        weights = z[s]
+        weights = z
       )
       ao_probs[, , k] <- tmp
     }
 
     ## Aoristic sum
-    ao_sum <- apply(X = ao_probs, MARGIN = 2, FUN = sum)
+    ao_sum <- apply(X = ao_probs, MARGIN = c(2, 3), FUN = sum)
     ao_sum <- as.matrix(ao_sum)
 
     if (!anyNA(groups)) {
-      dimnames(ao_probs)[3] <- rownames(ao_sum) <- lvl
+      dimnames(ao_probs)[[3]] <- colnames(ao_sum) <- lvl
     }
 
     .AoristicSum(
@@ -128,9 +126,9 @@ setMethod(
     w <- object[["p"]]
 
     n <- as.integer(n)
-    m <- dim(w)[1]
-    p <- dim(w)[2]
-    q <- dim(w)[3]
+    m <- dim(w)[[1]]
+    p <- dim(w)[[2]]
+    q <- dim(w)[[3]]
 
     ## Monte Carlo simulation
     roc <- array(data = 0, dim = c(n, p - 1, q))
@@ -138,6 +136,7 @@ setMethod(
       sim <- array(data = 0, dim = c(m, p, n))
       for (i in seq_len(m)) {
         probs <- w[i, , j]
+        if (sum(probs) == 0) next
         counts <- replicate(n, {
           tmp <- numeric(p)
           k <- sample(seq_len(p), size = 1, prob = probs)
@@ -150,12 +149,13 @@ setMethod(
       roc[, , j] <- t(apply(X = total, MARGIN = 2, FUN = diff, lag = 1))
     }
 
+    dimnames(roc)[[3]] <- dimnames(w)[[3]]
     blocks <- paste(utils::head(dates, -1), utils::tail(dates, -1), sep = "_")
 
     .RateOfChange(
       replicates = n,
       blocks = blocks,
-      groups = object[["groups"]],
+      groups = unique(object[["groups"]]),
       rates = roc / step
     )
   }

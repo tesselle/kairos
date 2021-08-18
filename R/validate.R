@@ -85,7 +85,7 @@ setValidity(
 
     i <- replicates
     j <- length(blocks)
-    k <- length(unique(groups))
+    k <- length(groups)
 
     cnd <- list(
       arkhe::validate(arkhe::assert_scalar(replicates, "integer")),
