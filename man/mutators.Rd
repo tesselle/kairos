@@ -5,10 +5,14 @@
 \alias{mutators}
 \alias{get}
 \alias{set}
-\alias{get_dates,DateMCD-method}
+\alias{get_mcd}
+\alias{get_mcd-method}
+\alias{get_mcd,DateMCD-method}
 \title{Get or Set Parts of an Object}
 \usage{
-\S4method{get_dates}{DateMCD}(x)
+get_mcd(x)
+
+\S4method{get_mcd}{DateMCD}(x)
 }
 \arguments{
 \item{x}{An object from which to get or set element(s).}

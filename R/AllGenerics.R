@@ -5,13 +5,11 @@ NULL
 # S4 dispatch to S3 generics ===================================================
 if (!isGeneric("plot"))
   setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-
 setGeneric("autoplot", package = "ggplot2")
 
-# Import generics ==============================================================
+# Import generics from arkhe ===================================================
 setGeneric("bootstrap", package = "arkhe")
 setGeneric("jackknife", package = "arkhe")
-setGeneric("get_dates", package = "arkhe")
 
 # Mutators =====================================================================
 ## Extract ---------------------------------------------------------------------
@@ -32,6 +30,13 @@ setGeneric("get_dates", package = "arkhe")
 #' @rdname mutators
 #' @aliases get set
 NULL
+
+#' @rdname mutators
+#' @aliases get_mcd-method
+setGeneric(
+  name = "get_mcd",
+  def = function(x) standardGeneric("get_mcd")
+)
 
 ## Subset ----------------------------------------------------------------------
 #' Extract or Replace Parts of an Object

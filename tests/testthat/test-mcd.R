@@ -1,7 +1,7 @@
 test_that("Mean Ceramic Date", {
   skip_if_not_installed("folio")
   data("zuni", package = "folio")
-  counts <- arkhe::as_count(zuni)
+  counts <- as_count(zuni)
 
   ## Set dates
   zuni_dates <- list(
@@ -18,14 +18,14 @@ test_that("Mean Ceramic Date", {
 
   ## MCD
   dt <- date_mcd(counts, dates = zuni_mid_dates)
-  expect_snapshot(dt)
+  expect_snapshot(as.data.frame(dt))
   expect_error(date_mcd(counts, dates = zuni_mid_dates[1:3]))
 
   ## Bootstrap
-  boot <- with_seed(12345, bootstrap_mcd(dt, n = 30))
+  boot <- with_seed(12345, bootstrap(dt, n = 30))
   expect_snapshot(boot)
 
   ## Jackknife
-  jack <- with_seed(12345, jackknife_mcd(dt))
+  jack <- with_seed(12345, jackknife(dt))
   expect_snapshot(jack)
 })

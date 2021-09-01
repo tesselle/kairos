@@ -143,9 +143,31 @@ setMethod(
 # DateMCD ======================================================================
 #' @export
 #' @method autoplot DateMCD
-autoplot.DateMCD <- function(object, ..., facet = FALSE) {
-  dates <- get_dates(object)
-  plot_time(object = object, dates = dates, facet = facet)
+autoplot.DateMCD <- function(object, ..., select = NULL, decreasing = TRUE,
+                             n = 30) {
+  boot <- bootstrap(object, probs = c(0.05, 0.95), n = n)
+  boot$dates <- get_mcd(object)
+  boot$samples <- get_samples(object)
+
+  ## Select data
+  index <- select_by_indices(cases = boot$samples, select = select)
+  boot <- boot[index, ]
+
+  ## Order data
+  data <- boot[order(boot$dates), ]
+  lvl <- unique(data$samples)
+  lvl <- if (decreasing) rev(lvl) else lvl
+  data$samples <- factor(data$samples, levels = lvl)
+
+  aes_point <- ggplot2::aes(x = .data$dates, y = .data$samples)
+  aes_seg <- ggplot2::aes(x = .data$Q05, y = .data$samples,
+                          xend = .data$Q95, yend = .data$samples)
+
+  ggplot2::ggplot(data = data) +
+    ggplot2::geom_point(mapping = aes_point) +
+    ggplot2::geom_segment(mapping = aes_seg) +
+    ggplot2::scale_x_continuous(name = "Mean Ceramic Date (year CE)") +
+    ggplot2::scale_y_discrete(name = "Assemblage")
 }
 
 #' @export
@@ -158,8 +180,9 @@ setMethod("autoplot", "DateMCD", autoplot.DateMCD)
 setMethod(
   f = "plot",
   signature = c(x = "DateMCD", y = "missing"),
-  definition = function(x, facet = TRUE) {
-    gg <- autoplot(object = x, facet = facet) +
+  definition = function(x, select = NULL, decreasing = TRUE, n = 30) {
+    gg <- autoplot(object = x, select = select,
+                   decreasing = decreasing, n = n) +
       ggplot2::theme_bw()
     print(gg)
     invisible(x)

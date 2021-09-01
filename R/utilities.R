@@ -57,6 +57,27 @@ bind_by_names <- function(x, y) {
   }
 }
 
+#' Select
+#'
+#' Select data.
+#' @param cases A vector.
+#' @param select A vector.
+#' @return An [`integer`] vector of indices.
+#' @author N. Frerebeau
+#' @family utilities
+#' @keywords internal utilities
+#' @noRd
+select_by_indices <- function(cases, select = NULL) {
+  if (is.null(select)) {
+    index <- seq_along(cases)
+  } else if (is.character(select)) {
+    index <- which(select == cases)
+  } else {
+    index <- as.integer(select)
+  }
+  if (length(index) == 0) stop("Wrong selection.", call. = FALSE)
+  index
+}
 
 #' Build a Long Data Frame
 #'

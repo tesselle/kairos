@@ -27,9 +27,9 @@ plot_time(object, ...)
 
 \S4method{plot}{RateOfChange,missing}(x, facet = TRUE)
 
-\S4method{autoplot}{DateMCD}(object, ..., facet = FALSE)
+\S4method{autoplot}{DateMCD}(object, ..., select = NULL, decreasing = TRUE, n = 30)
 
-\S4method{plot}{DateMCD,missing}(x, facet = TRUE)
+\S4method{plot}{DateMCD,missing}(x, select = NULL, decreasing = TRUE, n = 30)
 
 \S4method{autoplot}{IncrementTest}(object, ..., level = 0.95, roll = FALSE, window = 3)
 

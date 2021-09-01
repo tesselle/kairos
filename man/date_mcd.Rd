@@ -78,7 +78,7 @@ mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 mc_dates <- date_mcd(counts, dates = mid)
 
 ## Plot
-plot(mc_dates)
+plot(mc_dates, select = 100:125)
 
 ## Bootstrap resampling
 boot <- bootstrap(mc_dates, n = 30)

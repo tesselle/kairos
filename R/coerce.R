@@ -16,7 +16,6 @@ as.data.frame.DateMCD <- function(x, ..., stringsAsFactors = default.stringsAsFa
   data.frame(
     samples = x@samples,
     dates = x@dates_mcd,
-    row.names = rownames(x),
     stringsAsFactors = stringsAsFactors
   )
 }
