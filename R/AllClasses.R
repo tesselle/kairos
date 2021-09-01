@@ -4,34 +4,25 @@ NULL
 # DateMCD ======================================================================
 #' Mean Ceramic Date
 #'
-#' S4 classes to store the Mean Ceramic Date of archaeological assemblages.
-#' @slot counts A \eqn{m \times p}{m x p} [`numeric`] matrix of count data.
-#' @slot dates A length-\eqn{p} [`numeric`] vector of dates.
-#' @slot mcd A length-\eqn{m} [`numeric`] vector giving the mean ceramic dates.
-#' @section Subset:
-#'  In the code snippets below, `x` is a `DateMCD` object.
-#'  \describe{
-#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript `i`.
-#'   `i` is a length-one [`character`] vector. Returns the corresponding slot
-#'   values.}
-#'  }
+#' An S4 class to store the Mean Ceramic Date of archaeological assemblages.
+#' @slot dates_types A [`numeric`] vector giving the dates of the ceramic types.
+#' @slot dates_mcd A [`numeric`] vector giving the mean ceramic dates.
 #' @section Coerce:
 #'  In the code snippets below, `x` is a `DateMCD` object.
 #'  \describe{
 #'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
 #'  }
 #' @author N. Frerebeau
-#' @seealso [`date_mcd()`]
 #' @family classes
 #' @docType class
 #' @aliases DateMCD-class
 .DateMCD <- setClass(
   Class = "DateMCD",
   slots = c(
-    counts = "matrix",
-    dates = "numeric",
-    mcd = "numeric"
-  )
+    dates_types = "numeric",
+    dates_mcd = "numeric"
+  ),
+  contains = "CountMatrix"
 )
 
 # DateEvent ====================================================================

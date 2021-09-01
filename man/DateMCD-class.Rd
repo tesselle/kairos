@@ -6,27 +6,15 @@
 \alias{.DateMCD}
 \title{Mean Ceramic Date}
 \description{
-S4 classes to store the Mean Ceramic Date of archaeological assemblages.
+An S4 class to store the Mean Ceramic Date of archaeological assemblages.
 }
 \section{Slots}{
 
 \describe{
-\item{\code{counts}}{A \eqn{m \times p}{m x p} \code{\link{numeric}} matrix of count data.}
+\item{\code{dates_types}}{A \code{\link{numeric}} vector giving the dates of the ceramic types.}
 
-\item{\code{dates}}{A length-\eqn{p} \code{\link{numeric}} vector of dates.}
-
-\item{\code{mcd}}{A length-\eqn{m} \code{\link{numeric}} vector giving the mean ceramic dates.}
+\item{\code{dates_mcd}}{A \code{\link{numeric}} vector giving the mean ceramic dates.}
 }}
-
-\section{Subset}{
-
-In the code snippets below, \code{x} is a \code{DateMCD} object.
-\describe{
-\item{\code{x[[i]]}}{Extracts information from a slot selected by subscript \code{i}.
-\code{i} is a length-one \code{\link{character}} vector. Returns the corresponding slot
-values.}
-}
-}
 
 \section{Coerce}{
 
@@ -37,8 +25,6 @@ In the code snippets below, \code{x} is a \code{DateMCD} object.
 }
 
 \seealso{
-\code{\link[=date_mcd]{date_mcd()}}
-
 Other classes: 
 \code{\link{AoristicSum-class}},
 \code{\link{CountApportion-class}},

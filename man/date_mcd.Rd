@@ -4,34 +4,27 @@
 \name{date_mcd}
 \alias{date_mcd}
 \alias{date_mcd-method}
-\alias{bootstrap_mcd}
-\alias{bootstrap_mcd-method}
-\alias{jackknife_mcd}
-\alias{jackknife_mcd-method}
 \alias{date_mcd,CountMatrix,numeric-method}
-\alias{bootstrap_mcd,DateMCD-method}
-\alias{jackknife_mcd,DateMCD-method}
+\alias{bootstrap,DateMCD-method}
+\alias{jackknife,DateMCD-method}
 \title{Mean Ceramic Date}
 \usage{
 date_mcd(object, dates, ...)
 
-bootstrap_mcd(object, ...)
-
-jackknife_mcd(object, ...)
-
 \S4method{date_mcd}{CountMatrix,numeric}(object, dates)
 
-\S4method{bootstrap_mcd}{DateMCD}(object, probs = c(0.05, 0.95), n = 1000)
+\S4method{bootstrap}{DateMCD}(x, probs = c(0.05, 0.95), n = 1000)
 
-\S4method{jackknife_mcd}{DateMCD}(object)
+\S4method{jackknife}{DateMCD}(x)
 }
 \arguments{
-\item{object}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} or a \linkS4class{DateEvent} object.}
+\item{object}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} or a \linkS4class{DateMCD} object.}
 
-\item{dates}{A \code{\link{numeric}} vector of dates. If named, the names must match
-the row names of \code{object}.}
+\item{dates}{A \code{\link{numeric}} vector of dates.}
 
 \item{...}{Currently not used.}
+
+\item{x}{A \code{\link{numeric}} vector.}
 
 \item{probs}{A \code{\link{numeric}} vector of probabilities with values in
 \eqn{[0,1]} (see \code{\link[stats:quantile]{stats::quantile()}}).}
@@ -42,7 +35,7 @@ replications.}
 \value{
 \itemize{
 \item \code{date_mcd()} returns a \linkS4class{DateMCD} object.
-\item \code{bootstrap_mcd()} and \code{jackknife_mcd()} return a \code{data.frame}.
+\item \code{bootstrap()} and \code{jackknife()} return a \code{\link{data.frame}}.
 }
 }
 \description{
@@ -88,11 +81,11 @@ mc_dates <- date_mcd(counts, dates = mid)
 plot(mc_dates)
 
 ## Bootstrap resampling
-boot <- bootstrap_mcd(mc_dates, n = 30)
+boot <- bootstrap(mc_dates, n = 30)
 head(boot)
 
 ## Jackknife resampling
-jack <- jackknife_mcd(mc_dates)
+jack <- jackknife(mc_dates)
 head(jack)
 }
 \references{

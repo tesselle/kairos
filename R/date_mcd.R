@@ -21,31 +21,28 @@ setMethod(
     )
 
     .DateMCD(
-      counts = as.matrix(object),
-      dates = dates,
-      mcd = mcd_dates
+      object,
+      dates_types = dates,
+      dates_mcd = mcd_dates
     )
   }
 )
 
 #' @export
 #' @rdname date_mcd
-#' @aliases bootstrap_mcd,DateMCD-method
+#' @aliases bootstrap,DateMCD-method
 setMethod(
-  f = "bootstrap_mcd",
-  signature = signature(object = "DateMCD"),
-  definition = function(object, probs = c(0.05, 0.95), n = 1000) {
-    counts <- object[["counts"]]
-    dates <- object[["dates"]]
-
+  f = "bootstrap",
+  signature = signature(x = "DateMCD"),
+  definition = function(x, probs = c(0.05, 0.95), n = 1000) {
     results <- apply(
-      X = counts,
+      X = x,
       MARGIN = 1,
-      FUN = stats_bootstrap,
+      FUN = arkhe::bootstrap,
       do = mcd,
       probs = probs,
       n = n,
-      dates = dates
+      dates = x@dates_types
     )
     as.data.frame(t(results))
   }
@@ -53,16 +50,13 @@ setMethod(
 
 #' @export
 #' @rdname date_mcd
-#' @aliases jackknife_mcd,DateMCD-method
+#' @aliases jackknife,DateMCD-method
 setMethod(
-  f = "jackknife_mcd",
-  signature = signature(object = "DateMCD"),
-  definition = function(object) {
-    counts <- object[["counts"]]
-    dates <- object[["dates"]]
-
+  f = "jackknife",
+  signature = signature(x = "DateMCD"),
+  definition = function(x) {
     results <- apply(
-      X = counts,
+      X = x,
       MARGIN = 1,
       FUN = function(x, y) {
         n <- length(x)
@@ -85,7 +79,7 @@ setMethod(
         names(results) <- c("mean", "bias", "error")
         results
       },
-      y = dates
+      y = x@dates_types
     )
     as.data.frame(t(results))
   }

@@ -37,11 +37,19 @@
 "_PACKAGE"
 
 #' @import arkhe
-#' @import dimensio
+#' @importFrom dimensio ca get_coordinates get_eigenvalues get_replications
+#' predict
 #' @importFrom extraDistr ptnorm
 #' @importFrom ggplot2 autoplot ggplot aes facet_wrap geom_area geom_line
-#' geom_point scale_x_continuous scale_y_continuous theme theme_bw vars
+#' geom_point scale_x_continuous scale_y_continuous scale_y_discrete
+#' theme theme_bw vars
 #' @importFrom methods as callGeneric callNextMethod new setClass setGeneric
 #' setMethod validObject .valueClassTest
 #' @importFrom rlang .data
 NULL
+
+# /!\ Import conflictuel /!\
+# La méthode générique de bootstrap() est définie dans arkhe ET dans dimensio.
+# bootstrap() n'est pas formellement importé depuis dimensio (import depuis
+# arkhe) : utiliser dimensio::bootstrap() au besoin.
+# https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-namespaces

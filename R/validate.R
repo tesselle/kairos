@@ -7,14 +7,14 @@ setValidity(
   Class = "DateMCD",
   method = function(object) {
     # Get data
-    m <- nrow(object@counts)
-    p <- ncol(object@counts)
-    dates <- object@dates
-    mcd <- object@mcd
+    m <- nrow(object)
+    p <- ncol(object)
+    dates_types <- object@dates_types
+    dates_mcd <- object@dates_mcd
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_length(dates, p)),
-      arkhe::validate(arkhe::assert_length(mcd, m))
+      arkhe::validate(arkhe::assert_length(dates_types, p)),
+      arkhe::validate(arkhe::assert_length(dates_mcd, m))
     )
 
     # Return cnd, if any

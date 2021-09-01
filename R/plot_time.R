@@ -144,9 +144,8 @@ setMethod(
 #' @export
 #' @method autoplot DateMCD
 autoplot.DateMCD <- function(object, ..., facet = FALSE) {
-  counts <- object[["counts"]]
-  dates <- object[["mcd"]]
-  plot_time(object = counts, dates = dates, facet = facet)
+  dates <- get_dates(object)
+  plot_time(object = object, dates = dates, facet = facet)
 }
 
 #' @export

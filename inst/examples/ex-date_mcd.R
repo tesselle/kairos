@@ -23,9 +23,9 @@ mc_dates <- date_mcd(counts, dates = mid)
 plot(mc_dates)
 
 ## Bootstrap resampling
-boot <- bootstrap_mcd(mc_dates, n = 30)
+boot <- bootstrap(mc_dates, n = 30)
 head(boot)
 
 ## Jackknife resampling
-jack <- jackknife_mcd(mc_dates)
+jack <- jackknife(mc_dates)
 head(jack)

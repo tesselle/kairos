@@ -14,8 +14,9 @@ as.data.frame.AoristicSum <- function(x, ..., stringsAsFactors = default.strings
 #' @export
 as.data.frame.DateMCD <- function(x, ..., stringsAsFactors = default.stringsAsFactors()) {
   data.frame(
-    date = x@mcd,
-    row.names = rownames(x@counts),
+    samples = x@samples,
+    dates = x@dates_mcd,
+    row.names = rownames(x),
     stringsAsFactors = stringsAsFactors
   )
 }

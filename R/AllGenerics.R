@@ -2,12 +2,37 @@
 #' @include AllClasses.R
 NULL
 
-# S4 dispatch to base S3 generic ===============================================
-setGeneric("autoplot", function(object, ...) standardGeneric("autoplot"))
+# S4 dispatch to S3 generics ===================================================
 if (!isGeneric("plot"))
   setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 
-# Extract ======================================================================
+setGeneric("autoplot", package = "ggplot2")
+
+# Import generics ==============================================================
+setGeneric("bootstrap", package = "arkhe")
+setGeneric("jackknife", package = "arkhe")
+setGeneric("get_dates", package = "arkhe")
+
+# Mutators =====================================================================
+## Extract ---------------------------------------------------------------------
+#' Get or Set Parts of an Object
+#'
+#' Getters and setters to retrieve or set parts of an object.
+#' @param x An object from which to get or set element(s).
+#' @param value A possible value for the element(s) of `x`.
+#' @return
+#'  * `set_*()` returns an object of the same sort as `x` with the new values
+#'    assigned.
+#'  * `get_*()` returns the part of `x`.
+# @example inst/examples/ex-mutators.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name mutators
+#' @rdname mutators
+#' @aliases get set
+NULL
+
 ## Subset ----------------------------------------------------------------------
 #' Extract or Replace Parts of an Object
 #'
@@ -18,7 +43,7 @@ if (!isGeneric("plot"))
 #'  Any unambiguous substring can be given (see details).
 #' @return
 #'  A subsetted object.
-# @example inst/examples/ex-mutator.R
+# @example inst/examples/ex-mutators.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
@@ -31,10 +56,9 @@ NULL
 #' Mean Ceramic Date
 #'
 #' Estimates the Mean Ceramic Date of an assemblage.
-#' @param object A [arkhe::CountMatrix-class] or a [DateEvent-class] object.
-#' @param dates A [`numeric`] vector of dates. If named, the names must match
-#'  the row names of `object`.
-#' @inheritParams stats_bootstrap
+#' @param object A [arkhe::CountMatrix-class] or a [DateMCD-class] object.
+#' @param dates A [`numeric`] vector of dates.
+#' @inheritParams arkhe::bootstrap
 #' @param ... Currently not used.
 #' @details
 #'  The Mean Ceramic Date (MCD) is a point estimate of the occupation of an
@@ -51,7 +75,7 @@ NULL
 #'  MCD are then returned.
 #' @return
 #'  * `date_mcd()` returns a [DateMCD-class] object.
-#'  * `bootstrap_mcd()` and `jackknife_mcd()` return a `data.frame`.
+#'  * `bootstrap()` and `jackknife()` return a [`data.frame`].
 #' @seealso [plot_time()]
 #' @references
 #'  South, S. A. (1977). *Method and Theory in Historical Archaeology*.
@@ -66,22 +90,6 @@ setGeneric(
   name = "date_mcd",
   def = function(object, dates, ...) standardGeneric("date_mcd"),
   valueClass = "DateMCD"
-)
-
-#' @rdname date_mcd
-#' @aliases bootstrap_mcd-method
-setGeneric(
-  name = "bootstrap_mcd",
-  def = function(object, ...) standardGeneric("bootstrap_mcd"),
-  valueClass = "data.frame"
-)
-
-#' @rdname date_mcd
-#' @aliases jackknife_mcd-method
-setGeneric(
-  name = "jackknife_mcd",
-  def = function(object, ...) standardGeneric("jackknife_mcd"),
-  valueClass = "data.frame"
 )
 
 ## Event Model -----------------------------------------------------------------
@@ -104,7 +112,7 @@ setGeneric(
 #' @param margin A [`numeric`] vector giving the subscripts which the prediction
 #'  will be applied over: `1` indicates rows, `2` indicates columns.
 #' @param progress A [`logical`] scalar: should a progress bar be displayed?
-#' @inheritParams stats_bootstrap
+#' @inheritParams arkhe::bootstrap
 #' @param ... Further arguments to be passed to internal methods.
 #' @details
 #'  This is an implementation of the chronological modeling method proposed by

@@ -6,6 +6,12 @@
 \alias{as_count}
 \alias{as_long}
 \alias{as_features}
+\alias{get_samples}
+\alias{set_samples<-}
+\alias{get_groups}
+\alias{set_groups<-}
+\alias{get_dates}
+\alias{set_dates<-}
 \alias{CountMatrix}
 \title{Objects exported from other packages}
 \keyword{internal}
@@ -14,6 +20,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{arkhe}{\code{\link[arkhe:CountMatrix-class]{CountMatrix}}, \code{\link[arkhe:coerce]{as_count}}, \code{\link[arkhe:coerce]{as_features}}, \code{\link[arkhe:coerce]{as_long}}}
+  \item{arkhe}{\code{\link[arkhe:CountMatrix-class]{CountMatrix}}, \code{\link[arkhe:coerce]{as_count}}, \code{\link[arkhe:coerce]{as_features}}, \code{\link[arkhe:coerce]{as_long}}, \code{\link[arkhe:mutator]{get_dates}}, \code{\link[arkhe:mutator]{get_groups}}, \code{\link[arkhe:mutator]{get_samples}}, \code{\link[arkhe:mutator]{set_dates<-}}, \code{\link[arkhe:mutator]{set_groups<-}}, \code{\link[arkhe:mutator]{set_samples<-}}}
 }}
 
