@@ -61,7 +61,7 @@ Signatures of Selection in Genetic Time Series. \emph{Genetics}, 196(2):
 \code{\link[=plot_time]{plot_time()}}
 
 Other chronological analysis: 
-\code{\link{aoristic}},
+\code{\link{aoristic}()},
 \code{\link{apportion}()},
 \code{\link{roc}}
 }

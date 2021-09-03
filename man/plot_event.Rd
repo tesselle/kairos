@@ -48,10 +48,10 @@ Produces an activity or a tempo plot.
 }
 \section{Event and Acccumulation Dates}{
 
-\code{plot_event()} plots the probability estimate density curves of
-archaeological assemblage dates (\emph{event} and \emph{accumulation} dates; Bellanger
-and Husi 2012). The \emph{event} date is plotted as a line, while the
-\emph{accumulation} date is shown as a grey filled area.
+\code{plot()} displays the probability estimate density curves of rchaeological
+assemblage dates (\emph{event} and \emph{accumulation} dates; Bellanger and Husi
+2012). The \emph{event} date is plotted as a line, while the \emph{accumulation} date
+is shown as a grey filled area.
 
 The accumulation date can be displayed as a tempo plot (Dye 2016) or an
 activity plot (Philippe and Vibet 2017):

@@ -17,20 +17,11 @@ replications.}
 \item{\code{blocks}}{A \code{\link{character}} vector giving the time-blocks.}
 
 \item{\code{groups}}{A \code{\link{character}} vector.}
-
-\item{\code{rates}}{A \code{\link{numeric}} \code{\link{array}} giving the rates of change.}
 }}
 
-\section{Subset}{
-
-In the code snippets below, \code{x} is an \code{RateOfChange} object.
-\describe{
-\item{\code{x[[i]]}}{Extracts information from a slot selected by subscript \code{i}.
-\code{i} is a length-one \code{\link{character}} vector. Returns the corresponding slot
-values.}
+\note{
+This class inherits from base \code{\link{array}}.
 }
-}
-
 \seealso{
 Other classes: 
 \code{\link{AoristicSum-class}},

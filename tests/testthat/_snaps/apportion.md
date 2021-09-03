@@ -4,10 +4,20 @@
       app_uni
     Output
       An object of class "CountApportion"
-      Slot "counts":
-      <CountMatrix: 1 x 9>
-              CWW CBW LMGRW LTB MMS  PBW RRW SCBW TBBW
-      Bayless   4 333    11  11  13 1605 252    9   48
+      , , 1200_1250
+      
+              CWW CBW    LMGRW LTB MMS PBW RRW SCBW TBBW
+      Bayless 1.6 111 3.666667 5.5   0 535   0    3   24
+      
+      , , 1250_1300
+      
+              CWW CBW    LMGRW LTB      MMS PBW RRW SCBW TBBW
+      Bayless 1.6 111 3.666667 5.5 4.333333 535  84    3   24
+      
+      , , 1300_1350
+      
+              CWW CBW    LMGRW LTB      MMS PBW RRW SCBW TBBW
+      Bayless 0.8 111 3.666667   0 8.666667 535 168    3    0
       
       Slot "p":
       , , 1200_1250
@@ -30,23 +40,6 @@
       Bayless    0
       
       
-      Slot "apportion":
-      , , 1200_1250
-      
-              CWW CBW    LMGRW LTB MMS PBW RRW SCBW TBBW
-      Bayless 1.6 111 3.666667 5.5   0 535   0    3   24
-      
-      , , 1250_1300
-      
-              CWW CBW    LMGRW LTB      MMS PBW RRW SCBW TBBW
-      Bayless 1.6 111 3.666667 5.5 4.333333 535  84    3   24
-      
-      , , 1300_1350
-      
-              CWW CBW    LMGRW LTB      MMS PBW RRW SCBW TBBW
-      Bayless 0.8 111 3.666667   0 8.666667 535 168    3    0
-      
-      
       Slot "method":
       [1] "uniform"
       
@@ -66,10 +59,22 @@
       app_trunc
     Output
       An object of class "CountApportion"
-      Slot "counts":
-      <CountMatrix: 1 x 9>
-              CWW CBW LMGRW LTB MMS  PBW RRW SCBW TBBW
-      Bayless   4 333    11  11  13 1605 252    9   48
+      , , 1200_1250
+      
+                   CWW      CBW    LMGRW      LTB MMS     PBW RRW     SCBW     TBBW
+      Bayless 2.114461 152.6501 1.605122 7.513086   0 658.808   0 1.313281 30.86557
+      
+      , , 1250_1300
+      
+                   CWW      CBW    LMGRW      LTB      MMS      PBW      RRW     SCBW
+      Bayless 1.397752 109.7148 3.990371 3.486914 1.896962 530.2219 37.17403 3.264849
+                  TBBW
+      Bayless 17.13443
+      
+      , , 1300_1350
+      
+                    CWW      CBW    LMGRW LTB      MMS      PBW     RRW    SCBW TBBW
+      Bayless 0.4877879 70.63505 5.404507   0 11.10304 415.9701 214.826 4.42187    0
       
       Slot "p":
       , , 1200_1250
@@ -92,25 +97,6 @@
       Bayless 0.121947 0.2121173 0.4913188   0 0.8540798 0.2591714 0.852484 0.4913188
               TBBW
       Bayless    0
-      
-      
-      Slot "apportion":
-      , , 1200_1250
-      
-                   CWW      CBW    LMGRW      LTB MMS     PBW RRW     SCBW     TBBW
-      Bayless 2.114461 152.6501 1.605122 7.513086   0 658.808   0 1.313281 30.86557
-      
-      , , 1250_1300
-      
-                   CWW      CBW    LMGRW      LTB      MMS      PBW      RRW     SCBW
-      Bayless 1.397752 109.7148 3.990371 3.486914 1.896962 530.2219 37.17403 3.264849
-                  TBBW
-      Bayless 17.13443
-      
-      , , 1300_1350
-      
-                    CWW      CBW    LMGRW LTB      MMS      PBW     RRW    SCBW TBBW
-      Bayless 0.4877879 70.63505 5.404507   0 11.10304 415.9701 214.826 4.42187    0
       
       
       Slot "method":

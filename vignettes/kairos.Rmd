@@ -33,7 +33,7 @@ library(kairos)
 library(folio) # Datasets
 ```
 
-# Not All Dates Are Created Equal
+## Not All Dates Are Created Equal
 
 This vignette presents different methods for dating archaeological assemblages using artifact count data. Here, dating refers to "the placement in time of events relative to one another or to any established scale of temporal measurement" [@dean1978]. This involves distinguishing between *relative* (that provide only a chronological sequence of events) and *absolute* dating methods (that yield a calendric indication and may provide the duration of an event) [@obrien2002]. Strictly speaking, there is no absolute dating given how dates are produced and given that any date refers to a scale. The distinction between absolute and relative time can be rephrased more clearly as quantifiable *vs* non-quantifiable [@obrien2002]: absolute dates "are expressed as points on standard scales of time measurement" [@dean1978].
 
@@ -62,8 +62,8 @@ $$
 
 Note that all $x_{ij}$ are assumed to be error-free. 
 
-# Mean Ceramic Date
-## Definition
+## Mean Ceramic Date
+### Definition
 
 The Mean Ceramic Date (MCD) is a point estimate of the occupation of an archaeological site [@south1977]. The MCD is estimated as the weighted mean of the date midpoints of the ceramic types $t_j$ (based on absolute dates or the known production interval) found in a given assemblage. The weights are the conditional frequencies of the respective types in the assemblage.
 
@@ -72,11 +72,11 @@ $$
 t^{MCD}_i = \sum_{j = 1}^{p} t_j \times \frac{x_{ij}}{x_{i \cdot}}
 $$
 
-## Limitation
+### Limitation
 
 The MCD is a point estimate: knowing the mid-date of an assemblage and not knowing the time span of accumulation might be short sighted. **MCD offers a rough indication of the chronological position of an assemblage, but does not tell if an assemblage represents ten or 100 years.**
 
-## Usage
+### Usage
 
 ```{r mcd-model, fig.width=7, fig.height=3.5, fig.align="center"}
 ## Coerce the zuni dataset to an abundance (count) matrix
@@ -102,14 +102,14 @@ zuni_mcd <- date_mcd(zuni_counts, dates = zuni_mid)
 head(as.data.frame(zuni_mcd))
 ```
 
-# Event & Accumulation Date
-## Definition
+## Event & Accumulation Date
+### Definition
 
 Event and accumulation dates are density estimates of the occupation and duration of an archaeological site [@bellanger2006; @bellanger2008; @bellanger2012].
 
 The event date is an estimation of the *terminus post-quem* of an archaeological assemblage. The accumulation date represents the "chronological profile" of the assemblage. According to @bellanger2012, accumulation date can be interpreted "at best [...] as a formation process reflecting the duration or succession of events on the scale of archaeological time, and at worst, as imprecise dating due to contamination of the context by residual or intrusive material." In other words, accumulation dates estimate occurrence of archaeological events and rhythms of the long term.
 
-### Event Date
+#### Event Date
 
 Event dates are estimated by fitting a Gaussian multiple linear regression model on the factors resulting from a correspondence analysis - somewhat similar to the idea introduced by @poblome2003. This model results from the known dates of a selection of reliable contexts and allows to predict the event dates of the remaining assemblages.
 
@@ -172,7 +172,7 @@ $$
 t^E_i \sim \mathcal{N}(\widehat{t^E_i},\widehat{V_i})
 $$
 
-### Accumulation Date
+#### Accumulation Date
 As row (assemblages) and columns (types) CA coordinates are linked together through the so-called transition formulae, event dates for each type $t^E_j$ can be predicted following the same procedure as above.
 
 Then, the accumulation date $t^A_i$ is defined as the weighted mean of the event date of the ceramic types found in a given assemblage. The weights are the conditional frequencies of the respective types in the assemblage (akin to the MCD).
@@ -190,7 +190,7 @@ $$
 
 Interestingly, the integral of the accumulation date offers an estimates of the cumulative occurrence of archaeological events, which is close enough to the definition of the *tempo plot* introduced by @dye2016.
 
-## Limitation
+### Limitation
 
 Event and accumulation dates estimation relies on the same conditions and assumptions as the matrix seriation problem. @dunnell1970 summarizes these conditions and assumptions as follows.
 
@@ -209,7 +209,7 @@ Theses assumptions create a distributional model and ordering is accomplished by
 
 Predicted dates have to be interpreted with care: these dates are highly dependent on the range of the known dates and the fit of the regression.
 
-## Usage
+### Usage
 
 This package provides an implementation of the chronological modeling method developed by @bellanger2012. This method is slightly modified here and allows the construction of different probability density curves of archaeological assemblage dates (*event*, *activity* and *tempo*).
 
@@ -263,4 +263,4 @@ boot <- bootstrap_event(model, n = 30)
 head(boot)
 ```
 
-# References
+## References

@@ -3,15 +3,14 @@
 \docType{methods}
 \name{aoristic}
 \alias{aoristic}
-\alias{sum_aoristic}
-\alias{sum_aoristic-method}
-\alias{sum_aoristic,numeric,numeric-method}
-\alias{sum_aoristic,list,missing-method}
+\alias{aoristic-method}
+\alias{aoristic,numeric,numeric-method}
+\alias{aoristic,list,missing-method}
 \title{Aoristic Analysis}
 \usage{
-sum_aoristic(x, y, ...)
+aoristic(x, y, ...)
 
-\S4method{sum_aoristic}{numeric,numeric}(
+\S4method{aoristic}{numeric,numeric}(
   x,
   y,
   step = 1,
@@ -21,7 +20,7 @@ sum_aoristic(x, y, ...)
   groups = NULL
 )
 
-\S4method{sum_aoristic}{list,missing}(
+\S4method{aoristic}{list,missing}(
   x,
   step = 1,
   start = min(x$from, na.rm = TRUE),
@@ -40,14 +39,14 @@ sum_aoristic(x, y, ...)
 \item{...}{Currently not used.}
 
 \item{step}{A length-one \code{\link{integer}} vector giving the step size, i.e. the
-width of each time step in the time series (in years AD; defaults to
+width of each time step in the time series (in years CE; defaults to
 \eqn{1}).}
 
 \item{start}{A length-one \code{\link{numeric}} vector giving the beginning of the time
-window (in years AD).}
+window (in years CE).}
 
 \item{stop}{A length-one \code{\link{numeric}} vector giving the end of the time
-window (in years AD).}
+window (in years CE).}
 
 \item{weight}{A \code{\link{logical}} scalar: . Defaults to \code{FALSE} (the aoristic sum
 is the number of elements within a time step).}
@@ -96,16 +95,16 @@ span <- apply(
 span <- as.data.frame(t(span))
 
 ## Calculate aoristic sum (normal)
-aorist_raw <- sum_aoristic(span, step = 50, weight = FALSE)
+aorist_raw <- aoristic(span, step = 50, weight = FALSE)
 plot(aorist_raw)
 
 ## Calculate aoristic sum (weights)
-aorist_weigth <- sum_aoristic(span, step = 50, weight = TRUE)
+aorist_weigth <- aoristic(span, step = 50, weight = TRUE)
 plot(aorist_weigth)
 
 ## Calculate aoristic sum (weights) by group
 groups <- rep(c("A", "B", "C"), times = c(50, 90, 139))
-aorist_groups <- sum_aoristic(span, step = 50, weight = TRUE, groups = groups)
+aorist_groups <- aoristic(span, step = 50, weight = TRUE, groups = groups)
 plot(aorist_groups)
 
 ## Rate of change

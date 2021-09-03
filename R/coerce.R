@@ -3,13 +3,6 @@
 NULL
 
 # To data.frame ================================================================
-#' @method as.data.frame AoristicSum
-#' @export
-as.data.frame.AoristicSum <- function(x, ..., stringsAsFactors = default.stringsAsFactors()) {
-  x <- t(x@sum)
-  as.data.frame(x, stringsAsFactors = stringsAsFactors)
-}
-
 #' @method as.data.frame DateMCD
 #' @export
 as.data.frame.DateMCD <- function(x, ..., stringsAsFactors = default.stringsAsFactors()) {

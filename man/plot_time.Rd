@@ -45,6 +45,14 @@ plot_time(object, ...)
 \item{facet}{A \code{\link{logical}} scalar: should a matrix of panels defined by
 type/taxon be drawn?}
 
+\item{select}{A \code{\link{numeric}} or \code{\link{character}} vector giving the selection of
+the assemblage that are drawn.}
+
+\item{decreasing}{A \code{\link{logical}} scalar: TODO.}
+
+\item{n}{A non-negative \code{\link{integer}} giving the number of bootstrap
+replications.}
+
 \item{level}{A length-one \code{\link{numeric}} vector giving the
 confidence level.}
 
@@ -97,7 +105,7 @@ plot_time(counts, dates)
 plot_time(counts, dates, facet = TRUE)
 }
 \seealso{
-\code{\link[=date_mcd]{date_mcd()}}, \code{\link[=sum_aoristic]{sum_aoristic()}}, \code{\link[=test_fit]{test_fit()}}
+\code{\link[=date_mcd]{date_mcd()}}, \code{\link[=aoristic]{aoristic()}}, \code{\link[=test_fit]{test_fit()}}
 
 Other plotting methods: 
 \code{\link{plot_event}}

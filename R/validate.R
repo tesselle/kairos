@@ -54,18 +54,18 @@ setValidity(
     groups <- object@groups
     dates <- object@dates
     p <- object@p
-    sum <- object@sum
 
-    i <- length(from)
-    j <- length(dates)
+    i <- nrow(p)
+    j <- nrow(object)
     k <- length(unique(groups))
 
     cnd <- list(
+      arkhe::validate(arkhe::assert_length(from, i)),
       arkhe::validate(arkhe::assert_length(to, i)),
       arkhe::validate(arkhe::assert_length(weights, i)),
       arkhe::validate(arkhe::assert_length(groups, i)),
-      arkhe::validate(arkhe::assert_dimensions(p, c(i, j, k))),
-      arkhe::validate(arkhe::assert_dimensions(sum, c(j, k)))
+      arkhe::validate(arkhe::assert_length(dates, j)),
+      arkhe::validate(arkhe::assert_dimensions(p, c(i, j, k)))
     )
 
     # Return cnd, if any
@@ -81,15 +81,15 @@ setValidity(
     replicates <- object@replicates
     blocks <- object@blocks
     groups <- object@groups
-    rates <- object@rates
 
-    i <- replicates
-    j <- length(blocks)
-    k <- length(groups)
+    i <- nrow(object)
+    j <- ncol(object)
+    k <- dim(groups)[[3]]
 
     cnd <- list(
       arkhe::validate(arkhe::assert_scalar(replicates, "integer")),
-      arkhe::validate(arkhe::assert_dimensions(rates, c(i, j, k)))
+      arkhe::validate(arkhe::assert_length(groups, k)),
+      arkhe::validate(arkhe::assert_length(blocks, j))
     )
 
     # Return cnd, if any
@@ -102,22 +102,17 @@ setValidity(
   Class = "CountApportion",
   method = function(object) {
     # Get data
-    counts <- object@counts
     p <- object@p
-    apportion <- object@apportion
     method <- object@method
     from <- object@from
     to <- object@to
     step <- object@step
 
-    i <- nrow(counts)
-    j <- ncol(counts)
-    k <- ceiling((to - from) / step)
-
     cnd <- list(
+      arkhe::validate(arkhe::assert_scalar(from, "numeric")),
+      arkhe::validate(arkhe::assert_scalar(to, "numeric")),
       arkhe::validate(arkhe::assert_scalar(method, "character")),
-      arkhe::validate(arkhe::assert_dimensions(p, c(i, j, k))),
-      arkhe::validate(arkhe::assert_dimensions(apportion, c(i, j, k)))
+      arkhe::validate(arkhe::assert_dimensions(p, dim(object)))
     )
 
     # Return cnd, if any

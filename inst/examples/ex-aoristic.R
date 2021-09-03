@@ -30,16 +30,16 @@ span <- apply(
 span <- as.data.frame(t(span))
 
 ## Calculate aoristic sum (normal)
-aorist_raw <- sum_aoristic(span, step = 50, weight = FALSE)
+aorist_raw <- aoristic(span, step = 50, weight = FALSE)
 plot(aorist_raw)
 
 ## Calculate aoristic sum (weights)
-aorist_weigth <- sum_aoristic(span, step = 50, weight = TRUE)
+aorist_weigth <- aoristic(span, step = 50, weight = TRUE)
 plot(aorist_weigth)
 
 ## Calculate aoristic sum (weights) by group
 groups <- rep(c("A", "B", "C"), times = c(50, 90, 139))
-aorist_groups <- sum_aoristic(span, step = 50, weight = TRUE, groups = groups)
+aorist_groups <- aoristic(span, step = 50, weight = TRUE, groups = groups)
 plot(aorist_groups)
 
 ## Rate of change

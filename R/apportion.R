@@ -4,19 +4,45 @@ NULL
 
 #' @export
 #' @rdname apportion
+#' @aliases apportion,matrix-method
+setMethod(
+  f = "apportion",
+  signature = signature(object = "matrix"),
+  definition = function(object, s0, s1, t0, t1, from = min(s0), to = max(s1),
+                        step = 25, method = c("uniform", "truncated"), z = 2,
+                        progress = getOption("kairos.progress")) {
+    ## Coerce to count matrix
+    object <- as_count(object)
+    ## Set assemblage dates
+    set_tpq(object) <- s0
+    set_taq(object) <- s1
+
+    methods::callGeneric(object, t0 = t0, t1 = t1, from = from, to = to,
+                         step = step, method = method, z = z,
+                         progress = progress)
+  }
+)
+
+#' @export
+#' @rdname apportion
 #' @aliases apportion,CountMatrix-method
 setMethod(
   f = "apportion",
   signature = signature(object = "CountMatrix"),
-  definition = function(object, s0, s1, t0, t1, from = min(s0), to = max(s1),
+  definition = function(object, t0, t1, from = NULL, to = NULL,
                         step = 25, method = c("uniform", "truncated"), z = 2,
                         progress = getOption("kairos.progress")) {
     ## Validation
     method <- match.arg(method, several.ok = FALSE)
+    assert_relation(t0, t1, expected = "lower", strict = FALSE)
+
+    ## Get data
     n_site <- nrow(object)
     n_type <- ncol(object)
-    # TODO: check vector lengths
-    # TODO: check all(s0 <= s1) all(t0 <= t1)
+    s0 <- get_tpq(object)
+    s1 <- get_taq(object)
+    if (length(from) == 0) from <- min(s0)
+    if (length(to) == 0) to <- max(s1)
     span <- to - from
     if (span <= 0) {
       msg <- "The duration of the period of interest cannot be negative (%g)!"
@@ -87,9 +113,8 @@ setMethod(
                  counts = object)
 
     .CountApportion(
-      counts = as.matrix(object),
+      a,
       p = p,
-      apportion = a,
       method = method,
       from = from,
       to = to,

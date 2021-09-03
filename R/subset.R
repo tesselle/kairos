@@ -19,33 +19,6 @@ extract_slot <- function(x, i) {
 
 #' @export
 #' @rdname subset
-#' @aliases [[,AoristicSum,ANY,missing-method
-setMethod(
-  f = "[[",
-  signature = c(x = "AoristicSum", i = "ANY", j = "missing"),
-  definition = extract_slot
-)
-
-#' @export
-#' @rdname subset
-#' @aliases [[,CountApportion,ANY,missing-method
-setMethod(
-  f = "[[",
-  signature = c(x = "CountApportion", i = "ANY", j = "missing"),
-  definition = extract_slot
-)
-
-#' @export
-#' @rdname subset
-#' @aliases [[,DateMCD,ANY,missing-method
-setMethod(
-  f = "[[",
-  signature = c(x = "DateMCD", i = "ANY", j = "missing"),
-  definition = extract_slot
-)
-
-#' @export
-#' @rdname subset
 #' @aliases [[,DateEvent,ANY,missing-method
 setMethod(
   f = "[[",
@@ -59,14 +32,5 @@ setMethod(
 setMethod(
   f = "[[",
   signature = c(x = "IncrementTest", i = "ANY", j = "missing"),
-  definition = extract_slot
-)
-
-#' @export
-#' @rdname subset
-#' @aliases [[,RateOfChange,ANY,missing-method
-setMethod(
-  f = "[[",
-  signature = c(x = "RateOfChange", i = "ANY", j = "missing"),
   definition = extract_slot
 )

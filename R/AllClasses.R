@@ -62,20 +62,7 @@ NULL
 #' @slot groups A [`character`] vector.
 #' @slot dates A [`numeric`] vector.
 #' @slot p A [`numeric`] [`array`] giving the aorisitic probabilities.
-#' @slot sum A [`numeric`] [`matrix`] giving the aorisitic sums (one group per
-#'  columns).
-#' @section Subset:
-#'  In the code snippets below, `x` is an `AoristicSum` object.
-#'  \describe{
-#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript `i`.
-#'   `i` is a length-one [`character`] vector. Returns the corresponding slot
-#'   values.}
-#'  }
-#' @section Coerce:
-#'  In the code snippets below, `x` is an `AoristicSum` object.
-#'  \describe{
-#'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
-#'  }
+#' @note This class inherits from base [`matrix`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -88,9 +75,9 @@ NULL
     weights = "numeric",
     groups = "character",
     dates = "numeric",
-    p = "array",
-    sum = "matrix"
-  )
+    p = "array"
+  ),
+  contains = "matrix"
 )
 
 #' Rate of Change
@@ -100,14 +87,7 @@ NULL
 #'  replications.
 #' @slot blocks A [`character`] vector giving the time-blocks.
 #' @slot groups A [`character`] vector.
-#' @slot rates A [`numeric`] [`array`] giving the rates of change.
-#' @section Subset:
-#'  In the code snippets below, `x` is an `RateOfChange` object.
-#'  \describe{
-#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript `i`.
-#'   `i` is a length-one [`character`] vector. Returns the corresponding slot
-#'   values.}
-#'  }
+#' @note This class inherits from base [`array`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -117,20 +97,19 @@ NULL
   slots = c(
     replicates = "integer",
     blocks = "character",
-    groups = "character",
-    rates = "array"
-  )
+    groups = "character"
+  ),
+  contains = "array"
 )
 
 # CountApportion ==================================================================
 #' Count Apportioning
 #'
-#' An S4 class to represent an artifact apportioning results.
-#' @slot counts A \eqn{m \times p}{m x p} [`numeric`] matrix of count data.
+#' An S4 class to represent an artifact apportioning results. Gives the
+#' apportioning of artifact types (columns) per site (rows) and per period
+#' (dim. 3).
 #' @slot p An [`array`] giving the probability of apportioning an artifact type
 #'  to a given period.
-#' @slot apportion An [`array`] giving the apportioning of artifact types per
-#'  site and per period.
 #' @slot method A [`character`] string specifying the distribution used for
 #'  apportioning (type popularity curve).
 #' @slot from A length-one [`numeric`] vector giving the beginning of the
@@ -139,6 +118,7 @@ NULL
 #'  interest (in years AD).
 #' @slot step A length-one [`integer`] vector giving the step size, i.e. the
 #'  width of each time step for apportioning (in years AD).
+#' @note This class inherits from base [`array`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -146,14 +126,13 @@ NULL
 .CountApportion <- setClass(
   Class = "CountApportion",
   slots = c(
-    counts = "matrix",
     p = "array",
-    apportion = "array",
     method = "character",
     from = "numeric",
     to = "numeric",
     step = "numeric"
-  )
+  ),
+  contains = "array"
 )
 
 # IncrementTest ================================================================

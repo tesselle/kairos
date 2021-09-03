@@ -10,6 +10,8 @@ setGeneric("autoplot", package = "ggplot2")
 # Import generics from arkhe ===================================================
 setGeneric("bootstrap", package = "arkhe")
 setGeneric("jackknife", package = "arkhe")
+setGeneric("get_dates", package = "arkhe")
+setGeneric("get_groups", package = "arkhe")
 
 # Mutators =====================================================================
 ## Extract ---------------------------------------------------------------------
@@ -17,7 +19,7 @@ setGeneric("jackknife", package = "arkhe")
 #'
 #' Getters and setters to retrieve or set parts of an object.
 #' @param x An object from which to get or set element(s).
-#' @param value A possible value for the element(s) of `x`.
+# @param value A possible value for the element(s) of `x`.
 #' @return
 #'  * `set_*()` returns an object of the same sort as `x` with the new values
 #'    assigned.
@@ -36,6 +38,13 @@ NULL
 setGeneric(
   name = "get_mcd",
   def = function(x) standardGeneric("get_mcd")
+)
+
+#' @rdname mutators
+#' @aliases get_weights-method
+setGeneric(
+  name = "get_weights",
+  def = function(x) standardGeneric("get_weights")
 )
 
 ## Subset ----------------------------------------------------------------------
@@ -176,7 +185,7 @@ setGeneric(
 #' @return
 #'  * `date_event()` returns a [DateEvent-class] object.
 #'  * `predict_event()`, `predict_accumulation()`, `bootstrap_event()`
-#'    and `jackknife_event()` return a `data.frame`.
+#'    and `jackknife_event()` return a [`data.frame`].
 #' @seealso [plot_event()]
 #' @references
 #'  Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans
@@ -259,12 +268,12 @@ setGeneric(
 #' @param y A [`numeric`] vector. If missing, an attempt is made to interpret
 #'  `x` in a suitable way.
 #' @param step A length-one [`integer`] vector giving the step size, i.e. the
-#'  width of each time step in the time series (in years AD; defaults to
+#'  width of each time step in the time series (in years CE; defaults to
 #'  \eqn{1}).
 #' @param start A length-one [`numeric`] vector giving the beginning of the time
-#'  window (in years AD).
+#'  window (in years CE).
 #' @param stop A length-one [`numeric`] vector giving the end of the time
-#'  window (in years AD).
+#'  window (in years CE).
 #' @param weight A [`logical`] scalar: . Defaults to `FALSE` (the aoristic sum
 #'  is the number of elements within a time step).
 #' @param groups A [`factor`] vector in the sense that `as.factor(groups)`
@@ -299,10 +308,10 @@ setGeneric(
 NULL
 
 #' @rdname aoristic
-#' @aliases sum_aoristic-method
+#' @aliases aoristic-method
 setGeneric(
-  name = "sum_aoristic",
-  def = function(x, y, ...) standardGeneric("sum_aoristic"),
+  name = "aoristic",
+  def = function(x, y, ...) standardGeneric("aoristic"),
   valueClass = "AoristicSum"
 )
 
@@ -316,7 +325,7 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return
 #'  A [RateOfChange-class] object.
-#' @seealso [sum_aoristic()], [plot_time()]
+#' @seealso [aoristic()], [plot_time()]
 #' @references
 #'  Baxter, M. J. & Cool, H. E. M. (2016). Reinventing the Wheel? Modelling
 #'  Temporal Uncertainty with Applications to Brooch Distributions in Roman
@@ -347,19 +356,19 @@ setGeneric(
 #'
 #' @param object An \eqn{m \times p}{m x p} [arkhe::CountMatrix-class] object.
 #' @param s0 A length-\eqn{m} [`numeric`] vector giving the site beginning dates
-#'  (in years AD).
+#'  (in years CE).
 #' @param s1 A length-\eqn{m} [`numeric`] vector giving the site end dates
-#'  (in years AD).
-#' @param t0 A length-\eqn{p} [`numeric`] vector giving the type end dates
-#'  (in years AD).
+#'  (in years CE).
+#' @param t0 A length-\eqn{p} [`numeric`] vector giving the type beginning dates
+#'  (in years CE).
 #' @param t1 A length-\eqn{p} [`numeric`] vector giving the type end dates
-#'  (in years AD).
+#'  (in years CE).
 #' @param from A length-one [`numeric`] vector giving the beginning of the
-#'  period of interest (in years AD).
+#'  period of interest (in years CE).
 #' @param to A length-one [`numeric`] vector giving the end of the period of
-#'  interest (in years AD).
+#'  interest (in years CE).
 #' @param step A length-one [`integer`] vector giving the step size, i.e. the
-#'  width of each time step for apportioning (in years AD; defaults to
+#'  width of each time step for apportioning (in years CE; defaults to
 #'  \eqn{25}).
 #' @param method A [`character`] string specifying the distribution to be used
 #'  (type popularity curve). It must be one of "`uniform`" (uniform
@@ -437,6 +446,11 @@ setGeneric(
 #'  subsetted to look for episodes of selection?
 #' @param window An odd [`integer`] giving the size of the rolling
 #'  window. Only used if `roll` is `TRUE`.
+#' @param select A [`numeric`] or [`character`] vector giving the selection of
+#'  the assemblage that are drawn.
+#' @param decreasing A [`logical`] scalar: TODO.
+#' @param n A non-negative [`integer`] giving the number of bootstrap
+#'  replications.
 #' @param ... Currently not used.
 #' @section Detection of Selective Processes:
 #'  Results of the frequency increment test can be displayed on an abundance
@@ -450,11 +464,11 @@ setGeneric(
 #'  * `plot_time()` returns a [`ggplot`][`ggplot2::ggplot`] object.
 #'  * `autoplot()` returns a [`ggplot`][`ggplot2::ggplot`] object.
 #'  * `plot()` is called it for its side-effects: it results in a graphic being
-#'  displayed (invisibly returns `x`).
+#'    displayed (invisibly returns `x`).
 #' @note
 #'  Displaying FIT results on an abundance *vs* time diagram is adapted from Ben
 #'  Marwick's original [idea](https://github.com/benmarwick/signatselect/).
-#' @seealso [date_mcd()], [sum_aoristic()], [test_fit()]
+#' @seealso [date_mcd()], [aoristic()], [test_fit()]
 #' @example inst/examples/ex-plot_time.R
 #' @author N. Frerebeau
 #' @family plotting methods
@@ -486,10 +500,10 @@ setGeneric(
 #'  be displayed? Only used if type is "`activity`".
 #' @param ... Currently not used.
 #' @section Event and Acccumulation Dates:
-#'  `plot_event()` plots the probability estimate density curves of
-#'  archaeological assemblage dates (*event* and *accumulation* dates; Bellanger
-#'  and Husi 2012). The *event* date is plotted as a line, while the
-#'  *accumulation* date is shown as a grey filled area.
+#'  `plot()` displays the probability estimate density curves of rchaeological
+#'  assemblage dates (*event* and *accumulation* dates; Bellanger and Husi
+#'  2012). The *event* date is plotted as a line, while the *accumulation* date
+#'  is shown as a grey filled area.
 #'
 #'  The accumulation date can be displayed as a tempo plot (Dye 2016) or an
 #'  activity plot (Philippe and Vibet 2017):
@@ -503,7 +517,7 @@ setGeneric(
 #' @return
 #'  * `autoplot()` returns a [`ggplot`][`ggplot2::ggplot`] object.
 #'  * `plot()` is called it for its side-effects: it results in a graphic being
-#'  displayed (invisibly returns `x`).
+#'    displayed (invisibly returns `x`).
 #' @references
 #'  Bellanger, L. & Husi, P. (2012). Statistical Tool for Dating and
 #'  Interpreting Archaeological Contexts Using Pottery. *Journal of

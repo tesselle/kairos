@@ -4,12 +4,13 @@
 \name{apportion}
 \alias{apportion}
 \alias{apportion-method}
+\alias{apportion,matrix-method}
 \alias{apportion,CountMatrix-method}
 \title{Chronological Apportioning}
 \usage{
 apportion(object, ...)
 
-\S4method{apportion}{CountMatrix}(
+\S4method{apportion}{matrix}(
   object,
   s0,
   s1,
@@ -22,6 +23,18 @@ apportion(object, ...)
   z = 2,
   progress = getOption("kairos.progress")
 )
+
+\S4method{apportion}{CountMatrix}(
+  object,
+  t0,
+  t1,
+  from = NULL,
+  to = NULL,
+  step = 25,
+  method = c("uniform", "truncated"),
+  z = 2,
+  progress = getOption("kairos.progress")
+)
 }
 \arguments{
 \item{object}{An \eqn{m \times p}{m x p} \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} object.}
@@ -29,25 +42,25 @@ apportion(object, ...)
 \item{...}{Currently not used.}
 
 \item{s0}{A length-\eqn{m} \code{\link{numeric}} vector giving the site beginning dates
-(in years AD).}
+(in years CE).}
 
 \item{s1}{A length-\eqn{m} \code{\link{numeric}} vector giving the site end dates
-(in years AD).}
+(in years CE).}
 
-\item{t0}{A length-\eqn{p} \code{\link{numeric}} vector giving the type end dates
-(in years AD).}
+\item{t0}{A length-\eqn{p} \code{\link{numeric}} vector giving the type beginning dates
+(in years CE).}
 
 \item{t1}{A length-\eqn{p} \code{\link{numeric}} vector giving the type end dates
-(in years AD).}
+(in years CE).}
 
 \item{from}{A length-one \code{\link{numeric}} vector giving the beginning of the
-period of interest (in years AD).}
+period of interest (in years CE).}
 
 \item{to}{A length-one \code{\link{numeric}} vector giving the end of the period of
-interest (in years AD).}
+interest (in years CE).}
 
 \item{step}{A length-one \code{\link{integer}} vector giving the step size, i.e. the
-width of each time step for apportioning (in years AD; defaults to
+width of each time step for apportioning (in years CE; defaults to
 \eqn{25}).}
 
 \item{method}{A \code{\link{character}} string specifying the distribution to be used
@@ -71,7 +84,7 @@ Assemblages. \emph{Journal of Archaeological Science}, 39(5): 1513-20.
 }
 \seealso{
 Other chronological analysis: 
-\code{\link{aoristic}},
+\code{\link{aoristic}()},
 \code{\link{fit}},
 \code{\link{roc}}
 }

@@ -7,17 +7,34 @@
 \alias{set}
 \alias{get_mcd}
 \alias{get_mcd-method}
+\alias{get_weights}
+\alias{get_weights-method}
+\alias{get_dates,AoristicSum-method}
+\alias{get_dates,RateOfChange-method}
+\alias{get_groups,AoristicSum-method}
 \alias{get_mcd,DateMCD-method}
+\alias{get_weights,AoristicSum-method}
+\alias{get_weights,CountApportion-method}
 \title{Get or Set Parts of an Object}
 \usage{
 get_mcd(x)
 
+get_weights(x)
+
+\S4method{get_dates}{AoristicSum}(x)
+
+\S4method{get_dates}{RateOfChange}(x)
+
+\S4method{get_groups}{AoristicSum}(x)
+
 \S4method{get_mcd}{DateMCD}(x)
+
+\S4method{get_weights}{AoristicSum}(x)
+
+\S4method{get_weights}{CountApportion}(x)
 }
 \arguments{
 \item{x}{An object from which to get or set element(s).}
-
-\item{value}{A possible value for the element(s) of \code{x}.}
 }
 \value{
 \itemize{

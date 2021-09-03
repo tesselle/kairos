@@ -5,9 +5,9 @@ NULL
 # Aoristic sum =================================================================
 #' @export
 #' @rdname aoristic
-#' @aliases sum_aoristic,numeric,numeric-method
+#' @aliases aoristic,numeric,numeric-method
 setMethod(
-  f = "sum_aoristic",
+  f = "aoristic",
   signature = signature(x = "numeric", y = "numeric"),
   definition = function(x, y, step = 1, start = min(x, na.rm = TRUE),
                         stop = max(y, na.rm = TRUE), weight = TRUE,
@@ -68,22 +68,22 @@ setMethod(
     }
 
     .AoristicSum(
+      ao_sum,
       from = x,
       to = y,
       weights = z,
       groups = groups,
       dates = dates,
-      p = ao_probs,
-      sum = ao_sum
+      p = ao_probs
     )
   }
 )
 
 #' @export
 #' @rdname aoristic
-#' @aliases sum_aoristic,list,missing-method
+#' @aliases aoristic,list,missing-method
 setMethod(
-  f = "sum_aoristic",
+  f = "aoristic",
   signature = signature(x = "list", y = "missing"),
   definition = function(x, step = 1, start = min(x$from, na.rm = TRUE),
                         stop = max(x$to, na.rm = TRUE), weight = FALSE,
@@ -119,11 +119,11 @@ setMethod(
   signature = signature(object = "AoristicSum"),
   definition = function(object, n = 100) {
     ## Get time span of the blocks
-    dates <- object[["dates"]]
+    dates <- get_dates(object)
     step <- unique(diff(dates))
 
     ## Get aoristic weights
-    w <- object[["p"]]
+    w <- get_weights(object)
 
     n <- as.integer(n)
     m <- dim(w)[[1]]
@@ -153,10 +153,10 @@ setMethod(
     blocks <- paste(utils::head(dates, -1), utils::tail(dates, -1), sep = "_")
 
     .RateOfChange(
+      roc / step,
       replicates = n,
       blocks = blocks,
-      groups = unique(object[["groups"]]),
-      rates = roc / step
+      groups = unique(get_groups(object))
     )
   }
 )

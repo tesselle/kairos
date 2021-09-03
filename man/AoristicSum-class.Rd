@@ -22,29 +22,11 @@ An S4 class to represent an aoristic analysis results.
 \item{\code{dates}}{A \code{\link{numeric}} vector.}
 
 \item{\code{p}}{A \code{\link{numeric}} \code{\link{array}} giving the aorisitic probabilities.}
-
-\item{\code{sum}}{A \code{\link{numeric}} \code{\link{matrix}} giving the aorisitic sums (one group per
-columns).}
 }}
 
-\section{Subset}{
-
-In the code snippets below, \code{x} is an \code{AoristicSum} object.
-\describe{
-\item{\code{x[[i]]}}{Extracts information from a slot selected by subscript \code{i}.
-\code{i} is a length-one \code{\link{character}} vector. Returns the corresponding slot
-values.}
+\note{
+This class inherits from base \code{\link{matrix}}.
 }
-}
-
-\section{Coerce}{
-
-In the code snippets below, \code{x} is an \code{AoristicSum} object.
-\describe{
-\item{\code{as.data.frame(x)}}{Coerces to a \code{\link{data.frame}}.}
-}
-}
-
 \seealso{
 Other classes: 
 \code{\link{CountApportion-class}},

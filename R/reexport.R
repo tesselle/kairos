@@ -36,6 +36,22 @@ arkhe::get_dates
 #' @export
 arkhe::`set_dates<-`
 
+#' @importFrom arkhe get_tpq
+#' @export
+arkhe::get_tpq
+
+#' @importFrom arkhe `set_tpq<-`
+#' @export
+arkhe::`set_tpq<-`
+
+#' @importFrom arkhe get_taq
+#' @export
+arkhe::get_taq
+
+#' @importFrom arkhe `set_taq<-`
+#' @export
+arkhe::`set_taq<-`
+
 #' @importFrom arkhe CountMatrix
 #' @export
 arkhe::CountMatrix

@@ -64,7 +64,7 @@ autoplot.AoristicSum <- function(object, ..., facet = TRUE) {
 
   ggplot2::ggplot(data = data, mapping = aes_plot) +
     ggplot2::geom_col() +
-    ggplot2::scale_x_continuous(name = "Time") +
+    ggplot2::scale_x_continuous(name = "Year CE") +
     ggplot2::scale_y_continuous(name = "Aoristic sum") +
     facet
 }
@@ -114,7 +114,7 @@ autoplot.RateOfChange <- function(object, ..., facet = TRUE) {
   ggplot2::ggplot(data = data, mapping = aes_plot) +
     ggplot2::geom_hline(yintercept = 0, linetype = 3) +
     ggplot2::geom_boxplot() +
-    ggplot2::scale_x_discrete(name = "Time") +
+    ggplot2::scale_x_discrete(name = "Year CE") +
     ggplot2::scale_y_continuous(name = "Rate of Change") +
     facet
 }
@@ -287,9 +287,9 @@ setMethod(
 ## * Must preserve original ordering
 
 prepare_aoristic <- function(object) {
-  aoristic <- object[["sum"]]
-  dates <- object[["dates"]]
-  groups <- object[["groups"]]
+  aoristic <- object
+  dates <- get_dates(object)
+  groups <- get_groups(object)
 
   grp <- unique(groups)
   data.frame(
@@ -300,8 +300,8 @@ prepare_aoristic <- function(object) {
 }
 
 prepare_roc <- function(object) {
-  rates <- object[["rates"]]
-  blocks <- object[["blocks"]]
+  rates <- object
+  blocks <- get_dates(object)
   blocks <- factor(blocks, levels = unique(blocks))
 
   m <- dim(rates)[[1]]

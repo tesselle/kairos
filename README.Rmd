@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 ## Overview
 
-A toolkit for absolute dating and analysis of chronological patterns. This package includes functions for chronological modeling and dating of archaeological assemblages from count data. It allows to compute time point estimates (e.g. Mean Ceramic Date) and density estimates of the occupation and duration of an archaeological site.
+A toolkit for absolute dating and analysis of chronological patterns. This package includes functions for chronological modeling and dating of archaeological assemblages from count data. It allows to compute time point estimates (e.g. Mean Ceramic Date) and density estimates of the occupation and duration of an archaeological site (e.g. event model, aoristic analysis, apportioning).
 
 **Initial development is in progress.**
 
@@ -90,7 +90,7 @@ span <- apply(
 span <- as.data.frame(t(span))
 
 ## Calculate aoristic sum (weights)
-aorist_weigth <- sum_aoristic(span, step = 50, weight = TRUE)
+aorist_weigth <- aoristic(span, step = 50, weight = TRUE)
 plot(aorist_weigth)
 
 ## Rate of change

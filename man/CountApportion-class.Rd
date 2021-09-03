@@ -6,18 +6,15 @@
 \alias{.CountApportion}
 \title{Count Apportioning}
 \description{
-An S4 class to represent an artifact apportioning results.
+An S4 class to represent an artifact apportioning results. Gives the
+apportioning of artifact types (columns) per site (rows) and per period
+(dim. 3).
 }
 \section{Slots}{
 
 \describe{
-\item{\code{counts}}{A \eqn{m \times p}{m x p} \code{\link{numeric}} matrix of count data.}
-
 \item{\code{p}}{An \code{\link{array}} giving the probability of apportioning an artifact type
 to a given period.}
-
-\item{\code{apportion}}{An \code{\link{array}} giving the apportioning of artifact types per
-site and per period.}
 
 \item{\code{method}}{A \code{\link{character}} string specifying the distribution used for
 apportioning (type popularity curve).}
@@ -32,6 +29,9 @@ interest (in years AD).}
 width of each time step for apportioning (in years AD).}
 }}
 
+\note{
+This class inherits from base \code{\link{array}}.
+}
 \seealso{
 Other classes: 
 \code{\link{AoristicSum-class}},

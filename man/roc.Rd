@@ -59,16 +59,16 @@ span <- apply(
 span <- as.data.frame(t(span))
 
 ## Calculate aoristic sum (normal)
-aorist_raw <- sum_aoristic(span, step = 50, weight = FALSE)
+aorist_raw <- aoristic(span, step = 50, weight = FALSE)
 plot(aorist_raw)
 
 ## Calculate aoristic sum (weights)
-aorist_weigth <- sum_aoristic(span, step = 50, weight = TRUE)
+aorist_weigth <- aoristic(span, step = 50, weight = TRUE)
 plot(aorist_weigth)
 
 ## Calculate aoristic sum (weights) by group
 groups <- rep(c("A", "B", "C"), times = c(50, 90, 139))
-aorist_groups <- sum_aoristic(span, step = 50, weight = TRUE, groups = groups)
+aorist_groups <- aoristic(span, step = 50, weight = TRUE, groups = groups)
 plot(aorist_groups)
 
 ## Rate of change
@@ -90,10 +90,10 @@ Analysis. \emph{Journal of Archaeological Method and Theory}, 19(3): 440-61.
 \doi{10.1007/s10816-011-9122-3}.
 }
 \seealso{
-\code{\link[=sum_aoristic]{sum_aoristic()}}, \code{\link[=plot_time]{plot_time()}}
+\code{\link[=aoristic]{aoristic()}}, \code{\link[=plot_time]{plot_time()}}
 
 Other chronological analysis: 
-\code{\link{aoristic}},
+\code{\link{aoristic}()},
 \code{\link{apportion}()},
 \code{\link{fit}}
 }

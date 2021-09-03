@@ -32,22 +32,22 @@ test_that("Aoristic Sum", {
   span <- as.data.frame(t(span))
 
   ## Calculate aoristic sum (normal)
-  aorist_raw <- sum_aoristic(span, step = 25, weight = FALSE)
+  aorist_raw <- aoristic(span, step = 25, weight = FALSE)
   gg_raw <- autoplot(aorist_raw)
   vdiffr::expect_doppelganger("aoristic_raw", gg_raw)
 
   ## Calculate aoristic sum (weights)
-  aorist_weigth <- sum_aoristic(span, step = 25, weight = TRUE)
+  aorist_weigth <- aoristic(span, step = 25, weight = TRUE)
   gg_weight <- autoplot(aorist_weigth)
   vdiffr::expect_doppelganger("aoristic_weight", gg_weight)
 
   ## Calculate aoristic sum (weights) by group
   groups <- rep(c("A", "B", "C"), times = c(50, 90, 139))
-  aorist_groups <- sum_aoristic(span, step = 25, weight = TRUE, groups = groups)
+  aorist_groups <- aoristic(span, step = 25, weight = TRUE, groups = groups)
   for (i in c(TRUE, FALSE)) {
     gg_groups <- autoplot(aorist_groups, facet = i)
     vdiffr::expect_doppelganger(paste0("aoristic_groups_facet-", i), gg_groups)
   }
 
-  expect_error(sum_aoristic(span, groups = groups[1:10]))
+  expect_error(aoristic(span, groups = groups[1:10]))
 })

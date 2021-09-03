@@ -91,7 +91,7 @@ replications.}
 \itemize{
 \item \code{date_event()} returns a \linkS4class{DateEvent} object.
 \item \code{predict_event()}, \code{predict_accumulation()}, \code{bootstrap_event()}
-and \code{jackknife_event()} return a \code{data.frame}.
+and \code{jackknife_event()} return a \code{\link{data.frame}}.
 }
 }
 \description{
