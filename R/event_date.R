@@ -30,7 +30,6 @@ setMethod(
 
     .DateEvent(
       results_CA,
-      dimension = keep_dim,
       dates = contexts$date,
       model = fit,
       cutoff = cutoff,
@@ -47,7 +46,7 @@ setMethod(
   f = "predict_event",
   signature = signature(object = "DateEvent", data = "missing"),
   definition = function(object, margin = 1, level = 0.95) {
-    data <- object[["data"]]
+    data <- object@data
     data <- arkhe::as_count(data)
     methods::callGeneric(object = object, data = data, margin = margin,
                          level = level)
@@ -65,7 +64,7 @@ setMethod(
     ca_coord <- dimensio::predict(object, data, margin = margin)
 
     ## Predict event date
-    fit_model <- object[["model"]]
+    fit_model <- get_model(object)
     ca_event <- compute_event(fit_model, ca_coord, level = level)
 
     # FIXME: error propagation
@@ -83,7 +82,7 @@ setMethod(
   f = "predict_accumulation",
   signature = signature(object = "DateEvent", data = "missing"),
   definition = function(object, level = 0.95) {
-    data <- object[["data"]]
+    data <- object@data
     data <- arkhe::as_count(data)
     methods::callGeneric(object = object, data = data, level = level)
   }
@@ -124,6 +123,7 @@ setMethod(
 #' @noRd
 compute_event <- function(fit, data, level) {
   data <- as.data.frame(data)
+
   date_predict <- stats::predict.lm(fit, data, se.fit = TRUE,
                                     interval = "confidence", level = level)
   results <- cbind(

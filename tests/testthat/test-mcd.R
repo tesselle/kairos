@@ -28,4 +28,11 @@ test_that("Mean Ceramic Date", {
   ## Jackknife
   jack <- with_seed(12345, jackknife(dt))
   expect_snapshot(jack)
+
+  skip_if_not_installed("vdiffr")
+  # Event plot
+  for (i in c(TRUE, FALSE)) {
+    gg_mcd <- autoplot(dt, select = 100:125, decreasing = i)
+    vdiffr::expect_doppelganger(paste0("mcd_decreasing-", i), gg_mcd)
+  }
 })

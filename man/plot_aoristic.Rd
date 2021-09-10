@@ -96,16 +96,8 @@ Other plotting methods:
 \code{\link{plot_fit}},
 \code{\link{plot_mcd}},
 \code{\link{plot_time}()}
-
-Other chronological analysis: 
-\code{\link{aoristic}()},
-\code{\link{apportion}()},
-\code{\link{fit}()},
-\code{\link{plot_fit}},
-\code{\link{roc}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{chronological analysis}
 \concept{plotting methods}

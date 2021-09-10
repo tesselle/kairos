@@ -35,19 +35,24 @@ setMethod(
 #' @aliases bootstrap,DateMCD-method
 setMethod(
   f = "bootstrap",
-  signature = signature(x = "DateMCD"),
-  definition = function(x, level = 0.95, type = c("student", "normal"),
+  signature = signature(object = "DateMCD"),
+  definition = function(object, level = 0.95, type = c("student", "normal"),
                         probs = c(0.25, 0.50, 0.75), n = 1000) {
+
+    theta <- function(x, do, n, dates, level, type, probs) {
+      boot <- dimensio::bootstrap(x, do, n, dates)
+      dimensio::summary(boot, level = level, type = type, probs = probs)
+    }
     results <- apply(
-      X = x,
+      X = object,
       MARGIN = 1,
-      FUN = arkhe::bootstrap,
+      FUN = theta,
       do = mcd,
+      n = n,
+      dates = object@dates_types,
       level = level,
       type = type,
-      probs = probs,
-      n = n,
-      dates = x@dates_types
+      probs = probs
     )
     as.data.frame(t(results))
   }
@@ -58,35 +63,30 @@ setMethod(
 #' @aliases jackknife,DateMCD-method
 setMethod(
   f = "jackknife",
-  signature = signature(x = "DateMCD"),
-  definition = function(x) {
-    results <- apply(
-      X = x,
-      MARGIN = 1,
-      FUN = function(x, y) {
-        n <- length(x)
-        hat <- mcd(x, y)
+  signature = signature(object = "DateMCD"),
+  definition = function(object) {
 
-        jack_values <- vapply(
-          X = seq_len(n),
-          FUN = function(i, x, y) {
-            mcd(x[-i], y[-i])
-          },
-          FUN.VALUE = double(1),
-          x, y
-        )
+    m <- nrow(object)
+    p <- ncol(object)
 
-        jack_mean <- mean(jack_values)
-        jack_bias <- (n - 1) * (jack_mean - hat)
-        jack_error <- sqrt(((n - 1) / n) * sum((jack_values - jack_mean)^2))
+    dates <- object@dates_types
+    theta <- function(x, counts, dates) {
+      mcd(counts[x], dates[x])
+    }
 
-        results <- c(jack_mean, jack_bias, jack_error)
-        names(results) <- c("mean", "bias", "error")
-        results
-      },
-      y = x@dates_types
-    )
-    as.data.frame(t(results))
+    results <- vector(mode = "list", length = m)
+    for (i in seq_len(m)) {
+      jack <- dimensio::jackknife(
+        object = seq_len(p),
+        do = theta,
+        counts = object[i, ],
+        dates = dates
+      )
+      results[[i]] <- dimensio::summary(jack)
+    }
+    results <- do.call(rbind, results)
+    rownames(results) <- rownames(object)
+    as.data.frame(results)
   }
 )
 

@@ -57,13 +57,11 @@ Signatures of Selection in Genetic Time Series. \emph{Genetics}, 196(2):
 509-522. \doi{10.1534/genetics.113.158220}.
 }
 \seealso{
-\link[=plot]{plot_fit}
+\link[=plot_fit]{plot()}
 
 Other chronological analysis: 
 \code{\link{aoristic}()},
 \code{\link{apportion}()},
-\code{\link{plot_aoristic}},
-\code{\link{plot_fit}},
 \code{\link{roc}()}
 }
 \author{

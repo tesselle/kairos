@@ -89,14 +89,12 @@ Analysis. \emph{Journal of Archaeological Method and Theory}, 19(3): 440-61.
 \doi{10.1007/s10816-011-9122-3}.
 }
 \seealso{
-\code{\link[=aoristic]{aoristic()}}, \link[=plot]{plot_aoristic}
+\code{\link[=aoristic]{aoristic()}}, \link[=plot_aoristic]{plot()}
 
 Other chronological analysis: 
 \code{\link{aoristic}()},
 \code{\link{apportion}()},
-\code{\link{fit}()},
-\code{\link{plot_aoristic}},
-\code{\link{plot_fit}}
+\code{\link{fit}()}
 }
 \author{
 N. Frerebeau

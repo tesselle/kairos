@@ -3,12 +3,9 @@
 \docType{methods}
 \name{subset}
 \alias{subset}
-\alias{[[,DateEvent,ANY,missing-method}
 \alias{[[,IncrementTest,ANY,missing-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[[}{DateEvent,ANY,missing}(x, i)
-
 \S4method{[[}{IncrementTest,ANY,missing}(x, i)
 }
 \arguments{

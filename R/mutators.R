@@ -10,6 +10,11 @@ setMethod("get_dates", "AoristicSum", function(x) x@dates)
 
 #' @export
 #' @rdname mutators
+#' @aliases get_dates,DateEvent-method
+setMethod("get_dates", "DateEvent", function(x) x@dates)
+
+#' @export
+#' @rdname mutators
 #' @aliases get_dates,RateOfChange-method
 setMethod("get_dates", "RateOfChange", function(x) x@blocks)
 
@@ -22,6 +27,11 @@ setMethod("get_groups", "AoristicSum", function(x) x@groups)
 #' @rdname mutators
 #' @aliases get_mcd,DateMCD-method
 setMethod("get_mcd", "DateMCD", function(x) x@dates_mcd)
+
+#' @export
+#' @rdname mutators
+#' @aliases get_model,DateEvent-method
+setMethod("get_model", "DateEvent", function(x) x@model)
 
 #' @export
 #' @rdname mutators

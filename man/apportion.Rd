@@ -86,8 +86,6 @@ Assemblages. \emph{Journal of Archaeological Science}, 39(5): 1513-20.
 Other chronological analysis: 
 \code{\link{aoristic}()},
 \code{\link{fit}()},
-\code{\link{plot_aoristic}},
-\code{\link{plot_fit}},
 \code{\link{roc}()}
 }
 \author{

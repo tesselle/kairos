@@ -4,26 +4,26 @@ NULL
 
 #' @export
 #' @rdname event
-#' @aliases jackknife_event,DateEvent-method
+#' @aliases jackknife,DateEvent-method
 setMethod(
-  f = "jackknife_event",
+  f = "jackknife",
   signature = signature(object = "DateEvent"),
   definition = function(object, level = 0.95,
                         progress = getOption("kairos.progress"), ...) {
     ## Get data
-    fit_model <- object[["model"]]
-    fit_data <- object[["data"]]
-    fit_dates <- object[["dates"]]
-    fit_dim <- object[["dimension"]]
+    fit_model <- get_model(object)
+    fit_dates <- get_dates(object)
+    fit_data <- object@data
+    fit_dim <- object@keep
 
-    event <- predict_event(object, level = level)
+    event <- predict_event(x, level = level)
 
     ## TODO: check cutoff value
     jack_values <- compute_date_jack(fit_data, fit_dates, cutoff = 150,
-                                   progress = progress)
+                                     progress = progress)
     jack_coef <- colMeans(jack_values)
 
-    ## Change lm coefficients
+    ## Change lm coefficients (UGLY)
     fit_model$coefficients <- jack_coef[c(1, fit_dim + 1)]
 
     ## Predict event date for each context
@@ -41,15 +41,15 @@ setMethod(
 
 #' @export
 #' @rdname event
-#' @aliases bootstrap_event,DateEvent-method
+#' @aliases bootstrap,DateEvent-method
 setMethod(
-  f = "bootstrap_event",
+  f = "bootstrap",
   signature = signature(object = "DateEvent"),
   definition = function(object, level = 0.95, probs = c(0.05, 0.95), n = 1000,
                         progress = getOption("kairos.progress"), ...) {
     ## Get data
-    fit_model <- object[["model"]]
-    fit_dim <- object[["dimension"]]
+    fit_model <- get_model(object)
+    fit_dim <- object@keep
 
     ## Partial bootstrap CA
     ca_res <- dimensio::bootstrap(object, n = n)
@@ -97,6 +97,7 @@ setMethod(
 compute_date_boot <- function(x, axes, model, level, probs = c(0.05, 0.95)) {
   ## Remove missing values
   coords <- stats::na.omit(x[, axes])
+
   ## Gaussian multiple linear regression model
   event <- compute_event(model, coords, level)[, 1]
   Q <- stats::quantile(event, probs = probs, names = FALSE)
@@ -135,7 +136,7 @@ compute_date_jack <- function(x, dates, cutoff = 90,
     ## TODO: warning
     if (any(rowSums(counts) == 0)) next
     model <- date_event(counts, dates = dates, cutoff = cutoff)
-    jack[[j]] <- stats::coef(model[["model"]]) # Get model coefficients
+    jack[[j]] <- stats::coef(get_model(model)) # Get model coefficients
     if (progress_bar) utils::setTxtProgressBar(pbar, j)
   }
 

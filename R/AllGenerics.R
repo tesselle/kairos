@@ -7,9 +7,9 @@ if (!isGeneric("plot"))
   setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 setGeneric("autoplot", package = "ggplot2")
 
-# Import generics from arkhe ===================================================
-setGeneric("bootstrap", package = "arkhe")
-setGeneric("jackknife", package = "arkhe")
+# Set generics from other packages =============================================
+setGeneric("bootstrap", package = "dimensio")
+setGeneric("jackknife", package = "dimensio")
 setGeneric("get_dates", package = "arkhe")
 setGeneric("get_groups", package = "arkhe")
 
@@ -38,6 +38,13 @@ NULL
 setGeneric(
   name = "get_mcd",
   def = function(x) standardGeneric("get_mcd")
+)
+
+#' @rdname mutators
+#' @aliases get_model-method
+setGeneric(
+  name = "get_model",
+  def = function(x) standardGeneric("get_model")
 )
 
 #' @rdname mutators
@@ -72,7 +79,7 @@ NULL
 #' Estimates the Mean Ceramic Date of an assemblage.
 #' @param object A [arkhe::CountMatrix-class] or a [DateMCD-class] object.
 #' @param dates A [`numeric`] vector of dates.
-#' @inheritParams arkhe::bootstrap
+#' @inheritParams dimensio::bootstrap
 #' @param ... Currently not used.
 #' @details
 #'  The Mean Ceramic Date (MCD) is a point estimate of the occupation of an
@@ -94,7 +101,7 @@ NULL
 #' @references
 #'  South, S. A. (1977). *Method and Theory in Historical Archaeology*.
 #'  New York: Academic Press.
-#' @example inst/examples/ex-date_mcd.R
+#' @example inst/examples/ex-mcd.R
 #' @author N. Frerebeau
 #' @family dating methods
 #' @docType methods
@@ -113,7 +120,7 @@ setGeneric(
 #'  * `date_event()` fit a date event model.
 #'  * `predict_event()` and `predict_accumulation()` estimates the event and
 #'    accumulation dates of an assemblage.
-#' @param object A [arkhe::CountMatrix-class] or a [DateEvent-class] object.
+#' @param object,x A [arkhe::CountMatrix-class] or a [DateEvent-class] object.
 #' @param data A [arkhe::CountMatrix-class] object for which to predict event
 #'  and accumulation dates.
 #' @param dates A [`numeric`] vector of dates. If named, the names must match
@@ -146,9 +153,9 @@ setGeneric(
 #'
 #'  This method relies on strong archaeological and statistical assumptions.
 #'  Use it only if you know what you are doing (see references below and the
-#'  vignette: `utils::vignette("dating")`).
+#'  vignette: `utils::vignette("kairos")`).
 #' @section Date Model:
-#'  If `jackknife_event()` is used, one type/fabric is removed at a
+#'  If `jackknife()` is used, one type/fabric is removed at a
 #'  time and all statistics are recalculated. In this way, one can assess
 #'  whether certain type/fabric has a substantial influence on the date
 #'  estimate.
@@ -161,7 +168,7 @@ setGeneric(
 #'   \item{`error`}{The standard error of predicted means.}
 #'  }
 #'
-#'  If `bootstrap_event` is used, a large number of new bootstrap assemblages is
+#'  If `bootstrap()` is used, a large number of new bootstrap assemblages is
 #'  created, with the same sample size, by resampling each of the original
 #'  assemblage with replacement. Then, examination of the bootstrap statistics
 #'  makes it possible to pinpoint assemblages that require further
@@ -184,9 +191,9 @@ setGeneric(
 #'  release.
 #' @return
 #'  * `date_event()` returns a [DateEvent-class] object.
-#'  * `predict_event()`, `predict_accumulation()`, `bootstrap_event()`
-#'    and `jackknife_event()` return a [`data.frame`].
-#' @seealso [plot_event()]
+#'  * `predict_event()`, `predict_accumulation()`, `bootstrap()`
+#'    and `jackknife()` return a [`data.frame`].
+#' @seealso [plot_event][plot()]
 #' @references
 #'  Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans
 #'  la matière à partir d'une source matérielle : la céramique médiévale.
@@ -211,7 +218,7 @@ setGeneric(
 #'  Poblome, J. & Groenen, P. J. F. (2003). Constrained Correspondence Analysis
 #'  for Seriation of Sagalassos Tablewares. In Doerr, M. & Apostolis, S. (eds.),
 #'  *The Digital Heritage of Archaeology*. Athens: Hellenic Ministry of Culture.
-#' @example inst/examples/ex-date_event.R
+#' @example inst/examples/ex-event.R
 #' @author N. Frerebeau
 #' @family dating methods
 #' @docType methods
@@ -243,21 +250,6 @@ setGeneric(
   valueClass = "data.frame"
 )
 
-#' @rdname event
-#' @aliases bootstrap_event-method
-setGeneric(
-  name = "bootstrap_event",
-  def = function(object, ...) standardGeneric("bootstrap_event")
-)
-
-#' @rdname event
-#' @aliases jackknife_event-method
-setGeneric(
-  name = "jackknife_event",
-  def = function(object, ...) standardGeneric("jackknife_event"),
-  valueClass = "data.frame"
-)
-
 # Chronological Modelling ======================================================
 ## Aoristic Analysis -----------------------------------------------------------
 #' Aoristic Analysis
@@ -283,7 +275,7 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return
 #'  An [AoristicSum-class] object.
-#' @seealso [roc()], [plot_aoristic][plot()]
+#' @seealso [roc()], [plot()][plot_aoristic]
 #' @references
 #'  Crema, E. R. (2012). Modelling Temporal Uncertainty in Archaeological
 #'  Analysis. *Journal of Archaeological Method and Theory*, 19(3): 440-61.
@@ -325,7 +317,7 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return
 #'  A [RateOfChange-class] object.
-#' @seealso [aoristic()], [plot_aoristic][plot()]
+#' @seealso [aoristic()], [plot()][plot_aoristic]
 #' @references
 #'  Baxter, M. J. & Cool, H. E. M. (2016). Reinventing the Wheel? Modelling
 #'  Temporal Uncertainty with Applications to Brooch Distributions in Roman
@@ -411,7 +403,7 @@ setGeneric(
 #' @return
 #'  An [IncrementTest-class] object.
 #' @example inst/examples/ex-fit.R
-#' @seealso [plot_fit][plot()]
+#' @seealso [plot()][plot_fit]
 #' @references
 #'  Feder, A. F., Kryazhimskiy, S. & Plotkin, J. B. (2014). Identifying
 #'  Signatures of Selection in Genetic Time Series. *Genetics*, 196(2):
@@ -473,7 +465,6 @@ setGeneric(
 #' @example inst/examples/ex-aoristic.R
 #' @author N. Frerebeau
 #' @family plotting methods
-#' @family chronological analysis
 #' @docType methods
 #' @name plot_aoristic
 #' @rdname plot_aoristic
@@ -493,10 +484,9 @@ NULL
 #'  * `plot()` is called it for its side-effects: it results in a graphic being
 #'    displayed (invisibly returns `x`).
 #' @seealso [date_mcd()]
-#' @example inst/examples/ex-date_mcd.R
+#' @example inst/examples/ex-mcd.R
 #' @author N. Frerebeau
 #' @family plotting methods
-#' @family dating methods
 #' @docType methods
 #' @name plot_mcd
 #' @rdname plot_mcd
@@ -548,10 +538,9 @@ NULL
 #'  Philippe, A. & Vibet, M.-A. (2017). Analysis of Archaeological Phases Using
 #'  the R Package ArchaeoPhases. *Journal of Statistical Software, Code
 #'  Snippets*, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
-#' @example inst/examples/ex-date_event.R
+#' @example inst/examples/ex-event.R
 #' @author N. Frerebeau
 #' @family plotting methods
-#' @family dating methods
 #' @seealso [date_event()]
 #' @docType methods
 #' @name plot_event
@@ -589,7 +578,6 @@ NULL
 #' @example inst/examples/ex-fit.R
 #' @author N. Frerebeau
 #' @family plotting methods
-#' @family chronological analysis
 #' @docType methods
 #' @name plot_fit
 #' @rdname plot_fit

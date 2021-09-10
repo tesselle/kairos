@@ -132,13 +132,11 @@ Unspecific Temporal Events. \emph{International Journal of Geographical
 Information Science}, 14(7): 669-79. \doi{10.1080/136588100424963}.
 }
 \seealso{
-\code{\link[=roc]{roc()}}, \link[=plot]{plot_aoristic}
+\code{\link[=roc]{roc()}}, \link[=plot_aoristic]{plot()}
 
 Other chronological analysis: 
 \code{\link{apportion}()},
 \code{\link{fit}()},
-\code{\link{plot_aoristic}},
-\code{\link{plot_fit}},
 \code{\link{roc}()}
 }
 \author{
