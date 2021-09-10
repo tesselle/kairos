@@ -23,16 +23,6 @@ t-statistic.}
 \item{\code{p_value}}{A \code{\link{numeric}} vector giving the the p-value for the test.}
 }}
 
-\section{Subset}{
-
-In the code snippets below, \code{x} is an \code{IncrementTest} object.
-\describe{
-\item{\code{x[[i]]}}{Extracts information from a slot selected by subscript \code{i}.
-\code{i} is a length-one \code{\link{character}} vector. Returns the corresponding slot
-values.}
-}
-}
-
 \section{Coerce}{
 
 In the code snippets below, \code{x} is an \code{IncrementTest} object.

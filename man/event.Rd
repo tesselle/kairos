@@ -82,7 +82,8 @@ will be applied over: \code{1} indicates rows, \code{2} indicates columns.}
 \item{progress}{A \code{\link{logical}} scalar: should a progress bar be displayed?}
 
 \item{probs}{A \code{\link{numeric}} vector of probabilities with values in
-\eqn{[0,1]} (see \code{\link[stats:quantile]{stats::quantile()}}).}
+\eqn{[0,1]} (see \code{\link[stats:quantile]{stats::quantile()}}). If \code{NULL}, quantiles are not
+computed.}
 
 \item{n}{A non-negative \code{\link{integer}} giving the number of bootstrap
 replications.}
@@ -196,7 +197,9 @@ for Seriation of Sagalassos Tablewares. In Doerr, M. & Apostolis, S. (eds.),
 \code{\link[=plot_event]{plot_event()}}
 
 Other dating methods: 
-\code{\link{date_mcd}()}
+\code{\link{date_mcd}()},
+\code{\link{plot_event}},
+\code{\link{plot_mcd}}
 }
 \author{
 N. Frerebeau

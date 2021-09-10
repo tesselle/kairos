@@ -4,90 +4,32 @@
 \name{plot_time}
 \alias{plot_time}
 \alias{plot_time-method}
-\alias{plot_time,CountMatrix-method}
-\alias{autoplot,AoristicSum-method}
-\alias{plot,AoristicSum,missing-method}
-\alias{autoplot,RateOfChange-method}
-\alias{plot,RateOfChange,missing-method}
-\alias{autoplot,DateMCD-method}
-\alias{plot,DateMCD,missing-method}
-\alias{autoplot,IncrementTest-method}
-\alias{plot,IncrementTest,missing-method}
+\alias{plot_time,CountMatrix,missing-method}
+\alias{plot_time,CountMatrix,numeric-method}
 \title{Abundance vs Time Plot}
 \usage{
-plot_time(object, ...)
+plot_time(object, dates, ...)
 
-\S4method{plot_time}{CountMatrix}(object, dates, facet = FALSE)
+\S4method{plot_time}{CountMatrix,missing}(object, facet = FALSE)
 
-\S4method{autoplot}{AoristicSum}(object, ..., facet = TRUE)
-
-\S4method{plot}{AoristicSum,missing}(x, facet = TRUE)
-
-\S4method{autoplot}{RateOfChange}(object, ..., facet = TRUE)
-
-\S4method{plot}{RateOfChange,missing}(x, facet = TRUE)
-
-\S4method{autoplot}{DateMCD}(object, ..., select = NULL, decreasing = TRUE, n = 30)
-
-\S4method{plot}{DateMCD,missing}(x, select = NULL, decreasing = TRUE, n = 30)
-
-\S4method{autoplot}{IncrementTest}(object, ..., level = 0.95, roll = FALSE, window = 3)
-
-\S4method{plot}{IncrementTest,missing}(x, level = 0.95, roll = FALSE, window = 3)
+\S4method{plot_time}{CountMatrix,numeric}(object, dates, facet = FALSE)
 }
 \arguments{
-\item{object, x}{An object to be plotted.}
-
-\item{...}{Currently not used.}
+\item{object}{A \linkS4class{CountMatrix} object.}
 
 \item{dates}{A \code{\link{numeric}} vector of dates.}
 
+\item{...}{Currently not used.}
+
 \item{facet}{A \code{\link{logical}} scalar: should a matrix of panels defined by
 type/taxon be drawn?}
-
-\item{select}{A \code{\link{numeric}} or \code{\link{character}} vector giving the selection of
-the assemblage that are drawn.}
-
-\item{decreasing}{A \code{\link{logical}} scalar: TODO.}
-
-\item{n}{A non-negative \code{\link{integer}} giving the number of bootstrap
-replications.}
-
-\item{level}{A length-one \code{\link{numeric}} vector giving the
-confidence level.}
-
-\item{roll}{A \code{\link{logical}} scalar: should each time series be
-subsetted to look for episodes of selection?}
-
-\item{window}{An odd \code{\link{integer}} giving the size of the rolling
-window. Only used if \code{roll} is \code{TRUE}.}
 }
 \value{
-\itemize{
-\item \code{plot_time()} returns a \code{\link[ggplot2:ggplot]{ggplot}} object.
-\item \code{autoplot()} returns a \code{\link[ggplot2:ggplot]{ggplot}} object.
-\item \code{plot()} is called it for its side-effects: it results in a graphic being
-displayed (invisibly returns \code{x}).
-}
+A \code{\link[ggplot2:ggplot]{ggplot}} object.
 }
 \description{
 Produces an abundance \emph{vs} time diagram.
 }
-\note{
-Displaying FIT results on an abundance \emph{vs} time diagram is adapted from Ben
-Marwick's original \href{https://github.com/benmarwick/signatselect/}{idea}.
-}
-\section{Detection of Selective Processes}{
-
-Results of the frequency increment test can be displayed on an abundance
-\emph{vs} time diagram aid in the detection and quantification of selective
-processes in the archaeological record. If \code{roll} is \code{TRUE}, each time
-series is subsetted according to \code{window} to see if episodes of selection
-can be identified among decoration types that might not show overall
-selection. If so, shading highlights the data points where
-\code{\link[=test_fit]{test_fit()}} identifies selection.
-}
-
 \examples{
 data("merzbach", package = "folio")
 
@@ -105,10 +47,11 @@ plot_time(counts, dates)
 plot_time(counts, dates, facet = TRUE)
 }
 \seealso{
-\code{\link[=date_mcd]{date_mcd()}}, \code{\link[=aoristic]{aoristic()}}, \code{\link[=test_fit]{test_fit()}}
-
 Other plotting methods: 
-\code{\link{plot_event}}
+\code{\link{plot_aoristic}},
+\code{\link{plot_event}},
+\code{\link{plot_fit}},
+\code{\link{plot_mcd}}
 }
 \author{
 N. Frerebeau

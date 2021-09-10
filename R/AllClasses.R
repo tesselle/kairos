@@ -145,13 +145,6 @@ NULL
 #' @slot parameter An [`integer`] giving the degrees of freedom for the
 #'  t-statistic.
 #' @slot p_value A [`numeric`] vector giving the the p-value for the test.
-#' @section Subset:
-#'  In the code snippets below, `x` is an `IncrementTest` object.
-#'  \describe{
-#'   \item{`x[[i]]`}{Extracts information from a slot selected by subscript `i`.
-#'   `i` is a length-one [`character`] vector. Returns the corresponding slot
-#'   values.}
-#'  }
 #' @section Coerce:
 #'  In the code snippets below, `x` is an `IncrementTest` object.
 #'  \describe{

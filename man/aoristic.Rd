@@ -108,11 +108,11 @@ aorist_groups <- aoristic(span, step = 50, weight = TRUE, groups = groups)
 plot(aorist_groups)
 
 ## Rate of change
-roc_weigth <- rate_roc(aorist_weigth, n = 30)
+roc_weigth <- roc(aorist_weigth, n = 30)
 plot(roc_weigth)
 
 ## Rate of change by group
-roc_groups <- rate_roc(aorist_groups, n = 30)
+roc_groups <- roc(aorist_groups, n = 30)
 plot(roc_groups, facet = FALSE)
 }
 \references{
@@ -132,12 +132,14 @@ Unspecific Temporal Events. \emph{International Journal of Geographical
 Information Science}, 14(7): 669-79. \doi{10.1080/136588100424963}.
 }
 \seealso{
-\code{\link[=rate_roc]{rate_roc()}}, \code{\link[=plot_time]{plot_time()}}
+\code{\link[=roc]{roc()}}, \link[=plot]{plot_aoristic}
 
 Other chronological analysis: 
 \code{\link{apportion}()},
-\code{\link{fit}},
-\code{\link{roc}}
+\code{\link{fit}()},
+\code{\link{plot_aoristic}},
+\code{\link{plot_fit}},
+\code{\link{roc}()}
 }
 \author{
 N. Frerebeau

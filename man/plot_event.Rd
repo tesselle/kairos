@@ -88,9 +88,18 @@ Snippets}, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
 \code{\link[=date_event]{date_event()}}
 
 Other plotting methods: 
+\code{\link{plot_aoristic}},
+\code{\link{plot_fit}},
+\code{\link{plot_mcd}},
 \code{\link{plot_time}()}
+
+Other dating methods: 
+\code{\link{date_mcd}()},
+\code{\link{event}},
+\code{\link{plot_mcd}}
 }
 \author{
 N. Frerebeau
 }
+\concept{dating methods}
 \concept{plotting methods}

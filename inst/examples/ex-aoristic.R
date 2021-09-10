@@ -43,9 +43,9 @@ aorist_groups <- aoristic(span, step = 50, weight = TRUE, groups = groups)
 plot(aorist_groups)
 
 ## Rate of change
-roc_weigth <- rate_roc(aorist_weigth, n = 30)
+roc_weigth <- roc(aorist_weigth, n = 30)
 plot(roc_weigth)
 
 ## Rate of change by group
-roc_groups <- rate_roc(aorist_groups, n = 30)
+roc_groups <- roc(aorist_groups, n = 30)
 plot(roc_groups, facet = FALSE)

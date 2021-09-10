@@ -4,17 +4,28 @@ NULL
 
 #' @export
 #' @rdname fit
-#' @aliases test_fit,CountMatrix-method
+#' @aliases fit,CountMatrix,missing-method
 setMethod(
-  f = "test_fit",
-  signature = signature(object = "CountMatrix"),
+  f = "fit",
+  signature = signature(object = "CountMatrix", dates = "missing"),
+  definition = function(object) {
+    dates <- rowMeans(get_dates(object))
+    methods::callGeneric(object, dates)
+  }
+)
+
+#' @export
+#' @rdname fit
+#' @aliases fit,CountMatrix,numeric-method
+setMethod(
+  f = "fit",
+  signature = signature(object = "CountMatrix", dates = "numeric"),
   definition = function(object, dates) {
     ## Validation
     arkhe::assert_length(dates, nrow(object))
-    x <- as.matrix(object)
 
     ## Compute test
-    results <- testFIT(x, dates, roll = FALSE)[[1L]]
+    results <- testFIT(object, dates, roll = FALSE)[[1L]]
 
     ## Check results
     failed <- is.na(results$p.value)
@@ -25,7 +36,7 @@ setMethod(
     }
 
     .IncrementTest(
-      counts = x,
+      counts = object,
       dates = dates,
       statistic = results$t,
       parameter = 1L,
@@ -109,22 +120,23 @@ testFIT <- function(x, time, roll = FALSE, window = 3, ...) {
 #' @keywords internal
 #' @noRd
 FIT <- function(v, t, ...) {
-  # Validation
+  ## Validation
   arkhe::assert_type(v, "numeric")
   arkhe::assert_type(t, "numeric")
   arkhe::assert_length(t, length(v))
 
-  # Remove zeros
+  ## Remove zeros
   index <- v > 0
   v <- v[index]
   t <- t[index]
   if (length(t) < 3)
     stop("A minimum of three time points is needed.", call. = FALSE)
 
-  # Rescaled allele-frequency increments
+  ## Rescaled allele-frequency increments
   Y <- diff(v, lag = 1) /
     sqrt(2 * utils::head(v, -1) * (1 - utils::head(v, -1)) * diff(t, lag = 1))
-  # Statistics
+
+  ## Statistics
   t_test <- stats::t.test(Y, ...)
   c(t = as.numeric(t_test$statistic), p.value = t_test$p.value)
 }

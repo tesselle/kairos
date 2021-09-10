@@ -90,7 +90,7 @@ NULL
 #' @return
 #'  * `date_mcd()` returns a [DateMCD-class] object.
 #'  * `bootstrap()` and `jackknife()` return a [`data.frame`].
-#' @seealso [plot_time()]
+#' @seealso [plot_mcd][plot()]
 #' @references
 #'  South, S. A. (1977). *Method and Theory in Historical Archaeology*.
 #'  New York: Academic Press.
@@ -283,7 +283,7 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return
 #'  An [AoristicSum-class] object.
-#' @seealso [rate_roc()], [plot_time()]
+#' @seealso [roc()], [plot_aoristic][plot()]
 #' @references
 #'  Crema, E. R. (2012). Modelling Temporal Uncertainty in Archaeological
 #'  Analysis. *Journal of Archaeological Method and Theory*, 19(3): 440-61.
@@ -325,7 +325,7 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return
 #'  A [RateOfChange-class] object.
-#' @seealso [aoristic()], [plot_time()]
+#' @seealso [aoristic()], [plot_aoristic][plot()]
 #' @references
 #'  Baxter, M. J. & Cool, H. E. M. (2016). Reinventing the Wheel? Modelling
 #'  Temporal Uncertainty with Applications to Brooch Distributions in Roman
@@ -344,10 +344,10 @@ setGeneric(
 NULL
 
 #' @rdname roc
-#' @aliases rate_roc-method
+#' @aliases roc-method
 setGeneric(
-  name = "rate_roc",
-  def = function(object, ...) standardGeneric("rate_roc"),
+  name = "roc",
+  def = function(object, ...) standardGeneric("roc"),
   valueClass = "RateOfChange"
 )
 
@@ -410,8 +410,8 @@ setGeneric(
 #'  significantly from zero.
 #' @return
 #'  An [IncrementTest-class] object.
-#' @example inst/examples/ex-test_fit.R
-#' @seealso [plot_time()]
+#' @example inst/examples/ex-fit.R
+#' @seealso [plot_fit][plot()]
 #' @references
 #'  Feder, A. F., Kryazhimskiy, S. & Plotkin, J. B. (2014). Identifying
 #'  Signatures of Selection in Genetic Time Series. *Genetics*, 196(2):
@@ -424,51 +424,25 @@ setGeneric(
 NULL
 
 #' @rdname fit
-#' @aliases test_fit-method
+#' @aliases fit-method
 setGeneric(
-  name = "test_fit",
-  def = function(object, ...) standardGeneric("test_fit"),
+  name = "fit",
+  def = function(object, dates, ...) standardGeneric("fit"),
   valueClass = "IncrementTest"
 )
 
 # Plot =========================================================================
-## Plot abundance --------------------------------------------------------------
+## CountMatrix -----------------------------------------------------------------
 #' Abundance vs Time Plot
 #'
 #' Produces an abundance *vs* time diagram.
-#' @param object,x An object to be plotted.
+#' @param object A [CountMatrix-class] object.
 #' @param dates A [`numeric`] vector of dates.
 #' @param facet A [`logical`] scalar: should a matrix of panels defined by
 #'  type/taxon be drawn?
-#' @param level A length-one [`numeric`] vector giving the
-#'  confidence level.
-#' @param roll A [`logical`] scalar: should each time series be
-#'  subsetted to look for episodes of selection?
-#' @param window An odd [`integer`] giving the size of the rolling
-#'  window. Only used if `roll` is `TRUE`.
-#' @param select A [`numeric`] or [`character`] vector giving the selection of
-#'  the assemblage that are drawn.
-#' @param decreasing A [`logical`] scalar: TODO.
-#' @param n A non-negative [`integer`] giving the number of bootstrap
-#'  replications.
 #' @param ... Currently not used.
-#' @section Detection of Selective Processes:
-#'  Results of the frequency increment test can be displayed on an abundance
-#'  *vs* time diagram aid in the detection and quantification of selective
-#'  processes in the archaeological record. If `roll` is `TRUE`, each time
-#'  series is subsetted according to `window` to see if episodes of selection
-#'  can be identified among decoration types that might not show overall
-#'  selection. If so, shading highlights the data points where
-#'  [test_fit()] identifies selection.
 #' @return
-#'  * `plot_time()` returns a [`ggplot`][`ggplot2::ggplot`] object.
-#'  * `autoplot()` returns a [`ggplot`][`ggplot2::ggplot`] object.
-#'  * `plot()` is called it for its side-effects: it results in a graphic being
-#'    displayed (invisibly returns `x`).
-#' @note
-#'  Displaying FIT results on an abundance *vs* time diagram is adapted from Ben
-#'  Marwick's original [idea](https://github.com/benmarwick/signatselect/).
-#' @seealso [date_mcd()], [aoristic()], [test_fit()]
+#'  A [`ggplot`][ggplot2::ggplot] object.
 #' @example inst/examples/ex-plot_time.R
 #' @author N. Frerebeau
 #' @family plotting methods
@@ -481,10 +455,54 @@ NULL
 #' @aliases plot_time-method
 setGeneric(
   name = "plot_time",
-  def = function(object, ...) standardGeneric("plot_time")
+  def = function(object, dates, ...) standardGeneric("plot_time")
 )
 
-## Plot events -----------------------------------------------------------------
+## AoristicSum -----------------------------------------------------------------
+#' Plot Aoristic Analysis
+#'
+#' @param object,x An [AoristicSum-class] object.
+#' @param facet A [`logical`] scalar: should a matrix of panels defined by
+#'  groups be drawn?
+#' @param ... Currently not used.
+#' @return
+#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
+#'  * `plot()` is called it for its side-effects: it results in a graphic being
+#'    displayed (invisibly returns `x`).
+#' @seealso [aoristic()], [roc()]
+#' @example inst/examples/ex-aoristic.R
+#' @author N. Frerebeau
+#' @family plotting methods
+#' @family chronological analysis
+#' @docType methods
+#' @name plot_aoristic
+#' @rdname plot_aoristic
+NULL
+
+## DateMCD ---------------------------------------------------------------------
+#' MCD Plot
+#'
+#' @param object,x A [DateMCD-class] object.
+#' @param select A [`numeric`] or [`character`] vector giving the selection of
+#'  the assemblage that are drawn.
+#' @param decreasing A [`logical`] scalar: should the sort be increasing or
+#'  decreasing?
+#' @param ... Currently not used.
+#' @return
+#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
+#'  * `plot()` is called it for its side-effects: it results in a graphic being
+#'    displayed (invisibly returns `x`).
+#' @seealso [date_mcd()]
+#' @example inst/examples/ex-date_mcd.R
+#' @author N. Frerebeau
+#' @family plotting methods
+#' @family dating methods
+#' @docType methods
+#' @name plot_mcd
+#' @rdname plot_mcd
+NULL
+
+## DateEvent -------------------------------------------------------------------
 #' Event Plot
 #'
 #' Produces an activity or a tempo plot.
@@ -515,7 +533,7 @@ setGeneric(
 #'   tempo plot.}
 #'  }
 #' @return
-#'  * `autoplot()` returns a [`ggplot`][`ggplot2::ggplot`] object.
+#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
 #'  * `plot()` is called it for its side-effects: it results in a graphic being
 #'    displayed (invisibly returns `x`).
 #' @references
@@ -533,8 +551,46 @@ setGeneric(
 #' @example inst/examples/ex-date_event.R
 #' @author N. Frerebeau
 #' @family plotting methods
+#' @family dating methods
 #' @seealso [date_event()]
 #' @docType methods
 #' @name plot_event
 #' @rdname plot_event
+NULL
+
+## IncrementTest ---------------------------------------------------------------
+#' Detection of Selective Processes
+#'
+#' Produces an abundance *vs* time diagram.
+#' @param object,x An object to be plotted.
+#' @param level A length-one [`numeric`] vector giving the
+#'  confidence level.
+#' @param roll A [`logical`] scalar: should each time series be
+#'  subsetted to look for episodes of selection?
+#' @param window An odd [`integer`] giving the size of the rolling
+#'  window. Only used if `roll` is `TRUE`.
+#' @param ... Currently not used.
+#' @details
+#'  Results of the frequency increment test can be displayed on an abundance
+#'  *vs* time diagram aid in the detection and quantification of selective
+#'  processes in the archaeological record. If `roll` is `TRUE`, each time
+#'  series is subsetted according to `window` to see if episodes of selection
+#'  can be identified among decoration types that might not show overall
+#'  selection. If so, shading highlights the data points where
+#'  [fit()] identifies selection.
+#' @return
+#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
+#'  * `plot()` is called it for its side-effects: it results in a graphic being
+#'    displayed (invisibly returns `x`).
+#' @note
+#'  Displaying FIT results on an abundance *vs* time diagram is adapted from Ben
+#'  Marwick's [original idea](https://github.com/benmarwick/signatselect/).
+#' @seealso [fit()]
+#' @example inst/examples/ex-fit.R
+#' @author N. Frerebeau
+#' @family plotting methods
+#' @family chronological analysis
+#' @docType methods
+#' @name plot_fit
+#' @rdname plot_fit
 NULL

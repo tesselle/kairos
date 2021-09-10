@@ -13,7 +13,13 @@ date_mcd(object, dates, ...)
 
 \S4method{date_mcd}{CountMatrix,numeric}(object, dates)
 
-\S4method{bootstrap}{DateMCD}(x, probs = c(0.05, 0.95), n = 1000)
+\S4method{bootstrap}{DateMCD}(
+  x,
+  level = 0.95,
+  type = c("student", "normal"),
+  probs = c(0.25, 0.5, 0.75),
+  n = 1000
+)
 
 \S4method{jackknife}{DateMCD}(x)
 }
@@ -26,8 +32,16 @@ date_mcd(object, dates, ...)
 
 \item{x}{A \code{\link{numeric}} vector.}
 
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
+Must be a single number between \eqn{0} and \eqn{1}.}
+
+\item{type}{A \code{\link{character}} string giving the type of confidence
+interval to be returned. It must be one "\code{student}" (default) or
+"\code{normal}". Any unambiguous substring can be given.}
+
 \item{probs}{A \code{\link{numeric}} vector of probabilities with values in
-\eqn{[0,1]} (see \code{\link[stats:quantile]{stats::quantile()}}).}
+\eqn{[0,1]} (see \code{\link[stats:quantile]{stats::quantile()}}). If \code{NULL}, quantiles are not
+computed.}
 
 \item{n}{A non-negative \code{\link{integer}} giving the number of bootstrap
 replications.}
@@ -93,10 +107,12 @@ South, S. A. (1977). \emph{Method and Theory in Historical Archaeology}.
 New York: Academic Press.
 }
 \seealso{
-\code{\link[=plot_time]{plot_time()}}
+\link[=plot]{plot_mcd}
 
 Other dating methods: 
-\code{\link{event}}
+\code{\link{event}},
+\code{\link{plot_event}},
+\code{\link{plot_mcd}}
 }
 \author{
 N. Frerebeau

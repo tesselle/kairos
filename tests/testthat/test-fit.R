@@ -18,7 +18,7 @@ test_that("FIT", {
   }
 
   ## Frequency Increment Test
-  freq <- test_fit(counts, dates)
+  freq <- fit(counts, dates)
 
   ## Plot time vs abundance and highlight selection
   gg_fit <- autoplot(freq)
