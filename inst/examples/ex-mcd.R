@@ -17,7 +17,8 @@ dates <- list(
 mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 
 ## Calculate MCD
-mc_dates <- date_mcd(counts, dates = mid)
+mc_dates <- mcd(counts, dates = mid)
+head(mc_dates)
 
 ## Plot
 plot(mc_dates, select = 100:125)

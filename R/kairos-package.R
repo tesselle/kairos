@@ -46,4 +46,6 @@
 #' @importFrom methods as callGeneric callNextMethod new setClass setGeneric
 #' setMethod validObject .valueClassTest
 #' @importFrom rlang .data
+#' @importFrom stats weighted.mean
+#' @importFrom utils head
 NULL

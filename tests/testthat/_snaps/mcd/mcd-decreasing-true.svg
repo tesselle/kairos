@@ -118,7 +118,7 @@
 <text x='373.70' y='556.10' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='19.58px' lengthAdjust='spacingAndGlyphs'>1000</text>
 <text x='493.51' y='556.10' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='19.58px' lengthAdjust='spacingAndGlyphs'>1100</text>
 <text x='613.31' y='556.10' text-anchor='middle' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='19.58px' lengthAdjust='spacingAndGlyphs'>1200</text>
-<text x='383.69' y='568.24' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='147.96px' lengthAdjust='spacingAndGlyphs'>Mean Ceramic Date (year CE)</text>
+<text x='383.69' y='568.24' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='103.94px' lengthAdjust='spacingAndGlyphs'>Mean Date (year CE)</text>
 <text transform='translate(13.05,283.95) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: sans;' textLength='60.55px' lengthAdjust='spacingAndGlyphs'>Assemblage</text>
 <text x='52.85' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='137.21px' lengthAdjust='spacingAndGlyphs'>mcd_decreasing-TRUE</text>
 </g>

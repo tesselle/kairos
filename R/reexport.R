@@ -36,6 +36,14 @@ arkhe::get_dates
 #' @export
 arkhe::`set_dates<-`
 
+#' @importFrom arkhe get_terminus
+#' @export
+arkhe::get_terminus
+
+#' @importFrom arkhe `set_terminus<-`
+#' @export
+arkhe::`set_terminus<-`
+
 #' @importFrom arkhe get_tpq
 #' @export
 arkhe::get_tpq

@@ -11,7 +11,7 @@ test_that("Date Model", {
     LZ0578 = 1180, LZ0227 = 1104, LZ0610 = 1074
   )
 
-  model <- date_event(counts, zuni_dates, cutoff = 90)
+  model <- event(counts, zuni_dates, cutoff = 90)
 
   event <- predict_event(model)
   expect_snapshot(event)
@@ -20,7 +20,7 @@ test_that("Date Model", {
   expect_snapshot(acc)
 
   # Errors
-  expect_error(date_event(counts, zuni_dates, cutoff = 10), "below 50%")
+  expect_error(event(counts, zuni_dates, cutoff = 10), "below 50%")
 })
 test_that("Event Date", {
   skip_if_not_installed("folio")
@@ -35,18 +35,29 @@ test_that("Event Date", {
     LZ0578 = 1180, LZ0227 = 1104, LZ0610 = 1074
   )
 
-  model <- date_event(counts, zuni_dates, cutoff = 90)
+  model <- event(counts, zuni_dates, cutoff = 90)
+
+  ## Bootstrap
+  boot <- with_seed(12345, bootstrap(model, n = 5))
+  expect_snapshot(boot)
+
+  ## Jackknife
+  jack <- with_seed(12345, jackknife(model))
+  expect_snapshot(jack)
+
+  # expect_s4_class(plot(model, select = "LZ1105"), "EventDate")
 
   skip_if_not_installed("vdiffr")
   # Event plot
   for (i in c(TRUE, FALSE)) {
     gg_date_act <- autoplot(model, type = "activity", event = i,
-                            select = "LZ1105")
+                            select = c("LZ1105", "LZ1103"))
     vdiffr::expect_doppelganger(paste0("date_activity_event-", i), gg_date_act)
   }
 
   # Activity plot
-  gg_date_tempo <- autoplot(model, type = "tempo", select = "LZ1105")
+  gg_date_tempo <- autoplot(model, type = "tempo",
+                            select = c("LZ1105", "LZ1103"))
   vdiffr::expect_doppelganger("date_tempo", gg_date_tempo)
 
   # Errors

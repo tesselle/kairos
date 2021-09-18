@@ -5,43 +5,39 @@
 \alias{mutators}
 \alias{get}
 \alias{set}
-\alias{get_mcd}
-\alias{get_mcd-method}
 \alias{get_model}
 \alias{get_model-method}
 \alias{get_weights}
 \alias{get_weights-method}
 \alias{get_dates,AoristicSum-method}
-\alias{get_dates,DateEvent-method}
+\alias{get_dates,EventDate-method}
 \alias{get_dates,RateOfChange-method}
 \alias{get_groups,AoristicSum-method}
-\alias{get_mcd,DateMCD-method}
-\alias{get_model,DateEvent-method}
+\alias{get_model,EventDate-method}
 \alias{get_weights,AoristicSum-method}
 \alias{get_weights,CountApportion-method}
+\alias{get_weights,MeanDate-method}
 \title{Get or Set Parts of an Object}
 \usage{
-get_mcd(x)
-
 get_model(x)
 
 get_weights(x)
 
 \S4method{get_dates}{AoristicSum}(x)
 
-\S4method{get_dates}{DateEvent}(x)
+\S4method{get_dates}{EventDate}(x)
 
 \S4method{get_dates}{RateOfChange}(x)
 
 \S4method{get_groups}{AoristicSum}(x)
 
-\S4method{get_mcd}{DateMCD}(x)
-
-\S4method{get_model}{DateEvent}(x)
+\S4method{get_model}{EventDate}(x)
 
 \S4method{get_weights}{AoristicSum}(x)
 
 \S4method{get_weights}{CountApportion}(x)
+
+\S4method{get_weights}{MeanDate}(x)
 }
 \arguments{
 \item{x}{An object from which to get or set element(s).}

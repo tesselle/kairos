@@ -35,7 +35,7 @@ Depends:
     R (>= 3.4)
 Imports:
     arkhe (>= 0.4.0),
-    dimensio,
+    dimensio (>= 0.2.2),
     extraDistr,
     ggplot2,
     methods,
@@ -49,14 +49,12 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.0)
-remotes:
-    tesselle/arkhe
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'

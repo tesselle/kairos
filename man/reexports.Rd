@@ -12,6 +12,8 @@
 \alias{set_groups<-}
 \alias{get_dates}
 \alias{set_dates<-}
+\alias{get_terminus}
+\alias{set_terminus<-}
 \alias{get_tpq}
 \alias{set_tpq<-}
 \alias{get_taq}
@@ -24,6 +26,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{arkhe}{\code{\link[arkhe:CountMatrix-class]{CountMatrix}}, \code{\link[arkhe:coerce]{as_count}}, \code{\link[arkhe:coerce]{as_features}}, \code{\link[arkhe:coerce]{as_long}}, \code{\link[arkhe:mutator]{get_dates}}, \code{\link[arkhe:mutator]{get_groups}}, \code{\link[arkhe:mutator]{get_samples}}, \code{\link[arkhe:mutator]{get_taq}}, \code{\link[arkhe:mutator]{get_tpq}}, \code{\link[arkhe:mutator]{set_dates<-}}, \code{\link[arkhe:mutator]{set_groups<-}}, \code{\link[arkhe:mutator]{set_samples<-}}, \code{\link[arkhe:mutator]{set_taq<-}}, \code{\link[arkhe:mutator]{set_tpq<-}}}
+  \item{arkhe}{\code{\link[arkhe:CountMatrix-class]{CountMatrix}}, \code{\link[arkhe:coerce]{as_count}}, \code{\link[arkhe:coerce]{as_features}}, \code{\link[arkhe:coerce]{as_long}}, \code{\link[arkhe:mutators]{get_dates}}, \code{\link[arkhe:mutators]{get_groups}}, \code{\link[arkhe:mutators]{get_samples}}, \code{\link[arkhe:mutators]{get_taq}}, \code{\link[arkhe:mutators]{get_terminus}}, \code{\link[arkhe:mutators]{get_tpq}}, \code{\link[arkhe:mutators]{set_dates<-}}, \code{\link[arkhe:mutators]{set_groups<-}}, \code{\link[arkhe:mutators]{set_samples<-}}, \code{\link[arkhe:mutators]{set_taq<-}}, \code{\link[arkhe:mutators]{set_terminus<-}}, \code{\link[arkhe:mutators]{set_tpq<-}}}
 }}
 

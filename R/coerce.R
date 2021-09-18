@@ -3,12 +3,12 @@
 NULL
 
 # To data.frame ================================================================
-#' @method as.data.frame DateMCD
+#' @method as.data.frame MeanDate
 #' @export
-as.data.frame.DateMCD <- function(x, ..., stringsAsFactors = default.stringsAsFactors()) {
+as.data.frame.MeanDate <- function(x, ..., stringsAsFactors = default.stringsAsFactors()) {
   data.frame(
-    samples = x@samples,
-    dates = x@dates_mcd,
+    names = names(x),
+    dates = as.numeric(x),
     stringsAsFactors = stringsAsFactors
   )
 }

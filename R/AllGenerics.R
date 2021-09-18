@@ -34,13 +34,6 @@ setGeneric("get_groups", package = "arkhe")
 NULL
 
 #' @rdname mutators
-#' @aliases get_mcd-method
-setGeneric(
-  name = "get_mcd",
-  def = function(x) standardGeneric("get_mcd")
-)
-
-#' @rdname mutators
 #' @aliases get_model-method
 setGeneric(
   name = "get_model",
@@ -77,7 +70,7 @@ NULL
 #' Mean Ceramic Date
 #'
 #' Estimates the Mean Ceramic Date of an assemblage.
-#' @param object A [arkhe::CountMatrix-class] or a [DateMCD-class] object.
+#' @param object A [arkhe::CountMatrix-class] or a [MeanDate-class] object.
 #' @param dates A [`numeric`] vector of dates.
 #' @inheritParams dimensio::bootstrap
 #' @param ... Currently not used.
@@ -95,7 +88,7 @@ NULL
 #'  upper and lower boundaries of the confidence interval associated with each
 #'  MCD are then returned.
 #' @return
-#'  * `date_mcd()` returns a [DateMCD-class] object.
+#'  * `mcd()` returns a [MeanDate-class] object.
 #'  * `bootstrap()` and `jackknife()` return a [`data.frame`].
 #' @seealso [plot_mcd][plot()]
 #' @references
@@ -105,22 +98,22 @@ NULL
 #' @author N. Frerebeau
 #' @family dating methods
 #' @docType methods
-#' @rdname date_mcd
-#' @aliases date_mcd-method
+#' @rdname mcd
+#' @aliases mcd-method
 setGeneric(
-  name = "date_mcd",
-  def = function(object, dates, ...) standardGeneric("date_mcd"),
-  valueClass = "DateMCD"
+  name = "mcd",
+  def = function(object, dates, ...) standardGeneric("mcd"),
+  valueClass = "MeanDate"
 )
 
-## Event Model -----------------------------------------------------------------
+## Event Dates -----------------------------------------------------------------
 #' Event and Accumulation Dates
 #'
 #' @description
-#'  * `date_event()` fit a date event model.
+#'  * `event()` fit a date event model.
 #'  * `predict_event()` and `predict_accumulation()` estimates the event and
 #'    accumulation dates of an assemblage.
-#' @param object,x A [arkhe::CountMatrix-class] or a [DateEvent-class] object.
+#' @param object A [arkhe::CountMatrix-class] or a [EventDate-class] object.
 #' @param data A [arkhe::CountMatrix-class] object for which to predict event
 #'  and accumulation dates.
 #' @param dates A [`numeric`] vector of dates. If named, the names must match
@@ -133,7 +126,7 @@ setGeneric(
 #' @param margin A [`numeric`] vector giving the subscripts which the prediction
 #'  will be applied over: `1` indicates rows, `2` indicates columns.
 #' @param progress A [`logical`] scalar: should a progress bar be displayed?
-#' @inheritParams arkhe::bootstrap
+#' @inheritParams dimensio::bootstrap
 #' @param ... Further arguments to be passed to internal methods.
 #' @details
 #'  This is an implementation of the chronological modeling method proposed by
@@ -190,9 +183,10 @@ setGeneric(
 #'  considered **experimental** and subject to major changes in a future
 #'  release.
 #' @return
-#'  * `date_event()` returns a [DateEvent-class] object.
-#'  * `predict_event()`, `predict_accumulation()`, `bootstrap()`
-#'    and `jackknife()` return a [`data.frame`].
+#'  * `event()` returns a [EventDate-class] object.
+#'  * `predict_event()` returns a [`data.frame`].
+#'  * `predict_accumulation()` returns a [MeanDate-class] object.
+#'  * `bootstrap()` and `jackknife()` return a [`data.frame`].
 #' @seealso [plot_event][plot()]
 #' @references
 #'  Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans
@@ -227,11 +221,11 @@ setGeneric(
 NULL
 
 #' @rdname event
-#' @aliases date_event-method
+#' @aliases event-method
 setGeneric(
-  name = "date_event",
-  def = function(object, dates, ...) standardGeneric("date_event"),
-  valueClass = "DateEvent"
+  name = "event",
+  def = function(object, dates, ...) standardGeneric("event"),
+  valueClass = "EventDate"
 )
 
 #' @rdname event
@@ -247,7 +241,7 @@ setGeneric(
 setGeneric(
   name = "predict_accumulation",
   def = function(object, data, ...) standardGeneric("predict_accumulation"),
-  valueClass = "data.frame"
+  valueClass = "MeanDate"
 )
 
 # Chronological Modelling ======================================================
@@ -470,10 +464,10 @@ setGeneric(
 #' @rdname plot_aoristic
 NULL
 
-## DateMCD ---------------------------------------------------------------------
+## MeanDate ---------------------------------------------------------------------
 #' MCD Plot
 #'
-#' @param object,x A [DateMCD-class] object.
+#' @param object,x A [MeanDate-class] object.
 #' @param select A [`numeric`] or [`character`] vector giving the selection of
 #'  the assemblage that are drawn.
 #' @param decreasing A [`logical`] scalar: should the sort be increasing or
@@ -483,7 +477,7 @@ NULL
 #'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
 #'  * `plot()` is called it for its side-effects: it results in a graphic being
 #'    displayed (invisibly returns `x`).
-#' @seealso [date_mcd()]
+#' @seealso [mcd()]
 #' @example inst/examples/ex-mcd.R
 #' @author N. Frerebeau
 #' @family plotting methods
@@ -492,11 +486,11 @@ NULL
 #' @rdname plot_mcd
 NULL
 
-## DateEvent -------------------------------------------------------------------
+## EventDate -------------------------------------------------------------------
 #' Event Plot
 #'
 #' Produces an activity or a tempo plot.
-#' @param object,x A [DateEvent-class] object.
+#' @param object,x A [EventDate-class] object.
 #' @param type A [`character`] string indicating the type of plot.
 #'  It must be one of "`activity`" (default) or "`tempo`".
 #'  Any unambiguous substring can be given.
@@ -541,7 +535,7 @@ NULL
 #' @example inst/examples/ex-event.R
 #' @author N. Frerebeau
 #' @family plotting methods
-#' @seealso [date_event()]
+#' @seealso [event()]
 #' @docType methods
 #' @name plot_event
 #' @rdname plot_event

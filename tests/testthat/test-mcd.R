@@ -17,9 +17,9 @@ test_that("Mean Ceramic Date", {
   zuni_mid_dates <- vapply(X = zuni_dates, FUN = mean, FUN.VALUE = numeric(1))
 
   ## MCD
-  dt <- date_mcd(counts, dates = zuni_mid_dates)
+  dt <- mcd(counts, dates = zuni_mid_dates)
   expect_snapshot(as.data.frame(dt))
-  expect_error(date_mcd(counts, dates = zuni_mid_dates[1:3]))
+  expect_error(mcd(counts, dates = zuni_mid_dates[1:3]))
 
   ## Bootstrap
   boot <- with_seed(12345, bootstrap(dt, n = 30))
@@ -28,6 +28,8 @@ test_that("Mean Ceramic Date", {
   ## Jackknife
   jack <- with_seed(12345, jackknife(dt))
   expect_snapshot(jack)
+
+  # expect_s4_class(plot(dt, select = 1:5), "MeanDate")
 
   skip_if_not_installed("vdiffr")
   # Event plot

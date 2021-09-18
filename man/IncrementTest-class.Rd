@@ -11,7 +11,7 @@ An S4 class to represent a Frequency Increment Test results.
 \section{Slots}{
 
 \describe{
-\item{\code{counts}}{A \eqn{m \times p}{m x p} \code{\link{numeric}} matrix of count data.}
+\item{\code{counts}}{An \eqn{m \times p}{m x p} \code{\link{numeric}} matrix of count data.}
 
 \item{\code{dates}}{A length-\eqn{m} \code{\link{numeric}} vector of dates.}
 
@@ -35,8 +35,8 @@ In the code snippets below, \code{x} is an \code{IncrementTest} object.
 Other classes: 
 \code{\link{AoristicSum-class}},
 \code{\link{CountApportion-class}},
-\code{\link{DateEvent-class}},
-\code{\link{DateMCD-class}},
+\code{\link{EventDate-class}},
+\code{\link{MeanDate-class}},
 \code{\link{RateOfChange-class}}
 }
 \author{

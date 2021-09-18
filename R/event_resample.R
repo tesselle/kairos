@@ -4,10 +4,10 @@ NULL
 
 #' @export
 #' @rdname event
-#' @aliases jackknife,DateEvent-method
+#' @aliases jackknife,EventDate-method
 setMethod(
   f = "jackknife",
-  signature = signature(object = "DateEvent"),
+  signature = signature(object = "EventDate"),
   definition = function(object, level = 0.95,
                         progress = getOption("kairos.progress"), ...) {
     ## Get data
@@ -16,7 +16,7 @@ setMethod(
     fit_data <- object@data
     fit_dim <- object@keep
 
-    event <- predict_event(x, level = level)
+    event <- predict_event(object, level = level)
 
     ## TODO: check cutoff value
     jack_values <- compute_date_jack(fit_data, fit_dates, cutoff = 150,
@@ -41,10 +41,10 @@ setMethod(
 
 #' @export
 #' @rdname event
-#' @aliases bootstrap,DateEvent-method
+#' @aliases bootstrap,EventDate-method
 setMethod(
   f = "bootstrap",
-  signature = signature(object = "DateEvent"),
+  signature = signature(object = "EventDate"),
   definition = function(object, level = 0.95, probs = c(0.05, 0.95), n = 1000,
                         progress = getOption("kairos.progress"), ...) {
     ## Get data
@@ -52,8 +52,11 @@ setMethod(
     fit_dim <- object@keep
 
     ## Partial bootstrap CA
-    ca_res <- dimensio::bootstrap(object, n = n)
-    ca_rep_row <- dimensio::get_replications(ca_res, margin = 1)
+    ## /!\ Be careful: EventDate inherits from CA
+    ## We must call the next bootstrap method to prevent infinite loop
+    ## TODO: explicitly call the bootstrap for CA object
+    ca_boot <- methods::callNextMethod(object, n = n)
+    ca_rep_row <- dimensio::get_replications(ca_boot, margin = 1)
 
     ## Bootstrap assemblages
     event_rows <- apply(
@@ -135,7 +138,7 @@ compute_date_jack <- function(x, dates, cutoff = 90,
     ## Removing a column may lead to rows filled only with zeros
     ## TODO: warning
     if (any(rowSums(counts) == 0)) next
-    model <- date_event(counts, dates = dates, cutoff = cutoff)
+    model <- event(counts, dates = dates, cutoff = cutoff)
     jack[[j]] <- stats::coef(get_model(model)) # Get model coefficients
     if (progress_bar) utils::setTxtProgressBar(pbar, j)
   }

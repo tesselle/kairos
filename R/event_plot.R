@@ -3,8 +3,8 @@
 NULL
 
 #' @export
-#' @method autoplot DateEvent
-autoplot.DateEvent <- function(object, ..., type = c("activity", "tempo"),
+#' @method autoplot EventDate
+autoplot.EventDate <- function(object, ..., type = c("activity", "tempo"),
                                event = FALSE, select = 1, n = 500) {
   # Validation
   type <- match.arg(type, several.ok = FALSE)
@@ -109,14 +109,14 @@ autoplot.DateEvent <- function(object, ..., type = c("activity", "tempo"),
 
 #' @export
 #' @rdname plot_event
-setMethod("autoplot", "DateEvent", autoplot.DateEvent)
+setMethod("autoplot", "EventDate", autoplot.EventDate)
 
 #' @export
 #' @rdname plot_event
-#' @aliases plot,DateEvent,missing-method
+#' @aliases plot,EventDate,missing-method
 setMethod(
   f = "plot",
-  signature = c(x = "DateEvent", y = "missing"),
+  signature = c(x = "EventDate", y = "missing"),
   definition = function(x, type = c("activity", "tempo"),
                         event = FALSE, select = 1, n = 500) {
     gg <- autoplot(object = x, type = type, event = event,

@@ -30,9 +30,9 @@ This class inherits from base \code{\link{matrix}}.
 \seealso{
 Other classes: 
 \code{\link{CountApportion-class}},
-\code{\link{DateEvent-class}},
-\code{\link{DateMCD-class}},
+\code{\link{EventDate-class}},
 \code{\link{IncrementTest-class}},
+\code{\link{MeanDate-class}},
 \code{\link{RateOfChange-class}}
 }
 \author{

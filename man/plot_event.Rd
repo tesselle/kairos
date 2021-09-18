@@ -3,11 +3,11 @@
 \docType{methods}
 \name{plot_event}
 \alias{plot_event}
-\alias{autoplot,DateEvent-method}
-\alias{plot,DateEvent,missing-method}
+\alias{autoplot,EventDate-method}
+\alias{plot,EventDate,missing-method}
 \title{Event Plot}
 \usage{
-\S4method{autoplot}{DateEvent}(
+\S4method{autoplot}{EventDate}(
   object,
   ...,
   type = c("activity", "tempo"),
@@ -16,10 +16,10 @@
   n = 500
 )
 
-\S4method{plot}{DateEvent,missing}(x, type = c("activity", "tempo"), event = FALSE, select = 1, n = 500)
+\S4method{plot}{EventDate,missing}(x, type = c("activity", "tempo"), event = FALSE, select = 1, n = 500)
 }
 \arguments{
-\item{object, x}{A \linkS4class{DateEvent} object.}
+\item{object, x}{A \linkS4class{EventDate} object.}
 
 \item{...}{Currently not used.}
 
@@ -85,7 +85,7 @@ the R Package ArchaeoPhases. \emph{Journal of Statistical Software, Code
 Snippets}, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
 }
 \seealso{
-\code{\link[=date_event]{date_event()}}
+\code{\link[=event]{event()}}
 
 Other plotting methods: 
 \code{\link{plot_aoristic}},

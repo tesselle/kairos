@@ -26,9 +26,9 @@ This class inherits from base \code{\link{array}}.
 Other classes: 
 \code{\link{AoristicSum-class}},
 \code{\link{CountApportion-class}},
-\code{\link{DateEvent-class}},
-\code{\link{DateMCD-class}},
-\code{\link{IncrementTest-class}}
+\code{\link{EventDate-class}},
+\code{\link{IncrementTest-class}},
+\code{\link{MeanDate-class}}
 }
 \author{
 N. Frerebeau

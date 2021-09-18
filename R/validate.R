@@ -2,19 +2,19 @@
 #' @include AllClasses.R
 NULL
 
-# DateMCD ======================================================================
+# MeanDate ======================================================================
 setValidity(
-  Class = "DateMCD",
+  Class = "MeanDate",
   method = function(object) {
     # Get data
-    m <- nrow(object)
-    p <- ncol(object)
-    dates_types <- object@dates_types
-    dates_mcd <- object@dates_mcd
+    types <- object@types
+    weights <- object@weights
+    m <- nrow(weights)
+    p <- ncol(weights)
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_length(dates_types, p)),
-      arkhe::validate(arkhe::assert_length(dates_mcd, m))
+      arkhe::validate(arkhe::assert_length(object, m)),
+      arkhe::validate(arkhe::assert_length(types, p))
     )
 
     # Return cnd, if any
@@ -22,9 +22,9 @@ setValidity(
   }
 )
 
-# DateEvent ====================================================================
+# EventDate ====================================================================
 setValidity(
-  Class = "DateEvent",
+  Class = "EventDate",
   method = function(object) {
     # Get data
     data <- object@data

@@ -97,9 +97,8 @@ zuni_dates <- list(
 zuni_mid <- vapply(X = zuni_dates, FUN = mean, FUN.VALUE = numeric(1))
 
 ## Calculate MCD
-zuni_mcd <- date_mcd(zuni_counts, dates = zuni_mid)
-
-head(as.data.frame(zuni_mcd))
+zuni_mcd <- mcd(zuni_counts, dates = zuni_mid)
+head(zuni_mcd)
 ```
 
 ## Event & Accumulation Date
@@ -228,7 +227,7 @@ zuni_dates <- c(
 )
 
 ## Model the event and accumulation date for each assemblage
-model <- date_event(zuni_counts, dates = zuni_dates, cutoff = 90)
+model <- event(zuni_counts, dates = zuni_dates, cutoff = 90)
 summary(get_model(model))
 
 ## Estimate event dates
@@ -236,7 +235,7 @@ event <- predict_event(model, margin = 1, level = 0.95)
 head(event)
 
 ## Estimate accumulation dates
-acc <- predict_accumulation(model, level = 0.95)
+acc <- predict_accumulation(model)
 head(acc)
 ```
 

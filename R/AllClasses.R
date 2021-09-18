@@ -1,31 +1,36 @@
 # CLASSES DEFINITION AND INITIALIZATION
 NULL
 
-# DateMCD ======================================================================
-#' Mean Ceramic Date
+# MeanDate ======================================================================
+#' Mean Date
 #'
-#' An S4 class to store the Mean Ceramic Date of archaeological assemblages.
-#' @slot dates_types A [`numeric`] vector giving the dates of the ceramic types.
-#' @slot dates_mcd A [`numeric`] vector giving the mean ceramic dates.
+#' An S4 class to store the weighted mean date (e.g. Mean Ceramic Date) of
+#' archaeological assemblages.
+#' @slot types A length-\eqn{p} [`numeric`] vector giving the dates of the
+#'  (ceramic) types.
+#' @slot weights An \eqn{m \times p}{m x p} [`integer`] [`matrix`] giving the
+#'  weights used.
 #' @section Coerce:
-#'  In the code snippets below, `x` is a `DateMCD` object.
+#'  In the code snippets below, `x` is a `MeanDate` object.
 #'  \describe{
 #'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
 #'  }
+#' @note
+#'  This class inherits from base [`numeric`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
-#' @aliases DateMCD-class
-.DateMCD <- setClass(
-  Class = "DateMCD",
+#' @aliases MeanDate-class
+.MeanDate <- setClass(
+  Class = "MeanDate",
   slots = c(
-    dates_types = "numeric",
-    dates_mcd = "numeric"
+    types = "numeric",
+    weights = "matrix"
   ),
-  contains = "CountMatrix"
+  contains = "numeric"
 )
 
-# DateEvent ====================================================================
+# EventDate ====================================================================
 #' Date Model
 #'
 #' S4 classes to store the event and accumulation times of archaeological
@@ -40,9 +45,9 @@ NULL
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
-#' @aliases DateEvent-class
-.DateEvent <- setClass(
-  Class = "DateEvent",
+#' @aliases EventDate-class
+.EventDate <- setClass(
+  Class = "EventDate",
   slots = c(
     dates = "numeric",
     model = "lm",
@@ -139,7 +144,7 @@ NULL
 #' Frequency Increment Test
 #'
 #' An S4 class to represent a Frequency Increment Test results.
-#' @slot counts A \eqn{m \times p}{m x p} [`numeric`] matrix of count data.
+#' @slot counts An \eqn{m \times p}{m x p} [`numeric`] matrix of count data.
 #' @slot dates A length-\eqn{m} [`numeric`] vector of dates.
 #' @slot statistic A [`numeric`] vector giving the values of the t-statistic.
 #' @slot parameter An [`integer`] giving the degrees of freedom for the

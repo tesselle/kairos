@@ -4,40 +4,39 @@
 \docType{methods}
 \name{event}
 \alias{event}
-\alias{date_event}
-\alias{date_event-method}
+\alias{event-method}
 \alias{predict_event}
 \alias{predict_event-method}
 \alias{predict_accumulation}
 \alias{predict_accumulation-method}
-\alias{date_event,CountMatrix,numeric-method}
-\alias{predict_event,DateEvent,missing-method}
-\alias{predict_event,DateEvent,CountMatrix-method}
-\alias{predict_accumulation,DateEvent,missing-method}
-\alias{predict_accumulation,DateEvent,CountMatrix-method}
-\alias{jackknife,DateEvent-method}
-\alias{bootstrap,DateEvent-method}
+\alias{event,CountMatrix,numeric-method}
+\alias{predict_event,EventDate,missing-method}
+\alias{predict_event,EventDate,CountMatrix-method}
+\alias{predict_accumulation,EventDate,missing-method}
+\alias{predict_accumulation,EventDate,CountMatrix-method}
+\alias{jackknife,EventDate-method}
+\alias{bootstrap,EventDate-method}
 \title{Event and Accumulation Dates}
 \usage{
-date_event(object, dates, ...)
+event(object, dates, ...)
 
 predict_event(object, data, ...)
 
 predict_accumulation(object, data, ...)
 
-\S4method{date_event}{CountMatrix,numeric}(object, dates, cutoff = 90, level = 0.95, ...)
+\S4method{event}{CountMatrix,numeric}(object, dates, cutoff = 90, level = 0.95, ...)
 
-\S4method{predict_event}{DateEvent,missing}(object, margin = 1, level = 0.95)
+\S4method{predict_event}{EventDate,missing}(object, margin = 1, level = 0.95)
 
-\S4method{predict_event}{DateEvent,CountMatrix}(object, data, margin = 1, level = 0.95)
+\S4method{predict_event}{EventDate,CountMatrix}(object, data, margin = 1, level = 0.95)
 
-\S4method{predict_accumulation}{DateEvent,missing}(object, level = 0.95)
+\S4method{predict_accumulation}{EventDate,missing}(object)
 
-\S4method{predict_accumulation}{DateEvent,CountMatrix}(object, data, level = 0.95)
+\S4method{predict_accumulation}{EventDate,CountMatrix}(object, data)
 
-\S4method{jackknife}{DateEvent}(object, level = 0.95, progress = getOption("kairos.progress"), ...)
+\S4method{jackknife}{EventDate}(object, level = 0.95, progress = getOption("kairos.progress"), ...)
 
-\S4method{bootstrap}{DateEvent}(
+\S4method{bootstrap}{EventDate}(
   object,
   level = 0.95,
   probs = c(0.05, 0.95),
@@ -47,7 +46,7 @@ predict_accumulation(object, data, ...)
 )
 }
 \arguments{
-\item{object, x}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} or a \linkS4class{DateEvent} object.}
+\item{object}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} or a \linkS4class{EventDate} object.}
 
 \item{dates}{A \code{\link{numeric}} vector of dates. If named, the names must match
 the row names of \code{object}.}
@@ -78,14 +77,15 @@ replications.}
 }
 \value{
 \itemize{
-\item \code{date_event()} returns a \linkS4class{DateEvent} object.
-\item \code{predict_event()}, \code{predict_accumulation()}, \code{bootstrap()}
-and \code{jackknife()} return a \code{\link{data.frame}}.
+\item \code{event()} returns a \linkS4class{EventDate} object.
+\item \code{predict_event()} returns a \code{\link{data.frame}}.
+\item \code{predict_accumulation()} returns a \linkS4class{MeanDate} object.
+\item \code{bootstrap()} and \code{jackknife()} return a \code{\link{data.frame}}.
 }
 }
 \description{
 \itemize{
-\item \code{date_event()} fit a date event model.
+\item \code{event()} fit a date event model.
 \item \code{predict_event()} and \code{predict_accumulation()} estimates the event and
 accumulation dates of an assemblage.
 }
@@ -185,7 +185,7 @@ for Seriation of Sagalassos Tablewares. In Doerr, M. & Apostolis, S. (eds.),
 \link[=plot]{plot_event}
 
 Other dating methods: 
-\code{\link{date_mcd}()}
+\code{\link{mcd}()}
 }
 \author{
 N. Frerebeau

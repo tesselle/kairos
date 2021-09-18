@@ -4,9 +4,9 @@ NULL
 
 #' @export
 #' @rdname event
-#' @aliases date_event,CountMatrix,numeric-method
+#' @aliases event,CountMatrix,numeric-method
 setMethod(
-  f = "date_event",
+  f = "event",
   signature = signature(object = "CountMatrix", dates = "numeric"),
   definition = function(object, dates, cutoff = 90, level = 0.95, ...) {
     ## Validation
@@ -28,7 +28,7 @@ setMethod(
     colnames(contexts)[1] <- "date"
     fit <- stats::lm(date ~ ., data = contexts, na.action = stats::na.omit)
 
-    .DateEvent(
+    .EventDate(
       results_CA,
       dates = contexts$date,
       model = fit,
@@ -41,10 +41,10 @@ setMethod(
 # Event ========================================================================
 #' @export
 #' @rdname event
-#' @aliases predict_event,DateEvent,missing-method
+#' @aliases predict_event,EventDate,missing-method
 setMethod(
   f = "predict_event",
-  signature = signature(object = "DateEvent", data = "missing"),
+  signature = signature(object = "EventDate", data = "missing"),
   definition = function(object, margin = 1, level = 0.95) {
     data <- object@data
     data <- arkhe::as_count(data)
@@ -55,10 +55,10 @@ setMethod(
 
 #' @export
 #' @rdname event
-#' @aliases predict_event,DateEvent,CountMatrix-method
+#' @aliases predict_event,EventDate,CountMatrix-method
 setMethod(
   f = "predict_event",
-  signature = signature(object = "DateEvent", data = "CountMatrix"),
+  signature = signature(object = "EventDate", data = "CountMatrix"),
   definition = function(object, data, margin = 1, level = 0.95) {
     ## Correspondance analysis
     ca_coord <- dimensio::predict(object, data, margin = margin)
@@ -77,33 +77,29 @@ setMethod(
 # Accumulation =================================================================
 #' @export
 #' @rdname event
-#' @aliases predict_accumulation,DateEvent,missing-method
+#' @aliases predict_accumulation,EventDate,missing-method
 setMethod(
   f = "predict_accumulation",
-  signature = signature(object = "DateEvent", data = "missing"),
-  definition = function(object, level = 0.95) {
+  signature = signature(object = "EventDate", data = "missing"),
+  definition = function(object) {
     data <- object@data
     data <- arkhe::as_count(data)
-    methods::callGeneric(object = object, data = data, level = level)
+    methods::callGeneric(object = object, data = data)
   }
 )
 
 #' @export
 #' @rdname event
-#' @aliases predict_accumulation,DateEvent,CountMatrix-method
+#' @aliases predict_accumulation,EventDate,CountMatrix-method
 setMethod(
   f = "predict_accumulation",
-  signature = signature(object = "DateEvent", data = "CountMatrix"),
-  definition = function(object, data, level = 0.95) {
+  signature = signature(object = "EventDate", data = "CountMatrix"),
+  definition = function(object, data) {
     ## Predict event date
-    row_event <- predict_event(object, data, margin = 1, level = level)
-    col_event <- predict_event(object, data, margin = 2, level = level)
+    col_event <- predict_event(object, data, margin = 2)
 
     # Accumulation time point estimate
-    date_range <- range(row_event[, c("lower", "upper")])
-    acc_estimate <- compute_accumulation(data, col_event, date_range)
-
-    as.data.frame(acc_estimate)
+    mcd(data, col_event$date)
   }
 )
 
@@ -127,49 +123,11 @@ compute_event <- function(fit, data, level) {
   date_predict <- stats::predict.lm(fit, data, se.fit = TRUE,
                                     interval = "confidence", level = level)
   results <- cbind(
-    date_predict$fit, # Three columns matrix: predicted value + CI boudaries
+    date_predict$fit, # Three columns matrix: predicted value + CI boundaries
     date_predict$se.fit
   )
   rownames(results) <- rownames(data)
   colnames(results) <- c("date", "lower", "upper", "error")
 
-  results
-}
-
-#' Predict accumulation dates
-#'
-#' @param count A [`numeric`] matrix of count data.
-#' @param event A [`numeric`] matrix of predicted event dates of
-#'  fabrics.
-#' @param range A lenth-two [`numeric`] vector containing the minimum
-#'  and maximum of all the predicted event dates of assemblages.
-#' @return
-#'  A two columns [`numeric`] matrix giving the predicted
-#'  accumulation dates and the corresponding errors.
-#' @author N. Frerebeau
-#' @keywords internal
-#' @noRd
-compute_accumulation <- function(count, event, range) {
-  col_dates <- event[, "date", drop = TRUE]
-  col_errors <- event[, "error", drop = TRUE]
-  date_range <- seq(from = min(range), to = max(range), length.out = 500)
-
-  # Point estimate of accumulation time
-  ## Weighted sum of the fabric dates
-  acc_mean <- apply(
-    X = count,
-    MARGIN = 1,
-    FUN = function(weights, dates) {
-      stats::weighted.mean(x = dates, w = weights)
-    },
-    dates = col_dates
-  )
-
-  # FIXME: error propagation
-  results <- cbind(
-    date = acc_mean,
-    error = rep.int(0, times = length(acc_mean))
-  )
-  rownames(results) <- rownames(count)
   results
 }

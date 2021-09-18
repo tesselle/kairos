@@ -3,16 +3,16 @@
 \docType{methods}
 \name{plot_mcd}
 \alias{plot_mcd}
-\alias{autoplot,DateMCD-method}
-\alias{plot,DateMCD,missing-method}
+\alias{autoplot,MeanDate-method}
+\alias{plot,MeanDate,missing-method}
 \title{MCD Plot}
 \usage{
-\S4method{autoplot}{DateMCD}(object, ..., select = NULL, decreasing = TRUE)
+\S4method{autoplot}{MeanDate}(object, ..., select = NULL, decreasing = TRUE)
 
-\S4method{plot}{DateMCD,missing}(x, select = NULL, decreasing = TRUE)
+\S4method{plot}{MeanDate,missing}(x, select = NULL, decreasing = TRUE)
 }
 \arguments{
-\item{object, x}{A \linkS4class{DateMCD} object.}
+\item{object, x}{A \linkS4class{MeanDate} object.}
 
 \item{...}{Currently not used.}
 
@@ -52,7 +52,8 @@ dates <- list(
 mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 
 ## Calculate MCD
-mc_dates <- date_mcd(counts, dates = mid)
+mc_dates <- mcd(counts, dates = mid)
+head(mc_dates)
 
 ## Plot
 plot(mc_dates, select = 100:125)
@@ -66,7 +67,7 @@ jack <- jackknife(mc_dates)
 head(jack)
 }
 \seealso{
-\code{\link[=date_mcd]{date_mcd()}}
+\code{\link[=mcd]{mcd()}}
 
 Other plotting methods: 
 \code{\link{plot_aoristic}},
