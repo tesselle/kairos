@@ -1,0 +1,18 @@
+citHeader("To cite kairos in publications use:")
+
+citEntry(
+  entry        = "Manual",
+  title        = "kairos: Analysis of Chronological Patterns from Archaeological Count Data",
+  author       = c(person("Nicolas", "Frerebeau", role = "aut")),
+  year         = "2021",
+  organization = "Université Bordeaux Montaigne",
+  address      = "Pessac, France",
+  note         = "R package version 1.0.0",
+
+  textVersion  =
+  paste("Frerebeau, Nicolas (2021).",
+        "kairos: Analysis of Chronological Patterns from Archaeological Count Data.",
+        "R package version 1.0.0",
+        "Université Bordeaux Montaigne, Pessac, France.",
+        "URL https://packages.tesselle.org/kairos.")
+)

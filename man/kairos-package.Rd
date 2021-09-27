@@ -19,7 +19,7 @@ A toolkit for absolute dating and analysis of chronological
 \tabular{ll}{
 \strong{Package:} \tab kairos \cr
 \strong{Type:} \tab Package \cr
-\strong{Version:} \tab 0.0.0.9000 \cr
+\strong{Version:} \tab 1.0.0 \cr
 \strong{License:} \tab GPL-3 \cr
 }
 }

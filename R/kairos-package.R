@@ -2,7 +2,7 @@
 #' \tabular{ll}{
 #'  **Package:** \tab kairos \cr
 #'  **Type:** \tab Package \cr
-#'  **Version:** \tab 0.0.0.9000 \cr
+#'  **Version:** \tab 1.0.0 \cr
 #'  **License:** \tab GPL-3 \cr
 #' }
 #'
