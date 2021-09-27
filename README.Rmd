@@ -1,5 +1,6 @@
 ---
 output: github_document
+bibliography: vignettes/bibliography.bib
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -18,17 +19,21 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/tesselle/kairos/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/kairos/actions)
 [![codecov](https://codecov.io/gh/tesselle/kairos/branch/master/graph/badge.svg)](https://codecov.io/gh/tesselle/kairos)
+[![CodeFactor](https://www.codefactor.io/repository/github/tesselle/kairos/badge)](https://www.codefactor.io/repository/github/tesselle/kairos)
 
 [![r-universe](https://tesselle.r-universe.dev/badges/kairos)](https://tesselle.r-universe.dev)
 
-[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <!-- badges: end -->
 
 ## Overview
 
-A toolkit for absolute dating and analysis of chronological patterns. This package includes functions for chronological modeling and dating of archaeological assemblages from count data. It allows to compute time point estimates (e.g. Mean Ceramic Date) and density estimates of the occupation and duration of an archaeological site (e.g. event model, aoristic analysis, apportioning).
+A toolkit for absolute dating and analysis of chronological patterns. This package includes functions for chronological modeling and dating of archaeological assemblages from count data. It allows to compute time point estimates and density estimates of the occupation and duration of an archaeological site. **kairos** provides methods for:
 
-**Initial development is in progress.**
+* Mean ceramic date estimation [@south1977]: `mcd()`
+* Event and accumulation date estimation [@bellanger2012]: `event()`
+* Aoristic analysis [@ratcliffe2000]: `aoristic()`
+* Ceramic apportioning [@roberts2012]: `apportion()`
 
 ## Installation
 
@@ -50,14 +55,14 @@ remotes::install_github("tesselle/kairos")
 ```{r packages-load}
 ## Load packages
 library(kairos)
-library(folio) # Datasets
+library(folio) # datasets
 ```
 
 **kairos** uses a set of S4 classes that represent different special types of matrix. Please refer to the documentation of the [**arkhe**](https://github.com/tesselle/arkhe) package where these classes are defined.
 
 *It assumes that you keep your data tidy*: each variable (type/taxa) must be saved in its own column and each observation (sample/case) must be saved in its own row.
 
-```{r aoristic, echo=FALSE, fig.show='hold', out.width='50%'}
+```{r aoristic, fig.width=7, fig.height=5}
 ## Aoristic Analysis
 data("zuni", package = "folio")
 
@@ -77,47 +82,28 @@ keep <- apply(X = zuni, MARGIN = 1, FUN = function(x) sum(x) >= 10)
 ## Calculate date ranges for each assemblage
 span <- apply(
   X = zuni[keep, ],
-  FUN = function(x, dates) {
-    z <- range(unlist(dates[x > 0]))
-    names(z) <- c("from", "to")
-    z
-  },
+  FUN = function(x, dates) range(unlist(dates[x > 0])),
   MARGIN = 1,
   dates = dates
 )
 
 ## Coerce to data.frame
 span <- as.data.frame(t(span))
+colnames(span) <- c("from", "to")
 
 ## Calculate aoristic sum (weights)
 aorist_weigth <- aoristic(span, step = 50, weight = TRUE)
 plot(aorist_weigth)
 
 ## Rate of change
-aorist_roc <- rate_roc(aorist_weigth, n = 30)
+set.seed(12345)
+aorist_roc <- roc(aorist_weigth, n = 30)
 plot(aorist_roc)
-```
-
-```{r event, echo=FALSE, fig.show='hold', out.width='50%'}
-## Coerce dataset to abundance (count) matrix
-zuni_counts <- as_count(zuni)
-## Assume that some assemblages are reliably dated (this is NOT a real example)
-## The names of the vector entries must match the names of the assemblages
-zuni_dates <- c(
-  LZ0569 = 1097, LZ0279 = 1119, CS16 = 1328, LZ0066 = 1111,
-  LZ0852 = 1216, LZ1209 = 1251, CS144 = 1262, LZ0563 = 1206,
-  LZ0329 = 1076, LZ0005Q = 859, LZ0322 = 1109, LZ0067 = 863,
-  LZ0578 = 1180, LZ0227 = 1104, LZ0610 = 1074
-)
-
-## Model the event date for each assemblage
-event <- date_event(zuni_counts, dates = zuni_dates, cutoff = 90)
-
-## Plot activity and tempo distributions
-plot(event, type = "activity", select = "LZ1105")
-plot(event, type = "tempo", select = "LZ1105")
 ```
 
 ## Contributing
 
 Please note that the **kairos** project is released with a [Contributor Code of Conduct](https://www.tesselle.org/conduct.html). By contributing to this project, you agree to abide by its terms.
+
+## References
+
