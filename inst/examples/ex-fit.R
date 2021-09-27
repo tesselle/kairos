@@ -7,10 +7,10 @@ counts <- as_count(merzbach[, keep])
 
 ## Group by phase
 ## We use the row names as time coordinates (roman numerals)
-dates <- as.numeric(utils::as.roman(rownames(counts)))
+set_dates(counts) <- as.numeric(utils::as.roman(rownames(counts)))
 
 ## Frequency Increment Test
-freq <- fit(counts, dates)
+freq <- fit(counts)
 
 ## Plot time vs abundance and highlight selection
 plot(freq)

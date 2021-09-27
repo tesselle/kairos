@@ -1,4 +1,4 @@
-# Chronological Apportioning
+# Chronological Apportioning - matrix
 
     Code
       app_uni
@@ -51,6 +51,31 @@
       
       Slot "step":
       [1] 50
+      
+
+---
+
+    Code
+      get_weights(app_uni)
+    Output
+      , , 1200_1250
+      
+              CWW       CBW     LMGRW LTB MMS       PBW RRW      SCBW TBBW
+      Bayless 0.4 0.3333333 0.3333333 0.5   0 0.3333333   0 0.3333333  0.5
+      
+      , , 1250_1300
+      
+              CWW       CBW     LMGRW LTB       MMS       PBW       RRW      SCBW
+      Bayless 0.4 0.3333333 0.3333333 0.5 0.3333333 0.3333333 0.3333333 0.3333333
+              TBBW
+      Bayless  0.5
+      
+      , , 1300_1350
+      
+              CWW       CBW     LMGRW LTB       MMS       PBW       RRW      SCBW
+      Bayless 0.2 0.3333333 0.3333333   0 0.6666667 0.3333333 0.6666667 0.3333333
+              TBBW
+      Bayless    0
       
 
 ---
@@ -110,5 +135,32 @@
       
       Slot "step":
       [1] 50
+      
+
+---
+
+    Code
+      get_weights(app_trunc)
+    Output
+      , , 1200_1250
+      
+                    CWW       CBW     LMGRW       LTB MMS       PBW RRW      SCBW
+      Bayless 0.5286151 0.4584088 0.1459202 0.6830078   0 0.4104723   0 0.1459202
+                   TBBW
+      Bayless 0.6430327
+      
+      , , 1250_1300
+      
+                    CWW       CBW    LMGRW       LTB       MMS       PBW      RRW
+      Bayless 0.3494379 0.3294739 0.362761 0.3169922 0.1459202 0.3303563 0.147516
+                  SCBW      TBBW
+      Bayless 0.362761 0.3569673
+      
+      , , 1300_1350
+      
+                   CWW       CBW     LMGRW LTB       MMS       PBW      RRW      SCBW
+      Bayless 0.121947 0.2121173 0.4913188   0 0.8540798 0.2591714 0.852484 0.4913188
+              TBBW
+      Bayless    0
       
 

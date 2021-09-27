@@ -1,3 +1,5 @@
+
+
 test_that("Aoristic Sum", {
   skip_if_not_installed("folio")
   data("zuni", package = "folio")
@@ -44,10 +46,21 @@ test_that("Aoristic Sum", {
   ## Calculate aoristic sum (weights) by group
   groups <- rep(c("A", "B", "C"), times = c(50, 90, 139))
   aorist_groups <- aoristic(span, step = 25, weight = TRUE, groups = groups)
+  expect_snapshot(get_weights(aorist_groups))
   for (i in c(TRUE, FALSE)) {
     gg_groups <- autoplot(aorist_groups, facet = i)
     vdiffr::expect_doppelganger(paste0("aoristic_groups_facet-", i), gg_groups)
   }
 
-  expect_error(aoristic(span, groups = groups[1:10]))
+  expect_error(aoristic(span, groups = groups[1:10]), "must be of length")
+  expect_error(aoristic(span, groups = "grp"), "does not have component")
+  colnames(span) <- c("A", "B")
+  expect_error(aoristic(span), "does not have component")
+
+  ## Rate of change
+  roc_groups <- with_seed(12345, roc(aorist_groups))
+  for (i in c(TRUE, FALSE)) {
+    gg_roc <- autoplot(roc_groups, facet = i)
+    vdiffr::expect_doppelganger(paste0("roc_groups_facet-", i), gg_roc)
+  }
 })

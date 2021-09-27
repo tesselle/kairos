@@ -20,14 +20,7 @@ aoristic(x, y, ...)
   groups = NULL
 )
 
-\S4method{aoristic}{list,missing}(
-  x,
-  step = 1,
-  start = min(x$from, na.rm = TRUE),
-  stop = max(x$to, na.rm = TRUE),
-  weight = FALSE,
-  groups = NULL
-)
+\S4method{aoristic}{list,missing}(x, step = 1, start = NULL, stop = NULL, weight = FALSE, groups = NULL)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} vector. If \code{y} is missing, must be a \code{\link{list}} (or a

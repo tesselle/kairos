@@ -10,7 +10,7 @@ setMethod(
   f = "plot_time",
   signature = signature(object = "CountMatrix", date = "missing"),
   definition = function(object, facet = FALSE) {
-    dates <- rowMeans(get_dates(object))
+    dates <- get_dates(object)
     methods::callGeneric(object, dates, facet = facet)
   }
 )

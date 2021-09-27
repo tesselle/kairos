@@ -9,16 +9,16 @@ test_that("FIT", {
 
   ## Group by phase
   ## We use the row names as time coordinates (roman numerals)
-  dates <- as.numeric(utils::as.roman(rownames(counts)))
+  set_dates(counts) <- as.numeric(utils::as.roman(rownames(counts)))
 
   ## Plot abundance vs time
   for (i in c(TRUE, FALSE)) {
-    gg_time <- plot_time(counts, dates, facet = i)
+    gg_time <- plot_time(counts, facet = i)
     vdiffr::expect_doppelganger(paste0("time_facet-", i), gg_time)
   }
 
   ## Frequency Increment Test
-  freq <- fit(counts, dates)
+  freq <- fit(counts)
 
   ## Plot time vs abundance and highlight selection
   gg_fit <- autoplot(freq)

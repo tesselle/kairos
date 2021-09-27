@@ -9,7 +9,7 @@ setMethod(
   f = "fit",
   signature = signature(object = "CountMatrix", dates = "missing"),
   definition = function(object) {
-    dates <- rowMeans(get_dates(object))
+    dates <- get_dates(object)
     methods::callGeneric(object, dates)
   }
 )

@@ -85,8 +85,7 @@ setMethod(
 setMethod(
   f = "aoristic",
   signature = signature(x = "list", y = "missing"),
-  definition = function(x, step = 1, start = min(x$from, na.rm = TRUE),
-                        stop = max(x$to, na.rm = TRUE), weight = FALSE,
+  definition = function(x, step = 1, start = NULL, stop = NULL, weight = FALSE,
                         groups = NULL) {
     ## Validation
     k <- match(c("from", "to"), names(x))
@@ -104,6 +103,10 @@ setMethod(
         stop(msg, call. = FALSE)
       }
     }
+
+    ## Start/stop
+    if (is.null(start)) start <- min(x$from, na.rm = TRUE)
+    if (is.null(stop)) stop <- max(x$to, na.rm = TRUE)
 
     methods::callGeneric(x = x$from, y = x$to, step = step, start = start,
                          stop = stop, weight = weight, groups = g)

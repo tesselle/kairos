@@ -5,10 +5,10 @@ data("merzbach", package = "folio")
 keep <- apply(X = merzbach, MARGIN = 2, FUN = function(x) max(x) >= 50)
 counts <- as_count(merzbach[, keep])
 
-## Group by phase
+## Set dates
 ## We use the row names as time coordinates (roman numerals)
-dates <- as.numeric(utils::as.roman(rownames(counts)))
+set_dates(counts) <- as.numeric(utils::as.roman(rownames(counts)))
 
 ## Plot abundance vs time
-plot_time(counts, dates)
-plot_time(counts, dates, facet = TRUE)
+plot_time(counts)
+plot_time(counts, facet = TRUE)
