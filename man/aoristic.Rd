@@ -33,7 +33,7 @@ aoristic(x, y, ...)
 
 \item{step}{A length-one \code{\link{integer}} vector giving the step size, i.e. the
 width of each time step in the time series (in years CE; defaults to
-\eqn{1}).}
+\eqn{1} - i.e. annual level).}
 
 \item{start}{A length-one \code{\link{numeric}} vector giving the beginning of the time
 window (in years CE).}
@@ -41,7 +41,8 @@ window (in years CE).}
 \item{stop}{A length-one \code{\link{numeric}} vector giving the end of the time
 window (in years CE).}
 
-\item{weight}{A \code{\link{logical}} scalar: . Defaults to \code{FALSE} (the aoristic sum
+\item{weight}{A \code{\link{logical}} scalar: should the aoristic sum be weighted by
+the length of periods. Defaults to \code{FALSE} (the aoristic sum
 is the number of elements within a time step).}
 
 \item{groups}{A \code{\link{factor}} vector in the sense that \code{as.factor(groups)}
@@ -54,6 +55,19 @@ An \linkS4class{AoristicSum} object.
 }
 \description{
 Computes the aoristic sum.
+}
+\details{
+Aoristic analysis is used to determine the probability of contemporaneity of
+archaeological sites or assemblages. The aoristic analysis distributes the
+probability of an event uniformly over each temporal fraction of the period
+considered. The aoristic sum is then the distribution of the total number of
+events to be assumed within this period.
+
+Muller and Hinz (2018) pointed out that the overlapping of temporal
+intervals related to period categorization and dating accuracy is likely to
+bias the analysis. They proposed a weighting method to overcome this
+problem. This method is not implemented here (for the moment), see the
+\href{https://github.com/ISAAKiel/aoristAAR}{\pkg{aoristAAR} package}.
 }
 \examples{
 ## Aoristic Analysis
@@ -120,9 +134,18 @@ the Four Dimensions of Cultural Heritage}, Oxford: Archaeopress, p. 448-52.
 BAR International Series 1227.
 \doi{10.15496/publikation-2085}
 
+Müller-Scheeßel, N. & Hinz, M. (2018). \emph{Aoristic Research in R: Correcting
+Temporal Categorizations in Archaeology}. Presented at the Human History and
+Digital Future (CAA 2018), Tubingen, March 21.
+\url{https://www.youtube.com/watch?v=bUBukex30QI}.
+
 Ratcliffe, J. H. (2000). Aoristic Analysis: The Spatial Interpretation of
 Unspecific Temporal Events. \emph{International Journal of Geographical
 Information Science}, 14(7): 669-79. \doi{10.1080/136588100424963}.
+
+Ratcliffe, J. H. (2002). Aoristic Signatures and the Spatio-Temporal
+Analysis of High Volume Crime Patterns. \emph{Journal of Quantitative
+Criminology}, 18(1): 23-43. \doi{10.1023/A:1013240828824}.
 }
 \seealso{
 \code{\link[=roc]{roc()}}, \link[=plot_aoristic]{plot()}

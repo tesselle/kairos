@@ -48,7 +48,7 @@ Produces an activity or a tempo plot.
 }
 \section{Event and Acccumulation Dates}{
 
-\code{plot()} displays the probability estimate density curves of rchaeological
+\code{plot()} displays the probability estimate density curves of archaeological
 assemblage dates (\emph{event} and \emph{accumulation} dates; Bellanger and Husi
 2012). The \emph{event} date is plotted as a line, while the \emph{accumulation} date
 is shown as a grey filled area.
@@ -65,8 +65,6 @@ tempo plot.}
 }
 
 \examples{
-## Event and accumulation dates (Bellanger et al.)
-## See the vignette:
 \dontrun{
 utils::vignette("kairos")
 }

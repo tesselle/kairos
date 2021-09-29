@@ -28,7 +28,7 @@ an archaeological site. **kairos** provides methods for:
 -   Event and accumulation date estimation (Bellanger and Husi 2012):
     `event()`
 -   Aoristic analysis (Ratcliffe 2000): `aoristic()`
--   Ceramic apportioning (Roberts et al. 2012): `apportion()`
+-   Chronological apportioning (Roberts et al. 2012): `apportion()`
 
 ## Installation
 

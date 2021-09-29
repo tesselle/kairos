@@ -77,7 +77,7 @@ replications.}
 }
 \value{
 \itemize{
-\item \code{event()} returns a \linkS4class{EventDate} object.
+\item \code{event()} returns an \linkS4class{EventDate} object.
 \item \code{predict_event()} returns a \code{\link{data.frame}}.
 \item \code{predict_accumulation()} returns a \linkS4class{MeanDate} object.
 \item \code{bootstrap()} and \code{jackknife()} return a \code{\link{data.frame}}.
@@ -99,16 +99,15 @@ duration of an archaeological site (Bellanger and Husi 2012, 2013).
 The event date is an estimation of the \emph{terminus post-quem} of an
 archaeological assemblage. The accumulation date represents the
 "chronological profile" of the assemblage. According to Bellanger and Husi
-(2012), accumulation date can be interpreted "at best \link{...} as a formation
+(2012), accumulation date can be interpreted "at best [...] as a formation
 process reflecting the duration or succession of events on the scale of
 archaeological time, and at worst, as imprecise dating due to contamination
 of the context by residual or intrusive material." In other words,
 accumulation dates estimate occurrence of archaeological events and rhythms
 of the long term.
 
-This method relies on strong archaeological and statistical assumptions.
-Use it only if you know what you are doing (see references below and the
-vignette: \code{utils::vignette("kairos")}).
+This method relies on strong archaeological and statistical assumptions
+(see \code{vignette("kairos")}).
 }
 \note{
 Bellanger \emph{et al.} did not publish the data supporting their demonstration:
@@ -116,7 +115,7 @@ no replication of their results is possible. This implementation must be
 considered \strong{experimental} and subject to major changes in a future
 release.
 }
-\section{Date Model}{
+\section{Resampling}{
 
 If \code{jackknife()} is used, one type/fabric is removed at a
 time and all statistics are recalculated. In this way, one can assess
@@ -150,8 +149,6 @@ with the following columns:
 }
 
 \examples{
-## Event and accumulation dates (Bellanger et al.)
-## See the vignette:
 \dontrun{
 utils::vignette("kairos")
 }

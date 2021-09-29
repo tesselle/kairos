@@ -137,17 +137,16 @@ setGeneric(
 #'  The event date is an estimation of the *terminus post-quem* of an
 #'  archaeological assemblage. The accumulation date represents the
 #'  "chronological profile" of the assemblage. According to Bellanger and Husi
-#'  (2012), accumulation date can be interpreted "at best [...] as a formation
+#'  (2012), accumulation date can be interpreted "at best \[...\] as a formation
 #'  process reflecting the duration or succession of events on the scale of
 #'  archaeological time, and at worst, as imprecise dating due to contamination
 #'  of the context by residual or intrusive material." In other words,
 #'  accumulation dates estimate occurrence of archaeological events and rhythms
 #'  of the long term.
 #'
-#'  This method relies on strong archaeological and statistical assumptions.
-#'  Use it only if you know what you are doing (see references below and the
-#'  vignette: `utils::vignette("kairos")`).
-#' @section Date Model:
+#'  This method relies on strong archaeological and statistical assumptions
+#'  (see `vignette("kairos")`).
+#' @section Resampling:
 #'  If `jackknife()` is used, one type/fabric is removed at a
 #'  time and all statistics are recalculated. In this way, one can assess
 #'  whether certain type/fabric has a substantial influence on the date
@@ -183,7 +182,7 @@ setGeneric(
 #'  considered **experimental** and subject to major changes in a future
 #'  release.
 #' @return
-#'  * `event()` returns a [EventDate-class] object.
+#'  * `event()` returns an [EventDate-class] object.
 #'  * `predict_event()` returns a [`data.frame`].
 #'  * `predict_accumulation()` returns a [MeanDate-class] object.
 #'  * `bootstrap()` and `jackknife()` return a [`data.frame`].
@@ -255,18 +254,31 @@ setGeneric(
 #'  `x` in a suitable way.
 #' @param step A length-one [`integer`] vector giving the step size, i.e. the
 #'  width of each time step in the time series (in years CE; defaults to
-#'  \eqn{1}).
+#'  \eqn{1} - i.e. annual level).
 #' @param start A length-one [`numeric`] vector giving the beginning of the time
 #'  window (in years CE).
 #' @param stop A length-one [`numeric`] vector giving the end of the time
 #'  window (in years CE).
-#' @param weight A [`logical`] scalar: . Defaults to `FALSE` (the aoristic sum
+#' @param weight A [`logical`] scalar: should the aoristic sum be weighted by
+#'  the length of periods. Defaults to `FALSE` (the aoristic sum
 #'  is the number of elements within a time step).
 #' @param groups A [`factor`] vector in the sense that `as.factor(groups)`
 #'  defines the grouping. If `x` is a `list` (or a `data.frame`), `groups` can
 #'  be a length-one vector giving the index of the grouping component (column)
 #'  of `x`.
 #' @param ... Currently not used.
+#' @details
+#'  Aoristic analysis is used to determine the probability of contemporaneity of
+#'  archaeological sites or assemblages. The aoristic analysis distributes the
+#'  probability of an event uniformly over each temporal fraction of the period
+#'  considered. The aoristic sum is then the distribution of the total number of
+#'  events to be assumed within this period.
+#'
+#'  Muller and Hinz (2018) pointed out that the overlapping of temporal
+#'  intervals related to period categorization and dating accuracy is likely to
+#'  bias the analysis. They proposed a weighting method to overcome this
+#'  problem. This method is not implemented here (for the moment), see the
+#'  [\pkg{aoristAAR} package](https://github.com/ISAAKiel/aoristAAR).
 #' @return
 #'  An [AoristicSum-class] object.
 #' @seealso [roc()], [plot()][plot_aoristic]
@@ -282,9 +294,18 @@ setGeneric(
 #'  BAR International Series 1227.
 #'  \doi{10.15496/publikation-2085}
 #'
+#'  Müller-Scheeßel, N. & Hinz, M. (2018). *Aoristic Research in R: Correcting
+#'  Temporal Categorizations in Archaeology*. Presented at the Human History and
+#'  Digital Future (CAA 2018), Tubingen, March 21.
+#'  <https://www.youtube.com/watch?v=bUBukex30QI>.
+#'
 #'  Ratcliffe, J. H. (2000). Aoristic Analysis: The Spatial Interpretation of
 #'  Unspecific Temporal Events. *International Journal of Geographical
 #'  Information Science*, 14(7): 669-79. \doi{10.1080/136588100424963}.
+#'
+#'  Ratcliffe, J. H. (2002). Aoristic Signatures and the Spatio-Temporal
+#'  Analysis of High Volume Crime Patterns. *Journal of Quantitative
+#'  Criminology*, 18(1): 23-43. \doi{10.1023/A:1013240828824}.
 #' @example inst/examples/ex-aoristic.R
 #' @author N. Frerebeau
 #' @family chronological analysis
@@ -429,7 +450,7 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return
 #'  A [`ggplot`][ggplot2::ggplot] object.
-#' @example inst/examples/ex-plot_time.R
+#' @example inst/examples/ex-plot.R
 #' @author N. Frerebeau
 #' @family plotting methods
 #' @docType methods
@@ -502,7 +523,7 @@ NULL
 #'  be displayed? Only used if type is "`activity`".
 #' @param ... Currently not used.
 #' @section Event and Acccumulation Dates:
-#'  `plot()` displays the probability estimate density curves of rchaeological
+#'  `plot()` displays the probability estimate density curves of archaeological
 #'  assemblage dates (*event* and *accumulation* dates; Bellanger and Husi
 #'  2012). The *event* date is plotted as a line, while the *accumulation* date
 #'  is shown as a grey filled area.

@@ -33,7 +33,7 @@ A toolkit for absolute dating and analysis of chronological patterns. This packa
 * Mean ceramic date estimation [@south1977]: `mcd()`
 * Event and accumulation date estimation [@bellanger2012]: `event()`
 * Aoristic analysis [@ratcliffe2000]: `aoristic()`
-* Ceramic apportioning [@roberts2012]: `apportion()`
+* Chronological apportioning [@roberts2012]: `apportion()`
 
 ## Installation
 
