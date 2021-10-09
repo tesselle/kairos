@@ -11,11 +11,11 @@
 \usage{
 \S4method{autoplot}{AoristicSum}(object, ..., facet = TRUE)
 
-\S4method{plot}{AoristicSum,missing}(x, facet = TRUE)
+\S4method{plot}{AoristicSum,missing}(x, facet = TRUE, ...)
 
 \S4method{autoplot}{RateOfChange}(object, ..., facet = TRUE)
 
-\S4method{plot}{RateOfChange,missing}(x, facet = TRUE)
+\S4method{plot}{RateOfChange,missing}(x, facet = TRUE, ...)
 }
 \arguments{
 \item{object, x}{An \linkS4class{AoristicSum} object.}

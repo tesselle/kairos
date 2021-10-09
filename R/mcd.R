@@ -131,18 +131,19 @@ autoplot.MeanDate <- function(object, ..., select = NULL, decreasing = TRUE) {
 
 #' @export
 #' @rdname plot_mcd
+#' @aliases autoplot,MeanDate-method
 setMethod("autoplot", "MeanDate", autoplot.MeanDate)
+
+#' @export
+#' @method plot MeanDate
+plot.MeanDate <- function(x, select = NULL, decreasing = TRUE, ...) {
+  gg <- autoplot(object = x, select = select, decreasing = decreasing) +
+    ggplot2::theme_bw()
+  print(gg)
+  invisible(x)
+}
 
 #' @export
 #' @rdname plot_mcd
 #' @aliases plot,MeanDate,missing-method
-setMethod(
-  f = "plot",
-  signature = c(x = "MeanDate", y = "missing"),
-  definition = function(x, select = NULL, decreasing = TRUE) {
-    gg <- autoplot(object = x, select = select, decreasing = decreasing) +
-      ggplot2::theme_bw()
-    print(gg)
-    invisible(x)
-  }
-)
+setMethod("plot", c(x = "MeanDate", y = "missing"), plot.MeanDate)

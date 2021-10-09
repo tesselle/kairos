@@ -3,8 +3,6 @@
 NULL
 
 # S4 dispatch to S3 generics ===================================================
-if (!isGeneric("plot"))
-  setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 setGeneric("autoplot", package = "ggplot2")
 
 # Set generics from other packages =============================================

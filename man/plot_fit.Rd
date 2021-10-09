@@ -9,7 +9,7 @@
 \usage{
 \S4method{autoplot}{IncrementTest}(object, ..., level = 0.95, roll = FALSE, window = 3)
 
-\S4method{plot}{IncrementTest,missing}(x, level = 0.95, roll = FALSE, window = 3)
+\S4method{plot}{IncrementTest,missing}(x, level = 0.95, roll = FALSE, window = 3, ...)
 }
 \arguments{
 \item{object, x}{An object to be plotted.}

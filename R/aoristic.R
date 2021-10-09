@@ -198,21 +198,22 @@ autoplot.AoristicSum <- function(object, ..., facet = TRUE) {
 
 #' @export
 #' @rdname plot_aoristic
+#' @aliases autoplot,AoristicSum-method
 setMethod("autoplot", "AoristicSum", autoplot.AoristicSum)
+
+#' @export
+#' @method plot AoristicSum
+plot.AoristicSum <- function(x, facet = TRUE, ...) {
+  gg <- autoplot(object = x, facet = facet) +
+    ggplot2::theme_bw()
+  print(gg)
+  invisible(x)
+}
 
 #' @export
 #' @rdname plot_aoristic
 #' @aliases plot,AoristicSum,missing-method
-setMethod(
-  f = "plot",
-  signature = c(x = "AoristicSum", y = "missing"),
-  definition = function(x, facet = TRUE) {
-    gg <- autoplot(object = x, facet = facet) +
-      ggplot2::theme_bw()
-    print(gg)
-    invisible(x)
-  }
-)
+setMethod("plot", c(x = "AoristicSum", y = "missing"), plot.AoristicSum)
 
 ## RateOfChange ----------------------------------------------------------------
 #' @export
@@ -248,24 +249,25 @@ autoplot.RateOfChange <- function(object, ..., facet = TRUE) {
 
 #' @export
 #' @rdname plot_aoristic
+#' @aliases autoplot,RateOfChange-method
 setMethod("autoplot", "RateOfChange", autoplot.RateOfChange)
+
+#' @export
+#' @method plot RateOfChange
+plot.RateOfChange <- function(x, facet = TRUE, ...) {
+  gg <- autoplot(object = x, facet = facet) +
+    ggplot2::theme_bw() +
+    ggplot2::theme(
+      axis.text.x = ggplot2::element_text(angle = 90, hjust = 1, vjust = 0.5)
+    )
+  print(gg)
+  invisible(x)
+}
 
 #' @export
 #' @rdname plot_aoristic
 #' @aliases plot,RateOfChange,missing-method
-setMethod(
-  f = "plot",
-  signature = c(x = "RateOfChange", y = "missing"),
-  definition = function(x, facet = TRUE) {
-    gg <- autoplot(object = x, facet = facet) +
-      ggplot2::theme_bw() +
-      ggplot2::theme(
-        axis.text.x = ggplot2::element_text(angle = 90, hjust = 1, vjust = 0.5)
-      )
-    print(gg)
-    invisible(x)
-  }
-)
+setMethod("plot", c(x = "RateOfChange", y = "missing"), plot.RateOfChange)
 
 ## Prepare data ----------------------------------------------------------------
 ## Build a long table for ggplot2

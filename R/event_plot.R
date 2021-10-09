@@ -109,20 +109,21 @@ autoplot.EventDate <- function(object, ..., type = c("activity", "tempo"),
 
 #' @export
 #' @rdname plot_event
+#' @aliases autoplot,EventDate-method
 setMethod("autoplot", "EventDate", autoplot.EventDate)
+
+#' @export
+#' @method plot EventDate
+plot.EventDate <- function(x, type = c("activity", "tempo"),
+                           event = FALSE, select = 1, n = 500, ...) {
+  gg <- autoplot(object = x, type = type, event = event,
+                 select = select, n = n) +
+    ggplot2::theme_bw()
+  print(gg)
+  invisible(x)
+}
 
 #' @export
 #' @rdname plot_event
 #' @aliases plot,EventDate,missing-method
-setMethod(
-  f = "plot",
-  signature = c(x = "EventDate", y = "missing"),
-  definition = function(x, type = c("activity", "tempo"),
-                        event = FALSE, select = 1, n = 500) {
-    gg <- autoplot(object = x, type = type, event = event,
-                   select = select, n = n) +
-      ggplot2::theme_bw()
-    print(gg)
-    invisible(x)
-  }
-)
+setMethod("plot", c(x = "EventDate", y = "missing"), plot.EventDate)

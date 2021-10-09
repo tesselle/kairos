@@ -127,20 +127,22 @@ autoplot.IncrementTest <- function(object, ..., level = 0.95, roll = FALSE,
 
 #' @export
 #' @rdname plot_fit
+#' @aliases autoplot,IncrementTest-method
 setMethod("autoplot", "IncrementTest", autoplot.IncrementTest)
+
+#' @export
+#' @method plot IncrementTest
+plot.IncrementTest <- function(x, level = 0.95, roll = FALSE, window = 3, ...) {
+  gg <- autoplot(object = x, level = level, roll = roll, window = window) +
+    ggplot2::theme_bw()
+  print(gg)
+  invisible(x)
+}
 
 #' @export
 #' @rdname plot_fit
 #' @aliases plot,IncrementTest,missing-method
-setMethod(
-  f = "plot",
-  signature = c(x = "IncrementTest", y = "missing"),
-  definition = function(x, level = 0.95, roll = FALSE, window = 3) {
-    gg <- autoplot(object = x, level = level, roll = roll, window = window)
-    print(gg)
-    invisible(x)
-  }
-)
+setMethod("plot", c(x = "IncrementTest", y = "missing"), plot.IncrementTest)
 
 # Prepare data =================================================================
 ## Build a long table for ggplot2

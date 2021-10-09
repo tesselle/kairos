@@ -9,7 +9,7 @@
 \usage{
 \S4method{autoplot}{MeanDate}(object, ..., select = NULL, decreasing = TRUE)
 
-\S4method{plot}{MeanDate,missing}(x, select = NULL, decreasing = TRUE)
+\S4method{plot}{MeanDate,missing}(x, select = NULL, decreasing = TRUE, ...)
 }
 \arguments{
 \item{object, x}{A \linkS4class{MeanDate} object.}

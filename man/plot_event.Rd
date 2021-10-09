@@ -16,7 +16,7 @@
   n = 500
 )
 
-\S4method{plot}{EventDate,missing}(x, type = c("activity", "tempo"), event = FALSE, select = 1, n = 500)
+\S4method{plot}{EventDate,missing}(x, type = c("activity", "tempo"), event = FALSE, select = 1, n = 500, ...)
 }
 \arguments{
 \item{object, x}{A \linkS4class{EventDate} object.}
