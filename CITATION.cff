@@ -1,0 +1,42 @@
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.1.0
+# See also: https://docs.ropensci.org/cffr/
+# -----------------------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "kairos" in publications use:'
+type: software
+license: GPL-3.0-or-later
+title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
+version: 1.0.0
+abstract: A toolkit for absolute dating and analysis of chronological patterns. This
+  package includes functions for chronological modeling and dating of archaeological
+  assemblages from count data. It allows to compute time point estimates and density
+  estimates of the occupation and duration of an archaeological site.
+authors:
+- family-names: Frerebeau
+  given-names: Nicolas
+  email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+  orcid: https://orcid.org/0000-0001-5759-4944
+  affiliation: Université Bordeaux Montaigne
+preferred-citation:
+  type: manual
+  title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
+  authors:
+  - family-names: Frerebeau
+    given-names: Nicolas
+  year: '2021'
+  url: https://packages.tesselle.org/kairos
+repository-code: https://github.com/tesselle/kairos
+url: https://packages.tesselle.org/kairos/
+contact:
+- family-names: Frerebeau
+  given-names: Nicolas
+  email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+  orcid: https://orcid.org/0000-0001-5759-4944
+  affiliation: Université Bordeaux Montaigne
+keywords:
+- chronology
+- archaeology
+- archaeological science
+- r package

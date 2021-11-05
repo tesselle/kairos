@@ -11,7 +11,7 @@
   "relatedLink": "https://packages.tesselle.org/kairos/",
   "issueTracker": "https://github.com/tesselle/kairos/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.0.9000",
+  "version": "1.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -222,7 +222,7 @@
       "name": "utils"
     }
   ],
-  "fileSize": "1445.418KB",
+  "fileSize": "1452.929KB",
   "contIntegration": "https://codecov.io/gh/tesselle/kairos",
   "developmentStatus": "https://www.repostatus.org/#active",
   "readme": "https://github.com/tesselle/kairos/blob/master/README.md",
@@ -231,5 +231,22 @@
     "archaeology",
     "archaeological-science",
     "chronology"
+  ],
+  "releaseNotes": "https://github.com/tesselle/kairos/blob/master/NEWS.md",
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2021",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Nicolas",
+          "familyName": "Frerebeau"
+        }
+      ],
+      "name": "kairos: Analysis of Chronological Patterns from Archaeological Count Data",
+      "url": "https://packages.tesselle.org/kairos",
+      "description": "R package version 1.0.0"
+    }
   ]
 }
