@@ -27,6 +27,8 @@ A toolkit for absolute dating and analysis of chronological
 
 \code{kairos} uses the following \code{\link[=options]{options()}} to configure behavior:
 \itemize{
+\item \code{kairos.precision}: an \code{\link{integer}} indicating the number of decimal
+places for years (defaults to \eqn{0}).
 \item \code{kairos.progress}: a \code{\link{logical}} scalar. Should progress bars be
 displayed?
 }
@@ -46,6 +48,7 @@ Useful links:
 
 \tabular{ll}{
 Nicolas Frerebeau \tab \emph{Université Bordeaux Montaigne, France} \cr
+Brice Lebrun \tab \emph{Université Bordeaux Montaigne, France} \cr
 Ben Marwick \tab \emph{University of Washington, USA} \cr
 Anne Philippe \tab \emph{Université de Nantes, France} \cr
 }

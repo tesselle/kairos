@@ -128,6 +128,5 @@ compute_event <- function(fit, data, level) {
   )
   rownames(results) <- rownames(data)
   colnames(results) <- c("date", "lower", "upper", "error")
-
-  results
+  round(results, digits = getOption("kairos.precision"))
 }

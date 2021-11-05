@@ -5,6 +5,18 @@ NULL
 # MCD ==========================================================================
 #' @export
 #' @rdname mcd
+#' @aliases mcd,numeric,numeric-method
+setMethod(
+  f = "mcd",
+  signature = signature(object = "numeric", dates = "numeric"),
+  definition = function(object, dates, na.rm = FALSE) {
+    x <- stats::weighted.mean(x = dates, w = object, na.rm = na.rm)
+    round(x, digits = getOption("kairos.precision"))
+  }
+)
+
+#' @export
+#' @rdname mcd
 #' @aliases mcd,CountMatrix,numeric-method
 setMethod(
   f = "mcd",
@@ -17,7 +29,7 @@ setMethod(
     mcd_dates <- apply(
       X = object,
       MARGIN = 1,
-      FUN = mean_date,
+      FUN = mcd,
       dates = dates
     )
 
@@ -48,7 +60,7 @@ setMethod(
       X = get_weights(object),
       MARGIN = 1,
       FUN = theta,
-      do = mean_date,
+      do = mcd,
       n = n,
       dates = object@types,
       level = level,
@@ -73,7 +85,7 @@ setMethod(
 
     dates <- object@types
     theta <- function(x, counts, dates) {
-      mean_date(counts[x], dates[x])
+      mcd(counts[x], dates[x])
     }
 
     results <- vector(mode = "list", length = m)
@@ -91,19 +103,6 @@ setMethod(
     as.data.frame(results)
   }
 )
-
-#' Mean Ceramic Date
-#'
-#' @param counts A [`numeric`] vector.
-#' @param dates A [`numeric`] vector.
-#' @param na.rm A [`logical`] scalar: should missing values (including `NaN`) be
-#'  removed?
-#' @return A [`numeric`] value.
-#' @keywords internal
-#' @noRd
-mean_date <- function(counts, dates, na.rm = FALSE) {
-  stats::weighted.mean(x = dates, w = counts, na.rm = na.rm)
-}
 
 # Plot =========================================================================
 #' @export

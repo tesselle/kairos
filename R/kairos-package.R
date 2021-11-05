@@ -8,6 +8,8 @@
 #'
 #' @section Package options:
 #'  `kairos` uses the following [options()] to configure behavior:
+#'  * `kairos.precision`: an [`integer`] indicating the number of decimal
+#'    places for years (defaults to \eqn{0}).
 #'  * `kairos.progress`: a [`logical`] scalar. Should progress bars be
 #'    displayed?
 #'

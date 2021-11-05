@@ -68,8 +68,11 @@ NULL
 #' Mean Ceramic Date
 #'
 #' Estimates the Mean Ceramic Date of an assemblage.
-#' @param object A [arkhe::CountMatrix-class] or a [MeanDate-class] object.
+#' @param object A [`numeric`] vector, a [arkhe::CountMatrix-class] or a
+#'  [MeanDate-class] object.
 #' @param dates A [`numeric`] vector of dates.
+#' @param na.rm A [`logical`] scalar: should missing values (including `NaN`) be
+#'  removed?
 #' @inheritParams dimensio::bootstrap
 #' @param ... Currently not used.
 #' @details
@@ -86,7 +89,7 @@ NULL
 #'  upper and lower boundaries of the confidence interval associated with each
 #'  MCD are then returned.
 #' @return
-#'  * `mcd()` returns a [MeanDate-class] object.
+#'  * `mcd()` returns a single [`numeric`] value or a [MeanDate-class] object.
 #'  * `bootstrap()` and `jackknife()` return a [`data.frame`].
 #' @seealso [plot_mcd][plot()]
 #' @references
@@ -100,8 +103,7 @@ NULL
 #' @aliases mcd-method
 setGeneric(
   name = "mcd",
-  def = function(object, dates, ...) standardGeneric("mcd"),
-  valueClass = "MeanDate"
+  def = function(object, dates, ...) standardGeneric("mcd")
 )
 
 ## Event Dates -----------------------------------------------------------------

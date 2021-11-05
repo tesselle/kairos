@@ -4,12 +4,15 @@
 \name{mcd}
 \alias{mcd}
 \alias{mcd-method}
+\alias{mcd,numeric,numeric-method}
 \alias{mcd,CountMatrix,numeric-method}
 \alias{bootstrap,MeanDate-method}
 \alias{jackknife,MeanDate-method}
 \title{Mean Ceramic Date}
 \usage{
 mcd(object, dates, ...)
+
+\S4method{mcd}{numeric,numeric}(object, dates, na.rm = FALSE)
 
 \S4method{mcd}{CountMatrix,numeric}(object, dates)
 
@@ -24,11 +27,15 @@ mcd(object, dates, ...)
 \S4method{jackknife}{MeanDate}(object)
 }
 \arguments{
-\item{object}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} or a \linkS4class{MeanDate} object.}
+\item{object}{A \code{\link{numeric}} vector, a \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} or a
+\linkS4class{MeanDate} object.}
 
 \item{dates}{A \code{\link{numeric}} vector of dates.}
 
 \item{...}{Currently not used.}
+
+\item{na.rm}{A \code{\link{logical}} scalar: should missing values (including \code{NaN}) be
+removed?}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
 Must be a single number between \eqn{0} and \eqn{1}. If \code{NULL}, no
@@ -48,7 +55,7 @@ replications.}
 }
 \value{
 \itemize{
-\item \code{mcd()} returns a \linkS4class{MeanDate} object.
+\item \code{mcd()} returns a single \code{\link{numeric}} value or a \linkS4class{MeanDate} object.
 \item \code{bootstrap()} and \code{jackknife()} return a \code{\link{data.frame}}.
 }
 }
