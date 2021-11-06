@@ -8,7 +8,7 @@ citEntry(
   organization = "Université Bordeaux Montaigne",
   address      = "Pessac, France",
   note         = "R package version 1.0.0",
-  url          = "https://packages.tesselle.org/kairos",
+  url          = "https://packages.tesselle.org/kairos/",
 
   textVersion  =
   paste("Frerebeau, Nicolas (2021).",
