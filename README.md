@@ -10,10 +10,18 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/kairos/badge)](https://www.codefactor.io/repository/github/tesselle/kairos)
 
 [![r-universe](https://tesselle.r-universe.dev/badges/kairos)](https://tesselle.r-universe.dev)
+[![CRAN
+Version](http://www.r-pkg.org/badges/version/kairos)](https://cran.r-project.org/package=kairos)
+[![CRAN
+checks](https://cranchecks.info/badges/worst/kairos)](https://cran.r-project.org/web/checks/check_results_kairos.html)
+[![CRAN
+Downloads](http://cranlogs.r-pkg.org/badges/kairos)](https://cran.r-project.org/package=kairos)
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5653896.svg)](https://doi.org/10.5281/zenodo.5653896)
 <!-- badges: end -->
 
 ## Overview
