@@ -50,9 +50,11 @@ setValidity(
     # Get data
     from <- object@from
     to <- object@to
+    step <- object@step
     weights <- object@weights
     groups <- object@groups
-    dates <- object@dates
+    breaks <- object@breaks
+    blocks <- object@blocks
     p <- object@p
 
     i <- nrow(p)
@@ -62,9 +64,11 @@ setValidity(
     cnd <- list(
       arkhe::validate(arkhe::assert_length(from, i)),
       arkhe::validate(arkhe::assert_length(to, i)),
+      arkhe::validate(arkhe::assert_scalar(step, "numeric")),
       arkhe::validate(arkhe::assert_length(weights, i)),
       arkhe::validate(arkhe::assert_length(groups, i)),
-      arkhe::validate(arkhe::assert_length(dates, j)),
+      arkhe::validate(arkhe::assert_length(breaks, j + 1)),
+      arkhe::validate(arkhe::assert_length(blocks, j)),
       arkhe::validate(arkhe::assert_dimensions(p, c(i, j, k)))
     )
 
@@ -79,7 +83,7 @@ setValidity(
   method = function(object) {
     # Get data
     replicates <- object@replicates
-    blocks <- object@blocks
+    breaks <- object@breaks
     groups <- object@groups
 
     i <- nrow(object)
@@ -89,7 +93,7 @@ setValidity(
     cnd <- list(
       arkhe::validate(arkhe::assert_scalar(replicates, "integer")),
       arkhe::validate(arkhe::assert_length(groups, k)),
-      arkhe::validate(arkhe::assert_length(blocks, j))
+      arkhe::validate(arkhe::assert_length(breaks, j))
     )
 
     # Return cnd, if any

@@ -34,8 +34,8 @@ aorist_raw <- aoristic(span, step = 50, weight = FALSE)
 plot(aorist_raw)
 
 ## Calculate aoristic sum (weights)
-aorist_weigth <- aoristic(span, step = 50, weight = TRUE)
-plot(aorist_weigth)
+aorist_weighted <- aoristic(span, step = 50, weight = TRUE)
+plot(aorist_weighted)
 
 ## Calculate aoristic sum (weights) by group
 groups <- rep(c("A", "B", "C"), times = c(50, 90, 139))
@@ -43,9 +43,9 @@ aorist_groups <- aoristic(span, step = 50, weight = TRUE, groups = groups)
 plot(aorist_groups)
 
 ## Rate of change
-roc_weigth <- roc(aorist_weigth, n = 30)
-plot(roc_weigth)
+roc_weighted <- roc(aorist_weighted, n = 30)
+plot(roc_weighted)
 
 ## Rate of change by group
 roc_groups <- roc(aorist_groups, n = 30)
-plot(roc_groups, facet = FALSE)
+plot(roc_groups)

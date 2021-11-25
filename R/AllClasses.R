@@ -63,10 +63,12 @@ NULL
 #' An S4 class to represent an aoristic analysis results.
 #' @slot from A [`numeric`] vector.
 #' @slot to A [`numeric`] vector.
+#' @slot step A length-one [`numeric`] vector giving the time-blocks width.
 #' @slot weights A [`numeric`] vector.
-#' @slot groups A [`character`] vector.
-#' @slot dates A [`numeric`] vector.
+#' @slot breaks A [`numeric`] vector giving the date break between time-blocks.
+#' @slot blocks A [`character`] vector giving the time-blocks.
 #' @slot p A [`numeric`] [`array`] giving the aorisitic probabilities.
+#' @slot groups A [`character`] vector.
 #' @note This class inherits from base [`matrix`].
 #' @author N. Frerebeau
 #' @family classes
@@ -77,10 +79,12 @@ NULL
   slots = c(
     from = "numeric",
     to = "numeric",
+    step = "numeric",
     weights = "numeric",
-    groups = "character",
-    dates = "numeric",
-    p = "array"
+    breaks = "numeric",
+    blocks = "character",
+    p = "array",
+    groups = "character"
   ),
   contains = "matrix"
 )
@@ -90,7 +94,7 @@ NULL
 #' An S4 class to represent rates of change from an aoristic analysis.
 #' @slot replicates A non-negative [`integer`] giving the number of
 #'  replications.
-#' @slot blocks A [`character`] vector giving the time-blocks.
+#' @slot breaks A [`numeric`] vector giving the date break between time-blocks.
 #' @slot groups A [`character`] vector.
 #' @note This class inherits from base [`array`].
 #' @author N. Frerebeau
@@ -101,7 +105,7 @@ NULL
   Class = "RateOfChange",
   slots = c(
     replicates = "integer",
-    blocks = "character",
+    breaks = "numeric",
     groups = "character"
   ),
   contains = "array"

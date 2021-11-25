@@ -13,9 +13,9 @@
 
 \S4method{plot}{AoristicSum,missing}(x, facet = TRUE, ...)
 
-\S4method{autoplot}{RateOfChange}(object, ..., facet = TRUE)
+\S4method{autoplot}{RateOfChange}(object, ..., level = 0.95, facet = TRUE)
 
-\S4method{plot}{RateOfChange,missing}(x, facet = TRUE, ...)
+\S4method{plot}{RateOfChange,missing}(x, level = 0.95, facet = TRUE, ...)
 }
 \arguments{
 \item{object, x}{An \linkS4class{AoristicSum} object.}
@@ -24,6 +24,8 @@
 
 \item{facet}{A \code{\link{logical}} scalar: should a matrix of panels defined by
 groups be drawn?}
+
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
 }
 \value{
 \itemize{
@@ -72,8 +74,8 @@ aorist_raw <- aoristic(span, step = 50, weight = FALSE)
 plot(aorist_raw)
 
 ## Calculate aoristic sum (weights)
-aorist_weigth <- aoristic(span, step = 50, weight = TRUE)
-plot(aorist_weigth)
+aorist_weighted <- aoristic(span, step = 50, weight = TRUE)
+plot(aorist_weighted)
 
 ## Calculate aoristic sum (weights) by group
 groups <- rep(c("A", "B", "C"), times = c(50, 90, 139))
@@ -81,12 +83,12 @@ aorist_groups <- aoristic(span, step = 50, weight = TRUE, groups = groups)
 plot(aorist_groups)
 
 ## Rate of change
-roc_weigth <- roc(aorist_weigth, n = 30)
-plot(roc_weigth)
+roc_weighted <- roc(aorist_weighted, n = 30)
+plot(roc_weighted)
 
 ## Rate of change by group
 roc_groups <- roc(aorist_groups, n = 30)
-plot(roc_groups, facet = FALSE)
+plot(roc_groups)
 }
 \seealso{
 \code{\link[=aoristic]{aoristic()}}, \code{\link[=roc]{roc()}}

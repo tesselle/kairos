@@ -14,7 +14,7 @@ An S4 class to represent rates of change from an aoristic analysis.
 \item{\code{replicates}}{A non-negative \code{\link{integer}} giving the number of
 replications.}
 
-\item{\code{blocks}}{A \code{\link{character}} vector giving the time-blocks.}
+\item{\code{breaks}}{A \code{\link{numeric}} vector giving the date break between time-blocks.}
 
 \item{\code{groups}}{A \code{\link{character}} vector.}
 }}

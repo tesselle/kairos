@@ -16,11 +16,10 @@
 
 \item{...}{Currently not used.}
 
-\item{level}{A length-one \code{\link{numeric}} vector giving the
-confidence level.}
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
 
-\item{roll}{A \code{\link{logical}} scalar: should each time series be
-subsetted to look for episodes of selection?}
+\item{roll}{A \code{\link{logical}} scalar: should each time series be subsetted to
+look for episodes of selection?}
 
 \item{window}{An odd \code{\link{integer}} giving the size of the rolling
 window. Only used if \code{roll} is \code{TRUE}.}

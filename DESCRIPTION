@@ -42,6 +42,7 @@ Imports:
     dimensio (>= 0.2.2),
     extraDistr,
     ggplot2,
+    Hmisc,
     methods,
     rlang,
     stats,

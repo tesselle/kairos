@@ -260,8 +260,8 @@ setGeneric(
 #' @param stop A length-one [`numeric`] vector giving the end of the time
 #'  window (in years CE).
 #' @param weight A [`logical`] scalar: should the aoristic sum be weighted by
-#'  the length of periods. Defaults to `FALSE` (the aoristic sum
-#'  is the number of elements within a time step).
+#'  the length of periods (default). If `FALSE` the aoristic sum is the number
+#'  of elements within a time block.
 #' @param groups A [`factor`] vector in the sense that `as.factor(groups)`
 #'  defines the grouping. If `x` is a `list` (or a `data.frame`), `groups` can
 #'  be a length-one vector giving the index of the grouping component (column)
@@ -298,6 +298,11 @@ setGeneric(
 #'  Temporal Categorizations in Archaeology*. Presented at the Human History and
 #'  Digital Future (CAA 2018), Tubingen, March 21.
 #'  <https://www.youtube.com/watch?v=bUBukex30QI>.
+#'
+#'  Palmisano, A., Bevan, A. & Shennan, S. (2017). Comparing Archaeological
+#'  Proxies for Long-Term Population Patterns: An Example from Central Italy.
+#'  *Journal of Archaeological Science*, 87: 59-72.
+#'  \doi{10.1016/j.jas.2017.10.001}.
 #'
 #'  Ratcliffe, J. H. (2000). Aoristic Analysis: The Spatial Interpretation of
 #'  Unspecific Temporal Events. *International Journal of Geographical
@@ -469,6 +474,7 @@ setGeneric(
 #' Plot Aoristic Analysis
 #'
 #' @param object,x An [AoristicSum-class] object.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param facet A [`logical`] scalar: should a matrix of panels defined by
 #'  groups be drawn?
 #' @param ... Currently not used.
@@ -567,10 +573,9 @@ NULL
 #'
 #' Produces an abundance *vs* time diagram.
 #' @param object,x An object to be plotted.
-#' @param level A length-one [`numeric`] vector giving the
-#'  confidence level.
-#' @param roll A [`logical`] scalar: should each time series be
-#'  subsetted to look for episodes of selection?
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param roll A [`logical`] scalar: should each time series be subsetted to
+#'  look for episodes of selection?
 #' @param window An odd [`integer`] giving the size of the rolling
 #'  window. Only used if `roll` is `TRUE`.
 #' @param ... Currently not used.

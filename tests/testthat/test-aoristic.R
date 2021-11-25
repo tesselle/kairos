@@ -1,61 +1,52 @@
-
-
-test_that("Aoristic Sum", {
-  skip_if_not_installed("folio")
-  data("zuni", package = "folio")
-  counts <- as_count(zuni)
-
-  ## Set the start and end dates for each ceramic type
-  dates <- list(
-    LINO = c(600, 875), KIAT = c(850, 950), RED = c(900, 1050),
-    GALL = c(1025, 1125), ESC = c(1050, 1150), PUBW = c(1050, 1150),
-    RES = c(1000, 1200), TULA = c(1175, 1300), PINE = c(1275, 1350),
-    PUBR = c(1000, 1200), WING = c(1100, 1200), WIPO = c(1125, 1225),
-    SJ = c(1200, 1300), LSJ = c(1250, 1300), SPR = c(1250, 1300),
-    PINER = c(1275, 1325), HESH = c(1275, 1450), KWAK = c(1275, 1450)
+test_that("Aoristic sum", {
+  ## Exemple from Palmisano et al. 2017
+  span <- data.frame(
+    id = c("a", "b", "c", "d"),
+    from = c(-2200, -2000, -1600, -2000),
+    to = c(-1400, -1600, -1400, -1400)
   )
-
-  ## Keep only assemblages that have a sample size of at least 50
-  keep <- apply(X = zuni, MARGIN = 1, FUN = function(x) sum(x) >= 10)
-
-  ## Calculate date ranges for each assemblage
-  span <- apply(
-    X = zuni[keep, ],
-    FUN = function(x, dates) {
-      z <- range(unlist(dates[x > 0]))
-      names(z) <- c("from", "to")
-      z
-    },
-    MARGIN = 1,
-    dates = dates
-  )
-
-  ## Coerce to data.frame
-  span <- as.data.frame(t(span))
 
   ## Calculate aoristic sum (normal)
-  aorist_raw <- aoristic(span, step = 25, weight = FALSE)
+  aorist_raw <- aoristic(span, step = 200, weight = FALSE)
+  expect_snapshot(aorist_raw)
+
   gg_raw <- autoplot(aorist_raw)
   vdiffr::expect_doppelganger("aoristic_raw", gg_raw)
 
   ## Calculate aoristic sum (weights)
-  aorist_weigth <- aoristic(span, step = 25, weight = TRUE)
+  aorist_weigth <- aoristic(span, step = 200, weight = TRUE)
+  expect_snapshot(aorist_weigth)
+
   gg_weight <- autoplot(aorist_weigth)
   vdiffr::expect_doppelganger("aoristic_weight", gg_weight)
 
+  colnames(span) <- c("A", "B")
+  expect_error(aoristic(span), "does not have component")
+})
+test_that("Aoristic sum by group", {
+  ## Tool data
+  span <- data.frame(
+    from = c(-1600, -2000, -2200, -1800, -2000, -2200, -2000, -1800, -2000, -2000),
+    to = c(-1400, -1400, -1400, -1600, -1400, -1600, -1600, -1600, -1400, -1600)
+  )
+  groups <- rep(c("A", "B"), 5)
+
+  expect_error(aoristic(span, groups = LETTERS), "must be of length")
+  expect_error(aoristic(span, groups = "grp"), "does not have component")
+
   ## Calculate aoristic sum (weights) by group
-  groups <- rep(c("A", "B", "C"), times = c(50, 90, 139))
-  aorist_groups <- aoristic(span, step = 25, weight = TRUE, groups = groups)
-  expect_snapshot(get_weights(aorist_groups))
+  aorist_groups <- aoristic(span, step = 200, weight = TRUE, groups = groups)
+  expect_snapshot(aorist_groups)
+
+  aorist_A <- aoristic(span[groups == "A", ], step = 200, weight = TRUE)
+  aorist_B <- aoristic(span[groups == "B", ], step = 200, weight = TRUE)
+  expect_identical(aorist_groups[, 1], aorist_A[, 1])
+  expect_identical(aorist_groups[, 2], aorist_B[, 1])
+
   for (i in c(TRUE, FALSE)) {
     gg_groups <- autoplot(aorist_groups, facet = i)
     vdiffr::expect_doppelganger(paste0("aoristic_groups_facet-", i), gg_groups)
   }
-
-  expect_error(aoristic(span, groups = groups[1:10]), "must be of length")
-  expect_error(aoristic(span, groups = "grp"), "does not have component")
-  colnames(span) <- c("A", "B")
-  expect_error(aoristic(span), "does not have component")
 
   ## Rate of change
   roc_groups <- with_seed(12345, roc(aorist_groups))

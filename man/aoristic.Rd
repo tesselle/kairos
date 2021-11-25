@@ -20,7 +20,7 @@ aoristic(x, y, ...)
   groups = NULL
 )
 
-\S4method{aoristic}{list,missing}(x, step = 1, start = NULL, stop = NULL, weight = FALSE, groups = NULL)
+\S4method{aoristic}{list,missing}(x, step = 1, start = NULL, stop = NULL, weight = TRUE, groups = NULL)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} vector. If \code{y} is missing, must be a \code{\link{list}} (or a
@@ -42,8 +42,8 @@ window (in years CE).}
 window (in years CE).}
 
 \item{weight}{A \code{\link{logical}} scalar: should the aoristic sum be weighted by
-the length of periods. Defaults to \code{FALSE} (the aoristic sum
-is the number of elements within a time step).}
+the length of periods (default). If \code{FALSE} the aoristic sum is the number
+of elements within a time block.}
 
 \item{groups}{A \code{\link{factor}} vector in the sense that \code{as.factor(groups)}
 defines the grouping. If \code{x} is a \code{list} (or a \code{data.frame}), \code{groups} can
@@ -106,8 +106,8 @@ aorist_raw <- aoristic(span, step = 50, weight = FALSE)
 plot(aorist_raw)
 
 ## Calculate aoristic sum (weights)
-aorist_weigth <- aoristic(span, step = 50, weight = TRUE)
-plot(aorist_weigth)
+aorist_weighted <- aoristic(span, step = 50, weight = TRUE)
+plot(aorist_weighted)
 
 ## Calculate aoristic sum (weights) by group
 groups <- rep(c("A", "B", "C"), times = c(50, 90, 139))
@@ -115,12 +115,12 @@ aorist_groups <- aoristic(span, step = 50, weight = TRUE, groups = groups)
 plot(aorist_groups)
 
 ## Rate of change
-roc_weigth <- roc(aorist_weigth, n = 30)
-plot(roc_weigth)
+roc_weighted <- roc(aorist_weighted, n = 30)
+plot(roc_weighted)
 
 ## Rate of change by group
 roc_groups <- roc(aorist_groups, n = 30)
-plot(roc_groups, facet = FALSE)
+plot(roc_groups)
 }
 \references{
 Crema, E. R. (2012). Modelling Temporal Uncertainty in Archaeological
@@ -138,6 +138,11 @@ Müller-Scheeßel, N. & Hinz, M. (2018). \emph{Aoristic Research in R: Correctin
 Temporal Categorizations in Archaeology}. Presented at the Human History and
 Digital Future (CAA 2018), Tubingen, March 21.
 \url{https://www.youtube.com/watch?v=bUBukex30QI}.
+
+Palmisano, A., Bevan, A. & Shennan, S. (2017). Comparing Archaeological
+Proxies for Long-Term Population Patterns: An Example from Central Italy.
+\emph{Journal of Archaeological Science}, 87: 59-72.
+\doi{10.1016/j.jas.2017.10.001}.
 
 Ratcliffe, J. H. (2000). Aoristic Analysis: The Spatial Interpretation of
 Unspecific Temporal Events. \emph{International Journal of Geographical

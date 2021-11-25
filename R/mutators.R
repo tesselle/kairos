@@ -6,7 +6,13 @@ NULL
 #' @export
 #' @rdname mutators
 #' @aliases get_dates,AoristicSum-method
-setMethod("get_dates", "AoristicSum", function(x) x@dates)
+setMethod("get_dates", "AoristicSum", function(x) {
+  breaks <- x@breaks
+  data.frame(
+    start = utils::head(breaks, -1),
+    end = utils::tail(breaks, -1)
+  )
+})
 
 #' @export
 #' @rdname mutators
@@ -16,7 +22,7 @@ setMethod("get_dates", "EventDate", function(x) x@dates)
 #' @export
 #' @rdname mutators
 #' @aliases get_dates,RateOfChange-method
-setMethod("get_dates", "RateOfChange", function(x) x@blocks)
+setMethod("get_dates", "RateOfChange", function(x) x@breaks)
 
 #' @export
 #' @rdname mutators

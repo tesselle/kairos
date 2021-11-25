@@ -28,35 +28,30 @@ setMethod(
     spl <- split(seq_along(x), f = grp)
     m <- length(spl)
 
-    ## Weighting
-    if (weight) {
-      delta <- abs(y - x)
-      # delta[delta == 0] <- 1 # FIXME: should investigate this
-      z <- step / delta
-    } else {
-      z <- rep(1, n)
-    }
+    ## Set up breaks
+    breaks <- seq(from = start, to = stop, by = step)
+    block_start <- utils::head(breaks, -1)
+    block_end <- utils::tail(breaks, -1)
 
-    dates <- seq(from = start, to = stop, by = step)
-    ao_probs <- array(data = 0, dim = c(n, length(dates), m))
+    blocks <- paste(block_start, block_end, sep = "_")
+    ao_probs <- array(data = 0, dim = c(n, length(blocks), m))
+    dimnames(ao_probs) <- list(NULL, blocks)
 
     ## Aoristic probability
+    span <- abs(y - x)
     for (k in seq_len(m)) {
       s <- spl[[k]]
-      tmp <- vapply(
-        X = dates,
-        FUN = function(x, from, to, weights) {
-          w <- numeric(length(weights))
-          i <- which(from <= x & to >= x)
-          w[i] <- weights[i]
-          w
-        },
-        FUN.VALUE = numeric(n),
-        from = x[s],
-        to = y[s],
-        weights = z
-      )
-      ao_probs[, , k] <- tmp
+      for (j in seq_along(blocks)) {
+        a <- block_start[[j]]
+        b <- block_end[[j]]
+
+        max_start <- pmax(x[s], a)
+        min_end <- pmin(y[s], b)
+        overlap <- (min_end - max_start) / span[s]
+        overlap[overlap <= 0] <- 0
+        if (!weight) overlap[overlap > 0] <- 1
+        ao_probs[s, j, k] <- overlap
+      }
     }
 
     ## Aoristic sum
@@ -71,9 +66,11 @@ setMethod(
       ao_sum,
       from = x,
       to = y,
-      weights = z,
+      step = step,
+      weights = span,
       groups = groups,
-      dates = dates,
+      breaks = breaks,
+      blocks = blocks,
       p = ao_probs
     )
   }
@@ -85,7 +82,7 @@ setMethod(
 setMethod(
   f = "aoristic",
   signature = signature(x = "list", y = "missing"),
-  definition = function(x, step = 1, start = NULL, stop = NULL, weight = FALSE,
+  definition = function(x, step = 1, start = NULL, stop = NULL, weight = TRUE,
                         groups = NULL) {
     ## Validation
     k <- match(c("from", "to"), names(x))
@@ -122,8 +119,9 @@ setMethod(
   signature = signature(object = "AoristicSum"),
   definition = function(object, n = 100) {
     ## Get time span of the blocks
-    dates <- get_dates(object)
-    step <- unique(diff(dates))
+    step <- object@step
+    blocks <- get_dates(object)
+    mid <- utils::head(blocks$end, -1)
 
     ## Get aoristic weights
     w <- get_weights(object)
@@ -134,7 +132,7 @@ setMethod(
     q <- dim(w)[[3]]
 
     ## Monte Carlo simulation
-    roc <- array(data = 0, dim = c(n, p - 1, q))
+    roc <- array(data = 0, dim = c(n, p-1, q))
     for (j in seq_len(q)) {
       sim <- array(data = 0, dim = c(m, p, n))
       for (i in seq_len(m)) {
@@ -153,12 +151,11 @@ setMethod(
     }
 
     dimnames(roc)[[3]] <- dimnames(w)[[3]]
-    blocks <- paste(utils::head(dates, -1), utils::tail(dates, -1), sep = "_")
 
     .RateOfChange(
       roc / step,
       replicates = n,
-      blocks = blocks,
+      breaks = mid,
       groups = unique(get_groups(object))
     )
   }
@@ -171,6 +168,7 @@ setMethod(
 autoplot.AoristicSum <- function(object, ..., facet = TRUE) {
   ## Prepare data
   data <- prepare_aoristic(object)
+  bin_width <- object@step * 0.9
 
   ## ggplot
   if (facet) {
@@ -190,7 +188,7 @@ autoplot.AoristicSum <- function(object, ..., facet = TRUE) {
   }
 
   ggplot2::ggplot(data = data, mapping = aes_plot) +
-    ggplot2::geom_col() +
+    ggplot2::geom_col(position = "dodge", width = bin_width) +
     ggplot2::scale_x_continuous(name = "Year CE") +
     ggplot2::scale_y_continuous(name = "Aoristic sum") +
     facet
@@ -218,7 +216,7 @@ setMethod("plot", c(x = "AoristicSum", y = "missing"), plot.AoristicSum)
 ## RateOfChange ----------------------------------------------------------------
 #' @export
 #' @method autoplot RateOfChange
-autoplot.RateOfChange <- function(object, ..., facet = TRUE) {
+autoplot.RateOfChange <- function(object, ..., level = 0.95, facet = TRUE) {
   ## Prepare data
   data <- prepare_roc(object)
 
@@ -232,7 +230,8 @@ autoplot.RateOfChange <- function(object, ..., facet = TRUE) {
     aes_plot <- ggplot2::aes(x = .data$x, y = .data$y)
   } else {
     facet <- NULL
-    aes_plot <- ggplot2::aes(x = .data$x, y = .data$y, colour = .data$group)
+    aes_plot <- ggplot2::aes(x = .data$x, y = .data$y,
+                             fill = .data$group, colour = .data$group)
   }
   if (anyNA(data$group)) {
     facet <- NULL
@@ -241,8 +240,16 @@ autoplot.RateOfChange <- function(object, ..., facet = TRUE) {
 
   ggplot2::ggplot(data = data, mapping = aes_plot) +
     ggplot2::geom_hline(yintercept = 0, linetype = 3) +
-    ggplot2::geom_boxplot() +
-    ggplot2::scale_x_discrete(name = "Year CE") +
+    ggplot2::stat_summary(
+      geom = "ribbon",
+      fun.data = ggplot2::mean_cl_normal, # Needs Hmisc
+      fun.args = list(conf.int = level),
+      alpha = 0.5,
+      colour = NA
+    ) +
+    ggplot2::stat_summary(geom = "line", fun = mean) +
+    ggplot2::stat_summary(geom = "point", fun = mean) +
+    ggplot2::scale_x_continuous(name = "Year CE") +
     ggplot2::scale_y_continuous(name = "Rate of Change") +
     facet
 }
@@ -254,12 +261,9 @@ setMethod("autoplot", "RateOfChange", autoplot.RateOfChange)
 
 #' @export
 #' @method plot RateOfChange
-plot.RateOfChange <- function(x, facet = TRUE, ...) {
-  gg <- autoplot(object = x, facet = facet) +
-    ggplot2::theme_bw() +
-    ggplot2::theme(
-      axis.text.x = ggplot2::element_text(angle = 90, hjust = 1, vjust = 0.5)
-    )
+plot.RateOfChange <- function(x, level = 0.95, facet = TRUE, ...) {
+  gg <- autoplot(object = x, level = level, facet = facet) +
+    ggplot2::theme_bw()
   print(gg)
   invisible(x)
 }
@@ -276,12 +280,12 @@ setMethod("plot", c(x = "RateOfChange", y = "missing"), plot.RateOfChange)
 
 prepare_aoristic <- function(object) {
   aoristic <- object
-  dates <- get_dates(object)
+  blocks <- get_dates(object)
   groups <- get_groups(object)
 
   grp <- unique(groups)
   data.frame(
-    x = dates,
+    x = rowMeans(blocks),
     y = as.vector(aoristic),
     group = rep(grp, each = nrow(aoristic))
   )
@@ -289,8 +293,7 @@ prepare_aoristic <- function(object) {
 
 prepare_roc <- function(object) {
   rates <- object
-  blocks <- get_dates(object)
-  blocks <- factor(blocks, levels = unique(blocks))
+  breaks <- get_dates(object)
 
   m <- dim(rates)[[1]]
   p <- dim(rates)[[2]]
@@ -301,7 +304,7 @@ prepare_roc <- function(object) {
   if (is.null(grp)) grp <- rep(NA_character_, q)
 
   data.frame(
-    x = rep(rep(blocks, each = m), q),
+    x = rep(rep(breaks, each = m), q),
     y = as.vector(rates),
     group = rep(grp, each = n)
   )
