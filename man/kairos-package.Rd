@@ -15,7 +15,7 @@ A toolkit for absolute dating and analysis of chronological patterns. This packa
 \tabular{ll}{
 \strong{Package:} \tab kairos \cr
 \strong{Type:} \tab Package \cr
-\strong{Version:} \tab 1.0.0 \cr
+\strong{Version:} \tab 1.0.1 \cr
 \strong{License:} \tab GPL-3 \cr
 }
 }

@@ -1,5 +1,5 @@
 ## Test environments
-* Local R installation: R 4.1.1
+* Local R installation: R 4.1.2
 * Ubuntu 20.04 (on GitHub Actions): R devel, release, oldrel
 * Windows (on GitHub Actions and win-builder): R devel, release, oldrel
 * MacOS (on GitHub Actions): R release
@@ -8,4 +8,5 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new release.
+* CRAN package check warning caused by default.stringsAsFactors() has been fixed.
+* Some links in the documentation point to articles behind paywalls that may return an error.
