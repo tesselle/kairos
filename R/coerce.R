@@ -5,7 +5,7 @@ NULL
 # To data.frame ================================================================
 #' @method as.data.frame MeanDate
 #' @export
-as.data.frame.MeanDate <- function(x, ..., stringsAsFactors = default.stringsAsFactors()) {
+as.data.frame.MeanDate <- function(x, ..., stringsAsFactors = FALSE) {
   data.frame(
     names = names(x),
     dates = as.numeric(x),
@@ -15,7 +15,7 @@ as.data.frame.MeanDate <- function(x, ..., stringsAsFactors = default.stringsAsF
 
 #' @method as.data.frame IncrementTest
 #' @export
-as.data.frame.IncrementTest <- function(x, ..., stringsAsFactors = default.stringsAsFactors()) {
+as.data.frame.IncrementTest <- function(x, ..., stringsAsFactors = FALSE) {
   data.frame(
     t = x@statistic,
     p.value = x@p_value,
