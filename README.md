@@ -9,13 +9,21 @@
 [![codecov](https://codecov.io/gh/tesselle/kairos/branch/master/graph/badge.svg)](https://app.codecov.io/gh/tesselle/kairos)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/kairos/badge)](https://www.codefactor.io/repository/github/tesselle/kairos)
 
-[![r-universe](https://tesselle.r-universe.dev/badges/kairos)](https://tesselle.r-universe.dev)
-[![CRAN
-Version](http://www.r-pkg.org/badges/version/kairos)](https://cran.r-project.org/package=kairos)
-[![CRAN
-checks](https://cranchecks.info/badges/worst/kairos)](https://cran.r-project.org/web/checks/check_results_kairos.html)
-[![CRAN
-Downloads](http://cranlogs.r-pkg.org/badges/kairos)](https://cran.r-project.org/package=kairos)
+<a href="https://tesselle.r-universe.dev" class="pkgdown-devel"><img
+src="https://tesselle.r-universe.dev/badges/kairos"
+alt="r-universe" /></a>
+<a href="https://cran.r-project.org/package=kairos"
+class="pkgdown-release"><img
+src="http://www.r-pkg.org/badges/version/kairos"
+alt="CRAN Version" /></a> <a
+href="https://cran.r-project.org/web/checks/check_results_kairos.html"
+class="pkgdown-release"><img
+src="https://cranchecks.info/badges/worst/kairos"
+alt="CRAN checks" /></a>
+<a href="https://cran.r-project.org/package=kairos"
+class="pkgdown-release"><img
+src="http://cranlogs.r-pkg.org/badges/kairos"
+alt="CRAN Downloads" /></a>
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively

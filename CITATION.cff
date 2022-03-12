@@ -8,7 +8,7 @@ message: 'To cite package "kairos" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
-version: 1.0.1
+version: 1.0.1.9000
 abstract: A toolkit for absolute dating and analysis of chronological patterns. This
   package includes functions for chronological modeling and dating of archaeological
   assemblages from count data. It allows to compute time point estimates and density
@@ -28,11 +28,12 @@ preferred-citation:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  version: 1.0.1
+  version: 1.0.1.9000
   abstract: A toolkit for absolute dating and analysis of chronological patterns.
     This package includes functions for chronological modeling and dating of archaeological
     assemblages from count data. It allows to compute time point estimates and density
     estimates of the occupation and duration of an archaeological site.
+  repository: https://CRAN.R-project.org/package=kairos
   repository-code: https://github.com/tesselle/kairos
   url: https://packages.tesselle.org/kairos/
   contact:
@@ -48,6 +49,7 @@ preferred-citation:
   - r-package
   license: GPL-3.0-or-later
   year: '2022'
+repository: https://CRAN.R-project.org/package=kairos
 repository-code: https://github.com/tesselle/kairos
 url: https://packages.tesselle.org/kairos/
 contact:
@@ -314,3 +316,6 @@ identifiers:
 - description: The versioned DOI for version 1.0.0.
   type: doi
   value: 10.5281/zenodo.5653897
+- description: The versioned DOI for version 1.0.1.
+  type: doi
+  value: 10.5281/zenodo.6349207

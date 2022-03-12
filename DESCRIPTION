@@ -1,6 +1,6 @@
 Package: kairos
 Title: Analysis of Chronological Patterns from Archaeological Count Data
-Version: 1.0.1
+Version: 1.0.1.9000
 Authors@R: 
     c(person(given = "Nicolas",
              family = "Frerebeau",
