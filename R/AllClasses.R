@@ -154,6 +154,9 @@ NULL
 #' @slot parameter An [`integer`] giving the degrees of freedom for the
 #'  t-statistic.
 #' @slot p_value A [`numeric`] vector giving the the p-value for the test.
+#' @param x An object from which to extract element(s) or in which to replace
+#'  element(s).
+#' @param i A [`character`] string specifying elements to extract.
 #' @section Coerce:
 #'  In the code snippets below, `x` is an `IncrementTest` object.
 #'  \describe{
@@ -171,5 +174,33 @@ NULL
     statistic = "numeric",
     parameter = "integer",
     p_value = "numeric"
+  )
+)
+
+# PermutationOrder =============================================================
+#' Permutation Order
+#'
+#' An S4 class to represent a permutation order.
+#' @slot rows An [`integer`] vector giving the rows permutation.
+#' @slot columns An [`integer`] vector giving the columns permutation.
+#' @slot method A [`character`] string indicating the seriation method used.
+#' @param x An object from which to extract element(s) or in which to replace
+#'  element(s).
+#' @param i A [`character`] string specifying elements to extract.
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @aliases PermutationOrder-class
+.PermutationOrder <- setClass(
+  Class = "PermutationOrder",
+  slots = c(
+    rows = "integer",
+    columns = "integer",
+    method = "character"
+  ),
+  prototype = list(
+    rows = integer(0),
+    columns = integer(0),
+    method = "none"
   )
 )

@@ -36,6 +36,7 @@ Other classes:
 \code{\link{CountApportion-class}},
 \code{\link{EventDate-class}},
 \code{\link{IncrementTest-class}},
+\code{\link{PermutationOrder-class}},
 \code{\link{RateOfChange-class}}
 }
 \author{

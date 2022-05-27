@@ -63,3 +63,7 @@ arkhe::`set_taq<-`
 #' @importFrom arkhe CountMatrix
 #' @export
 arkhe::CountMatrix
+
+#' @importFrom arkhe IncidenceMatrix
+#' @export
+arkhe::IncidenceMatrix

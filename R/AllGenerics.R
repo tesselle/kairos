@@ -45,24 +45,6 @@ setGeneric(
   def = function(x) standardGeneric("get_weights")
 )
 
-## Subset ----------------------------------------------------------------------
-#' Extract or Replace Parts of an Object
-#'
-#' Operators acting on objects to extract or replace parts.
-#' @param x An object from which to extract element(s) or in which to replace
-#'  element(s).
-#' @param i A [`character`] string specifying elements to extract.
-#'  Any unambiguous substring can be given (see details).
-#' @return
-#'  A subsetted object.
-# @example inst/examples/ex-mutators.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family mutators
-#' @name subset
-#' @rdname subset
-NULL
-
 # Dating Methods ===============================================================
 ## Mean Ceramic Date -----------------------------------------------------------
 #' Mean Ceramic Date
@@ -602,3 +584,143 @@ NULL
 #' @name plot_fit
 #' @rdname plot_fit
 NULL
+
+# Seriation Methods ============================================================
+#' Matrix Seriation
+#'
+#' @description
+#'  * `seriate_*()` computes a permutation order for rows and/or columns.
+#'  * `permute()` rearranges a data matrix according to a permutation order.
+#'  * `get_order()` returns the seriation order for rows and columns.
+#' @param object,x An \eqn{m \times p}{m x p} data matrix (typically an object
+#'  of class [CountMatrix-class] or [IncidenceMatrix-class].
+#' @param order A [PermutationOrder-class] object giving the permutation
+#'  order for rows and columns.
+#' @param EPPM A [`logical`] scalar: should the seriation be computed on EPPM
+#'  instead of raw data?
+#' @param margin A [`numeric`] vector giving the subscripts which the
+#'  rearrangement will be applied over: `1` indicates rows, `2` indicates
+#'  columns, `c(1, 2)` indicates rows then columns, `c(2, 1)` indicates columns
+#'  then rows.
+#' @param axes An [`integer`] vector giving the subscripts of the CA axes to be
+#'  used.
+#' @param stop An [`integer`] giving the stopping rule (i.e. maximum number of
+#'  iterations) to avoid infinite loop.
+#' @param ... Further arguments to be passed to internal methods.
+#' @section Seriation:
+#'  The matrix seriation problem in archaeology is based on three conditions
+#'  and two assumptions, which Dunell (1970) summarizes as follows.
+#'
+#'  The homogeneity conditions state that all the groups included in a
+#'  seriation must:
+#'  \enumerate{
+#'   \item{Be of comparable duration.}
+#'   \item{Belong to the same cultural tradition.}
+#'   \item{Come from the same local area.}
+#'  }
+#'
+#'  The mathematical assumptions state that the distribution of any historical
+#'  or temporal class:
+#'  \enumerate{
+#'   \item{Is continuous through time.}
+#'   \item{Exhibits the form of a unimodal curve.}
+#'  }
+#'  Theses assumptions create a distributional model and ordering is
+#'  accomplished by arranging the matrix so that the class distributions
+#'  approximate the required pattern. The resulting order is inferred
+#'  to be chronological.
+#'
+#'  The following seriation methods are available:
+#'  \describe{
+#'   \item{`seriate_average()`}{Correspondence analysis-based seriation
+#'   (average ranking). Correspondence analysis (CA) is an effective method for
+#'   the seriation of archaeological assemblages. The order of the rows and
+#'   columns is given by the coordinates along one dimension of the CA space,
+#'   assumed to account for temporal variation. The direction of temporal change
+#'   within the correspondence analysis space is arbitrary: additional
+#'   information is needed to determine the actual order in time.}
+#'   \item{`seriate_rank()`}{Reciprocal ranking seriation. These procedures
+#'   iteratively rearrange rows and/or columns according to their weighted rank
+#'   in the data matrix until convergence.
+#'   Note that this procedure could enter into an infinite loop.
+#'   If no convergence is reached before the maximum number of iterations, it
+#'   stops with a warning.}
+#'  }
+#' @return
+#'  * `seriate_*()` returns a [PermutationOrder-class] object.
+#'  * `permute()` returns either a permuted [CountMatrix-class] or an
+#'    [IncidenceMatrix-class] (the same as `object`).
+#' @note
+#'  Refining method can lead to much longer execution times and larger output
+#'  objects.
+#' @references
+#'  Desachy, B. (2004). Le sériographe EPPM: un outil informatisé de sériation
+#'  graphique pour tableaux de comptages. *Revue archéologique de Picardie*,
+#'  3(1), 39-56. \doi{10.3406/pica.2004.2396}.
+#'
+#'  Dunnell, R. C. (1970). Seriation Method and Its Evaluation. *American
+#'  Antiquity*, 35(03), 305-319. \doi{10.2307/278341}.
+#'
+#'  Ihm, P. (2005). A Contribution to the History of Seriation in Archaeology.
+#'  In C. Weihs & W. Gaul (Eds.), *Classification: The Ubiquitous
+#'  Challenge*. Berlin Heidelberg: Springer, p. 307-316.
+#'  \doi{10.1007/3-540-28084-7_34}.
+#'
+#'  Peeples, M. A., & Schachner, G. (2012). Refining correspondence
+#'  analysis-based ceramic seriation of regional data sets. *Journal of
+#'  Archaeological Science*, 39(8), 2818-2827.
+#'  \doi{10.1016/j.jas.2012.04.040}.
+#' @seealso [dimensio::ca()]
+#' @example inst/examples/ex-seriation.R
+#' @author N. Frerebeau
+#' @family seriation methods
+#' @docType methods
+#' @name seriation
+#' @rdname seriation
+NULL
+
+#' @rdname seriation
+#' @aliases get_order-method
+setGeneric(
+  name = "get_order",
+  def = function(x) standardGeneric("get_order")
+)
+
+#' @rdname seriation
+#' @aliases seriate_average-method
+setGeneric(
+  name = "seriate_average",
+  def = function(object, ...) standardGeneric("seriate_average"),
+  valueClass = "PermutationOrder"
+)
+
+#' @rdname seriation
+#' @aliases seriate_rank-method
+setGeneric(
+  name = "seriate_rank",
+  def = function(object, ...) standardGeneric("seriate_rank"),
+  valueClass = "PermutationOrder"
+)
+
+# @rdname seriation
+# @aliases seriate_constrain-method
+# setGeneric(
+#   name = "seriate_constrain",
+#   def = function(object, constrain, ...) standardGeneric("seriate_constrain"),
+#   valueClass = "PermutationOrder"
+# )
+
+# @rdname seriation
+# @aliases seriate_idds-method
+# setGeneric(
+#   name = "seriate_idds",
+#   def = function(object, ...) standardGeneric("seriate_idds"),
+#   valueClass = "PermutationOrder"
+# )
+
+#' @rdname seriation
+#' @aliases permute-method
+setGeneric(
+  name = "permute",
+  def = function(object, order, ...) standardGeneric("permute")
+)

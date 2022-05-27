@@ -7,12 +7,15 @@ template:
       creator: "@nfrerebeau"
 
 reference:
-- title: Dating
+- title: Dating Methods
   contents:
   - has_concept("dating methods")
 - title: Chronological Patterns
   contents:
   - has_concept("chronological analysis")
+- title: Seriation Methods
+  contents:
+  - has_concept("seriation methods")
 - title: Visualization
   contents:
   - has_concept("plotting methods")
@@ -22,3 +25,13 @@ reference:
 - title: Getters and Setters
   contents:
   - has_concept("mutators")
+
+navbar:
+  components:
+    articles:
+      text: Articles
+      menu:
+      - text: Seriation Methods
+        href: articles/seriation.html
+      - text: Bibliography
+        href: articles/bibliography.html

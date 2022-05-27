@@ -52,10 +52,6 @@ assigned.
 \description{
 Getters and setters to retrieve or set parts of an object.
 }
-\seealso{
-Other mutators: 
-\code{\link{subset}()}
-}
 \author{
 N. Frerebeau
 }

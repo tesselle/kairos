@@ -50,8 +50,10 @@ Imports:
 Suggests:
     covr,
     folio,
+    khroma,
     knitr,
     rmarkdown,
+    tabula,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.0)
 VignetteBuilder: 
@@ -59,7 +61,7 @@ VignetteBuilder:
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
@@ -75,6 +77,9 @@ Collate:
     'mutators.R'
     'plot.R'
     'reexport.R'
+    'seriate_average.R'
+    'seriate_permute.R'
+    'seriate_rank.R'
     'subset.R'
     'utilities.R'
     'validate.R'
