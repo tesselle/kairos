@@ -4,20 +4,22 @@
 \name{fit}
 \alias{fit}
 \alias{fit-method}
-\alias{fit,CountMatrix,missing-method}
-\alias{fit,CountMatrix,numeric-method}
+\alias{fit,data.frame,numeric-method}
+\alias{fit,matrix,numeric-method}
 \title{Frequency Increment Test}
 \usage{
 fit(object, dates, ...)
 
-\S4method{fit}{CountMatrix,missing}(object)
+\S4method{fit}{data.frame,numeric}(object, dates)
 
-\S4method{fit}{CountMatrix,numeric}(object, dates)
+\S4method{fit}{matrix,numeric}(object, dates)
 }
 \arguments{
-\item{object}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} object.}
+\item{object}{An \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or a
+\code{\link{data.frame}} of count data (absolute frequencies).}
 
-\item{dates}{A \code{\link{numeric}} vector of dates.}
+\item{dates}{A \code{\link{numeric}} vector of dates expressed in CE years (BCE years
+must be given as negative numbers).}
 
 \item{...}{Currently not used.}
 }
@@ -35,17 +37,16 @@ significantly from zero.
 \examples{
 data("merzbach", package = "folio")
 
-## Coerce the merzbach dataset to a count matrix
 ## Keep only decoration types that have a maximum frequency of at least 50
 keep <- apply(X = merzbach, MARGIN = 2, FUN = function(x) max(x) >= 50)
-counts <- as_count(merzbach[, keep])
+counts <- merzbach[, keep]
 
 ## Group by phase
 ## We use the row names as time coordinates (roman numerals)
-set_dates(counts) <- as.numeric(utils::as.roman(rownames(counts)))
+dates <- as.numeric(utils::as.roman(rownames(counts)))
 
 ## Frequency Increment Test
-freq <- fit(counts)
+freq <- fit(counts, dates)
 
 ## Plot time vs abundance and highlight selection
 plot(freq)

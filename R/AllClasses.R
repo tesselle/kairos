@@ -197,10 +197,5 @@ NULL
     rows = "integer",
     columns = "integer",
     method = "character"
-  ),
-  prototype = list(
-    rows = integer(0),
-    columns = integer(0),
-    method = "none"
   )
 )

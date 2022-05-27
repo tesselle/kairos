@@ -1,7 +1,6 @@
 test_that("Date Model", {
   skip_if_not_installed("folio")
   data("zuni", package = "folio")
-  counts <- arkhe::as_count(zuni)
 
   ## Set dates
   zuni_dates <- c(
@@ -11,7 +10,7 @@ test_that("Date Model", {
     LZ0578 = 1180, LZ0227 = 1104, LZ0610 = 1074
   )
 
-  model <- event(counts, zuni_dates, cutoff = 90)
+  model <- event(zuni, zuni_dates, cutoff = 90)
 
   event <- predict_event(model)
   expect_snapshot(event)
@@ -20,12 +19,11 @@ test_that("Date Model", {
   expect_snapshot(acc)
 
   # Errors
-  expect_error(event(counts, zuni_dates, cutoff = 10), "below 50%")
+  expect_error(event(zuni, zuni_dates, cutoff = 10), "below 50%")
 })
 test_that("Event Date", {
   skip_if_not_installed("folio")
   data("zuni", package = "folio")
-  counts <- arkhe::as_count(zuni)
 
   ## Set dates
   zuni_dates <- c(
@@ -35,7 +33,7 @@ test_that("Event Date", {
     LZ0578 = 1180, LZ0227 = 1104, LZ0610 = 1074
   )
 
-  model <- event(counts, zuni_dates, cutoff = 90)
+  model <- event(zuni, zuni_dates, cutoff = 90)
 
   ## Bootstrap
   boot <- with_seed(12345, bootstrap(model, n = 5))

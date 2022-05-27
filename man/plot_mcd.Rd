@@ -36,7 +36,6 @@ MCD Plot
 ## Mean Ceramic Date
 ## Coerce the zuni dataset to an abundance (count) matrix
 data("zuni", package = "folio")
-counts <- as_count(zuni)
 
 ## Set the start and end dates for each ceramic type
 dates <- list(
@@ -52,7 +51,7 @@ dates <- list(
 mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 
 ## Calculate MCD
-mc_dates <- mcd(counts, dates = mid)
+mc_dates <- mcd(zuni, dates = mid)
 head(mc_dates)
 
 ## Plot

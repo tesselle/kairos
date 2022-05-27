@@ -4,11 +4,25 @@
 \name{apportion}
 \alias{apportion}
 \alias{apportion-method}
+\alias{apportion,data.frame-method}
 \alias{apportion,matrix-method}
-\alias{apportion,CountMatrix-method}
 \title{Chronological Apportioning}
 \usage{
 apportion(object, ...)
+
+\S4method{apportion}{data.frame}(
+  object,
+  s0,
+  s1,
+  t0,
+  t1,
+  from = min(s0),
+  to = max(s1),
+  step = 25,
+  method = c("uniform", "truncated"),
+  z = 2,
+  progress = getOption("kairos.progress")
+)
 
 \S4method{apportion}{matrix}(
   object,
@@ -23,35 +37,24 @@ apportion(object, ...)
   z = 2,
   progress = getOption("kairos.progress")
 )
-
-\S4method{apportion}{CountMatrix}(
-  object,
-  t0,
-  t1,
-  from = NULL,
-  to = NULL,
-  step = 25,
-  method = c("uniform", "truncated"),
-  z = 2,
-  progress = getOption("kairos.progress")
-)
 }
 \arguments{
-\item{object}{An \eqn{m \times p}{m x p} \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} object.}
+\item{object}{An \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or a
+\code{\link{data.frame}} of count data (absolute frequencies).}
 
 \item{...}{Currently not used.}
 
 \item{s0}{A length-\eqn{m} \code{\link{numeric}} vector giving the site beginning dates
-(in years CE).}
+expressed in CE years (BCE years must be given as negative numbers).}
 
 \item{s1}{A length-\eqn{m} \code{\link{numeric}} vector giving the site end dates
-(in years CE).}
+expressed in CE years (BCE years must be given as negative numbers).}
 
 \item{t0}{A length-\eqn{p} \code{\link{numeric}} vector giving the type beginning dates
-(in years CE).}
+expressed in CE years (BCE years must be given as negative numbers).}
 
 \item{t1}{A length-\eqn{p} \code{\link{numeric}} vector giving the type end dates
-(in years CE).}
+expressed in CE years (BCE years must be given as negative numbers).}
 
 \item{from}{A length-one \code{\link{numeric}} vector giving the beginning of the
 period of interest (in years CE).}

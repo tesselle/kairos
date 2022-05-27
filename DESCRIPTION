@@ -53,7 +53,6 @@ Suggests:
     khroma,
     knitr,
     rmarkdown,
-    tabula,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.0)
 VignetteBuilder: 
@@ -80,6 +79,7 @@ Collate:
     'seriate_average.R'
     'seriate_permute.R'
     'seriate_rank.R'
+    'show.R'
     'subset.R'
     'utilities.R'
     'validate.R'

@@ -464,7 +464,6 @@
       [16] 1252 1277 1290
       
       Slot "weights":
-      <CountMatrix: 420 x 18>
               LINO KIAT RED GALL ESC PUBW RES TULA PINE PUBR WING WIPO   SJ LSJ SPR
       LZ1105     0    0   0    0   0    1   1    2    0    0    3    1    0   0   0
       LZ1103     4    0   0    0   2   10   2    3    0    1    0    0   11   2   1

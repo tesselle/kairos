@@ -4,22 +4,22 @@ NULL
 
 #' @export
 #' @rdname fit
-#' @aliases fit,CountMatrix,missing-method
+#' @aliases fit,data.frame,numeric-method
 setMethod(
   f = "fit",
-  signature = signature(object = "CountMatrix", dates = "missing"),
-  definition = function(object) {
-    dates <- get_dates(object)
-    methods::callGeneric(object, dates)
+  signature = signature(object = "data.frame", dates = "numeric"),
+  definition = function(object, dates) {
+    object <- data.matrix(object)
+    methods::callGeneric(object, dates = dates)
   }
 )
 
 #' @export
 #' @rdname fit
-#' @aliases fit,CountMatrix,numeric-method
+#' @aliases fit,matrix,numeric-method
 setMethod(
   f = "fit",
-  signature = signature(object = "CountMatrix", dates = "numeric"),
+  signature = signature(object = "matrix", dates = "numeric"),
   definition = function(object, dates) {
     ## Validation
     arkhe::assert_length(dates, nrow(object))

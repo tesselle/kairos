@@ -10,6 +10,8 @@ setMethod(
   f = "mcd",
   signature = signature(object = "numeric", dates = "numeric"),
   definition = function(object, dates, na.rm = FALSE) {
+    ## Validation
+    arkhe::assert_length(dates, length(object))
     x <- stats::weighted.mean(x = dates, w = object, na.rm = na.rm)
     round(x, digits = getOption("kairos.precision"))
   }
@@ -17,14 +19,23 @@ setMethod(
 
 #' @export
 #' @rdname mcd
-#' @aliases mcd,CountMatrix,numeric-method
+#' @aliases mcd,data.frame,numeric-method
 setMethod(
   f = "mcd",
-  signature = signature(object = "CountMatrix", dates = "numeric"),
-  definition = function(object, dates) {
-    ## Validation
-    arkhe::assert_length(dates, ncol(object))
+  signature = signature(object = "data.frame", dates = "numeric"),
+  definition = function(object, dates, na.rm = FALSE) {
+    object <- data.matrix(object)
+    methods::callGeneric(object, dates = dates)
+  }
+)
 
+#' @export
+#' @rdname mcd
+#' @aliases mcd,matrix,numeric-method
+setMethod(
+  f = "mcd",
+  signature = signature(object = "matrix", dates = "numeric"),
+  definition = function(object, dates) {
     ## Calculate MCD
     mcd_dates <- apply(
       X = object,

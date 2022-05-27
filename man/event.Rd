@@ -9,11 +9,12 @@
 \alias{predict_event-method}
 \alias{predict_accumulation}
 \alias{predict_accumulation-method}
-\alias{event,CountMatrix,numeric-method}
+\alias{event,data.frame,numeric-method}
+\alias{event,matrix,numeric-method}
 \alias{predict_event,EventDate,missing-method}
-\alias{predict_event,EventDate,CountMatrix-method}
+\alias{predict_event,EventDate,matrix-method}
 \alias{predict_accumulation,EventDate,missing-method}
-\alias{predict_accumulation,EventDate,CountMatrix-method}
+\alias{predict_accumulation,EventDate,matrix-method}
 \alias{jackknife,EventDate-method}
 \alias{bootstrap,EventDate-method}
 \title{Event and Accumulation Dates}
@@ -24,15 +25,17 @@ predict_event(object, data, ...)
 
 predict_accumulation(object, data, ...)
 
-\S4method{event}{CountMatrix,numeric}(object, dates, cutoff = 90, level = 0.95, ...)
+\S4method{event}{data.frame,numeric}(object, dates, cutoff = 90, level = 0.95, ...)
+
+\S4method{event}{matrix,numeric}(object, dates, cutoff = 90, level = 0.95, ...)
 
 \S4method{predict_event}{EventDate,missing}(object, margin = 1, level = 0.95)
 
-\S4method{predict_event}{EventDate,CountMatrix}(object, data, margin = 1, level = 0.95)
+\S4method{predict_event}{EventDate,matrix}(object, data, margin = 1, level = 0.95)
 
 \S4method{predict_accumulation}{EventDate,missing}(object)
 
-\S4method{predict_accumulation}{EventDate,CountMatrix}(object, data)
+\S4method{predict_accumulation}{EventDate,matrix}(object, data)
 
 \S4method{jackknife}{EventDate}(object, level = 0.95, progress = getOption("kairos.progress"), ...)
 
@@ -46,15 +49,17 @@ predict_accumulation(object, data, ...)
 )
 }
 \arguments{
-\item{object}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} or a \linkS4class{EventDate} object.}
+\item{object}{An \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or a
+\code{\link{data.frame}} of count data (absolute frequencies).}
 
-\item{dates}{A \code{\link{numeric}} vector of dates. If named, the names must match
+\item{dates}{A \code{\link{numeric}} vector of dates expressed in CE years (BCE years
+must be given as negative numbers). If named, the names must match
 the row names of \code{object}.}
 
 \item{...}{Further arguments to be passed to internal methods.}
 
-\item{data}{A \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} object for which to predict event
-and accumulation dates.}
+\item{data}{A \code{numeric} \code{\link{matrix}} or a \code{\link{data.frame}} of count data
+(absolute frequencies)for which to predict event and accumulation dates.}
 
 \item{cutoff}{An \code{\link{integer}} giving the cumulative percentage of variance
 used to select CA factorial components for linear model fitting (see
@@ -110,6 +115,10 @@ This method relies on strong archaeological and statistical assumptions
 (see \code{vignette("kairos")}).
 }
 \note{
+All results are rounded to zero decimal places (sub-annual precision does
+not make sense in most situations). You can change this behavior with
+\code{options(kairos.precision = x)} (for \code{x} decimal places).
+
 Bellanger \emph{et al.} did not publish the data supporting their demonstration:
 no replication of their results is possible. This implementation must be
 considered \strong{experimental} and subject to major changes in a future

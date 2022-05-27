@@ -4,10 +4,21 @@ NULL
 
 #' @export
 #' @rdname event
-#' @aliases event,CountMatrix,numeric-method
+#' @aliases event,data.frame,numeric-method
 setMethod(
   f = "event",
-  signature = signature(object = "CountMatrix", dates = "numeric"),
+  signature = signature(object = "data.frame", dates = "numeric"),
+  definition = function(object, dates, cutoff = 90, level = 0.95, ...) {
+    object <- data.matrix(object)
+    methods::callGeneric(object, dates, cutoff = cutoff, level = level, ...)
+  }
+)
+#' @export
+#' @rdname event
+#' @aliases event,matrix,numeric-method
+setMethod(
+  f = "event",
+  signature = signature(object = "matrix", dates = "numeric"),
   definition = function(object, dates, cutoff = 90, level = 0.95, ...) {
     ## Validation
     cutoff <- as.integer(cutoff)
@@ -47,18 +58,16 @@ setMethod(
   signature = signature(object = "EventDate", data = "missing"),
   definition = function(object, margin = 1, level = 0.95) {
     data <- object@data
-    data <- arkhe::as_count(data)
-    methods::callGeneric(object = object, data = data, margin = margin,
-                         level = level)
+    methods::callGeneric(object, data = data, margin = margin, level = level)
   }
 )
 
 #' @export
 #' @rdname event
-#' @aliases predict_event,EventDate,CountMatrix-method
+#' @aliases predict_event,EventDate,matrix-method
 setMethod(
   f = "predict_event",
-  signature = signature(object = "EventDate", data = "CountMatrix"),
+  signature = signature(object = "EventDate", data = "matrix"),
   definition = function(object, data, margin = 1, level = 0.95) {
     ## Correspondance analysis
     ca_coord <- dimensio::predict(object, data, margin = margin)
@@ -83,17 +92,16 @@ setMethod(
   signature = signature(object = "EventDate", data = "missing"),
   definition = function(object) {
     data <- object@data
-    data <- arkhe::as_count(data)
-    methods::callGeneric(object = object, data = data)
+    methods::callGeneric(object, data = data)
   }
 )
 
 #' @export
 #' @rdname event
-#' @aliases predict_accumulation,EventDate,CountMatrix-method
+#' @aliases predict_accumulation,EventDate,matrix-method
 setMethod(
   f = "predict_accumulation",
-  signature = signature(object = "EventDate", data = "CountMatrix"),
+  signature = signature(object = "EventDate", data = "matrix"),
   definition = function(object, data) {
     ## Predict event date
     col_event <- predict_event(object, data, margin = 2)

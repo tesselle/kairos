@@ -4,18 +4,19 @@
 \name{plot_time}
 \alias{plot_time}
 \alias{plot_time-method}
-\alias{plot_time,CountMatrix,missing-method}
-\alias{plot_time,CountMatrix,numeric-method}
+\alias{plot_time,data.frame,numeric-method}
+\alias{plot_time,matrix,numeric-method}
 \title{Abundance vs Time Plot}
 \usage{
 plot_time(object, dates, ...)
 
-\S4method{plot_time}{CountMatrix,missing}(object, facet = FALSE)
+\S4method{plot_time}{data.frame,numeric}(object, dates, facet = FALSE)
 
-\S4method{plot_time}{CountMatrix,numeric}(object, dates, facet = FALSE)
+\S4method{plot_time}{matrix,numeric}(object, dates, facet = FALSE)
 }
 \arguments{
-\item{object}{A \linkS4class{CountMatrix} object.}
+\item{object}{An \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or a
+\code{\link{data.frame}} of count data (absolute frequencies).}
 
 \item{dates}{A \code{\link{numeric}} vector of dates.}
 
@@ -36,15 +37,15 @@ data("merzbach", package = "folio")
 ## Coerce the merzbach dataset to a count matrix
 ## Keep only decoration types that have a maximum frequency of at least 50
 keep <- apply(X = merzbach, MARGIN = 2, FUN = function(x) max(x) >= 50)
-counts <- as_count(merzbach[, keep])
+counts <- merzbach[, keep]
 
 ## Set dates
 ## We use the row names as time coordinates (roman numerals)
-set_dates(counts) <- as.numeric(utils::as.roman(rownames(counts)))
+dates <- as.numeric(utils::as.roman(rownames(counts)))
 
 ## Plot abundance vs time
-plot_time(counts)
-plot_time(counts, facet = TRUE)
+plot_time(counts, dates)
+plot_time(counts, dates, facet = TRUE)
 }
 \seealso{
 Other plotting methods: 

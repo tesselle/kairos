@@ -9,7 +9,6 @@ setGeneric("autoplot", package = "ggplot2")
 setGeneric("bootstrap", package = "dimensio")
 setGeneric("jackknife", package = "dimensio")
 setGeneric("get_dates", package = "arkhe")
-setGeneric("get_groups", package = "arkhe")
 
 # Mutators =====================================================================
 ## Extract ---------------------------------------------------------------------
@@ -32,6 +31,13 @@ setGeneric("get_groups", package = "arkhe")
 NULL
 
 #' @rdname mutators
+#' @aliases get_order-method
+setGeneric(
+  name = "get_order",
+  def = function(x) standardGeneric("get_order")
+)
+
+#' @rdname mutators
 #' @aliases get_model-method
 setGeneric(
   name = "get_model",
@@ -50,9 +56,10 @@ setGeneric(
 #' Mean Ceramic Date
 #'
 #' Estimates the Mean Ceramic Date of an assemblage.
-#' @param object A [`numeric`] vector, a [arkhe::CountMatrix-class] or a
-#'  [MeanDate-class] object.
-#' @param dates A [`numeric`] vector of dates.
+#' @param object A [`numeric`] vector, an \eqn{m \times p}{m x p} `numeric`
+#'  [`matrix`] or a [`data.frame`] of count data (absolute frequencies).
+#' @param dates A [`numeric`] vector of dates expressed in CE years (BCE years
+#'  must be given as negative numbers).
 #' @param na.rm A [`logical`] scalar: should missing values (including `NaN`) be
 #'  removed?
 #' @inheritParams dimensio::bootstrap
@@ -70,6 +77,10 @@ setGeneric(
 #'  assemblage with replacement. MCDs are calculated for each replicates and
 #'  upper and lower boundaries of the confidence interval associated with each
 #'  MCD are then returned.
+#' @note
+#'  All results are rounded to zero decimal places (sub-annual precision does
+#'  not make sense in most situations). You can change this behavior with
+#'  `options(kairos.precision = x)` (for `x` decimal places).
 #' @return
 #'  * `mcd()` returns a single [`numeric`] value or a [MeanDate-class] object.
 #'  * `bootstrap()` and `jackknife()` return a [`data.frame`].
@@ -95,10 +106,12 @@ setGeneric(
 #'  * `event()` fit a date event model.
 #'  * `predict_event()` and `predict_accumulation()` estimates the event and
 #'    accumulation dates of an assemblage.
-#' @param object A [arkhe::CountMatrix-class] or a [EventDate-class] object.
-#' @param data A [arkhe::CountMatrix-class] object for which to predict event
-#'  and accumulation dates.
-#' @param dates A [`numeric`] vector of dates. If named, the names must match
+#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
+#'  [`data.frame`] of count data (absolute frequencies).
+#' @param data A `numeric` [`matrix`] or a [`data.frame`] of count data
+#'  (absolute frequencies)for which to predict event and accumulation dates.
+#' @param dates A [`numeric`] vector of dates expressed in CE years (BCE years
+#'  must be given as negative numbers). If named, the names must match
 #'  the row names of `object`.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param cutoff An [`integer`] giving the cumulative percentage of variance
@@ -159,6 +172,10 @@ setGeneric(
 #'   \item{`Q95`}{Sample quantile to 0.95 probability.}
 #'  }
 #' @note
+#'  All results are rounded to zero decimal places (sub-annual precision does
+#'  not make sense in most situations). You can change this behavior with
+#'  `options(kairos.precision = x)` (for `x` decimal places).
+#'
 #'  Bellanger *et al.* did not publish the data supporting their demonstration:
 #'  no replication of their results is possible. This implementation must be
 #'  considered **experimental** and subject to major changes in a future
@@ -348,15 +365,16 @@ setGeneric(
 ## Apportion -------------------------------------------------------------------
 #' Chronological Apportioning
 #'
-#' @param object An \eqn{m \times p}{m x p} [arkhe::CountMatrix-class] object.
+#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
+#'  [`data.frame`] of count data (absolute frequencies).
 #' @param s0 A length-\eqn{m} [`numeric`] vector giving the site beginning dates
-#'  (in years CE).
+#'  expressed in CE years (BCE years must be given as negative numbers).
 #' @param s1 A length-\eqn{m} [`numeric`] vector giving the site end dates
-#'  (in years CE).
+#'  expressed in CE years (BCE years must be given as negative numbers).
 #' @param t0 A length-\eqn{p} [`numeric`] vector giving the type beginning dates
-#'  (in years CE).
+#'  expressed in CE years (BCE years must be given as negative numbers).
 #' @param t1 A length-\eqn{p} [`numeric`] vector giving the type end dates
-#'  (in years CE).
+#'  expressed in CE years (BCE years must be given as negative numbers).
 #' @param from A length-one [`numeric`] vector giving the beginning of the
 #'  period of interest (in years CE).
 #' @param to A length-one [`numeric`] vector giving the end of the period of
@@ -395,8 +413,10 @@ setGeneric(
 ## Frequency Increment Test ----------------------------------------------------
 #' Frequency Increment Test
 #'
-#' @param object A [arkhe::CountMatrix-class] object.
-#' @param dates A [`numeric`] vector of dates.
+#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
+#'  [`data.frame`] of count data (absolute frequencies).
+#' @param dates A [`numeric`] vector of dates expressed in CE years (BCE years
+#'  must be given as negative numbers).
 #' @param ... Currently not used.
 #' @details
 #'  The Frequency Increment Test (FIT) rejects neutrality if the distribution
@@ -426,11 +446,12 @@ setGeneric(
 )
 
 # Plot =========================================================================
-## CountMatrix -----------------------------------------------------------------
+## matrix ----------------------------------------------------------------------
 #' Abundance vs Time Plot
 #'
 #' Produces an abundance *vs* time diagram.
-#' @param object A [CountMatrix-class] object.
+#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
+#'  [`data.frame`] of count data (absolute frequencies).
 #' @param dates A [`numeric`] vector of dates.
 #' @param facet A [`logical`] scalar: should a matrix of panels defined by
 #'  type/taxon be drawn?
@@ -592,8 +613,8 @@ NULL
 #'  * `seriate_*()` computes a permutation order for rows and/or columns.
 #'  * `permute()` rearranges a data matrix according to a permutation order.
 #'  * `get_order()` returns the seriation order for rows and columns.
-#' @param object,x An \eqn{m \times p}{m x p} data matrix (typically an object
-#'  of class [CountMatrix-class] or [IncidenceMatrix-class].
+#' @param object,x An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
+#'  [`data.frame`] of count data (absolute frequencies).
 #' @param order A [PermutationOrder-class] object giving the permutation
 #'  order for rows and columns.
 #' @param EPPM A [`logical`] scalar: should the seriation be computed on EPPM
@@ -648,11 +669,8 @@ NULL
 #'  }
 #' @return
 #'  * `seriate_*()` returns a [PermutationOrder-class] object.
-#'  * `permute()` returns either a permuted [CountMatrix-class] or an
-#'    [IncidenceMatrix-class] (the same as `object`).
-#' @note
-#'  Refining method can lead to much longer execution times and larger output
-#'  objects.
+#'  * `permute()` returns either a permuted `matrix` or a permuted `data.frame`
+#'    (the same as `object`).
 #' @references
 #'  Desachy, B. (2004). Le sériographe EPPM: un outil informatisé de sériation
 #'  graphique pour tableaux de comptages. *Revue archéologique de Picardie*,
@@ -678,13 +696,6 @@ NULL
 #' @name seriation
 #' @rdname seriation
 NULL
-
-#' @rdname seriation
-#' @aliases get_order-method
-setGeneric(
-  name = "get_order",
-  def = function(x) standardGeneric("get_order")
-)
 
 #' @rdname seriation
 #' @aliases seriate_average-method

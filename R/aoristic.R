@@ -156,7 +156,7 @@ setMethod(
       roc / step,
       replicates = n,
       breaks = mid,
-      groups = unique(get_groups(object))
+      groups = unique(object@groups)
     )
   }
 )
@@ -281,7 +281,7 @@ setMethod("plot", c(x = "RateOfChange", y = "missing"), plot.RateOfChange)
 prepare_aoristic <- function(object) {
   aoristic <- object
   blocks <- get_dates(object)
-  groups <- get_groups(object)
+  groups <- object@groups
 
   grp <- unique(groups)
   data.frame(

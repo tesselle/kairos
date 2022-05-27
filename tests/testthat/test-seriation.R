@@ -1,42 +1,37 @@
 test_that("Reciprocal Ranking - Counts", {
-  skip_on_cran()
   skip_if_not_installed("folio")
   data("compiegne", package = "folio")
-  counts <- arkhe::as_count(compiegne)
 
   ## Permute rows
-  indices_row <- seriate_rank(counts, margin = 1)
+  indices_row <- seriate_rank(compiegne, margin = 1)
   exp_row <- c(1, 2, 5, 3, 4)
   expect_equal(indices_row@rows, exp_row)
   expect_equal(indices_row@columns, 1:16)
 
   ## Permute columns
-  indices_col <- seriate_rank(counts, margin = 2)
+  indices_col <- seriate_rank(compiegne, margin = 2)
   exp_col <- c(14, 1, 11, 3, 16, 12, 5, 2, 15, 13, 4, 7, 6, 9, 10, 8)
   expect_equal(indices_col@rows, 1:5)
   expect_equal(indices_col@columns, exp_col)
   expect_type(get_order(indices_col), "list")
 
-  expect_s4_class(permute(counts, indices_col), "CountMatrix")
-  expect_warning(seriate_rank(counts, stop = 1, margin = 2))
+  expect_type(permute(compiegne, indices_col), "list")
+  expect_warning(seriate_rank(compiegne, stop = 1, margin = 2))
 })
 test_that("Reciprocal Ranking on EPPM - Counts", {
-  skip_on_cran()
   skip_if_not_installed("folio")
   data("compiegne", package = "folio")
-  counts <- arkhe::as_count(compiegne)
 
-  indices <- seriate_rank(counts, EPPM = TRUE, margin = 2)
+  indices <- seriate_rank(compiegne, EPPM = TRUE, margin = 2)
 
   expected <- c("N", "A", "C", "K", "P", "L", "B", "E",
                 "I", "M", "D", "G", "O", "J", "F", "H")
   expect_equal(LETTERS[indices@columns], expected)
 })
 test_that("Reciprocal Ranking - Incidence", {
-  skip_on_cran()
   skip_if_not_installed("folio")
   data("compiegne", package = "folio")
-  incid <- arkhe::as_incidence(compiegne)
+  incid <- compiegne > 0
 
   indices <- seriate_rank(incid, margin = c(1, 2))
 
@@ -45,23 +40,21 @@ test_that("Reciprocal Ranking - Incidence", {
   expect_equal(indices@rows, exp_row)
   expect_equal(indices@columns, exp_col)
 
-  expect_s4_class(permute(incid, indices), "IncidenceMatrix")
+  expect_type(permute(incid, indices), "logical")
 })
 test_that("Average Ranking", {
-  skip_on_cran()
   skip_if_not_installed("folio")
   data("compiegne", package = "folio")
-  counts <- arkhe::as_count(compiegne)
+  data("merzbach", package = "folio")
 
-  indices <- seriate_average(counts, margin = c(1, 2))
+  indices <- seriate_average(compiegne, margin = c(1, 2))
 
   exp_row <- c(1, 2, 3, 4, 5)
   exp_col <- c(14, 11, 1, 12, 3, 16, 5, 2, 15, 13, 7, 4, 6, 10, 9, 8)
   expect_equal(indices@rows, exp_row)
   expect_equal(indices@columns, exp_col)
 
-  expect_s4_class(permute(counts, indices), "CountMatrix")
+  expect_type(permute(compiegne, indices), "list")
 
-  counts2 <- arkhe::as_count(merzbach)
-  expect_error(seriate_average(counts2), "Empty columns detected.")
+  expect_error(seriate_average(merzbach), "Empty columns detected.")
 })

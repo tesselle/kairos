@@ -5,7 +5,8 @@
 \alias{mcd}
 \alias{mcd-method}
 \alias{mcd,numeric,numeric-method}
-\alias{mcd,CountMatrix,numeric-method}
+\alias{mcd,data.frame,numeric-method}
+\alias{mcd,matrix,numeric-method}
 \alias{bootstrap,MeanDate-method}
 \alias{jackknife,MeanDate-method}
 \title{Mean Ceramic Date}
@@ -14,7 +15,9 @@ mcd(object, dates, ...)
 
 \S4method{mcd}{numeric,numeric}(object, dates, na.rm = FALSE)
 
-\S4method{mcd}{CountMatrix,numeric}(object, dates)
+\S4method{mcd}{data.frame,numeric}(object, dates, na.rm = FALSE)
+
+\S4method{mcd}{matrix,numeric}(object, dates)
 
 \S4method{bootstrap}{MeanDate}(
   object,
@@ -27,10 +30,11 @@ mcd(object, dates, ...)
 \S4method{jackknife}{MeanDate}(object)
 }
 \arguments{
-\item{object}{A \code{\link{numeric}} vector, a \link[arkhe:CountMatrix-class]{arkhe::CountMatrix} or a
-\linkS4class{MeanDate} object.}
+\item{object}{A \code{\link{numeric}} vector, an \eqn{m \times p}{m x p} \code{numeric}
+\code{\link{matrix}} or a \code{\link{data.frame}} of count data (absolute frequencies).}
 
-\item{dates}{A \code{\link{numeric}} vector of dates.}
+\item{dates}{A \code{\link{numeric}} vector of dates expressed in CE years (BCE years
+must be given as negative numbers).}
 
 \item{...}{Currently not used.}
 
@@ -76,11 +80,15 @@ assemblage with replacement. MCDs are calculated for each replicates and
 upper and lower boundaries of the confidence interval associated with each
 MCD are then returned.
 }
+\note{
+All results are rounded to zero decimal places (sub-annual precision does
+not make sense in most situations). You can change this behavior with
+\code{options(kairos.precision = x)} (for \code{x} decimal places).
+}
 \examples{
 ## Mean Ceramic Date
 ## Coerce the zuni dataset to an abundance (count) matrix
 data("zuni", package = "folio")
-counts <- as_count(zuni)
 
 ## Set the start and end dates for each ceramic type
 dates <- list(
@@ -96,7 +104,7 @@ dates <- list(
 mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 
 ## Calculate MCD
-mc_dates <- mcd(counts, dates = mid)
+mc_dates <- mcd(zuni, dates = mid)
 head(mc_dates)
 
 ## Plot

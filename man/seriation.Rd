@@ -4,8 +4,6 @@
 \docType{methods}
 \name{seriation}
 \alias{seriation}
-\alias{get_order}
-\alias{get_order-method}
 \alias{seriate_average}
 \alias{seriate_average-method}
 \alias{seriate_rank}
@@ -13,16 +11,14 @@
 \alias{permute}
 \alias{permute-method}
 \alias{get_order,PermutationOrder-method}
-\alias{seriate_average,CountMatrix-method}
-\alias{seriate_average,IncidenceMatrix-method}
-\alias{permute,CountMatrix,PermutationOrder-method}
-\alias{permute,IncidenceMatrix,PermutationOrder-method}
-\alias{seriate_rank,CountMatrix-method}
-\alias{seriate_rank,IncidenceMatrix-method}
+\alias{seriate_average,data.frame-method}
+\alias{seriate_average,matrix-method}
+\alias{permute,data.frame,PermutationOrder-method}
+\alias{permute,matrix,PermutationOrder-method}
+\alias{seriate_rank,data.frame-method}
+\alias{seriate_rank,matrix-method}
 \title{Matrix Seriation}
 \usage{
-get_order(x)
-
 seriate_average(object, ...)
 
 seriate_rank(object, ...)
@@ -31,21 +27,21 @@ permute(object, order, ...)
 
 \S4method{get_order}{PermutationOrder}(x)
 
-\S4method{seriate_average}{CountMatrix}(object, margin = c(1, 2), axes = 1, ...)
+\S4method{seriate_average}{data.frame}(object, margin = c(1, 2), axes = 1, ...)
 
-\S4method{seriate_average}{IncidenceMatrix}(object, margin = c(1, 2), axes = 1, ...)
+\S4method{seriate_average}{matrix}(object, margin = c(1, 2), axes = 1, ...)
 
-\S4method{permute}{CountMatrix,PermutationOrder}(object, order)
+\S4method{permute}{data.frame,PermutationOrder}(object, order)
 
-\S4method{permute}{IncidenceMatrix,PermutationOrder}(object, order)
+\S4method{permute}{matrix,PermutationOrder}(object, order)
 
-\S4method{seriate_rank}{CountMatrix}(object, EPPM = FALSE, margin = c(1, 2), stop = 100)
+\S4method{seriate_rank}{data.frame}(object, EPPM = FALSE, margin = c(1, 2), stop = 100)
 
-\S4method{seriate_rank}{IncidenceMatrix}(object, margin = c(1, 2), stop = 100)
+\S4method{seriate_rank}{matrix}(object, EPPM = FALSE, margin = c(1, 2), stop = 100)
 }
 \arguments{
-\item{object, x}{An \eqn{m \times p}{m x p} data matrix (typically an object
-of class \linkS4class{CountMatrix} or \linkS4class{IncidenceMatrix}.}
+\item{object, x}{An \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or a
+\code{\link{data.frame}} of count data (absolute frequencies).}
 
 \item{...}{Further arguments to be passed to internal methods.}
 
@@ -69,8 +65,8 @@ iterations) to avoid infinite loop.}
 \value{
 \itemize{
 \item \verb{seriate_*()} returns a \linkS4class{PermutationOrder} object.
-\item \code{permute()} returns either a permuted \linkS4class{CountMatrix} or an
-\linkS4class{IncidenceMatrix} (the same as \code{object}).
+\item \code{permute()} returns either a permuted \code{matrix} or a permuted \code{data.frame}
+(the same as \code{object}).
 }
 }
 \description{
@@ -79,10 +75,6 @@ iterations) to avoid infinite loop.}
 \item \code{permute()} rearranges a data matrix according to a permutation order.
 \item \code{get_order()} returns the seriation order for rows and columns.
 }
-}
-\note{
-Refining method can lead to much longer execution times and larger output
-objects.
 }
 \section{Seriation}{
 
@@ -130,16 +122,15 @@ stops with a warning.}
 ## Replicates Desachy 2004 results
 ## Coerce dataset to abundance matrix
 data("compiegne", package = "folio")
-compiegne_count <- as_count(compiegne)
 
 ## Get seriation order for columns on EPPM using the reciprocal averaging method
 ## Expected column order: N, A, C, K, P, L, B, E, I, M, D, G, O, J, F, H
-(compiegne_indices <- seriate_rank(compiegne_count, EPPM = TRUE, margin = 2))
+(indices <- seriate_rank(compiegne, EPPM = TRUE, margin = 2))
 
 ## Permute columns
-(compiegne_new <- permute(compiegne_count, compiegne_indices))
+(new <- permute(compiegne, indices))
 
-## See the vignette:
+## See the vignette
 \dontrun{
 utils::vignette("seriation")
 }

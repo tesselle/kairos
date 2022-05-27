@@ -5,6 +5,8 @@
 \alias{mutators}
 \alias{get}
 \alias{set}
+\alias{get_order}
+\alias{get_order-method}
 \alias{get_model}
 \alias{get_model-method}
 \alias{get_weights}
@@ -19,6 +21,8 @@
 \alias{get_weights,MeanDate-method}
 \title{Get or Set Parts of an Object}
 \usage{
+get_order(x)
+
 get_model(x)
 
 get_weights(x)

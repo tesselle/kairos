@@ -76,11 +76,6 @@ places** (sub-annual precision does not make sense in most situations).
 You can change this behavior with `options(kairos.precision = x)` (for
 `x` decimal places).
 
-**kairos** uses a set of S4 classes that represent different special
-types of matrix. Please refer to the documentation of the
-[**arkhe**](https://github.com/tesselle/arkhe) package where these
-classes are defined.
-
 *It assumes that you keep your data tidy*: each variable (type/taxa)
 must be saved in its own column and each observation (sample/case) must
 be saved in its own row.

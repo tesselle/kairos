@@ -1,7 +1,6 @@
 test_that("Mean Ceramic Date", {
   skip_if_not_installed("folio")
   data("zuni", package = "folio")
-  counts <- as_count(zuni)
 
   ## Set dates
   zuni_dates <- list(
@@ -17,9 +16,9 @@ test_that("Mean Ceramic Date", {
   zuni_mid_dates <- vapply(X = zuni_dates, FUN = mean, FUN.VALUE = numeric(1))
 
   ## MCD
-  dt <- mcd(counts, dates = zuni_mid_dates)
+  dt <- mcd(zuni, dates = zuni_mid_dates)
   expect_snapshot(as.data.frame(dt))
-  expect_error(mcd(counts, dates = zuni_mid_dates[1:3]))
+  expect_error(mcd(zuni, dates = zuni_mid_dates[1:3]))
 
   ## Bootstrap
   boot <- with_seed(12345, bootstrap(dt, n = 30))
