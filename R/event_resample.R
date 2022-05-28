@@ -54,7 +54,6 @@ setMethod(
     ## Partial bootstrap CA
     ## /!\ Be careful: EventDate inherits from CA
     ## We must call the next bootstrap method to prevent infinite loop
-    ## TODO: explicitly call the bootstrap for CA object
     ca_boot <- methods::callNextMethod(object, n = n)
     ca_rep_row <- dimensio::get_replications(ca_boot, margin = 1)
 

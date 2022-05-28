@@ -137,7 +137,7 @@ fun <- function(x) { mean(x) + sd(x) }
 ## Partial Bootstrap CA
 ## Warning: this may take a few seconds!
 ## Get indices of samples to be kept
-(zuni_keep <- refine(zun_indices, cutoff = fun, n = 1000, margin = 1))
+(zuni_keep <- bootstrap(zun_indices, cutoff = fun, n = 1000, margin = 1))
 
 ## Plot convex hull
 ## blue: convex hull for samples; red: convex hull for types

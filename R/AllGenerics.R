@@ -671,7 +671,7 @@ NULL
 #'   stops with a warning.}
 #'  }
 #' @section Correspondence Analysis:
-#'  `refine_seriation()` allows to identify samples that are subject to
+#'  `bootstrap()` allows to identify samples that are subject to
 #'  sampling error or samples that have underlying structural relationships
 #'  and might be influencing the ordering along the CA space.
 #'
@@ -686,9 +686,9 @@ NULL
 #'  assumptions of frequency seriation."
 #' @return
 #'  * `seriate_*()` returns a [PermutationOrder-class] object.
-#'  * `refine()` returns a [RefineCA-class] object.
 #'  * `permute()` returns either a permuted `matrix` or a permuted `data.frame`
 #'    (the same as `object`).
+#'  * `bootstrap()` returns a [RefineCA-class] object.
 #' @references
 #'  Desachy, B. (2004). Le sériographe EPPM: un outil informatisé de sériation
 #'  graphique pour tableaux de comptages. *Revue archéologique de Picardie*,
@@ -752,12 +752,4 @@ setGeneric(
 setGeneric(
   name = "permute",
   def = function(object, order, ...) standardGeneric("permute")
-)
-
-#' @rdname seriation
-#' @aliases refine-method
-setGeneric(
-  name = "refine",
-  def = function(object, cutoff, ...) standardGeneric("refine"),
-  valueClass = "RefineCA"
 )

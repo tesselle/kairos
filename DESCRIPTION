@@ -79,7 +79,7 @@ Collate:
     'seriate_average.R'
     'seriate_permute.R'
     'seriate_rank.R'
-    'seriate_refine.R'
+    'seriate_resample.R'
     'show.R'
     'subset.R'
     'utilities.R'

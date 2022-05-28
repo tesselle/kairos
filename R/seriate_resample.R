@@ -4,13 +4,20 @@ NULL
 
 #' @export
 #' @rdname seriation
-#' @aliases refine,BootstrapCA,function-method
+#' @aliases bootstrap,AveragePermutationOrder,function-method
 setMethod(
-  f = "refine",
-  signature = signature(object = "AveragePermutationOrder", cutoff = "function"),
+  f = "bootstrap",
+  signature = signature(object = "AveragePermutationOrder"),
   definition = function(object, cutoff, n = 30, margin = 1, axes = c(1, 2)) {
+    ## Validation
+    if (!is.function(cutoff)) {
+      stop(sQuote("cutoff"), " must be a function.", call. = FALSE)
+    }
+
     ## Partial bootstrap CA
-    ca_boot <- dimensio::bootstrap(object, n = n)
+    ## /!\ Be careful: AveragePermutationOrder inherits from CA
+    ## We must call the next bootstrap method to prevent infinite loop
+    ca_boot <- methods::callNextMethod(object, n = n)
     ca_rep <- dimensio::get_replications(ca_boot, margin = margin)
 
     ## Compute convex hull
