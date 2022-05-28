@@ -40,6 +40,7 @@ archaeological assemblages from count data. It allows to compute time
 point estimates and density estimates of the occupation and duration of
 an archaeological site. **kairos** provides methods for:
 
+-   Matrix seriation: `seriate_rank()` and `seriate_average()`
 -   Mean ceramic date estimation (South 1977): `mcd()`
 -   Event and accumulation date estimation (Bellanger and Husi 2012):
     `event()`
@@ -81,49 +82,30 @@ must be saved in its own column and each observation (sample/case) must
 be saved in its own row.
 
 ``` r
-## Aoristic Analysis
-data("zuni", package = "folio")
-
-## Set the start and end dates for each ceramic type
-dates <- list(
-  LINO = c(600, 875), KIAT = c(850, 950), RED = c(900, 1050),
-  GALL = c(1025, 1125), ESC = c(1050, 1150), PUBW = c(1050, 1150),
-  RES = c(1000, 1200), TULA = c(1175, 1300), PINE = c(1275, 1350),
-  PUBR = c(1000, 1200), WING = c(1100, 1200), WIPO = c(1125, 1225),
-  SJ = c(1200, 1300), LSJ = c(1250, 1300), SPR = c(1250, 1300),
-  PINER = c(1275, 1325), HESH = c(1275, 1450), KWAK = c(1275, 1450)
-)
-
-## Keep only assemblages that have a sample size of at least 10
-keep <- apply(X = zuni, MARGIN = 1, FUN = function(x) sum(x) >= 10)
-
-## Calculate date ranges for each assemblage
-span <- apply(
-  X = zuni[keep, ],
-  FUN = function(x, dates) range(unlist(dates[x > 0])),
-  MARGIN = 1,
-  dates = dates
-)
-
-## Coerce to data.frame
-span <- as.data.frame(t(span))
-colnames(span) <- c("from", "to")
-
-## Calculate aoristic sum (weights)
-aorist_weigth <- aoristic(span, step = 50, weight = TRUE)
-plot(aorist_weigth)
-```
-
-![](man/figures/README-aoristic-1.png)<!-- -->
-
-``` r
-## Rate of change
+## Build an incidence matrix with random data
 set.seed(12345)
-aorist_roc <- roc(aorist_weigth, n = 30)
-plot(aorist_roc)
+incidence1 <- matrix(sample(0:1, 400, TRUE, c(0.6, 0.4)), nrow = 20)
+
+## Get seriation order on rows and columns
+## If no convergence is reached before the maximum number of iterations (100), 
+## it stops with a warning.
+(indices <- seriate_rank(incidence1, margin = c(1, 2), stop = 100))
+#> <PermutationOrder: reciprocal ranking>
+#> Permutation order for matrix seriation:
+#> - Row order: 1 4 20 3 9 16 19 10 13 2 11 7 17 5 6 18 14 15 8 12...
+#> - Column order: 1 16 9 4 8 14 3 20 13 2 6 18 7 17 5 11 19 12 15 10...
+
+## Permute rows and columns
+incidence2 <- permute(incidence1, indices)
+
+## Plot matrix
+heatmap(incidence1, Rowv = NA, Colv = NA, revC = TRUE, 
+        scale = "none", col = c("white", "black"))
+heatmap(incidence2, Rowv = NA, Colv = NA, revC = TRUE, 
+        scale = "none", col = c("white", "black"))
 ```
 
-![](man/figures/README-aoristic-2.png)<!-- -->
+<img src="man/figures/README-seriation-1.png" width="50%" /><img src="man/figures/README-seriation-2.png" width="50%" />
 
 ## Contributing
 

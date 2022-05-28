@@ -35,6 +35,7 @@ knitr::opts_chunk$set(
 
 A toolkit for absolute dating and analysis of chronological patterns. This package includes functions for chronological modeling and dating of archaeological assemblages from count data. It allows to compute time point estimates and density estimates of the occupation and duration of an archaeological site. **kairos** provides methods for:
 
+* Matrix seriation: `seriate_rank()` and `seriate_average()`
 * Mean ceramic date estimation [@south1977]: `mcd()`
 * Event and accumulation date estimation [@bellanger2012]: `event()`
 * Aoristic analysis [@ratcliffe2000]: `aoristic()`
@@ -67,43 +68,24 @@ library(folio) # datasets
 
 *It assumes that you keep your data tidy*: each variable (type/taxa) must be saved in its own column and each observation (sample/case) must be saved in its own row.
 
-```{r aoristic, fig.width=7, fig.height=5}
-## Aoristic Analysis
-data("zuni", package = "folio")
-
-## Set the start and end dates for each ceramic type
-dates <- list(
-  LINO = c(600, 875), KIAT = c(850, 950), RED = c(900, 1050),
-  GALL = c(1025, 1125), ESC = c(1050, 1150), PUBW = c(1050, 1150),
-  RES = c(1000, 1200), TULA = c(1175, 1300), PINE = c(1275, 1350),
-  PUBR = c(1000, 1200), WING = c(1100, 1200), WIPO = c(1125, 1225),
-  SJ = c(1200, 1300), LSJ = c(1250, 1300), SPR = c(1250, 1300),
-  PINER = c(1275, 1325), HESH = c(1275, 1450), KWAK = c(1275, 1450)
-)
-
-## Keep only assemblages that have a sample size of at least 10
-keep <- apply(X = zuni, MARGIN = 1, FUN = function(x) sum(x) >= 10)
-
-## Calculate date ranges for each assemblage
-span <- apply(
-  X = zuni[keep, ],
-  FUN = function(x, dates) range(unlist(dates[x > 0])),
-  MARGIN = 1,
-  dates = dates
-)
-
-## Coerce to data.frame
-span <- as.data.frame(t(span))
-colnames(span) <- c("from", "to")
-
-## Calculate aoristic sum (weights)
-aorist_weigth <- aoristic(span, step = 50, weight = TRUE)
-plot(aorist_weigth)
-
-## Rate of change
+```{r seriation, fig.width=3.5, fig.height=3.5, out.width='50%', fig.show='hold'}
+## Build an incidence matrix with random data
 set.seed(12345)
-aorist_roc <- roc(aorist_weigth, n = 30)
-plot(aorist_roc)
+incidence1 <- matrix(sample(0:1, 400, TRUE, c(0.6, 0.4)), nrow = 20)
+
+## Get seriation order on rows and columns
+## If no convergence is reached before the maximum number of iterations (100), 
+## it stops with a warning.
+(indices <- seriate_rank(incidence1, margin = c(1, 2), stop = 100))
+
+## Permute rows and columns
+incidence2 <- permute(incidence1, indices)
+
+## Plot matrix
+heatmap(incidence1, Rowv = NA, Colv = NA, revC = TRUE, 
+        scale = "none", col = c("white", "black"))
+heatmap(incidence2, Rowv = NA, Colv = NA, revC = TRUE, 
+        scale = "none", col = c("white", "black"))
 ```
 
 ## Contributing
