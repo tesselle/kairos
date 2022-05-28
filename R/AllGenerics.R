@@ -7,8 +7,7 @@ setGeneric("autoplot", package = "ggplot2")
 
 # Set generics from other packages =============================================
 setGeneric("bootstrap", package = "dimensio")
-setGeneric("jackknife", package = "dimensio")
-setGeneric("get_dates", package = "arkhe")
+setGeneric("jackknife", package = "arkhe")
 
 # Mutators =====================================================================
 ## Extract ---------------------------------------------------------------------
@@ -56,13 +55,13 @@ setGeneric(
 #' Mean Ceramic Date
 #'
 #' Estimates the Mean Ceramic Date of an assemblage.
-#' @param object A [`numeric`] vector, an \eqn{m \times p}{m x p} `numeric`
-#'  [`matrix`] or a [`data.frame`] of count data (absolute frequencies).
-#' @param dates A [`numeric`] vector of dates expressed in CE years (BCE years
-#'  must be given as negative numbers).
+#' @param object A length-\eqn{p} [`numeric`] vector, an \eqn{m \times p}{m x p}
+#'  `numeric` [`matrix`] or [`data.frame`] of count data (absolute frequencies).
+#' @param dates A length-\eqn{p} [`numeric`] vector of dates expressed in CE
+#'  years (BCE years must be given as negative numbers).
 #' @param na.rm A [`logical`] scalar: should missing values (including `NaN`) be
 #'  removed?
-#' @inheritParams dimensio::bootstrap
+#' @inheritParams arkhe::resample
 #' @param ... Currently not used.
 #' @details
 #'  The Mean Ceramic Date (MCD) is a point estimate of the occupation of an

@@ -41,7 +41,7 @@
 
 #' @import arkhe
 #' @importFrom dimensio bootstrap ca get_coordinates get_eigenvalues
-#' get_replications jackknife predict
+#' get_replications predict
 #' @importFrom extraDistr ptnorm
 #' @importFrom ggplot2 autoplot ggplot aes facet_wrap geom_area geom_line
 #' geom_point geom_segment mean_cl_normal scale_x_continuous scale_y_continuous

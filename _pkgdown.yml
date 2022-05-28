@@ -31,6 +31,8 @@ navbar:
     articles:
       text: Articles
       menu:
+      - text: Dating Methods
+        href: articles/dating.html
       - text: Seriation Methods
         href: articles/seriation.html
       - text: Bibliography

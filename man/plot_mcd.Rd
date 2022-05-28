@@ -57,8 +57,8 @@ head(mc_dates)
 ## Plot
 plot(mc_dates, select = 100:125)
 
-## Bootstrap resampling
-boot <- bootstrap(mc_dates, n = 30)
+## Bootstrap resampling (summary statistics)
+boot <- bootstrap(mc_dates, n = 30, f = summary)
 head(boot)
 
 ## Jackknife resampling

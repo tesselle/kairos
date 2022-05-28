@@ -21,7 +21,7 @@ test_that("Mean Ceramic Date", {
   expect_error(mcd(zuni, dates = zuni_mid_dates[1:3]))
 
   ## Bootstrap
-  boot <- with_seed(12345, bootstrap(dt, n = 30))
+  boot <- with_seed(12345, bootstrap(dt, n = 30, f = summary))
   expect_snapshot(boot)
 
   ## Jackknife

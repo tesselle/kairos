@@ -25,7 +25,7 @@ setMethod(
   signature = signature(object = "data.frame", dates = "numeric"),
   definition = function(object, dates, na.rm = FALSE) {
     object <- data.matrix(object)
-    methods::callGeneric(object, dates = dates)
+    methods::callGeneric(object, dates = dates, na.rm = na.rm)
   }
 )
 
@@ -35,13 +35,14 @@ setMethod(
 setMethod(
   f = "mcd",
   signature = signature(object = "matrix", dates = "numeric"),
-  definition = function(object, dates) {
+  definition = function(object, dates, na.rm = FALSE) {
     ## Calculate MCD
     mcd_dates <- apply(
       X = object,
       MARGIN = 1,
       FUN = mcd,
-      dates = dates
+      dates = dates,
+      na.rm = na.rm
     )
 
     names(mcd_dates) <- rownames(object)
@@ -60,23 +61,16 @@ setMethod(
 setMethod(
   f = "bootstrap",
   signature = signature(object = "MeanDate"),
-  definition = function(object, level = 0.95, type = c("student", "normal"),
-                        probs = c(0.25, 0.50, 0.75), n = 1000) {
+  definition = function(object, n = 1000, f = NULL) {
 
-    theta <- function(x, do, n, dates, level, type, probs) {
-      boot <- dimensio::bootstrap(x, do, n, dates)
-      dimensio::summary(boot, level = level, type = type, probs = probs)
-    }
     results <- apply(
       X = get_weights(object),
       MARGIN = 1,
-      FUN = theta,
+      FUN = arkhe::resample,
       do = mcd,
       n = n,
       dates = object@types,
-      level = level,
-      type = type,
-      probs = probs
+      f = f
     )
     as.data.frame(t(results))
   }
@@ -101,17 +95,16 @@ setMethod(
 
     results <- vector(mode = "list", length = m)
     for (i in seq_len(m)) {
-      jack <- dimensio::jackknife(
+      results[[i]] <- arkhe::jackknife(
         object = seq_len(p),
         do = theta,
         counts = w[i, ],
         dates = dates
       )
-      results[[i]] <- dimensio::summary(jack)
     }
     results <- do.call(rbind, results)
     rownames(results) <- rownames(w)
-    as.data.frame(results)
+    results
   }
 )
 
