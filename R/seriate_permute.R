@@ -9,7 +9,7 @@ setMethod(
   signature = signature(object = "data.frame", order = "PermutationOrder"),
   definition = function(object, order) {
     # Rearrange data.frame
-    object[order[["rows"]], order[["columns"]]]
+    object[order@rows_order, order@columns_order]
   }
 )
 
@@ -21,6 +21,6 @@ setMethod(
   signature = signature(object = "matrix", order = "PermutationOrder"),
   definition = function(object, order) {
     # Rearrange matrix
-    object[order[["rows"]], order[["columns"]]]
+    object[order@rows_order, order@columns_order]
   }
 )

@@ -38,10 +38,10 @@ setMethod(
     col_coords <- if (2 %in% margin) order(coords$columns[, axes]) else j
 
     # New PermutationOrder object
-    .PermutationOrder(
-      rows = as.integer(row_coords),
-      columns = as.integer(col_coords),
-      method = "average ranking"
+    .AveragePermutationOrder(
+      corresp,
+      rows_order = as.integer(row_coords),
+      columns_order = as.integer(col_coords)
     )
   }
 )

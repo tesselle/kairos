@@ -62,10 +62,9 @@ setMethod(
     }
 
     # New PermutationOrder object
-    .PermutationOrder(
-      rows = as.integer(index[[1]]),
-      columns = as.integer(index[[2]]),
-      method = "reciprocal ranking"
+    .RankPermutationOrder(
+      rows_order = as.integer(index[[1]]),
+      columns_order = as.integer(index[[2]])
     )
   }
 )

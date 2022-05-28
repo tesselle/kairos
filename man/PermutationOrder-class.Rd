@@ -4,6 +4,10 @@
 \name{PermutationOrder-class}
 \alias{PermutationOrder-class}
 \alias{.PermutationOrder}
+\alias{RankPermutationOrder-class}
+\alias{.RankPermutationOrder}
+\alias{AveragePermutationOrder-class}
+\alias{.AveragePermutationOrder}
 \alias{[[,PermutationOrder,ANY,missing-method}
 \title{Permutation Order}
 \usage{
@@ -28,21 +32,24 @@ corresponding slot values.
 \section{Slots}{
 
 \describe{
-\item{\code{rows}}{An \code{\link{integer}} vector giving the rows permutation.}
+\item{\code{rows_order}}{An \code{\link{integer}} vector giving the rows permutation.}
 
-\item{\code{columns}}{An \code{\link{integer}} vector giving the columns permutation.}
+\item{\code{columns_order}}{An \code{\link{integer}} vector giving the columns permutation.}
 
 \item{\code{method}}{A \code{\link{character}} string indicating the seriation method used.}
 }}
 
 \seealso{
+\code{\link[dimensio:CA-class]{dimensio::CA}}
+
 Other classes: 
 \code{\link{AoristicSum-class}},
 \code{\link{CountApportion-class}},
 \code{\link{EventDate-class}},
 \code{\link{IncrementTest-class}},
 \code{\link{MeanDate-class}},
-\code{\link{RateOfChange-class}}
+\code{\link{RateOfChange-class}},
+\code{\link{RefineCA-class}}
 }
 \author{
 N. Frerebeau

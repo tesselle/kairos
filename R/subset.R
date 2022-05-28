@@ -41,3 +41,14 @@ setMethod(
   signature = c(x = "PermutationOrder", i = "ANY", j = "missing"),
   definition = extract_slot
 )
+
+#' @export
+#' @describeIn RefineCA-class Extracts information from a slot selected
+#'  by subscript i. i is a length-one character vector. Returns the
+#'  corresponding slot values.
+#' @aliases [[,RefineCA,ANY,missing-method
+setMethod(
+  f = "[[",
+  signature = c(x = "RefineCA", i = "ANY", j = "missing"),
+  definition = extract_slot
+)

@@ -181,12 +181,13 @@ NULL
 #' Permutation Order
 #'
 #' An S4 class to represent a permutation order.
-#' @slot rows An [`integer`] vector giving the rows permutation.
-#' @slot columns An [`integer`] vector giving the columns permutation.
+#' @slot rows_order An [`integer`] vector giving the rows permutation.
+#' @slot columns_order An [`integer`] vector giving the columns permutation.
 #' @slot method A [`character`] string indicating the seriation method used.
 #' @param x An object from which to extract element(s) or in which to replace
 #'  element(s).
 #' @param i A [`character`] string specifying elements to extract.
+#' @seealso [`dimensio::CA-class`]
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -194,8 +195,54 @@ NULL
 .PermutationOrder <- setClass(
   Class = "PermutationOrder",
   slots = c(
-    rows = "integer",
-    columns = "integer",
-    method = "character"
+    rows_order = "integer",
+    columns_order = "integer"
+  ),
+  contains = "VIRTUAL"
+)
+
+#' @rdname PermutationOrder-class
+#' @aliases RankPermutationOrder-class
+.RankPermutationOrder <- setClass(
+  Class = "RankPermutationOrder",
+  contains = "PermutationOrder"
+)
+
+#' @rdname PermutationOrder-class
+#' @aliases AveragePermutationOrder-class
+.AveragePermutationOrder <- setClass(
+  Class = "AveragePermutationOrder",
+  contains = c("PermutationOrder", "CA")
+)
+
+# RefineCA =======================================================================
+#' Partial Bootstrap CA
+#'
+#' An S4 class to store partial bootstrap correspondence analysis results.
+#' @slot hull A three columns [`numeric`] matrix giving the vertices
+#'  coordinates (`x`, `y`) of the convex hull and a identifier (`id`)
+#'  to link each row to a variable.
+#' @slot length A [`numeric`] vector giving the convex hull maximum
+#'  dimension length.
+#' @slot keep An [`integer`] vector giving the subscript of the variables
+#'  to be kept.
+#' @slot cutoff A length-one [`numeric`] vector giving the cutoff value for
+#'  samples selection.
+#' @param x An object from which to extract element(s) or in which to replace
+#'  element(s).
+#' @param i A [`character`] string specifying elements to extract.
+#' @seealso [`dimensio::CA-class`]
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @aliases RefineCA-class
+.RefineCA <- setClass(
+  Class = "RefineCA",
+  slots = c(
+    hull = "matrix",
+    length = "numeric",
+    keep = "integer",
+    cutoff = "numeric",
+    margin = "integer"
   )
 )

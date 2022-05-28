@@ -53,7 +53,7 @@ setMethod("get_weights", "MeanDate", function(x) x@weights)
 #' @rdname seriation
 #' @aliases get_order,PermutationOrder-method
 setMethod("get_order", "PermutationOrder", function(x) {
-  list(rows = x@rows, columns = x@columns)
+  list(rows = x@rows_order, columns = x@columns_order)
 })
 
 # Setters ======================================================================

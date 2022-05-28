@@ -103,26 +103,78 @@ compiegne_permuted <- permute(compiegne, indices)
 ```
 
 # Correspondence analysis
+## Seriation
 
 Correspondence Analysis (CA) is an effective method for the seriation of archaeological assemblages. The order of the rows and columns is given by the coordinates along one dimension of the CA space, assumed to account for temporal variation. The direction of temporal change within the correspondence analysis space is arbitrary: additional information is needed to determine the actual order in time.
 
-```{r ca}
+```{r ca-seriation, fig.width=7, fig.height=7}
 data("zuni", package = "folio")
 
-## correspondence analysis of the whole dataset
-corresp <- dimensio::ca(zuni)
+## Get row permutations from CA coordinates
+(zun_indices <- seriate_average(zuni, margin = 1))
 
 ## Plot CA results
-dimensio::plot(corresp) +
+dimensio::plot(zun_indices) +
   ggplot2::theme_bw()
-```
-
-```{r ca-seriation, fig.width=7, fig.height=7}
-## Get row permutations from CA coordinates
-(indices <- seriate_average(zuni, margin = 1))
 
 ## Permute data matrix
-zuni_permuted <- permute(zuni, indices)
+zuni_permuted <- permute(zuni, zun_indices)
+```
+
+## Refining
+
+@peeples2012 propose a procedure to identify samples that are subject to sampling error or samples that have underlying structural relationships and might be influencing the ordering along the CA space. This relies on a partial bootstrap approach to CA-based seriation where each sample is replicated `n` times. The maximum dimension length of the convex hull around the sample point cloud allows to remove samples for a given `cutoff` value.
+
+According to @peeples2012, "[this] point removal procedure [results in] a reduced dataset where the position of individuals within the CA are highly stable and which produces an ordering consistend with the assumptions of frequency seriation."
+
+```{r refine}
+## Replicates Peeples and Schachner 2012 results
+## Samples with convex hull maximum dimension length greater than the cutoff
+## value will be marked for removal.
+## Define cutoff as one standard deviation above the mean
+fun <- function(x) { mean(x) + sd(x) }
+
+## Partial Bootstrap CA
+## Warning: this may take a few seconds!
+## Get indices of samples to be kept
+(zuni_keep <- refine(zun_indices, cutoff = fun, n = 1000, margin = 1))
+
+## Plot convex hull
+## blue: convex hull for samples; red: convex hull for types
+### All bootstrap samples
+rchull <- as.data.frame(zuni_keep[["hull"]])
+ggplot2::ggplot(data = rchull) +
+  ggplot2::aes(x = x, y = y, group = id) +
+  ggplot2::geom_polygon(fill = "blue", alpha = 0.1) +
+  ggplot2::geom_vline(xintercept = 0, size = 0.5, linetype = "dashed") +
+  ggplot2::geom_hline(yintercept = 0, size = 0.5, linetype = "dashed") +
+  ggplot2::coord_fixed() + 
+  ggplot2::labs(x = "", y = "") +
+  ggplot2::theme_bw()
+
+### Only retained samples
+rchull_sub <- subset(rchull, id %in% zuni_keep[["keep"]])
+ggplot2::ggplot(data = rchull_sub) +
+  ggplot2::aes(x = x, y = y, group = id) +
+  ggplot2::geom_polygon(fill = "blue", alpha = 0.1) +
+  ggplot2::geom_vline(xintercept = 0, size = 0.5, linetype = "dashed") +
+  ggplot2::geom_hline(yintercept = 0, size = 0.5, linetype = "dashed") +
+  ggplot2::coord_fixed() + 
+  ggplot2::labs(x = "", y = "") +
+  ggplot2::theme_bw()
+
+## Histogram of convex hull maximum dimension length
+hull_length <- data.frame(length = zuni_keep[["length"]])
+ggplot2::ggplot(data = hull_length) +
+  ggplot2::aes(x = length) +
+  ggplot2::geom_histogram(breaks = seq(0, 4.5, by = 0.5), fill = "grey70") +
+  ggplot2::geom_vline(xintercept = fun(hull_length$length), colour = "red") +
+  ggplot2::labs(
+    title = "Convex hull max. dim.", 
+    x = "Maximum length", 
+    y = "Count"
+  ) + 
+  ggplot2::theme_bw()
 ```
 
 # References

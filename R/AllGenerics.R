@@ -627,6 +627,10 @@ NULL
 #'  used.
 #' @param stop An [`integer`] giving the stopping rule (i.e. maximum number of
 #'  iterations) to avoid infinite loop.
+#' @param cutoff A function that takes a numeric vector as argument and returns
+#'  a single numeric value (see below).
+#' @param n A non-negative [`integer`] giving the number of bootstrap
+#'  replications.
 #' @param ... Further arguments to be passed to internal methods.
 #' @section Seriation:
 #'  The matrix seriation problem in archaeology is based on three conditions
@@ -667,8 +671,23 @@ NULL
 #'   If no convergence is reached before the maximum number of iterations, it
 #'   stops with a warning.}
 #'  }
+#' @section Correspondence Analysis:
+#'  `refine_seriation()` allows to identify samples that are subject to
+#'  sampling error or samples that have underlying structural relationships
+#'  and might be influencing the ordering along the CA space.
+#'
+#'  This relies on a partial bootstrap approach to CA-based seriation where each
+#'  sample is replicated `n` times. The maximum dimension length of
+#'  the convex hull around the sample point cloud allows to remove samples for
+#'  a given `cutoff` value.
+#'
+#'  According to Peebles and Schachner (2012), "\[this\] point removal procedure
+#'  \[results in\] a reduced dataset where the position of individuals within the
+#'  CA are highly stable and which produces an ordering consistent with the
+#'  assumptions of frequency seriation."
 #' @return
 #'  * `seriate_*()` returns a [PermutationOrder-class] object.
+#'  * `refine()` returns a [RefineCA-class] object.
 #'  * `permute()` returns either a permuted `matrix` or a permuted `data.frame`
 #'    (the same as `object`).
 #' @references
@@ -734,4 +753,12 @@ setGeneric(
 setGeneric(
   name = "permute",
   def = function(object, order, ...) standardGeneric("permute")
+)
+
+#' @rdname seriation
+#' @aliases refine-method
+setGeneric(
+  name = "refine",
+  def = function(object, cutoff, ...) standardGeneric("refine"),
+  valueClass = "RefineCA"
 )
