@@ -30,13 +30,6 @@ setGeneric("jackknife", package = "arkhe")
 NULL
 
 #' @rdname mutators
-#' @aliases get_order-method
-setGeneric(
-  name = "get_order",
-  def = function(x) standardGeneric("get_order")
-)
-
-#' @rdname mutators
 #' @aliases get_model-method
 setGeneric(
   name = "get_model",
@@ -755,4 +748,11 @@ setGeneric(
 setGeneric(
   name = "permute",
   def = function(object, order, ...) standardGeneric("permute")
+)
+
+#' @rdname seriation
+#' @aliases get_order-method
+setGeneric(
+  name = "get_order",
+  def = function(x, ...) standardGeneric("get_order")
 )

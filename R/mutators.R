@@ -49,11 +49,4 @@ setMethod("get_weights", "CountApportion", function(x) x@p)
 #' @aliases get_weights,MeanDate-method
 setMethod("get_weights", "MeanDate", function(x) x@weights)
 
-#' @export
-#' @rdname seriation
-#' @aliases get_order,PermutationOrder-method
-setMethod("get_order", "PermutationOrder", function(x) {
-  list(rows = x@rows_order, columns = x@columns_order)
-})
-
 # Setters ======================================================================
