@@ -1,5 +1,7 @@
 # HELPERS
 
+## /!\ TEMPORARY WORKAROUND
+## TODO: remove eppm() and resample() as soon as tabula is ready
 eppm <- function(object) {
   # Independance
   values <- apply(
@@ -15,6 +17,16 @@ eppm <- function(object) {
 
   dimnames(threshold) <- dimnames(object)
   threshold
+}
+resample <- function(object, do, n, size = sum(object), ..., f = NULL) {
+  ## Validation
+  assert_count(object)
+
+  prob <- object / sum(object)
+  replicates <- stats::rmultinom(n, size = size, prob = prob)
+  values <- apply(X = replicates, MARGIN = 2, FUN = do, ...)
+  if (is.function(f)) values <- f(values)
+  values
 }
 
 #' Indices of a rolling window

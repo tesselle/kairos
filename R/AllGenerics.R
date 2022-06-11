@@ -61,8 +61,11 @@ setGeneric(
 #'  years (BCE years must be given as negative numbers).
 #' @param na.rm A [`logical`] scalar: should missing values (including `NaN`) be
 #'  removed?
-#' @inheritParams arkhe::resample
-#' @param ... Currently not used.
+#' @param n A non-negative [`integer`] specifying the number of bootstrap
+#'  replications.
+#' @param f A [`function`] that takes a single numeric vector (the result of
+#'  `do`) as argument.
+#' @param ... Extra arguments passed to `do`.
 #' @details
 #'  The Mean Ceramic Date (MCD) is a point estimate of the occupation of an
 #'  archaeological site (South 1977). The MCD is estimated as the weighted mean

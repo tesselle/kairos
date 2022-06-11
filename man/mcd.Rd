@@ -30,12 +30,12 @@ mcd(object, dates, ...)
 \item{dates}{A length-\eqn{p} \code{\link{numeric}} vector of dates expressed in CE
 years (BCE years must be given as negative numbers).}
 
-\item{...}{Currently not used.}
+\item{...}{Extra arguments passed to \code{do}.}
 
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values (including \code{NaN}) be
 removed?}
 
-\item{n}{A non-negative \code{\link{integer}} giving the number of bootstrap
+\item{n}{A non-negative \code{\link{integer}} specifying the number of bootstrap
 replications.}
 
 \item{f}{A \code{\link{function}} that takes a single numeric vector (the result of

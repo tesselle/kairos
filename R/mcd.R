@@ -66,7 +66,7 @@ setMethod(
     results <- apply(
       X = get_weights(object),
       MARGIN = 1,
-      FUN = arkhe::resample,
+      FUN = resample,
       do = mcd,
       n = n,
       dates = object@types,
