@@ -55,6 +55,7 @@ Suggests:
     khroma,
     knitr,
     rmarkdown,
+    tabula,
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.0)
 VignetteBuilder: 

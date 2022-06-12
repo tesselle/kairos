@@ -125,6 +125,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "tabula",
+      "name": "tabula",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tabula"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
       "version": ">= 3.0.0",
@@ -260,7 +272,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "811.072KB",
+  "fileSize": "811.602KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

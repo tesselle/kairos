@@ -32,6 +32,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 ## Overview
+
 A convenient and reproducible toolkit for relative and absolute dating and analysis of chronological patterns. This package includes functions for chronological modeling and dating of archaeological assemblages from count data. It provides methods for matrix seriation. It also allows to compute time point estimates and density estimates of the occupation and duration of an archaeological site. **kairos** provides methods for:
 
 * Matrix seriation: `seriate_rank()` and `seriate_average()`
@@ -39,6 +40,8 @@ A convenient and reproducible toolkit for relative and absolute dating and analy
 * Event and accumulation date estimation [@bellanger2012]: `event()`
 * Aoristic analysis [@ratcliffe2000]: `aoristic()`
 * Chronological apportioning [@roberts2012]: `apportion()`
+
+[**tabula**](https://www.tesselle.org/tabula/) is a companion package to **kairos** that provides functions for visualization and analysis of archaeological count data.
 
 ## Installation
 
@@ -60,17 +63,17 @@ remotes::install_github("tesselle/kairos")
 ```{r packages-load}
 ## Load packages
 library(kairos)
-library(folio) # datasets
 ```
 
 **kairos** only supports dates expressed in CE years (BCE years must be given as negative numbers). **All results are rounded to zero decimal places** (sub-annual precision does not make sense in most situations). You can change this behavior with `options(kairos.precision = x)` (for `x` decimal places).
 
 *It assumes that you keep your data tidy*: each variable (type/taxa) must be saved in its own column and each observation (sample/case) must be saved in its own row.
 
-```{r seriation, fig.width=3.5, fig.height=3.5, out.width='50%', fig.show='hold'}
+```{r seriation, fig.width=5, fig.height=5, out.width='50%', fig.show='hold'}
 ## Build an incidence matrix with random data
 set.seed(12345)
 incidence1 <- matrix(sample(0:1, 400, TRUE, c(0.6, 0.4)), nrow = 20)
+incidence1 <- incidence1 > 0 # logical
 
 ## Get seriation order on rows and columns
 ## If no convergence is reached before the maximum number of iterations (100), 
@@ -81,10 +84,10 @@ incidence1 <- matrix(sample(0:1, 400, TRUE, c(0.6, 0.4)), nrow = 20)
 incidence2 <- permute(incidence1, indices)
 
 ## Plot matrix
-heatmap(incidence1, Rowv = NA, Colv = NA, revC = TRUE, 
-        scale = "none", col = c("white", "black"))
-heatmap(incidence2, Rowv = NA, Colv = NA, revC = TRUE, 
-        scale = "none", col = c("white", "black"))
+tabula::plot_heatmap(incidence1) +
+  ggplot2::scale_fill_manual(values = c("FALSE" = "white", "TRUE" = "black"))
+tabula::plot_heatmap(incidence2) +
+  ggplot2::scale_fill_manual(values = c("FALSE" = "white", "TRUE" = "black"))
 ```
 
 ## Contributing

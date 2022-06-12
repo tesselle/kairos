@@ -48,6 +48,10 @@ duration of an archaeological site. **kairos** provides methods for:
 -   Aoristic analysis (Ratcliffe 2000): `aoristic()`
 -   Chronological apportioning (Roberts et al. 2012): `apportion()`
 
+[**tabula**](https://www.tesselle.org/tabula/) is a companion package to
+**kairos** that provides functions for visualization and analysis of
+archaeological count data.
+
 ## Installation
 
 You can install the released version of **kairos** from
@@ -69,7 +73,6 @@ remotes::install_github("tesselle/kairos")
 ``` r
 ## Load packages
 library(kairos)
-library(folio) # datasets
 ```
 
 **kairos** only supports dates expressed in CE years (BCE years must be
@@ -86,6 +89,7 @@ be saved in its own row.
 ## Build an incidence matrix with random data
 set.seed(12345)
 incidence1 <- matrix(sample(0:1, 400, TRUE, c(0.6, 0.4)), nrow = 20)
+incidence1 <- incidence1 > 0 # logical
 
 ## Get seriation order on rows and columns
 ## If no convergence is reached before the maximum number of iterations (100), 
@@ -100,10 +104,10 @@ incidence1 <- matrix(sample(0:1, 400, TRUE, c(0.6, 0.4)), nrow = 20)
 incidence2 <- permute(incidence1, indices)
 
 ## Plot matrix
-heatmap(incidence1, Rowv = NA, Colv = NA, revC = TRUE, 
-        scale = "none", col = c("white", "black"))
-heatmap(incidence2, Rowv = NA, Colv = NA, revC = TRUE, 
-        scale = "none", col = c("white", "black"))
+tabula::plot_heatmap(incidence1) +
+  ggplot2::scale_fill_manual(values = c("FALSE" = "white", "TRUE" = "black"))
+tabula::plot_heatmap(incidence2) +
+  ggplot2::scale_fill_manual(values = c("FALSE" = "white", "TRUE" = "black"))
 ```
 
 <img src="man/figures/README-seriation-1.png" width="50%" /><img src="man/figures/README-seriation-2.png" width="50%" />
