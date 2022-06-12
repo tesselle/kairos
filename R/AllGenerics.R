@@ -777,6 +777,14 @@ setGeneric(
   valueClass = "PermutationOrder"
 )
 
+#' @rdname seriation
+#' @aliases refine-method
+setGeneric(
+  name = "refine",
+  def = function(object, ...) standardGeneric("refine"),
+  valueClass = "RefineCA"
+)
+
 # @rdname seriation
 # @aliases seriate_constrain-method
 # setGeneric(

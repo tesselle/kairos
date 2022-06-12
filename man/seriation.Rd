@@ -8,6 +8,8 @@
 \alias{seriate_average-method}
 \alias{seriate_rank}
 \alias{seriate_rank-method}
+\alias{refine}
+\alias{refine-method}
 \alias{permute}
 \alias{permute-method}
 \alias{get_order}
@@ -19,13 +21,16 @@
 \alias{get_order,PermutationOrder-method}
 \alias{seriate_rank,data.frame-method}
 \alias{seriate_rank,matrix-method}
-\alias{bootstrap,AveragePermutationOrder-method}
-\alias{bootstrap,AveragePermutationOrder,function-method}
+\alias{refine,AveragePermutationOrder-method}
+\alias{refine,CA-method}
+\alias{refine,BootstrapCA-method}
 \title{Matrix Seriation}
 \usage{
 seriate_average(object, ...)
 
 seriate_rank(object, ...)
+
+refine(object, ...)
 
 permute(object, order, ...)
 
@@ -45,7 +50,9 @@ get_order(x, ...)
 
 \S4method{seriate_rank}{matrix}(object, EPPM = FALSE, margin = c(1, 2), stop = 100)
 
-\S4method{bootstrap}{AveragePermutationOrder}(object, cutoff, n = 30, margin = 1, axes = c(1, 2))
+\S4method{refine}{AveragePermutationOrder}(object, cutoff, margin = c(1, 2), axes = c(1, 2), n = 30)
+
+\S4method{refine}{BootstrapCA}(object, cutoff, margin = 1, axes = c(1, 2))
 }
 \arguments{
 \item{object, x}{An \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or a
