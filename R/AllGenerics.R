@@ -26,6 +26,20 @@ setGeneric("autoplot", package = "ggplot2")
 NULL
 
 #' @rdname mutators
+#' @aliases get_dates-method
+setGeneric(
+  name = "get_dates",
+  def = function(x) standardGeneric("get_dates")
+)
+
+#' @rdname mutators
+#' @aliases get_groups-method
+setGeneric(
+  name = "get_groups",
+  def = function(x) standardGeneric("get_groups")
+)
+
+#' @rdname mutators
 #' @aliases get_model-method
 setGeneric(
   name = "get_model",
