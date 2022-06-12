@@ -7,14 +7,14 @@ citEntry(
   year         = "2022",
   organization = "Université Bordeaux Montaigne",
   address      = "Pessac, France",
-  note         = "R package version 1.0.1",
+  note         = "R package version 1.1.0",
   url          = "https://packages.tesselle.org/kairos/",
   doi          = "10.5281/zenodo.5653896",
 
   textVersion  =
   paste("Frerebeau, Nicolas (2022).",
         "kairos: Analysis of Chronological Patterns from Archaeological Count Data.",
-        "R package version 1.0.1",
+        "R package version 1.1.0",
         "Université Bordeaux Montaigne, Pessac, France.",
         "DOI 10.5281/zenodo.5653896.",
         "URL https://packages.tesselle.org/kairos.")

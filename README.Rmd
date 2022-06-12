@@ -32,8 +32,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 ## Overview
-
-A toolkit for absolute dating and analysis of chronological patterns. This package includes functions for chronological modeling and dating of archaeological assemblages from count data. It allows to compute time point estimates and density estimates of the occupation and duration of an archaeological site. **kairos** provides methods for:
+A convenient and reproducible toolkit for relative and absolute dating and analysis of chronological patterns. This package includes functions for chronological modeling and dating of archaeological assemblages from count data. It provides methods for matrix seriation. It also allows to compute time point estimates and density estimates of the occupation and duration of an archaeological site. **kairos** provides methods for:
 
 * Matrix seriation: `seriate_rank()` and `seriate_average()`
 * Mean ceramic date estimation [@south1977]: `mcd()`
@@ -93,4 +92,3 @@ heatmap(incidence2, Rowv = NA, Colv = NA, revC = TRUE,
 Please note that the **kairos** project is released with a [Contributor Code of Conduct](https://www.tesselle.org/conduct.html). By contributing to this project, you agree to abide by its terms.
 
 ## References
-

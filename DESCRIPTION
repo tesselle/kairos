@@ -1,6 +1,6 @@
 Package: kairos
 Title: Analysis of Chronological Patterns from Archaeological Count Data
-Version: 1.0.1.9000
+Version: 1.1.0
 Authors@R: 
     c(person(given = "Nicolas",
              family = "Frerebeau",
@@ -28,9 +28,10 @@ Authors@R:
                          affiliation = "Université de Nantes")))
 Description: A toolkit for absolute dating and analysis of chronological
     patterns. This package includes functions for chronological modeling
-    and dating of archaeological assemblages from count data. It allows to
-    compute time point estimates and density estimates of the occupation and 
-    duration of an archaeological site.
+    and dating of archaeological assemblages from count data. It provides
+    methods for matrix seriation. It also allows to compute time point 
+    estimates and density estimates of the occupation and duration of an 
+    archaeological site.
 License: GPL (>= 3)
 URL: https://packages.tesselle.org/kairos/,
     https://github.com/tesselle/kairos

@@ -34,11 +34,12 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 ## Overview
 
-A toolkit for absolute dating and analysis of chronological patterns.
-This package includes functions for chronological modeling and dating of
-archaeological assemblages from count data. It allows to compute time
-point estimates and density estimates of the occupation and duration of
-an archaeological site. **kairos** provides methods for:
+A convenient and reproducible toolkit for relative and absolute dating
+and analysis of chronological patterns. This package includes functions
+for chronological modeling and dating of archaeological assemblages from
+count data. It provides methods for matrix seriation. It also allows to
+compute time point estimates and density estimates of the occupation and
+duration of an archaeological site. **kairos** provides methods for:
 
 -   Matrix seriation: `seriate_rank()` and `seriate_average()`
 -   Mean ceramic date estimation (South 1977): `mcd()`
@@ -90,7 +91,7 @@ incidence1 <- matrix(sample(0:1, 400, TRUE, c(0.6, 0.4)), nrow = 20)
 ## If no convergence is reached before the maximum number of iterations (100), 
 ## it stops with a warning.
 (indices <- seriate_rank(incidence1, margin = c(1, 2), stop = 100))
-#> <PermutationOrder: reciprocal ranking>
+#> <RankPermutationOrder>
 #> Permutation order for matrix seriation:
 #> - Row order: 1 4 20 3 9 16 19 10 13 2 11 7 17 5 6 18 14 15 8 12...
 #> - Column order: 1 16 9 4 8 14 3 20 13 2 6 18 7 17 5 11 19 12 15 10...

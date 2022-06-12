@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.2.1
+# CITATION file created with {cffr} R package, v0.2.2
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,11 +8,12 @@ message: 'To cite package "kairos" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
-version: 1.0.1.9000
+version: 1.1.0
 abstract: A toolkit for absolute dating and analysis of chronological patterns. This
   package includes functions for chronological modeling and dating of archaeological
-  assemblages from count data. It allows to compute time point estimates and density
-  estimates of the occupation and duration of an archaeological site.
+  assemblages from count data. It provides methods for matrix seriation. It also allows
+  to compute time point estimates and density estimates of the occupation and duration
+  of an archaeological site.
 authors:
 - family-names: Frerebeau
   given-names: Nicolas
@@ -28,11 +29,12 @@ preferred-citation:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  version: 1.0.1.9000
+  version: 1.1.0
   abstract: A toolkit for absolute dating and analysis of chronological patterns.
     This package includes functions for chronological modeling and dating of archaeological
-    assemblages from count data. It allows to compute time point estimates and density
-    estimates of the occupation and duration of an archaeological site.
+    assemblages from count data. It provides methods for matrix seriation. It also
+    allows to compute time point estimates and density estimates of the occupation
+    and duration of an archaeological site.
   repository: https://CRAN.R-project.org/package=kairos
   repository-code: https://github.com/tesselle/kairos
   url: https://packages.tesselle.org/kairos/
@@ -87,7 +89,20 @@ references:
     orcid: https://orcid.org/0000-0001-5759-4944
   year: '2022'
   url: https://CRAN.R-project.org/package=arkhe
-  version: '>= 0.4.0'
+  version: '>= 0.5.0'
+- type: software
+  title: boot
+  abstract: 'boot: Bootstrap Functions (Originally by Angelo Canty for S)'
+  notes: Imports
+  authors:
+  - family-names: Canty
+    given-names: Angelo
+    email: cantya@mcmaster.ca
+  - family-names: Ripley
+    given-names: Brian
+    email: ripley@stats.ox.ac.uk
+  year: '2022'
+  url: https://CRAN.R-project.org/package=boot
 - type: software
   title: dimensio
   abstract: 'dimensio: Multivariate Data Analysis'
@@ -222,8 +237,21 @@ references:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
+    affiliation: Université Bordeaux Montaigne
   year: '2022'
   url: https://CRAN.R-project.org/package=folio
+- type: software
+  title: khroma
+  abstract: 'khroma: Colour Schemes for Scientific Data Visualization'
+  notes: Suggests
+  authors:
+  - family-names: Frerebeau
+    given-names: Nicolas
+    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+    orcid: https://orcid.org/0000-0001-5759-4944
+    affiliation: Université Bordeaux Montaigne
+  year: '2022'
+  url: https://CRAN.R-project.org/package=khroma
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
