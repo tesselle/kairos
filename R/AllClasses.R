@@ -10,6 +10,12 @@ NULL
 #'  (ceramic) types.
 #' @slot weights An \eqn{m \times p}{m x p} [`integer`] [`matrix`] giving the
 #'  weights used.
+#' @slot simulation A three columns [`numeric`] matrix giving the summary
+#'  statistics of the simulated dates (`mean` and `lower` and `upper` boundaries
+#'  of the confidence interval).
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @slot replications An [`integer`] giving the number of bootstrap
+#'  replications.
 #' @section Coerce:
 #'  In the code snippets below, `x` is a `MeanDate` object.
 #'  \describe{
@@ -28,6 +34,16 @@ NULL
     weights = "matrix"
   ),
   contains = "numeric"
+)
+
+.SimulationMeanDate <- setClass(
+  Class = "SimulationMeanDate",
+  slots = c(
+    simulation = "matrix",
+    level = "numeric",
+    replications = "integer"
+  ),
+  contains = "MeanDate"
 )
 
 # EventDate ====================================================================

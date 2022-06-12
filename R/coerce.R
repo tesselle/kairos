@@ -13,6 +13,18 @@ as.data.frame.MeanDate <- function(x, ..., stringsAsFactors = FALSE) {
   )
 }
 
+#' @method as.data.frame SimulationMeanDate
+#' @export
+as.data.frame.SimulationMeanDate <- function(x, ..., stringsAsFactors = FALSE) {
+  data.frame(
+    names = names(x),
+    dates = as.numeric(x),
+    x@simulation,
+    row.names = NULL,
+    stringsAsFactors = stringsAsFactors
+  )
+}
+
 #' @method as.data.frame IncrementTest
 #' @export
 as.data.frame.IncrementTest <- function(x, ..., stringsAsFactors = FALSE) {

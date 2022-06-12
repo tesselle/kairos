@@ -5,10 +5,6 @@ NULL
 # S4 dispatch to S3 generics ===================================================
 setGeneric("autoplot", package = "ggplot2")
 
-# Set generics from other packages =============================================
-setGeneric("bootstrap", package = "dimensio")
-setGeneric("jackknife", package = "arkhe")
-
 # Mutators =====================================================================
 ## Extract ---------------------------------------------------------------------
 #' Get or Set Parts of an Object
@@ -43,6 +39,53 @@ setGeneric(
   def = function(x) standardGeneric("get_weights")
 )
 
+# Resampling methods ===========================================================
+#' Resampling Methods
+#'
+#' @description
+#'  * `bootstrap()` generate bootstrap estimations of a statistic.
+#'  * `jackknife()` generate jackknife estimations of a statistic.
+#' @param object An object.
+#' @param n A non-negative [`integer`] specifying the number of bootstrap
+#'  replications.
+#' @param f A [`function`] that takes a single numeric vector (the result of
+#'  the resampling procedure) as argument.
+#' @param interval A [`character`] string giving the type of confidence
+#'  interval to be returned. It must be one "`student`" (the default),
+#'  "`normal`" or "`percentiles`". Any unambiguous substring can be given.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param ... Currently not used
+#' @return
+#'  If `f` is `NULL`, `bootstrap()` and `jackknife()` return a [`data.frame`]
+#'  with the following elements (else, returns the result of `f` applied to the
+#'  `n` resampled values) :
+#'  \describe{
+#'   \item{original}{The observed value.}
+#'   \item{mean}{The bootstrap/jackknife estimate of mean.}
+#'   \item{bias}{The bootstrap/jackknife estimate of bias.}
+#'   \item{error}{The boostrap/jackknife estimate of standard erro.}
+#'  }
+#' @author N. Frerebeau
+#' @docType methods
+#' @family resampling methods
+#' @name resample
+#' @rdname resample
+NULL
+
+#' @rdname resample
+#' @aliases bootstrap-method
+setGeneric(
+  name = "bootstrap",
+  def = function(object, ...) standardGeneric("bootstrap")
+)
+
+#' @rdname resample
+#' @aliases jackknife-method
+setGeneric(
+  name = "jackknife",
+  def = function(object, ...) standardGeneric("jackknife")
+)
+
 # Dating Methods ===============================================================
 ## Mean Ceramic Date -----------------------------------------------------------
 #' Mean Ceramic Date
@@ -52,13 +95,7 @@ setGeneric(
 #'  `numeric` [`matrix`] or [`data.frame`] of count data (absolute frequencies).
 #' @param dates A length-\eqn{p} [`numeric`] vector of dates expressed in CE
 #'  years (BCE years must be given as negative numbers).
-#' @param na.rm A [`logical`] scalar: should missing values (including `NaN`) be
-#'  removed?
-#' @param n A non-negative [`integer`] specifying the number of bootstrap
-#'  replications.
-#' @param f A [`function`] that takes a single numeric vector (the result of
-#'  `do`) as argument.
-#' @param ... Extra arguments passed to `do`.
+#' @param ... Currently not used.
 #' @details
 #'  The Mean Ceramic Date (MCD) is a point estimate of the occupation of an
 #'  archaeological site (South 1977). The MCD is estimated as the weighted mean
@@ -77,9 +114,8 @@ setGeneric(
 #'  not make sense in most situations). You can change this behavior with
 #'  `options(kairos.precision = x)` (for `x` decimal places).
 #' @return
-#'  * `mcd()` returns a single [`numeric`] value or a [MeanDate-class] object.
-#'  * `bootstrap()` and `jackknife()` return a [`data.frame`].
-#' @seealso [plot_mcd][plot()]
+#'  A single [`numeric`] value or a [MeanDate-class] object.
+#' @seealso [plot_mcd][plot()], [bootstrap()], [jackknife()], [simulate()]
 #' @references
 #'  South, S. A. (1977). *Method and Theory in Historical Archaeology*.
 #'  New York: Academic Press.

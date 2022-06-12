@@ -98,6 +98,8 @@ zuni_mid <- vapply(X = zuni_dates, FUN = mean, FUN.VALUE = numeric(1))
 ## Calculate MCD
 zuni_mcd <- mcd(zuni, dates = zuni_mid)
 head(zuni_mcd)
+
+plot(zuni_mcd, select = 100:125)
 ```
 
 ## Event & Accumulation Date

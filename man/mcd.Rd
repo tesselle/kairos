@@ -7,21 +7,15 @@
 \alias{mcd,numeric,numeric-method}
 \alias{mcd,data.frame,numeric-method}
 \alias{mcd,matrix,numeric-method}
-\alias{bootstrap,MeanDate-method}
-\alias{jackknife,MeanDate-method}
 \title{Mean Ceramic Date}
 \usage{
 mcd(object, dates, ...)
 
-\S4method{mcd}{numeric,numeric}(object, dates, na.rm = FALSE)
+\S4method{mcd}{numeric,numeric}(object, dates)
 
-\S4method{mcd}{data.frame,numeric}(object, dates, na.rm = FALSE)
+\S4method{mcd}{data.frame,numeric}(object, dates)
 
-\S4method{mcd}{matrix,numeric}(object, dates, na.rm = FALSE)
-
-\S4method{bootstrap}{MeanDate}(object, n = 1000, f = NULL)
-
-\S4method{jackknife}{MeanDate}(object)
+\S4method{mcd}{matrix,numeric}(object, dates)
 }
 \arguments{
 \item{object}{A length-\eqn{p} \code{\link{numeric}} vector, an \eqn{m \times p}{m x p}
@@ -30,22 +24,10 @@ mcd(object, dates, ...)
 \item{dates}{A length-\eqn{p} \code{\link{numeric}} vector of dates expressed in CE
 years (BCE years must be given as negative numbers).}
 
-\item{...}{Extra arguments passed to \code{do}.}
-
-\item{na.rm}{A \code{\link{logical}} scalar: should missing values (including \code{NaN}) be
-removed?}
-
-\item{n}{A non-negative \code{\link{integer}} specifying the number of bootstrap
-replications.}
-
-\item{f}{A \code{\link{function}} that takes a single numeric vector (the result of
-\code{do}) as argument.}
+\item{...}{Currently not used.}
 }
 \value{
-\itemize{
-\item \code{mcd()} returns a single \code{\link{numeric}} value or a \linkS4class{MeanDate} object.
-\item \code{bootstrap()} and \code{jackknife()} return a \code{\link{data.frame}}.
-}
+A single \code{\link{numeric}} value or a \linkS4class{MeanDate} object.
 }
 \description{
 Estimates the Mean Ceramic Date of an assemblage.
@@ -88,26 +70,30 @@ dates <- list(
 mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 
 ## Calculate MCD
-mc_dates <- mcd(zuni, dates = mid)
+mc_dates <- mcd(zuni[100:125, ], dates = mid)
 head(mc_dates)
 
 ## Plot
-plot(mc_dates, select = 100:125)
+plot(mc_dates)
 
-## Bootstrap resampling (summary statistics)
-boot <- bootstrap(mc_dates, n = 30, f = summary)
+## Bootstrap resampling
+boot <- bootstrap(mc_dates, n = 30)
 head(boot)
 
 ## Jackknife resampling
 jack <- jackknife(mc_dates)
 head(jack)
+
+## Simulation
+sim <- simulate(mc_dates, n = 30, interval = "percentiles")
+plot(sim)
 }
 \references{
 South, S. A. (1977). \emph{Method and Theory in Historical Archaeology}.
 New York: Academic Press.
 }
 \seealso{
-\link[=plot]{plot_mcd}
+\link[=plot]{plot_mcd}, \code{\link[=bootstrap]{bootstrap()}}, \code{\link[=jackknife]{jackknife()}}, \code{\link[=simulate]{simulate()}}
 
 Other dating methods: 
 \code{\link{event}()}

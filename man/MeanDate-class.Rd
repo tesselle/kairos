@@ -5,6 +5,9 @@
 \alias{MeanDate-class}
 \alias{.MeanDate}
 \title{Mean Date}
+\arguments{
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
+}
 \description{
 An S4 class to store the weighted mean date (e.g. Mean Ceramic Date) of
 archaeological assemblages.
@@ -17,6 +20,13 @@ archaeological assemblages.
 
 \item{\code{weights}}{An \eqn{m \times p}{m x p} \code{\link{integer}} \code{\link{matrix}} giving the
 weights used.}
+
+\item{\code{simulation}}{A three columns \code{\link{numeric}} matrix giving the summary
+statistics of the simulated dates (\code{mean} and \code{lower} and \code{upper} boundaries
+of the confidence interval).}
+
+\item{\code{replications}}{An \code{\link{integer}} giving the number of bootstrap
+replications.}
 }}
 
 \note{
