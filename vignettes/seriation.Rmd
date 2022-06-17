@@ -31,7 +31,6 @@ knitr::opts_chunk$set(
 library(khroma) # Colour schemes
 library(folio) # Datasets
 library(dimensio) # Multivariate analysis
-library(tabula)
 library(kairos)
 ```
 
@@ -108,12 +107,11 @@ compiegne_permuted <- permute(compiegne, indices)
 
 Correspondence Analysis (CA) is an effective method for the seriation of archaeological assemblages. The order of the rows and columns is given by the coordinates along one dimension of the CA space, assumed to account for temporal variation. The direction of temporal change within the correspondence analysis space is arbitrary: additional information is needed to determine the actual order in time.
 
-```{r ca-ford, fig.width=7, fig.height=5, results='hold'}
+```{r ca-ford, fig.width=5, fig.height=5}
 ## Get data
 data("zuni", package = "folio")
 
-tabula::plot_ford(zuni) +
-  ggplot2::theme(axis.text.y = ggplot2::element_blank())
+heatmap(as.matrix(zuni), Rowv = NA, Colv = NA, revC = TRUE)
 ```
 
 ```{r ca-seriation, fig.width=3.5, fig.height=3.5, results='hold'}
@@ -132,12 +130,11 @@ dimensio::plot_columns(zun_indices) +
   ggplot2::theme_bw()
 ```
 
-```{r ca-permutation, fig.width=7, fig.height=5}
+```{r ca-permutation, fig.width=5, fig.height=5}
 ## Permute data matrix
 zuni_permuted <- permute(zuni, zun_indices)
 
-tabula::plot_ford(zuni_permuted) +
-  ggplot2::theme(axis.text.y = ggplot2::element_blank())
+heatmap(as.matrix(zuni_permuted), Rowv = NA, Colv = NA, revC = TRUE)
 ```
 
 ## Refining
