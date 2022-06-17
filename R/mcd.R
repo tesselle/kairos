@@ -11,7 +11,6 @@ setMethod(
   signature = signature(object = "numeric", dates = "numeric"),
   definition = function(object, dates) {
     ## Validation
-    print(object)
     arkhe::assert_length(dates, length(object))
     # arkhe::assert_count(object)
 

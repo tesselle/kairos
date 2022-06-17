@@ -76,6 +76,7 @@ head(mc_dates)
 ## Plot
 plot(mc_dates)
 
+\donttest{
 ## Bootstrap resampling
 boot <- bootstrap(mc_dates, n = 30)
 head(boot)
@@ -87,6 +88,7 @@ head(jack)
 ## Simulation
 sim <- simulate(mc_dates, n = 30, interval = "percentiles")
 plot(sim)
+}
 }
 \references{
 South, S. A. (1977). \emph{Method and Theory in Historical Archaeology}.
