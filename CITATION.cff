@@ -8,7 +8,7 @@ message: 'To cite package "kairos" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
-version: 1.1.0
+version: 1.1.0.9000
 abstract: A toolkit for absolute dating and analysis of chronological patterns. This
   package includes functions for chronological modeling and dating of archaeological
   assemblages from count data. It provides methods for matrix seriation. It also allows
@@ -29,7 +29,7 @@ preferred-citation:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  version: 1.1.0
+  version: 1.1.0.9000
   abstract: A toolkit for absolute dating and analysis of chronological patterns.
     This package includes functions for chronological modeling and dating of archaeological
     assemblages from count data. It provides methods for matrix seriation. It also
@@ -87,6 +87,7 @@ references:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
+    affiliation: Université Bordeaux Montaigne
   year: '2022'
   url: https://CRAN.R-project.org/package=arkhe
   version: '>= 0.5.0'
@@ -347,3 +348,6 @@ identifiers:
 - description: The versioned DOI for version 1.0.1.
   type: doi
   value: 10.5281/zenodo.6349207
+- description: The versioned DOI for version 1.1.0.
+  type: doi
+  value: 10.5281/zenodo.6659732

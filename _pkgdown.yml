@@ -16,6 +16,9 @@ reference:
 - title: Seriation Methods
   contents:
   - has_concept("seriation methods")
+- title: Resampling Methods
+  contents:
+  - has_concept("resampling methods")
 - title: Visualization
   contents:
   - has_concept("plotting methods")

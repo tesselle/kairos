@@ -1,3 +1,5 @@
+# kairos 1.1.0.9000
+
 # kairos 1.1.0
 ## New classes and methods
 * Add seriation methods: `seriate_rank()`, `seriate_average()`, `permute()`, `get_order()`.
