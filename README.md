@@ -48,9 +48,9 @@ duration of an archaeological site. **kairos** provides methods for:
 -   Aoristic analysis (Ratcliffe 2000): `aoristic()`
 -   Chronological apportioning (Roberts et al. 2012): `apportion()`
 
-[**tabula**](https://www.tesselle.org/tabula/) is a companion package to
-**kairos** that provides functions for visualization and analysis of
-archaeological count data.
+[**tabula**](https://packages.tesselle.org/tabula/) is a companion
+package to **kairos** that provides functions for visualization and
+analysis of archaeological count data.
 
 ## Installation
 
@@ -72,6 +72,7 @@ remotes::install_github("tesselle/kairos")
 
 ``` r
 ## Load packages
+library(tabula)
 library(kairos)
 ```
 
@@ -95,6 +96,8 @@ incidence1 <- incidence1 > 0 # logical
 ## If no convergence is reached before the maximum number of iterations (100), 
 ## it stops with a warning.
 (indices <- seriate_rank(incidence1, margin = c(1, 2), stop = 100))
+#> Plus d’une classe "PermutationOrder" est trouvée en cache : Utilisation de la première, depuis l’espace de noms 'tabula'
+#> Aussi défini par 'kairos'
 #> <RankPermutationOrder>
 #> Permutation order for matrix seriation:
 #> - Row order: 1 4 20 3 9 16 19 10 13 2 11 7 17 5 6 18 14 15 8 12...

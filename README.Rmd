@@ -41,7 +41,7 @@ A convenient and reproducible toolkit for relative and absolute dating and analy
 * Aoristic analysis [@ratcliffe2000]: `aoristic()`
 * Chronological apportioning [@roberts2012]: `apportion()`
 
-[**tabula**](https://www.tesselle.org/tabula/) is a companion package to **kairos** that provides functions for visualization and analysis of archaeological count data.
+[**tabula**](https://packages.tesselle.org/tabula/) is a companion package to **kairos** that provides functions for visualization and analysis of archaeological count data.
 
 ## Installation
 
@@ -60,8 +60,9 @@ remotes::install_github("tesselle/kairos")
 
 ## Usage
 
-```{r packages-load}
+```{r packages-load, warning=FALSE, message=FALSE}
 ## Load packages
+library(tabula)
 library(kairos)
 ```
 
