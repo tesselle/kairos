@@ -41,7 +41,7 @@ Depends:
 Imports:
     arkhe (>= 0.5.0),
     boot,
-    dimensio (>= 0.2.2),
+    dimensio (>= 0.3.0),
     extraDistr,
     ggplot2,
     Hmisc,
