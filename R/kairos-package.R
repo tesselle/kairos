@@ -40,7 +40,6 @@
 "_PACKAGE"
 
 #' @import arkhe
-#' @importFrom boot boot
 #' @importFrom dimensio ca get_coordinates get_eigenvalues
 #' get_replications predict
 #' @importFrom extraDistr ptnorm

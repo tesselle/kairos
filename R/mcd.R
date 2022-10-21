@@ -66,6 +66,8 @@ setMethod(
 
     w <- get_weights(object)
     m <- nrow(w)
+    p <- ncol(w)
+    seq_col <- seq_len(p)
 
     dates <- object@types
     theta <- function(x, counts, dates) {
@@ -74,29 +76,21 @@ setMethod(
 
     results <- vector(mode = "list", length = m)
     for (i in seq_len(m)) {
-      b <- boot::boot(w[i, ], statistic = theta, R = n, dates = dates)
-      if (is.null(f)) {
-        results[[i]] <- summary_bootstrap(b$t, b$t0)
-      } else {
-        results[[i]] <- f(as.numeric(b$t))
-      }
+      results[[i]] <- arkhe::bootstrap(
+        object = seq_col,
+        do = theta,
+        n = n,
+        counts = w[i, ],
+        dates = dates,
+        f = f
+      )
     }
+
     results <- do.call(rbind, results)
     rownames(results) <- rownames(w)
     as.data.frame(results)
   }
 )
-
-summary_bootstrap <- function(x, hat) {
-  n <- length(x)
-  boot_mean <- mean(x)
-  boot_bias <- boot_mean - hat
-  boot_error <- stats::sd(x)
-
-  results <- c(hat, boot_mean, boot_bias, boot_error)
-  names(results) <- c("original", "mean", "bias", "error")
-  results
-}
 
 #' @export
 #' @rdname resample
