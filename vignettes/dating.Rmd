@@ -5,7 +5,6 @@ date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     number_sections: yes
-    fig_caption: yes
     toc: true
 header-includes:
    - \usepackage{amsmath}
