@@ -41,7 +41,7 @@
 
 #' @import arkhe
 #' @importFrom boot boot
-#' @importFrom dimensio bootstrap ca get_coordinates get_eigenvalues
+#' @importFrom dimensio ca get_coordinates get_eigenvalues
 #' get_replications predict
 #' @importFrom extraDistr ptnorm
 #' @importFrom ggplot2 autoplot ggplot aes facet_wrap geom_area geom_line
