@@ -150,7 +150,7 @@ setMethod("plot", c(x = "IncrementTest", y = "missing"), plot.IncrementTest)
 ## * Must return a data.frame
 ## * Must preserve original ordering
 prepare_time <- function(object, dates) {
-  data <- arkhe::as_long(object, factor = TRUE)
+  data <- arkhe::to_long(object, factor = TRUE)
 
   data$x <- data$dates <- dates
   data$y <- data$value

@@ -29,8 +29,8 @@ setMethod(
                         progress = getOption("kairos.progress")) {
     ## Validation
     method <- match.arg(method, several.ok = FALSE)
-    assert_relation(s0, s1, expected = "lower", strict = FALSE)
-    assert_relation(t0, t1, expected = "lower", strict = FALSE)
+    assert_lower(s0, s1, strict = FALSE)
+    assert_lower(t0, t1, strict = FALSE)
 
     ## Get data
     n_site <- nrow(object)

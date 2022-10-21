@@ -43,7 +43,7 @@ resample <- function(object, do, n, size = sum(object), ..., f = NULL) {
 #' @noRd
 roll <- function(x, window = 3) {
   ## Validation
-  arkhe::assert_numeric(window, "odd")
+  arkhe::assert_odd(window)
 
   n <- if (is.matrix(x) || is.data.frame(x)) nrow(x) else length(x)
   i <- seq_len(n) # Indices of the rows
