@@ -3,10 +3,10 @@
 NULL
 
 #' @export
-#' @rdname seriation
-#' @aliases refine,CA-method
+#' @rdname resample_seriation
+#' @aliases bootstrap,CA-method
 setMethod(
-  f = "refine",
+  f = "bootstrap",
   signature = signature(object = "AveragePermutationOrder"),
   definition = function(object, cutoff, margin = c(1, 2), axes = c(1, 2), n = 30) {
     ## Partial bootstrap CA
@@ -17,10 +17,10 @@ setMethod(
 )
 
 #' @export
-#' @rdname seriation
-#' @aliases refine,BootstrapCA-method
+#' @rdname resample_seriation
+#' @aliases bootstrap,BootstrapCA-method
 setMethod(
-  f = "refine",
+  f = "bootstrap",
   signature = signature(object = "BootstrapCA"),
   definition = function(object, cutoff, margin = 1, axes = c(1, 2)) {
     ## Validation

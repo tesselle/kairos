@@ -20,11 +20,11 @@ An S4 class to represent a Frequency Increment Test results.
 }
 \section{Functions}{
 \itemize{
-\item \code{[[,IncrementTest,ANY,missing-method}: Extracts information from a slot selected
+\item \code{x[[i}: Extracts information from a slot selected
 by subscript i. i is a length-one character vector. Returns the
 corresponding slot values.
-}}
 
+}}
 \section{Slots}{
 
 \describe{

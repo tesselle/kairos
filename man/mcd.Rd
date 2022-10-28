@@ -95,7 +95,8 @@ South, S. A. (1977). \emph{Method and Theory in Historical Archaeology}.
 New York: Academic Press.
 }
 \seealso{
-\link[=plot]{plot_mcd}, \code{\link[=bootstrap]{bootstrap()}}, \code{\link[=jackknife]{jackknife()}}, \code{\link[=simulate]{simulate()}}
+\link[=plot_mcd]{plot()}, \link[=resample_mcd]{bootstrap()},
+\link[=resample_mcd]{jackknife()}, \link[=resample_mcd]{simulate()}
 
 Other dating methods: 
 \code{\link{event}()}

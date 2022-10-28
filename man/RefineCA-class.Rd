@@ -20,11 +20,11 @@ An S4 class to store partial bootstrap correspondence analysis results.
 }
 \section{Functions}{
 \itemize{
-\item \code{[[,RefineCA,ANY,missing-method}: Extracts information from a slot selected
+\item \code{x[[i}: Extracts information from a slot selected
 by subscript i. i is a length-one character vector. Returns the
 corresponding slot values.
-}}
 
+}}
 \section{Slots}{
 
 \describe{

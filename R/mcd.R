@@ -57,7 +57,7 @@ setMethod(
 
 # Resample =====================================================================
 #' @export
-#' @rdname resample
+#' @rdname resample_mcd
 #' @aliases bootstrap,MeanDate-method
 setMethod(
   f = "bootstrap",
@@ -93,7 +93,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname resample
+#' @rdname resample_mcd
 #' @aliases jackknife,MeanDate-method
 setMethod(
   f = "jackknife",
@@ -125,7 +125,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname resample
+#' @rdname resample_mcd
 #' @aliases simulate,MeanDate-method
 setMethod(
   f = "simulate",

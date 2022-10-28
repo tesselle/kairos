@@ -3,7 +3,7 @@
 NULL
 
 #' @export
-#' @rdname event
+#' @rdname resample_event
 #' @aliases jackknife,EventDate-method
 setMethod(
   f = "jackknife",
@@ -40,7 +40,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname event
+#' @rdname resample_event
 #' @aliases bootstrap,EventDate-method
 setMethod(
   f = "bootstrap",

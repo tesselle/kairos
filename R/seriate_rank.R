@@ -55,8 +55,7 @@ setMethod(
       convergence <- identical(index, old_index)
       start <- start + 1
       if (start >= stop) {
-        warning("Convergence not reached (possible infinite cycle).",
-                call. = FALSE)
+        warning("Convergence not reached (possible infinite loop).", call. = FALSE)
         break
       }
     }
