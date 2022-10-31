@@ -43,6 +43,7 @@ Imports:
     dimensio (>= 0.3.0),
     extraDistr,
     ggplot2,
+    grDevices,
     Hmisc,
     methods,
     rlang,
@@ -50,7 +51,7 @@ Imports:
     utils
 Suggests:
     covr,
-    folio,
+    folio (>= 1.3.0),
     khroma,
     knitr,
     rmarkdown,

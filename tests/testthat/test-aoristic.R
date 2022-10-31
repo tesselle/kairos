@@ -1,9 +1,9 @@
 test_that("Aoristic sum", {
   ## Exemple from Palmisano et al. 2017
   span <- data.frame(
-    id = c("a", "b", "c", "d"),
     from = c(-2200, -2000, -1600, -2000),
-    to = c(-1400, -1600, -1400, -1400)
+    to = c(-1400, -1600, -1400, -1400),
+    id = c("a", "b", "c", "d")
   )
 
   ## Calculate aoristic sum (normal)
@@ -19,9 +19,6 @@ test_that("Aoristic sum", {
 
   gg_weight <- autoplot(aorist_weigth)
   vdiffr::expect_doppelganger("aoristic_weight", gg_weight)
-
-  colnames(span) <- c("A", "B")
-  expect_error(aoristic(span), "does not have component")
 })
 test_that("Aoristic sum by group", {
   ## Tool data

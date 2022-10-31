@@ -78,19 +78,13 @@ setMethod(
 
 #' @export
 #' @rdname aoristic
-#' @aliases aoristic,list,missing-method
+#' @aliases aoristic,ANY,missing-method
 setMethod(
   f = "aoristic",
-  signature = signature(x = "list", y = "missing"),
+  signature = signature(x = "ANY", y = "missing"),
   definition = function(x, step = 1, start = NULL, stop = NULL, weight = TRUE,
                         groups = NULL) {
-    ## Validation
-    k <- match(c("from", "to"), names(x))
-    if (anyNA(k)) {
-      msg <- sprintf("%s is a list, but does not have components %s and %s.",
-                     sQuote("x"), sQuote("from"), sQuote("to"))
-      stop(msg, call. = FALSE)
-    }
+    xy <- grDevices::xy.coords(x)
     g <- groups
     if (!is.null(g) && length(g) == 1) {
       g <- x[[g]]
@@ -102,10 +96,10 @@ setMethod(
     }
 
     ## Start/stop
-    if (is.null(start)) start <- min(x$from, na.rm = TRUE)
-    if (is.null(stop)) stop <- max(x$to, na.rm = TRUE)
+    if (is.null(start)) start <- min(xy$x, na.rm = TRUE)
+    if (is.null(stop)) stop <- max(xy$y, na.rm = TRUE)
 
-    methods::callGeneric(x = x$from, y = x$to, step = step, start = start,
+    methods::callGeneric(x = xy$x, y = xy$y, step = step, start = start,
                          stop = stop, weight = weight, groups = g)
   }
 )

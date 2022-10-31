@@ -337,10 +337,8 @@ setGeneric(
 #' Aoristic Analysis
 #'
 #' Computes the aoristic sum.
-#' @param x A [`numeric`] vector. If `y` is missing, must be a [`list`] (or a
-#'  [`data.frame`]) with `numeric` components (columns) `from` and `to`.
-#' @param y A [`numeric`] vector. If missing, an attempt is made to interpret
-#'  `x` in a suitable way.
+#' @param x,y A [`numeric`] vector. If `y` is missing, an attempt is made to
+#'  interpret `x` in a suitable way (see [grDevices::xy.coords()]).
 #' @param step A length-one [`integer`] vector giving the step size, i.e. the
 #'  width of each time step in the time series (in years CE; defaults to
 #'  \eqn{1} - i.e. annual level).

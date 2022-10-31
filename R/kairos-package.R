@@ -46,6 +46,7 @@
 #' @importFrom ggplot2 autoplot ggplot aes facet_wrap geom_area geom_line
 #' geom_point geom_segment labs mean_cl_normal scale_x_continuous
 #' scale_y_continuous scale_y_discrete stat_summary theme theme_bw vars
+#' @importFrom grDevices xy.coords
 #' @importFrom Hmisc smean.cl.normal
 #' @importFrom methods as callGeneric callNextMethod new setClass setGeneric
 #' setMethod validObject .valueClassTest
