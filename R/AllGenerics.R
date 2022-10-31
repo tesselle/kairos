@@ -241,10 +241,13 @@ setGeneric(
 #'  must be given as negative numbers). If named, the names must match
 #'  the row names of `object`.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param rank An [`integer`] specifying the number of CA factorial components
+#'  to be use for linear model fitting (see details).
 #' @param cutoff An [`integer`] giving the cumulative percentage of variance
 #'  used to select CA factorial components for linear model fitting (see
 #'  details). All compounds with a cumulative percentage of variance of less
 #'  than the `cutoff` value will be retained.
+#'  This argument is defunct: use `rank` instead.
 #' @param margin A [`numeric`] vector giving the subscripts which the prediction
 #'  will be applied over: `1` indicates rows, `2` indicates columns.
 #' @param ... Further arguments to be passed to internal methods.

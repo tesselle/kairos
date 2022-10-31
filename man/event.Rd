@@ -14,6 +14,8 @@
 \alias{predict_event,EventDate,matrix-method}
 \alias{predict_accumulation,EventDate,missing-method}
 \alias{predict_accumulation,EventDate,matrix-method}
+\alias{summary,EventDate-method}
+\alias{summary,EventDate,missing-method}
 \title{Event and Accumulation Dates}
 \usage{
 event(object, dates, ...)
@@ -22,9 +24,9 @@ predict_event(object, data, ...)
 
 predict_accumulation(object, data, ...)
 
-\S4method{event}{data.frame,numeric}(object, dates, cutoff = 90, level = 0.95, ...)
+\S4method{event}{data.frame,numeric}(object, dates, rank = 10, cutoff = NULL, ...)
 
-\S4method{event}{matrix,numeric}(object, dates, cutoff = 90, level = 0.95, ...)
+\S4method{event}{matrix,numeric}(object, dates, rank = 10, cutoff = NULL, ...)
 
 \S4method{predict_event}{EventDate,missing}(object, margin = 1, level = 0.95)
 
@@ -33,6 +35,8 @@ predict_accumulation(object, data, ...)
 \S4method{predict_accumulation}{EventDate,missing}(object)
 
 \S4method{predict_accumulation}{EventDate,matrix}(object, data)
+
+\S4method{summary}{EventDate}(object, ...)
 }
 \arguments{
 \item{object}{An \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or a
@@ -47,15 +51,19 @@ the row names of \code{object}.}
 \item{data}{A \code{numeric} \code{\link{matrix}} or a \code{\link{data.frame}} of count data
 (absolute frequencies)for which to predict event and accumulation dates.}
 
+\item{rank}{An \code{\link{integer}} specifying the number of CA factorial components
+to be use for linear model fitting (see details).}
+
 \item{cutoff}{An \code{\link{integer}} giving the cumulative percentage of variance
 used to select CA factorial components for linear model fitting (see
 details). All compounds with a cumulative percentage of variance of less
-than the \code{cutoff} value will be retained.}
-
-\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
+than the \code{cutoff} value will be retained.
+This argument is defunct: use \code{rank} instead.}
 
 \item{margin}{A \code{\link{numeric}} vector giving the subscripts which the prediction
 will be applied over: \code{1} indicates rows, \code{2} indicates columns.}
+
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
 }
 \value{
 \itemize{

@@ -28,14 +28,13 @@ setValidity(
   method = function(object) {
     # Get data
     data <- object@data
+    contexts <- object@contexts
     dates <- object@dates
     model <- object@model
-    cutoff <- object@cutoff
     keep <- object@keep
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_length(dates, nrow(data))),
-      arkhe::validate(arkhe::assert_scalar(cutoff, "integer"))
+      arkhe::validate(arkhe::assert_length(dates, nrow(contexts)))
     )
 
     # Return cnd, if any

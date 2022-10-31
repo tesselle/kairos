@@ -51,11 +51,12 @@ NULL
 #'
 #' S4 classes to store the event and accumulation times of archaeological
 #' assemblages.
-#' @slot dates A [`numeric`] vector of dates.
+#' @slot contexts A \eqn{m \times p}{m x p} [`integer`] [`matrix`] of count
+#'  data.
+#' @slot dates A length-\eqn{m} [`numeric`] vector of dates.
 #' @slot model A [multiple linear model][stats::lm()]: the Gaussian
 #'  multiple linear regression model fitted for event date estimation and
 #'  prediction.
-#' @slot cutoff An length-one [`integer`] vector giving the cutoff value.
 #' @slot keep An [`integer`] vector.
 #' @seealso [`dimensio::CA-class`]
 #' @author N. Frerebeau
@@ -65,9 +66,9 @@ NULL
 .EventDate <- setClass(
   Class = "EventDate",
   slots = c(
+    contexts = "matrix",
     dates = "numeric",
     model = "lm",
-    cutoff = "integer",
     keep = "integer"
   ),
   contains = "CA"

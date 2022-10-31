@@ -8,9 +8,9 @@ NULL
 setMethod(
   f = "event",
   signature = signature(object = "data.frame", dates = "numeric"),
-  definition = function(object, dates, cutoff = 90, level = 0.95, ...) {
+  definition = function(object, dates, rank = 10, cutoff = NULL, ...) {
     object <- data.matrix(object)
-    methods::callGeneric(object, dates, cutoff = cutoff, level = level, ...)
+    methods::callGeneric(object, dates, rank = rank, cutoff = cutoff, ...)
   }
 )
 #' @export
@@ -19,31 +19,33 @@ setMethod(
 setMethod(
   f = "event",
   signature = signature(object = "matrix", dates = "numeric"),
-  definition = function(object, dates, cutoff = 90, level = 0.95, ...) {
-    ## Validation
-    cutoff <- as.integer(cutoff)
-    if (cutoff < 50)
-      stop("Cutoff value is below 50%, you can't be serious.", call. = FALSE)
+  definition = function(object, dates, rank = 10, cutoff = NULL, ...) {
+    ## /!\ Deprecate cutoff /!\
+    if (!is.null(cutoff)) {
+      warning("Argument 'cutoff' is defunct; please use 'rank' instead.",
+              call. = FALSE)
+    }
 
     ## Correspondance analysis
     ## CA computation may rise error (if rows/columns filled only with zeros)
-    results_CA <- dimensio::ca(object, ...)
+    results_CA <- dimensio::ca(object, rank = rank, ...)
     eig <- dimensio::get_eigenvalues(results_CA)
-    keep_dim <- which(eig[, 3] <= cutoff)
 
+    keep_dim <- seq_len(nrow(eig))
     row_coord <- dimensio::get_coordinates(results_CA, margin = 1)
     row_coord <- row_coord[, keep_dim]
 
     ## Gaussian multiple linear regression model
-    contexts <- bind_by_names(row_coord, dates)
-    colnames(contexts)[1] <- "date"
-    fit <- stats::lm(date ~ ., data = contexts, na.action = stats::na.omit)
+    i <- match(names(dates), rownames(row_coord))
+    contexts <- row_coord[i, , drop = FALSE]
+    data <- data.frame(date = dates, contexts)
+    fit <- stats::lm(date ~ ., data = data)
 
     .EventDate(
       results_CA,
-      dates = contexts$date,
+      contexts = object[i, , drop = FALSE],
+      dates = dates,
       model = fit,
-      cutoff = cutoff,
       keep = keep_dim
     )
   }
@@ -69,7 +71,7 @@ setMethod(
   f = "predict_event",
   signature = signature(object = "EventDate", data = "matrix"),
   definition = function(object, data, margin = 1, level = 0.95) {
-    ## Correspondance analysis
+    ## Correspondence analysis
     ca_coord <- dimensio::predict(object, data, margin = margin)
 
     ## Predict event date
@@ -138,3 +140,16 @@ compute_event <- function(fit, data, level) {
   colnames(results) <- c("date", "lower", "upper", "error")
   round(results, digits = getOption("kairos.precision"))
 }
+
+# Summary ======================================================================
+#' @export
+#' @method summary EventDate
+summary.EventDate <- function(object, ...) {
+  summary(get_model(object), ...)
+}
+
+#' @export
+#' @rdname event
+#' @aliases summary,EventDate,missing-method
+setMethod("summary", c(object = "EventDate"), summary.EventDate)
+

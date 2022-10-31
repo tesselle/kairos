@@ -4,6 +4,7 @@
 
 ## Bugfixes & changes
 * Deprecate `refine()`.
+* `cutoff` argument of `event()` is defunct (use `rank` instead).
 
 # kairos 1.1.0
 ## New classes and methods

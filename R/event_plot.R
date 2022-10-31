@@ -19,8 +19,12 @@ autoplot.EventDate <- function(object, ..., type = c("activity", "tempo"),
   columns <- predict_event(object, margin = 2)
   col_dates <- columns$date
   col_errors <- columns$error
-  date_range <- seq(from = min(row_lower), to = max(row_upper),
-                    length.out = n)
+  date_range <- seq(
+    from = min(row_lower, na.rm = TRUE),
+    to = max(row_upper, na.rm = TRUE),
+    length.out = n
+  )
+
   # Selection
   cases <- rownames(rows)
   index <- if (is.null(select)) {
@@ -49,6 +53,8 @@ autoplot.EventDate <- function(object, ..., type = c("activity", "tempo"),
     # Build a long table for ggplot2
     row_stacked <- wide2long(date_event)
     row_stacked$date <- date_range
+    row_stacked <- row_stacked[row_stacked$data >= 10^-9, ]
+
     colnames(row_stacked) <- c("density", "assemblage", "type", "date")
     plot_event <- ggplot2::geom_line(data = row_stacked, color = "black")
   }
@@ -78,10 +84,12 @@ autoplot.EventDate <- function(object, ..., type = c("activity", "tempo"),
     },
     density = col_density
   )
+  # date_acc <- date_acc / colSums(date_acc)
 
   # Build a long table for ggplot2
   col_stacked <- wide2long(date_acc)
   col_data <- cbind.data.frame(date = date_range, col_stacked)
+  col_data <- col_data[col_data$data >= 10^-6, ]
   colnames(col_data) <- c("date", "density", "assemblage", "type")
 
   # ggplot

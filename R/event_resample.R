@@ -19,7 +19,7 @@ setMethod(
     event <- predict_event(object, level = level)
 
     ## TODO: check cutoff value
-    jack_values <- compute_date_jack(fit_data, fit_dates, cutoff = 150,
+    jack_values <- compute_date_jack(fit_data, fit_dates, rank = length(fit_dim),
                                      progress = progress)
     jack_coef <- colMeans(jack_values)
 
@@ -114,7 +114,7 @@ compute_date_boot <- function(x, axes, model, level, probs = c(0.05, 0.95)) {
 #' Compute date event jackknifed statistics for each replicated sample.
 #' @param x A \code{\link{numeric}} matrix of count data.
 #' @param dates A \code{\link{numeric}} vector of known dates.
-#' @param cutoff A \code{\link{numeric}} value.
+#' @param rank A \code{\link{numeric}} value.
 #' @param progress A \code{\link{logical}} scalar: should a progress bar be
 #'  displayed?
 #' @param ... Further arguments to be passed to \code{\link[ca]{ca}}.
@@ -122,7 +122,7 @@ compute_date_boot <- function(x, axes, model, level, probs = c(0.05, 0.95)) {
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd
-compute_date_jack <- function(x, dates, cutoff = 90,
+compute_date_jack <- function(x, dates, rank = 10,
                               progress = getOption("kairos.progress"), ...) {
   m <- ncol(x)
   k <- seq_len(m)
@@ -136,7 +136,7 @@ compute_date_jack <- function(x, dates, cutoff = 90,
     ## Removing a column may lead to rows filled only with zeros
     ## TODO: warning
     if (any(rowSums(counts) == 0)) next
-    model <- event(counts, dates = dates, cutoff = cutoff)
+    model <- event(counts, dates = dates, rank = rank)
     jack[[j]] <- stats::coef(get_model(model)) # Get model coefficients
     if (progress_bar) utils::setTxtProgressBar(pbar, j)
   }

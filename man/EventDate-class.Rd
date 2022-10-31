@@ -12,13 +12,14 @@ assemblages.
 \section{Slots}{
 
 \describe{
-\item{\code{dates}}{A \code{\link{numeric}} vector of dates.}
+\item{\code{contexts}}{A \eqn{m \times p}{m x p} \code{\link{integer}} \code{\link{matrix}} of count
+data.}
+
+\item{\code{dates}}{A length-\eqn{m} \code{\link{numeric}} vector of dates.}
 
 \item{\code{model}}{A \link[stats:lm]{multiple linear model}: the Gaussian
 multiple linear regression model fitted for event date estimation and
 prediction.}
-
-\item{\code{cutoff}}{An length-one \code{\link{integer}} vector giving the cutoff value.}
 
 \item{\code{keep}}{An \code{\link{integer}} vector.}
 }}

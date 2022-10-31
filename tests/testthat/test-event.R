@@ -10,16 +10,13 @@ test_that("Date Model", {
     LZ0578 = 1180, LZ0227 = 1104, LZ0610 = 1074
   )
 
-  model <- event(zuni, zuni_dates, cutoff = 90)
+  model <- event(zuni, zuni_dates, rank = 10)
 
   event <- predict_event(model)
   expect_snapshot(event)
 
   acc <- predict_accumulation(model)
   expect_snapshot(acc)
-
-  # Errors
-  expect_error(event(zuni, zuni_dates, cutoff = 10), "below 50%")
 })
 test_that("Event Date", {
   skip_if_not_installed("folio")
@@ -33,7 +30,7 @@ test_that("Event Date", {
     LZ0578 = 1180, LZ0227 = 1104, LZ0610 = 1074
   )
 
-  model <- event(zuni, zuni_dates, cutoff = 90)
+  model <- event(zuni, zuni_dates, rank = 10)
 
   ## Bootstrap
   boot <- with_seed(12345, bootstrap(model, n = 5))
