@@ -268,7 +268,7 @@ setGeneric(
 #'  of the long term.
 #'
 #'  This method relies on strong archaeological and statistical assumptions
-#'  (see `vignette("kairos")`).
+#'  (see `vignette("event")`).
 #' @note
 #'  All results are rounded to zero decimal places (sub-annual precision does
 #'  not make sense in most situations). You can change this behavior with

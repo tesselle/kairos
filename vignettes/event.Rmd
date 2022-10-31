@@ -26,6 +26,12 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r packages}
+# Load packages
+library(folio) # Datasets
+library(kairos)
+```
+
 ## Definition
 
 Event and accumulation dates are density estimates of the occupation and duration of an archaeological site [@bellanger2006; @bellanger2008; @bellanger2012].

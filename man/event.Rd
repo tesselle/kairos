@@ -96,7 +96,7 @@ accumulation dates estimate occurrence of archaeological events and rhythms
 of the long term.
 
 This method relies on strong archaeological and statistical assumptions
-(see \code{vignette("kairos")}).
+(see \code{vignette("event")}).
 }
 \note{
 All results are rounded to zero decimal places (sub-annual precision does
