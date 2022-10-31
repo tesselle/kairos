@@ -66,7 +66,7 @@ tempo plot.}
 
 \examples{
 \dontrun{
-utils::vignette("kairos")
+utils::vignette("event")
 }
 }
 \references{

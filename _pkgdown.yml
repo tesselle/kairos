@@ -34,9 +34,9 @@ navbar:
     articles:
       text: Articles
       menu:
-      - text: Dating Methods
-        href: articles/dating.html
       - text: Seriation Methods
         href: articles/seriation.html
+      - text: Event Date Model
+        href: articles/event.html
       - text: Bibliography
         href: articles/bibliography.html

@@ -102,7 +102,7 @@ release.
 }
 \examples{
 \dontrun{
-utils::vignette("kairos")
+utils::vignette("event")
 }
 }
 \references{

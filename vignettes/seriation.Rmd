@@ -34,7 +34,7 @@ library(dimensio) # Multivariate analysis
 library(kairos)
 ```
 
-# Introduction
+## Introduction
 
 The matrix seriation problem in archaeology is based on three conditions and two assumptions, which @dunnell1970 summarizes as follows.
 
@@ -51,7 +51,7 @@ The mathematical assumptions state that the distribution of any historical or te
 
 Theses assumptions create a distributional model and ordering is accomplished by arranging the matrix so that the class distributions approximate the required pattern. The resulting order is *inferred* to be chronological.
 
-# Reciprocal ranking
+## Reciprocal ranking
 
 Reciprocal ranking iteratively rearrange rows and/or columns according to their weighted rank in the data matrix until convergence [@ihm2005].
 
@@ -102,8 +102,8 @@ data("compiegne", package = "folio")
 compiegne_permuted <- permute(compiegne, indices)
 ```
 
-# Correspondence analysis
-## Seriation
+## Correspondence analysis
+### Seriation
 
 Correspondence Analysis (CA) is an effective method for the seriation of archaeological assemblages. The order of the rows and columns is given by the coordinates along one dimension of the CA space, assumed to account for temporal variation. The direction of temporal change within the correspondence analysis space is arbitrary: additional information is needed to determine the actual order in time.
 
@@ -137,7 +137,7 @@ zuni_permuted <- permute(zuni, zun_indices)
 heatmap(as.matrix(zuni_permuted), Rowv = NA, Colv = NA, revC = TRUE)
 ```
 
-## Refining
+### Refining
 
 @peeples2012 propose a procedure to identify samples that are subject to sampling error or samples that have underlying structural relationships and might be influencing the ordering along the CA space. This relies on a partial bootstrap approach to CA-based seriation where each sample is replicated `n` times. The maximum dimension length of the convex hull around the sample point cloud allows to remove samples for a given `cutoff` value.
 
@@ -199,4 +199,4 @@ ggplot2::ggplot(data = hull_length) +
   ggplot2::theme_bw()
 ```
 
-# References
+## References
