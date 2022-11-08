@@ -1,4 +1,4 @@
-# kairos 1.1.0.9000
+# kairos 1.2.0
 ## New classes and methods
 * Add `seriate_refine()` method for `PermutationOrder` objects.
 

@@ -8,7 +8,6 @@
 
 0 errors | 1 warnings | 1 note
 
-* CRAN package check warnings ("multiple methods tables") and notes ("Namespace in Imports field not imported") have been fixed.
 * Some links in the documentation point to articles behind paywalls that may return an error.
 
 ## revdepcheck results
