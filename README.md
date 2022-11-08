@@ -19,7 +19,7 @@ src="http://www.r-pkg.org/badges/version/kairos"
 alt="CRAN Version" /></a> <a
 href="https://cran.r-project.org/web/checks/check_results_kairos.html"
 class="pkgdown-release"><img
-src="https://cranchecks.info/badges/worst/kairos"
+src="https://badges.cranchecks.info/worst/kairos.svg"
 alt="CRAN checks" /></a>
 <a href="https://cran.r-project.org/package=kairos"
 class="pkgdown-release"><img
@@ -107,17 +107,36 @@ incidence2 <- permute(incidence1, indices)
 ## Plot matrix
 tabula::plot_heatmap(incidence1) +
   khroma::scale_fill_logical()
-#> Warning: 'as_long()' est obsolète.
-#> Utilisez plutôt ‘to_long()’.
-#> Voir help("Deprecated")
 tabula::plot_heatmap(incidence2) +
   khroma::scale_fill_logical()
-#> Warning: 'as_long()' est obsolète.
-#> Utilisez plutôt ‘to_long()’.
-#> Voir help("Deprecated")
 ```
 
 <img src="man/figures/README-seriation-1.png" width="50%" /><img src="man/figures/README-seriation-2.png" width="50%" />
+
+``` r
+## Aoristic Analysis
+data("loire", package = "folio")
+loire <- subset(loire, area %in% c("Anjou", "Blésois", "Orléanais", "Haut-Poitou", "Touraine"))
+
+## Get time range
+loire_range <- loire[, c("lower", "upper")]
+
+## Calculate aoristic sum (weights) by group
+aorist_groups <- aoristic(loire_range, step = 50, weight = TRUE,
+                          groups = loire$area)
+plot(aorist_groups)
+```
+
+![](man/figures/README-aoristic-1.png)<!-- -->
+
+``` r
+
+## Rate of change by group
+roc_groups <- roc(aorist_groups, n = 30)
+plot(roc_groups)
+```
+
+![](man/figures/README-aoristic-2.png)<!-- -->
 
 ## Contributing
 

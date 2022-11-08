@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 
 [![r-universe](https://tesselle.r-universe.dev/badges/kairos)](https://tesselle.r-universe.dev){.pkgdown-devel}
 [![CRAN Version](http://www.r-pkg.org/badges/version/kairos)](https://cran.r-project.org/package=kairos){.pkgdown-release}
-[![CRAN checks](https://cranchecks.info/badges/worst/kairos)](https://cran.r-project.org/web/checks/check_results_kairos.html){.pkgdown-release}
+[![CRAN checks](https://badges.cranchecks.info/worst/kairos.svg)](https://cran.r-project.org/web/checks/check_results_kairos.html){.pkgdown-release}
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/kairos)](https://cran.r-project.org/package=kairos){.pkgdown-release}
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -90,6 +90,25 @@ tabula::plot_heatmap(incidence1) +
 tabula::plot_heatmap(incidence2) +
   khroma::scale_fill_logical()
 ```
+
+```{r aoristic, fig.width=5, fig.height=6}
+## Aoristic Analysis
+data("loire", package = "folio")
+loire <- subset(loire, area %in% c("Anjou", "Blésois", "Orléanais", "Haut-Poitou", "Touraine"))
+
+## Get time range
+loire_range <- loire[, c("lower", "upper")]
+
+## Calculate aoristic sum (weights) by group
+aorist_groups <- aoristic(loire_range, step = 50, weight = TRUE,
+                          groups = loire$area)
+plot(aorist_groups)
+
+## Rate of change by group
+roc_groups <- roc(aorist_groups, n = 30)
+plot(roc_groups)
+```
+
 
 ## Contributing
 
