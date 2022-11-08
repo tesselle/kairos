@@ -2,7 +2,7 @@
 NULL
 
 #' @export
-#' @rdname seriation
+#' @rdname seriate_rank
 #' @aliases seriate_rank,data.frame-method
 setMethod(
   f = "seriate_rank",
@@ -14,7 +14,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname seriation
+#' @rdname seriate_rank
 #' @aliases seriate_rank,matrix-method
 setMethod(
   f = "seriate_rank",

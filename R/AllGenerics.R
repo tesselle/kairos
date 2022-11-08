@@ -631,70 +631,29 @@ NULL
 NULL
 
 # Seriation Methods ============================================================
-#' Matrix Seriation
+## Reciprocal ranking ----------------------------------------------------------
+#' Reciprocal Ranking Seriation
 #'
-#' @description
-#'  * `seriate_*()` computes a permutation order for rows and/or columns.
-#'  * `permute()` rearranges a data matrix according to a permutation order.
-#'  * `get_order()` returns the seriation order for rows and columns.
-#' @param object,x An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
+#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
 #'  [`data.frame`] of count data (absolute frequencies).
-#' @param order A [PermutationOrder-class] object giving the permutation
-#'  order for rows and columns.
 #' @param EPPM A [`logical`] scalar: should the seriation be computed on EPPM
 #'  instead of raw data?
 #' @param margin A [`numeric`] vector giving the subscripts which the
 #'  rearrangement will be applied over: `1` indicates rows, `2` indicates
 #'  columns, `c(1, 2)` indicates rows then columns, `c(2, 1)` indicates columns
 #'  then rows.
-#' @param axes An [`integer`] vector giving the subscripts of the CA axes to be
-#'  used.
 #' @param stop An [`integer`] giving the stopping rule (i.e. maximum number of
 #'  iterations) to avoid infinite loop.
-#' @param ... Further arguments to be passed to internal methods.
-#' @section Seriation:
-#'  The matrix seriation problem in archaeology is based on three conditions
-#'  and two assumptions, which Dunell (1970) summarizes as follows.
+#' @param ... Currently not used.
+#' @details
+#'  This procedure iteratively rearrange rows and/or columns according to their
+#'  weighted rank in the data matrix until convergence.
 #'
-#'  The homogeneity conditions state that all the groups included in a
-#'  seriation must:
-#'  \enumerate{
-#'   \item{Be of comparable duration.}
-#'   \item{Belong to the same cultural tradition.}
-#'   \item{Come from the same local area.}
-#'  }
-#'
-#'  The mathematical assumptions state that the distribution of any historical
-#'  or temporal class:
-#'  \enumerate{
-#'   \item{Is continuous through time.}
-#'   \item{Exhibits the form of a unimodal curve.}
-#'  }
-#'  Theses assumptions create a distributional model and ordering is
-#'  accomplished by arranging the matrix so that the class distributions
-#'  approximate the required pattern. The resulting order is inferred
-#'  to be chronological.
-#'
-#'  The following seriation methods are available:
-#'  \describe{
-#'   \item{`seriate_average()`}{Correspondence analysis-based seriation
-#'   (average ranking). Correspondence analysis (CA) is an effective method for
-#'   the seriation of archaeological assemblages. The order of the rows and
-#'   columns is given by the coordinates along one dimension of the CA space,
-#'   assumed to account for temporal variation. The direction of temporal change
-#'   within the correspondence analysis space is arbitrary: additional
-#'   information is needed to determine the actual order in time.}
-#'   \item{`seriate_rank()`}{Reciprocal ranking seriation. These procedures
-#'   iteratively rearrange rows and/or columns according to their weighted rank
-#'   in the data matrix until convergence.
-#'   Note that this procedure could enter into an infinite loop.
-#'   If no convergence is reached before the maximum number of iterations, it
-#'   stops with a warning.}
-#'  }
+#'  Note that this procedure could enter into an infinite loop. If no
+#'  convergence is reached before the maximum number of iterations, it stops
+#'  with a warning.
 #' @return
-#'  * `seriate_*()` returns a [PermutationOrder-class] object.
-#'  * `permute()` returns either a permuted `matrix` or a permuted `data.frame`
-#'    (the same as `object`).
+#'  A [RankPermutationOrder-class] object.
 #' @references
 #'  Desachy, B. (2004). Le sériographe EPPM: un outil informatisé de sériation
 #'  graphique pour tableaux de comptages. *Revue archéologique de Picardie*,
@@ -707,24 +666,10 @@ NULL
 #'  In C. Weihs & W. Gaul (Eds.), *Classification: The Ubiquitous
 #'  Challenge*. Berlin Heidelberg: Springer, p. 307-316.
 #'  \doi{10.1007/3-540-28084-7_34}.
-#' @seealso [dimensio::ca()]
 #' @example inst/examples/ex-seriation.R
 #' @author N. Frerebeau
 #' @family seriation methods
 #' @docType methods
-#' @name seriation
-#' @rdname seriation
-NULL
-
-#' @rdname seriation
-#' @aliases seriate_average-method
-setGeneric(
-  name = "seriate_average",
-  def = function(object, ...) standardGeneric("seriate_average"),
-  valueClass = "PermutationOrder"
-)
-
-#' @rdname seriation
 #' @aliases seriate_rank-method
 setGeneric(
   name = "seriate_rank",
@@ -732,7 +677,45 @@ setGeneric(
   valueClass = "PermutationOrder"
 )
 
-# @rdname seriation
+## Average Ranking -------------------------------------------------------------
+#' Correspondence Analysis-Based Seriation
+#'
+#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
+#'  [`data.frame`] of count data (absolute frequencies).
+#' @param margin A [`numeric`] vector giving the subscripts which the
+#'  rearrangement will be applied over: `1` indicates rows, `2` indicates
+#'  columns, `c(1, 2)` indicates rows then columns, `c(2, 1)` indicates columns
+#'  then rows.
+#' @param axes An [`integer`] vector giving the subscripts of the CA axes to be
+#'  used.
+#' @param ... Further arguments to be passed to internal methods.
+#' @details
+#'  Correspondence analysis (CA) is an effective method for the seriation of
+#'  archaeological assemblages. The order of the rows and columns is given by
+#'  the coordinates along one dimension of the CA space, assumed to account for
+#'  temporal variation. The direction of temporal change within the
+#'  correspondence analysis space is arbitrary: additional information is needed
+#'  to determine the actual order in time.
+#' @return
+#'  An [AveragePermutationOrder-class] object.
+#' @references
+#'  Ihm, P. (2005). A Contribution to the History of Seriation in Archaeology.
+#'  In C. Weihs & W. Gaul (Eds.), *Classification: The Ubiquitous
+#'  Challenge*. Berlin Heidelberg: Springer, p. 307-316.
+#'  \doi{10.1007/3-540-28084-7_34}.
+#' @seealso [dimensio::ca()]
+#' @example inst/examples/ex-seriation.R
+#' @author N. Frerebeau
+#' @family seriation methods
+#' @docType methods
+#' @aliases seriate_average-method
+setGeneric(
+  name = "seriate_average",
+  def = function(object, ...) standardGeneric("seriate_average"),
+  valueClass = "PermutationOrder"
+)
+
+# @rdname seriate_constrain
 # @aliases seriate_constrain-method
 # setGeneric(
 #   name = "seriate_constrain",
@@ -740,7 +723,7 @@ setGeneric(
 #   valueClass = "PermutationOrder"
 # )
 
-# @rdname seriation
+# @rdname seriate_idds
 # @aliases seriate_idds-method
 # setGeneric(
 #   name = "seriate_idds",
@@ -748,6 +731,7 @@ setGeneric(
 #   valueClass = "PermutationOrder"
 # )
 
+## Refine ----------------------------------------------------------------------
 #' Refine CA-based Seriation
 #'
 #' @param object A [PermutationOrder-class] object (typically returned by
@@ -791,14 +775,34 @@ setGeneric(
   def = function(object, ...) standardGeneric("seriate_refine")
 )
 
-#' @rdname seriation
+## Permute ---------------------------------------------------------------------
+#' Rearranges a Data Matrix
+#'
+#' @description
+#'  * `permute()` rearranges a data matrix according to a permutation order.
+#'  * `get_order()` returns the seriation order for rows and columns.
+#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
+#'  [`data.frame`] of count data (absolute frequencies).
+#' @param x,order A [PermutationOrder-class] object giving the permutation
+#'  order for rows and columns.
+#' @param margin A [`numeric`] vector giving the subscripts which the
+#'  rearrangement will be applied over: `1` indicates rows, `2` indicates
+#'  columns, `c(1, 2)` indicates rows and columns.
+#' @param ... Currently not used.
+#' @return
+#'  A permuted `matrix` or a permuted `data.frame` (the same as `object`).
+#' @seealso [dimensio::ca()]
+#' @example inst/examples/ex-seriation.R
+#' @author N. Frerebeau
+#' @family seriation methods
+#' @docType methods
 #' @aliases permute-method
 setGeneric(
   name = "permute",
   def = function(object, order, ...) standardGeneric("permute")
 )
 
-#' @rdname seriation
+#' @rdname permute
 #' @aliases get_order-method
 setGeneric(
   name = "get_order",

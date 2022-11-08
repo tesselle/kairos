@@ -2,7 +2,7 @@
 NULL
 
 #' @export
-#' @rdname seriation
+#' @rdname permute
 #' @aliases permute,data.frame,PermutationOrder-method
 setMethod(
   f = "permute",
@@ -14,7 +14,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname seriation
+#' @rdname permute
 #' @aliases permute,matrix,PermutationOrder-method
 setMethod(
   f = "permute",
@@ -26,7 +26,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname seriation
+#' @rdname permute
 #' @aliases get_order,PermutationOrder-method
 setMethod(
   f = "get_order",

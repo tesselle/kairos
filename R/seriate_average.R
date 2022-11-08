@@ -2,7 +2,7 @@
 NULL
 
 #' @export
-#' @rdname seriation
+#' @rdname seriate_average
 #' @aliases seriate_average,data.frame-method
 setMethod(
   f = "seriate_average",
@@ -14,7 +14,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname seriation
+#' @rdname seriate_average
 #' @aliases seriate_average,matrix-method
 setMethod(
   f = "seriate_average",
