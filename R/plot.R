@@ -106,7 +106,7 @@ autoplot.IncrementTest <- function(object, ..., level = 0.95, roll = FALSE,
     gg_roll <- ggplot2::geom_line(
       data = data[data$signature_sub, ],
       mapping = ggplot2::aes(group = .data$column),
-      size = 5, colour = "grey80", lineend = "round"
+      linewidth = 5, colour = "grey80", lineend = "round"
     )
   } else {
     gg_roll <- NULL
