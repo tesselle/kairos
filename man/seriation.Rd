@@ -157,7 +157,10 @@ Challenge}. Berlin Heidelberg: Springer, p. 307-316.
 \doi{10.1007/3-540-28084-7_34}.
 }
 \seealso{
-\link[=resample_seriation]{bootstrap()}, \code{\link[dimensio:ca]{dimensio::ca()}}
+\code{\link[dimensio:ca]{dimensio::ca()}}
+
+Other seriation methods: 
+\code{\link{seriate_refine}()}
 }
 \author{
 N. Frerebeau

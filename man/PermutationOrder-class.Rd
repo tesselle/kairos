@@ -49,7 +49,7 @@ Other classes:
 \code{\link{IncrementTest-class}},
 \code{\link{MeanDate-class}},
 \code{\link{RateOfChange-class}},
-\code{\link{RefineCA-class}}
+\code{\link{RefinePermutationOrder-class}}
 }
 \author{
 N. Frerebeau

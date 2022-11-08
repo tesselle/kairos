@@ -34,7 +34,7 @@ Other classes:
 \code{\link{MeanDate-class}},
 \code{\link{PermutationOrder-class}},
 \code{\link{RateOfChange-class}},
-\code{\link{RefineCA-class}}
+\code{\link{RefinePermutationOrder-class}}
 }
 \author{
 N. Frerebeau

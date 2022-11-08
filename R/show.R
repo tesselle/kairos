@@ -23,15 +23,15 @@ setMethod(
 # RefineCA =====================================================================
 setMethod(
   f = "show",
-  signature = "RefineCA",
+  signature = "RefinePermutationOrder",
   definition = function(object) {
     value <- switch (object@margin, `1` = "Rows", `2` = "Columns")
     keep <- length(object@keep)
     total <- length(object@length)
     pc <- round(keep * 100 / total)
+    methods::callNextMethod(object)
     cat(
-      "<RefineCA>",
-      "Partial bootstrap CA seriation refinement:",
+      "Partial bootstrap refinement:",
       sprintf("- Cutoff value: %s", round(object@cutoff, digits = 2)),
       sprintf("- %s to keep: %d of %d (%g%%)", value, keep, total, pc),
       sep = "\n")

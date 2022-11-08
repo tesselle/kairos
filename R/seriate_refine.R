@@ -3,26 +3,26 @@
 NULL
 
 #' @export
-#' @rdname resample_seriation
-#' @aliases bootstrap,CA-method
+#' @rdname seriate_refine
+#' @aliases seriate_refine,AveragePermutationOrder-method
 setMethod(
-  f = "bootstrap",
+  f = "seriate_refine",
   signature = signature(object = "AveragePermutationOrder"),
-  definition = function(object, cutoff, margin = c(1, 2), axes = c(1, 2), n = 30) {
+  definition = function(object, cutoff, margin = 1, axes = 1, n = 30, ...) {
     ## Partial bootstrap CA
     ## /!\ Be careful: AveragePermutationOrder inherits from CA
     object <- dimensio::bootstrap(object, n = n)
-    methods::callGeneric(object, cutoff = cutoff, margin = margin, axes = axes)
+    methods::callGeneric(object, cutoff = cutoff, margin = margin, axes = axes, ...)
   }
 )
 
 #' @export
-#' @rdname resample_seriation
-#' @aliases bootstrap,BootstrapCA-method
+#' @rdname seriate_refine
+#' @aliases seriate_refine,BootstrapCA-method
 setMethod(
-  f = "bootstrap",
+  f = "seriate_refine",
   signature = signature(object = "BootstrapCA"),
-  definition = function(object, cutoff, margin = 1, axes = c(1, 2)) {
+  definition = function(object, cutoff, margin = 1, axes = 1, ...) {
     ## Validation
     if (!is.function(cutoff)) {
       stop(sQuote("cutoff"), " must be a function.", call. = FALSE)
@@ -34,7 +34,7 @@ setMethod(
     hull <- apply(
       X = ca_rep,
       MARGIN = 1,
-      FUN = function(x, axes) compute_chull(t(x), axes),
+      FUN = function(x, axes) compute_chull(t(x), c(1, 2)),
       axes = axes
     )
 
@@ -48,19 +48,18 @@ setMethod(
     ## Get cutoff values
     limit <- cutoff(len)
 
-    ## Samples to be kept
-    keep <- which(len < limit)
+    ## Samples to be excluded
+    sup <- which(len >= limit)
 
-    ## Bind hull vertices in a data.frame
-    ids <- rep(seq_along(hull), times = vapply(hull, nrow, numeric(1)))
-    coords <- do.call(rbind, hull)
-    coords <- cbind(id = ids, coords)
+    ## Seriation
+    ser <- seriate_average(object@data, margin = c(1, 2), axes = axes,
+                           sup_row = sup, ...)
 
-    .RefineCA(
-      hull = coords,
+    .RefinePermutationOrder(
+      ser,
       length = len,
-      keep = keep,
       cutoff = limit,
+      keep = which(len < limit),
       margin = as.integer(margin)
     )
   }

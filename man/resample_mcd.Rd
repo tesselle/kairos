@@ -53,8 +53,7 @@ with the following elements (else, returns the result of \code{f} applied to the
 }
 \seealso{
 Other resampling methods: 
-\code{\link{resample_event}},
-\code{\link{resample_seriation}}
+\code{\link{resample_event}}
 }
 \author{
 N. Frerebeau

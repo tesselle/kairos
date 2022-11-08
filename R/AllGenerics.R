@@ -139,48 +139,6 @@ NULL
 #' @rdname resample_event
 NULL
 
-#' Resample CA Seriation
-#'
-#' @param object A [PermutationOrder-class] object (typically returned by
-#'  [seriate_average()]).
-#' @param cutoff A function that takes a numeric vector as argument and returns
-#'  a single numeric value (see below).
-#' @param n A non-negative [`integer`] giving the number of bootstrap
-#'  replications.
-#' @param margin A [`numeric`] vector giving the subscripts which the
-#'  rearrangement will be applied over: `1` indicates rows, `2` indicates
-#'  columns, `c(1, 2)` indicates rows then columns, `c(2, 1)` indicates columns
-#'  then rows.
-#' @param axes An [`integer`] vector giving the subscripts of the CA axes to be
-#'  used.
-#' @details
-#'  `bootstrap()` allows to identify samples that are subject to
-#'  sampling error or samples that have underlying structural relationships
-#'  and might be influencing the ordering along the CA space.
-#'
-#'  This relies on a partial bootstrap approach to CA-based seriation where each
-#'  sample is replicated `n` times. The maximum dimension length of
-#'  the convex hull around the sample point cloud allows to remove samples for
-#'  a given `cutoff` value.
-#'
-#'  According to Peebles and Schachner (2012), "\[this\] point removal procedure
-#'  \[results in\] a reduced dataset where the position of individuals within
-#'  the CA are highly stable and which produces an ordering consistent with the
-#'  assumptions of frequency seriation."
-#' @return
-#'  A [RefineCA-class] object.
-#' @references
-#'  Peeples, M. A., & Schachner, G. (2012). Refining correspondence
-#'  analysis-based ceramic seriation of regional data sets. *Journal of
-#'  Archaeological Science*, 39(8), 2818-2827.
-#'  \doi{10.1016/j.jas.2012.04.040}.
-#' @author N. Frerebeau
-#' @docType methods
-#' @family resampling methods
-#' @name resample_seriation
-#' @rdname resample_seriation
-NULL
-
 # Dating Methods ===============================================================
 ## Mean Ceramic Date -----------------------------------------------------------
 #' Mean Ceramic Date
@@ -749,7 +707,7 @@ NULL
 #'  In C. Weihs & W. Gaul (Eds.), *Classification: The Ubiquitous
 #'  Challenge*. Berlin Heidelberg: Springer, p. 307-316.
 #'  \doi{10.1007/3-540-28084-7_34}.
-#' @seealso [bootstrap()][resample_seriation], [dimensio::ca()]
+#' @seealso [dimensio::ca()]
 #' @example inst/examples/ex-seriation.R
 #' @author N. Frerebeau
 #' @family seriation methods
@@ -790,6 +748,49 @@ setGeneric(
 #   valueClass = "PermutationOrder"
 # )
 
+#' Refine CA-based Seriation
+#'
+#' @param object A [PermutationOrder-class] object (typically returned by
+#'  [seriate_average()]).
+#' @param cutoff A function that takes a numeric vector as argument and returns
+#'  a single numeric value (see below).
+#' @param n A non-negative [`integer`] giving the number of bootstrap
+#'  replications.
+#' @param margin A length-one [`numeric`] vector giving the subscripts which the
+#'  refinement will be applied over: `1` indicates rows, `2` indicates columns.
+#' @param axes An [`integer`] vector giving the subscripts of the CA axes to be
+#'  used.
+#' @param ... Further arguments to be passed to internal methods.
+#' @details
+#'  `seriate_refine()` allows to identify samples that are subject to
+#'  sampling error or samples that have underlying structural relationships
+#'  and might be influencing the ordering along the CA space.
+#'
+#'  This relies on a partial bootstrap approach to CA-based seriation where each
+#'  sample is replicated `n` times. The maximum dimension length of
+#'  the convex hull around the sample point cloud allows to remove samples for
+#'  a given `cutoff` value.
+#'
+#'  According to Peebles and Schachner (2012), "\[this\] point removal procedure
+#'  \[results in\] a reduced dataset where the position of individuals within
+#'  the CA are highly stable and which produces an ordering consistent with the
+#'  assumptions of frequency seriation."
+#' @return
+#'  A [RefinePermutationOrder-class] object.
+#' @references
+#'  Peeples, M. A., & Schachner, G. (2012). Refining correspondence
+#'  analysis-based ceramic seriation of regional data sets. *Journal of
+#'  Archaeological Science*, 39(8), 2818-2827.
+#'  \doi{10.1016/j.jas.2012.04.040}.
+#' @author N. Frerebeau
+#' @docType methods
+#' @family seriation methods
+#' @aliases seriate_refine-method
+setGeneric(
+  name = "seriate_refine",
+  def = function(object, ...) standardGeneric("seriate_refine")
+)
+
 #' @rdname seriation
 #' @aliases permute-method
 setGeneric(
@@ -807,7 +808,7 @@ setGeneric(
 # Deprecated ===================================================================
 #' Deprecated Methods
 #'
-#' @inheritParams resample_seriation
+#' @inheritParams seriate_refine
 #' @author N. Frerebeau
 #' @docType methods
 #' @name deprecate

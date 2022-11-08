@@ -20,13 +20,13 @@ refine(object, ...)
 \item{object}{A \linkS4class{PermutationOrder} object (typically returned by
 \code{\link[=seriate_average]{seriate_average()}}).}
 
+\item{...}{Further arguments to be passed to internal methods.}
+
 \item{cutoff}{A function that takes a numeric vector as argument and returns
 a single numeric value (see below).}
 
-\item{margin}{A \code{\link{numeric}} vector giving the subscripts which the
-rearrangement will be applied over: \code{1} indicates rows, \code{2} indicates
-columns, \code{c(1, 2)} indicates rows then columns, \code{c(2, 1)} indicates columns
-then rows.}
+\item{margin}{A length-one \code{\link{numeric}} vector giving the subscripts which the
+refinement will be applied over: \code{1} indicates rows, \code{2} indicates columns.}
 
 \item{axes}{An \code{\link{integer}} vector giving the subscripts of the CA axes to be
 used.}

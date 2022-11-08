@@ -75,8 +75,7 @@ with the following columns:
 }
 \seealso{
 Other resampling methods: 
-\code{\link{resample_mcd}},
-\code{\link{resample_seriation}}
+\code{\link{resample_mcd}}
 }
 \author{
 N. Frerebeau

@@ -1,6 +1,6 @@
 # kairos 1.1.0.9000
 ## New classes and methods
-* Add `bootstrap()` method for `PermutationOrder` objects.
+* Add `seriate_refine()` method for `PermutationOrder` objects.
 
 ## Bugfixes & changes
 * Deprecate `refine()`.

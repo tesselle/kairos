@@ -241,25 +241,21 @@ NULL
 #'  to link each row to a variable.
 #' @slot length A [`numeric`] vector giving the convex hull maximum
 #'  dimension length.
-#' @slot keep An [`integer`] vector giving the subscript of the variables
-#'  to be kept.
 #' @slot cutoff A length-one [`numeric`] vector giving the cutoff value for
 #'  samples selection.
-#' @param x An object from which to extract element(s) or in which to replace
-#'  element(s).
-#' @param i A [`character`] string specifying elements to extract.
-#' @seealso [`dimensio::CA-class`]
+#' @slot keep An [`integer`] vector giving the subscript of the variables
+#'  to be kept.
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
 #' @aliases RefineCA-class
-.RefineCA <- setClass(
-  Class = "RefineCA",
+.RefinePermutationOrder <- setClass(
+  Class = "RefinePermutationOrder",
   slots = c(
-    hull = "matrix",
     length = "numeric",
-    keep = "integer",
     cutoff = "numeric",
+    keep = "integer",
     margin = "integer"
-  )
+  ),
+  contains = "AveragePermutationOrder"
 )
