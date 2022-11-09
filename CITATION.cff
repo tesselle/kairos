@@ -89,8 +89,9 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  version: '>= 0.3.0'
   year: '2022'
+  url: https://CRAN.R-project.org/package=dimensio
+  version: '>= 0.3.0'
 - type: software
   title: extraDistr
   abstract: 'extraDistr: Additional Univariate and Multivariate Distributions'
@@ -301,8 +302,9 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  version: '>= 2.0.0'
   year: '2022'
+  url: https://CRAN.R-project.org/package=tabula
+  version: '>= 2.0.0'
 - type: software
   title: testthat
   abstract: 'testthat: Unit Testing for R'
@@ -351,3 +353,6 @@ identifiers:
 - description: The versioned DOI for version 1.1.0.
   type: doi
   value: 10.5281/zenodo.6659732
+- description: The versioned DOI for version 1.2.0.
+  type: doi
+  value: 10.5281/zenodo.7307327
