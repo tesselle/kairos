@@ -39,8 +39,7 @@ displayed (invisibly returns \code{x}).
 MCD Plot
 }
 \examples{
-## Mean Ceramic Date
-## Coerce the zuni dataset to an abundance (count) matrix
+## Data from Peeples and Schachner 2012
 data("zuni", package = "folio")
 
 ## Set the start and end dates for each ceramic type

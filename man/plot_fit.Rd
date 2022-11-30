@@ -48,6 +48,7 @@ Displaying FIT results on an abundance \emph{vs} time diagram is adapted from Be
 Marwick's \href{https://github.com/benmarwick/signatselect/}{original idea}.
 }
 \examples{
+## Data from Crema et al. 2016
 data("merzbach", package = "folio")
 
 ## Keep only decoration types that have a maximum frequency of at least 50

@@ -26,7 +26,7 @@ A \linkS4class{RateOfChange} object.
 Computes the rate of change from an aoristic analysis.
 }
 \examples{
-## Aoristic Analysis
+## Data from Husi 2022
 data("loire", package = "folio")
 
 ## Get time range

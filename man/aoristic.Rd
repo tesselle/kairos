@@ -67,7 +67,7 @@ problem. This method is not implemented here (for the moment), see the
 \href{https://github.com/ISAAKiel/aoristAAR}{\pkg{aoristAAR} package}.
 }
 \examples{
-## Aoristic Analysis
+## Data from Husi 2022
 data("loire", package = "folio")
 
 ## Get time range

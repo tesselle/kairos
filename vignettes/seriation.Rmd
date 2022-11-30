@@ -112,7 +112,7 @@ tabula::seriograph(compiegne_permuted)
 Correspondence Analysis (CA) is an effective method for the seriation of archaeological assemblages. The order of the rows and columns is given by the coordinates along one dimension of the CA space, assumed to account for temporal variation. The direction of temporal change within the correspondence analysis space is arbitrary: additional information is needed to determine the actual order in time.
 
 ```{r ca-ford, fig.width=5, fig.height=5}
-## Get data
+## Data from Peeples and Schachner 2012
 data("zuni", package = "folio")
 
 ## Ford diagram

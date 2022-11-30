@@ -35,6 +35,7 @@ of normalized variant frequency increments exhibits a mean that deviates
 significantly from zero.
 }
 \examples{
+## Data from Crema et al. 2016
 data("merzbach", package = "folio")
 
 ## Keep only decoration types that have a maximum frequency of at least 50

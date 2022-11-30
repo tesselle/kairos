@@ -45,7 +45,6 @@ A permuted \code{matrix} or a permuted \code{data.frame} (the same as \code{obje
 }
 \examples{
 ## Replicates Desachy 2004 results
-## Coerce dataset to abundance matrix
 data("compiegne", package = "folio")
 
 ## Get seriation order for columns on EPPM using the reciprocal averaging method

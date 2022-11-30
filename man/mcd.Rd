@@ -52,8 +52,7 @@ not make sense in most situations). You can change this behavior with
 \code{options(kairos.precision = x)} (for \code{x} decimal places).
 }
 \examples{
-## Mean Ceramic Date
-## Coerce the zuni dataset to an abundance (count) matrix
+## Data from Peeples and Schachner 2012
 data("zuni", package = "folio")
 
 ## Set the start and end dates for each ceramic type

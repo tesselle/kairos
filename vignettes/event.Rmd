@@ -145,7 +145,7 @@ This package provides an implementation of the chronological modeling method dev
 ```{r event-model}
 ## Bellanger et al. did not publish the data supporting their demonstration: 
 ## no replication of their results is possible. 
-## Here is a pseudo-reproduction using the zuni dataset
+## Here is an example using the Zuni dataset from Peeples and Schachner 2012
 
 ## Assume that some assemblages are reliably dated (this is NOT a real example)
 ## The names of the vector entries must match the names of the assemblages

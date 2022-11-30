@@ -1,4 +1,4 @@
-## Aoristic Analysis
+## Data from Husi 2022
 data("loire", package = "folio")
 
 ## Get time range

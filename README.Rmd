@@ -92,9 +92,10 @@ tabula::plot_heatmap(incidence2) +
 ```
 
 ```{r aoristic, fig.width=5, fig.height=6}
-## Aoristic Analysis
+## Data from Husi 2022
 data("loire", package = "folio")
-loire <- subset(loire, area %in% c("Anjou", "Blésois", "Orléanais", "Haut-Poitou", "Touraine"))
+loire <- subset(loire, area %in% c("Anjou", "Blésois", "Orléanais", 
+                                   "Haut-Poitou", "Touraine"))
 
 ## Get time range
 loire_range <- loire[, c("lower", "upper")]
@@ -108,7 +109,6 @@ plot(aorist_groups)
 roc_groups <- roc(aorist_groups, n = 30)
 plot(roc_groups)
 ```
-
 
 ## Contributing
 

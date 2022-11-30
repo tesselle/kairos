@@ -47,7 +47,6 @@ with a warning.
 }
 \examples{
 ## Replicates Desachy 2004 results
-## Coerce dataset to abundance matrix
 data("compiegne", package = "folio")
 
 ## Get seriation order for columns on EPPM using the reciprocal averaging method

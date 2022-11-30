@@ -32,6 +32,7 @@ A \code{\link[ggplot2:ggplot]{ggplot}} object.
 Produces an abundance \emph{vs} time diagram.
 }
 \examples{
+## Data from Crema et al. 2016
 data("merzbach", package = "folio")
 
 ## Coerce the merzbach dataset to a count matrix

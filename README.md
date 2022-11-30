@@ -42,12 +42,12 @@ count data. It provides methods for matrix seriation. It also allows to
 compute time point estimates and density estimates of the occupation and
 duration of an archaeological site. **kairos** provides methods for:
 
--   Matrix seriation: `seriate_rank()` and `seriate_average()`
--   Mean ceramic date estimation (South 1977): `mcd()`
--   Event and accumulation date estimation (Bellanger and Husi 2012):
-    `event()`
--   Aoristic analysis (Ratcliffe 2000): `aoristic()`
--   Chronological apportioning (Roberts et al. 2012): `apportion()`
+- Matrix seriation: `seriate_rank()` and `seriate_average()`
+- Mean ceramic date estimation (South 1977): `mcd()`
+- Event and accumulation date estimation (Bellanger and Husi 2012):
+  `event()`
+- Aoristic analysis (Ratcliffe 2000): `aoristic()`
+- Chronological apportioning (Roberts et al. 2012): `apportion()`
 
 [**tabula**](https://packages.tesselle.org/tabula/) is a companion
 package to **kairos** that provides functions for visualization and
@@ -114,9 +114,10 @@ tabula::plot_heatmap(incidence2) +
 <img src="man/figures/README-seriation-1.png" width="50%" /><img src="man/figures/README-seriation-2.png" width="50%" />
 
 ``` r
-## Aoristic Analysis
+## Data from Husi 2022
 data("loire", package = "folio")
-loire <- subset(loire, area %in% c("Anjou", "Blésois", "Orléanais", "Haut-Poitou", "Touraine"))
+loire <- subset(loire, area %in% c("Anjou", "Blésois", "Orléanais", 
+                                   "Haut-Poitou", "Touraine"))
 
 ## Get time range
 loire_range <- loire[, c("lower", "upper")]

@@ -38,7 +38,7 @@ displayed (invisibly returns \code{x}).
 Plot Aoristic Analysis
 }
 \examples{
-## Aoristic Analysis
+## Data from Husi 2022
 data("loire", package = "folio")
 
 ## Get time range
