@@ -1,21 +1,13 @@
-citHeader("To cite kairos in publications use:")
-
-citEntry(
-  entry        = "Manual",
-  title        = "kairos: Analysis of Chronological Patterns from Archaeological Count Data",
-  author       = c(person("Nicolas", "Frerebeau", role = "aut")),
+bibentry(
+  bibtype      = "Manual",
+  header       = "To cite kairos in publications use:",
+  footer       = "This package is a part of the tesselle project <https://www.tesselle.org>.",
+  author       = person("Nicolas", "Frerebeau", role = "aut"),
+  title        = "{kairos: Analysis of Chronological Patterns from Archaeological Count Data}",
   year         = "2022",
   organization = "Université Bordeaux Montaigne",
   address      = "Pessac, France",
   note         = "R package version 1.2.0",
   url          = "https://packages.tesselle.org/kairos/",
-  doi          = "10.5281/zenodo.5653896",
-
-  textVersion  =
-  paste("Frerebeau, Nicolas (2022).",
-        "kairos: Analysis of Chronological Patterns from Archaeological Count Data.",
-        "R package version 1.2.0",
-        "Université Bordeaux Montaigne, Pessac, France.",
-        "DOI 10.5281/zenodo.5653896.",
-        "URL https://packages.tesselle.org/kairos.")
+  doi          = "10.5281/zenodo.5653896"
 )
