@@ -54,3 +54,4 @@ Other classes:
 N. Frerebeau
 }
 \concept{classes}
+\keyword{internal}

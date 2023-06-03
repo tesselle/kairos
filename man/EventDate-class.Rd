@@ -24,6 +24,9 @@ prediction.}
 \item{\code{keep}}{An \code{\link{integer}} vector.}
 }}
 
+\note{
+This class inherits from \code{\link[dimensio:CA-class]{dimensio::CA}}.
+}
 \seealso{
 \code{\link[dimensio:CA-class]{dimensio::CA}}
 
@@ -40,3 +43,4 @@ Other classes:
 N. Frerebeau
 }
 \concept{classes}
+\keyword{internal}

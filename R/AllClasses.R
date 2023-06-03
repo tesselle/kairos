@@ -27,6 +27,7 @@ NULL
 #' @family classes
 #' @docType class
 #' @aliases MeanDate-class
+#' @keywords internal
 .MeanDate <- setClass(
   Class = "MeanDate",
   slots = c(
@@ -58,11 +59,13 @@ NULL
 #'  multiple linear regression model fitted for event date estimation and
 #'  prediction.
 #' @slot keep An [`integer`] vector.
+#' @note This class inherits from [`dimensio::CA-class`].
 #' @seealso [`dimensio::CA-class`]
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
 #' @aliases EventDate-class
+#' @keywords internal
 .EventDate <- setClass(
   Class = "EventDate",
   slots = c(
@@ -91,6 +94,7 @@ NULL
 #' @family classes
 #' @docType class
 #' @aliases AoristicSum-class
+#' @keywords internal
 .AoristicSum <- setClass(
   Class = "AoristicSum",
   slots = c(
@@ -118,6 +122,7 @@ NULL
 #' @family classes
 #' @docType class
 #' @aliases RateOfChange-class
+#' @keywords internal
 .RateOfChange <- setClass(
   Class = "RateOfChange",
   slots = c(
@@ -149,6 +154,7 @@ NULL
 #' @family classes
 #' @docType class
 #' @aliases CountApportion-class
+#' @keywords internal
 .CountApportion <- setClass(
   Class = "CountApportion",
   slots = c(
@@ -183,6 +189,7 @@ NULL
 #' @family classes
 #' @docType class
 #' @aliases IncrementTest-class
+#' @keywords internal
 .IncrementTest <- setClass(
   Class = "IncrementTest",
   slots = c(
@@ -209,6 +216,7 @@ NULL
 #' @family classes
 #' @docType class
 #' @aliases PermutationOrder-class
+#' @keywords internal
 .PermutationOrder <- setClass(
   Class = "PermutationOrder",
   slots = c(
@@ -249,6 +257,7 @@ NULL
 #' @family classes
 #' @docType class
 #' @aliases RefineCA-class
+#' @keywords internal
 .RefinePermutationOrder <- setClass(
   Class = "RefinePermutationOrder",
   slots = c(
