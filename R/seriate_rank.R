@@ -6,7 +6,7 @@ NULL
 #' @aliases seriate_rank,data.frame-method
 setMethod(
   f = "seriate_rank",
-  signature = signature(object = "data.frame"),
+  signature = c(object = "data.frame"),
   definition = function(object, EPPM = FALSE, margin = c(1, 2), stop = 100) {
     object <- data.matrix(object)
     methods::callGeneric(object, EPPM = EPPM, margin = margin, stop = stop)
@@ -18,7 +18,7 @@ setMethod(
 #' @aliases seriate_rank,matrix-method
 setMethod(
   f = "seriate_rank",
-  signature = signature(object = "matrix"),
+  signature = c(object = "matrix"),
   definition = function(object, EPPM = FALSE, margin = c(1, 2), stop = 100) {
     # Validation
     margin <- as.integer(margin)

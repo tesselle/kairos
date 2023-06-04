@@ -15,13 +15,14 @@ dates <- list(
 mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 
 ## Calculate MCD
-mc_dates <- mcd(zuni[100:125, ], dates = mid)
-head(mc_dates)
+(mc_dates <- mcd(zuni[100:125, ], dates = mid))
+
+## Get MCD in years CE
+time(mc_dates, calendar = CE())
 
 ## Plot
 plot(mc_dates)
 
-\donttest{
 ## Bootstrap resampling
 boot <- bootstrap(mc_dates, n = 30)
 head(boot)
@@ -31,6 +32,5 @@ jack <- jackknife(mc_dates)
 head(jack)
 
 ## Simulation
-sim <- simulate(mc_dates, n = 30, interval = "percentiles")
-plot(sim)
-}
+sim <- simulate(mc_dates, nsim = 30)
+plot(sim, interval = "range", pch = 16)

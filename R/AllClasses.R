@@ -6,23 +6,19 @@ NULL
 #'
 #' An S4 class to store the weighted mean date (e.g. Mean Ceramic Date) of
 #' archaeological assemblages.
-#' @slot types A length-\eqn{p} [`numeric`] vector giving the dates of the
-#'  (ceramic) types.
-#' @slot weights An \eqn{m \times p}{m x p} [`integer`] [`matrix`] giving the
-#'  weights used.
-#' @slot simulation A three columns [`numeric`] matrix giving the summary
-#'  statistics of the simulated dates (`mean` and `lower` and `upper` boundaries
-#'  of the confidence interval).
-#' @param level A length-one [`numeric`] vector giving the confidence level.
-#' @slot replications An [`integer`] giving the number of bootstrap
-#'  replications.
+#' @slot dates A length-\eqn{p} [`numeric`] vector giving the dates of the
+#'  (ceramic) types expressed in *[rata die][aion::RataDie-class]*.
+#' @slot replications A `numeric` [`matrix`] giving the replications.
 #' @section Coerce:
 #'  In the code snippets below, `x` is a `MeanDate` object.
 #'  \describe{
 #'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
 #'  }
+#' @details
+#'  Dates are internally stored as *[rata die][aion::RataDie-class]*.
 #' @note
-#'  This class inherits from base [`numeric`].
+#'  This class inherits from [`aion::TimeSeries-class`].
+#' @seealso [`aion::TimeSeries-class`]
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -31,18 +27,15 @@ NULL
 .MeanDate <- setClass(
   Class = "MeanDate",
   slots = c(
-    types = "numeric",
-    weights = "matrix"
+    dates = "RataDie"
   ),
-  contains = "numeric"
+  contains = "TimeSeries"
 )
 
 .SimulationMeanDate <- setClass(
   Class = "SimulationMeanDate",
   slots = c(
-    simulation = "matrix",
-    level = "numeric",
-    replications = "integer"
+    replications = "matrix"
   ),
   contains = "MeanDate"
 )
@@ -81,15 +74,14 @@ NULL
 #' Aoristic Sum
 #'
 #' An S4 class to represent an aoristic analysis results.
-#' @slot from A [`numeric`] vector.
-#' @slot to A [`numeric`] vector.
-#' @slot step A length-one [`numeric`] vector giving the time-blocks width.
 #' @slot weights A [`numeric`] vector.
-#' @slot breaks A [`numeric`] vector giving the date break between time-blocks.
-#' @slot blocks A [`character`] vector giving the time-blocks.
+#' @slot breaks A [`RataDie`] vector giving the date break between time-blocks.
 #' @slot p A [`numeric`] [`array`] giving the aorisitic probabilities.
 #' @slot groups A [`character`] vector.
-#' @note This class inherits from base [`matrix`].
+#' @details
+#'  Dates are internally stored as *[rata die][aion::RataDie-class]*.
+#' @note
+#'  This class inherits from [`aion::TimeSeries-class`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -98,16 +90,12 @@ NULL
 .AoristicSum <- setClass(
   Class = "AoristicSum",
   slots = c(
-    from = "numeric",
-    to = "numeric",
-    step = "numeric",
     weights = "numeric",
-    breaks = "numeric",
-    blocks = "character",
+    breaks = "RataDie",
     p = "array",
     groups = "character"
   ),
-  contains = "matrix"
+  contains = "TimeSeries"
 )
 
 #' Rate of Change
@@ -115,7 +103,7 @@ NULL
 #' An S4 class to represent rates of change from an aoristic analysis.
 #' @slot replicates A non-negative [`integer`] giving the number of
 #'  replications.
-#' @slot breaks A [`numeric`] vector giving the date break between time-blocks.
+#' @slot breaks A [`RataDie`] vector giving the date break between time-blocks.
 #' @slot groups A [`character`] vector.
 #' @note This class inherits from base [`array`].
 #' @author N. Frerebeau
@@ -127,7 +115,7 @@ NULL
   Class = "RateOfChange",
   slots = c(
     replicates = "integer",
-    breaks = "numeric",
+    breaks = "RataDie",
     groups = "character"
   ),
   contains = "array"

@@ -8,7 +8,7 @@ NULL
 #' @aliases plot_time,data.frame,numeric-method
 setMethod(
   f = "plot_time",
-  signature = signature(object = "data.frame", dates = "numeric"),
+  signature = c(object = "data.frame", dates = "numeric"),
   definition = function(object, dates, facet = FALSE) {
     object <- data.matrix(object)
     methods::callGeneric(object, dates = dates, facet = facet)
@@ -21,7 +21,7 @@ setMethod(
 #' @aliases plot_time,matrix,numeric-method
 setMethod(
   f = "plot_time",
-  signature = signature(object = "matrix", dates = "numeric"),
+  signature = c(object = "matrix", dates = "numeric"),
   definition = function(object, dates, facet = FALSE) {
     ## Validation
     arkhe::assert_type(dates, "numeric")

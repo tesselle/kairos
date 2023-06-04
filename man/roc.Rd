@@ -43,7 +43,8 @@ plot(aorist_weighted)
 ## Calculate aoristic sum (weights) by group
 aorist_groups <- aoristic(loire_range, step = 50, weight = TRUE,
                           groups = loire$area)
-plot(aorist_groups)
+plot(aorist_groups, flip = TRUE)
+image(aorist_groups)
 
 ## Rate of change
 roc_weighted <- roc(aorist_weighted, n = 30)
@@ -51,7 +52,7 @@ plot(roc_weighted)
 
 ## Rate of change by group
 roc_groups <- roc(aorist_groups, n = 30)
-plot(roc_groups)
+plot(roc_groups, flip = TRUE)
 }
 \references{
 Baxter, M. J. & Cool, H. E. M. (2016). Reinventing the Wheel? Modelling

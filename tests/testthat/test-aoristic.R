@@ -10,12 +10,14 @@ test_that("Aoristic sum", {
   aorist_raw <- aoristic(span, step = 200, weight = FALSE)
   expect_snapshot(aorist_raw)
 
-  gg_raw <- autoplot(aorist_raw)
-  vdiffr::expect_doppelganger("aoristic_raw", gg_raw)
-
   ## Calculate aoristic sum (weights)
   aorist_weigth <- aoristic(span, step = 200, weight = TRUE)
   expect_snapshot(aorist_weigth)
+
+  skip_if_not_installed("vdiffr")
+
+  gg_raw <- autoplot(aorist_raw)
+  vdiffr::expect_doppelganger("aoristic_raw", gg_raw)
 
   gg_weight <- autoplot(aorist_weigth)
   vdiffr::expect_doppelganger("aoristic_weight", gg_weight)
@@ -39,6 +41,8 @@ test_that("Aoristic sum by group", {
   aorist_B <- aoristic(span[groups == "B", ], step = 200, weight = TRUE)
   expect_identical(aorist_groups[, 1], aorist_A[, 1])
   expect_identical(aorist_groups[, 2], aorist_B[, 1])
+
+  skip_if_not_installed("vdiffr")
 
   for (i in c(TRUE, FALSE)) {
     gg_groups <- autoplot(aorist_groups, facet = i)

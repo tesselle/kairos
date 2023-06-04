@@ -7,7 +7,7 @@ NULL
 #' @aliases apportion,data.frame-method
 setMethod(
   f = "apportion",
-  signature = signature(object = "data.frame"),
+  signature = c(object = "data.frame"),
   definition = function(object, s0, s1, t0, t1, from = min(s0), to = max(s1),
                         step = 25, method = c("uniform", "truncated"), z = 2,
                         progress = getOption("kairos.progress")) {
@@ -23,7 +23,7 @@ setMethod(
 #' @aliases apportion,matrix-method
 setMethod(
   f = "apportion",
-  signature = signature(object = "matrix"),
+  signature = c(object = "matrix"),
   definition = function(object, s0, s1, t0, t1, from = min(s0), to = max(s1),
                         step = 25, method = c("uniform", "truncated"), z = 2,
                         progress = getOption("kairos.progress")) {

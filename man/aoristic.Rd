@@ -14,29 +14,42 @@ aoristic(x, y, ...)
   x,
   y,
   step = 1,
-  start = min(x, na.rm = TRUE),
-  stop = max(y, na.rm = TRUE),
+  start = min(x),
+  end = max(y),
+  calendar = CE(),
   weight = TRUE,
   groups = NULL
 )
 
-\S4method{aoristic}{ANY,missing}(x, step = 1, start = NULL, stop = NULL, weight = TRUE, groups = NULL)
+\S4method{aoristic}{ANY,missing}(
+  x,
+  step = 1,
+  start = NULL,
+  end = NULL,
+  calendar = CE(),
+  weight = TRUE,
+  groups = NULL
+)
 }
 \arguments{
-\item{x, y}{A \code{\link{numeric}} vector. If \code{y} is missing, an attempt is made to
+\item{x, y}{A \code{\link{numeric}} vector giving the lower and upper boundaries of the
+time intervals, respectively. If \code{y} is missing, an attempt is made to
 interpret \code{x} in a suitable way (see \code{\link[grDevices:xy.coords]{grDevices::xy.coords()}}).}
 
 \item{...}{Currently not used.}
 
 \item{step}{A length-one \code{\link{integer}} vector giving the step size, i.e. the
-width of each time step in the time series (in years CE; defaults to
-\eqn{1} - i.e. annual level).}
+width of each time step in the time series (defaults to \eqn{1},
+i.e. annual level).}
 
 \item{start}{A length-one \code{\link{numeric}} vector giving the beginning of the time
-window (in years CE).}
+window.}
 
-\item{stop}{A length-one \code{\link{numeric}} vector giving the end of the time
-window (in years CE).}
+\item{end}{A length-one \code{\link{numeric}} vector giving the end of the time
+window.}
+
+\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
+\code{x} and \code{y} (see \code{\link[=calendar]{calendar()}}).}
 
 \item{weight}{A \code{\link{logical}} scalar: should the aoristic sum be weighted by
 the length of periods (default). If \code{FALSE} the aoristic sum is the number
@@ -84,7 +97,8 @@ plot(aorist_weighted)
 ## Calculate aoristic sum (weights) by group
 aorist_groups <- aoristic(loire_range, step = 50, weight = TRUE,
                           groups = loire$area)
-plot(aorist_groups)
+plot(aorist_groups, flip = TRUE)
+image(aorist_groups)
 
 ## Rate of change
 roc_weighted <- roc(aorist_weighted, n = 30)
@@ -92,7 +106,7 @@ plot(roc_weighted)
 
 ## Rate of change by group
 roc_groups <- roc(aorist_groups, n = 30)
-plot(roc_groups)
+plot(roc_groups, flip = TRUE)
 }
 \references{
 Crema, E. R. (2012). Modelling Temporal Uncertainty in Archaeological

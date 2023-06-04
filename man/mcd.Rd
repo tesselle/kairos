@@ -11,23 +11,26 @@
 \usage{
 mcd(object, dates, ...)
 
-\S4method{mcd}{numeric,numeric}(object, dates)
+\S4method{mcd}{numeric,numeric}(object, dates, calendar = CE())
 
-\S4method{mcd}{data.frame,numeric}(object, dates)
+\S4method{mcd}{data.frame,numeric}(object, dates, calendar = CE())
 
-\S4method{mcd}{matrix,numeric}(object, dates)
+\S4method{mcd}{matrix,numeric}(object, dates, calendar = CE())
 }
 \arguments{
 \item{object}{A length-\eqn{p} \code{\link{numeric}} vector, an \eqn{m \times p}{m x p}
-\code{numeric} \code{\link{matrix}} or \code{\link{data.frame}} of count data (absolute frequencies).}
+\code{numeric} \code{\link{matrix}} or \code{\link{data.frame}} of count data (absolute frequencies).
+A \code{\link{data.frame}} will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{data.matrix()}}.}
 
-\item{dates}{A length-\eqn{p} \code{\link{numeric}} vector of dates expressed in CE
-years (BCE years must be given as negative numbers).}
+\item{dates}{A length-\eqn{p} \code{\link{numeric}} vector of dates expressed in years.}
 
 \item{...}{Currently not used.}
+
+\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
+\code{dates} (see \code{\link[=calendar]{calendar()}}).}
 }
 \value{
-A single \code{\link{numeric}} value or a \linkS4class{MeanDate} object.
+A \linkS4class{MeanDate} object.
 }
 \description{
 Estimates the Mean Ceramic Date of an assemblage.
@@ -69,13 +72,14 @@ dates <- list(
 mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 
 ## Calculate MCD
-mc_dates <- mcd(zuni[100:125, ], dates = mid)
-head(mc_dates)
+(mc_dates <- mcd(zuni[100:125, ], dates = mid))
+
+## Get MCD in years CE
+time(mc_dates, calendar = CE())
 
 ## Plot
 plot(mc_dates)
 
-\donttest{
 ## Bootstrap resampling
 boot <- bootstrap(mc_dates, n = 30)
 head(boot)
@@ -85,9 +89,8 @@ jack <- jackknife(mc_dates)
 head(jack)
 
 ## Simulation
-sim <- simulate(mc_dates, n = 30, interval = "percentiles")
-plot(sim)
-}
+sim <- simulate(mc_dates, nsim = 30)
+plot(sim, interval = "range", pch = 16)
 }
 \references{
 South, S. A. (1977). \emph{Method and Theory in Historical Archaeology}.

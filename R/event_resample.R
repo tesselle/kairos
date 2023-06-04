@@ -7,7 +7,7 @@ NULL
 #' @aliases jackknife,EventDate-method
 setMethod(
   f = "jackknife",
-  signature = signature(object = "EventDate"),
+  signature = c(object = "EventDate"),
   definition = function(object, level = 0.95,
                         progress = getOption("kairos.progress"), ...) {
     ## Get data
@@ -44,7 +44,7 @@ setMethod(
 #' @aliases bootstrap,EventDate-method
 setMethod(
   f = "bootstrap",
-  signature = signature(object = "EventDate"),
+  signature = c(object = "EventDate"),
   definition = function(object, level = 0.95, probs = c(0.05, 0.95), n = 1000,
                         progress = getOption("kairos.progress"), ...) {
     ## Get data

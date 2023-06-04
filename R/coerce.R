@@ -1,29 +1,29 @@
-# COERCION
-#' @include AllGenerics.R AllClasses.R
+# COERCE
+#' @include AllGenerics.R
 NULL
 
 # To data.frame ================================================================
-#' @method as.data.frame MeanDate
 #' @export
-as.data.frame.MeanDate <- function(x, ..., stringsAsFactors = FALSE) {
-  data.frame(
-    names = names(x),
-    dates = as.numeric(x),
-    stringsAsFactors = stringsAsFactors
-  )
+#' @method as.data.frame MeanDate
+as.data.frame.MeanDate <- function(x, ..., calendar = getOption("kairos.calendar")) {
+  methods::callNextMethod(x, ..., calendar = calendar)
 }
 
-#' @method as.data.frame SimulationMeanDate
 #' @export
-as.data.frame.SimulationMeanDate <- function(x, ..., stringsAsFactors = FALSE) {
-  data.frame(
-    names = names(x),
-    dates = as.numeric(x),
-    x@simulation,
-    row.names = NULL,
-    stringsAsFactors = stringsAsFactors
-  )
+#' @rdname data.frame
+#' @aliases as.data.frame,MeanDate-method
+setMethod("as.data.frame", "MeanDate", as.data.frame.MeanDate)
+
+#' @export
+#' @method as.data.frame AoristicSum
+as.data.frame.AoristicSum <- function(x, ..., calendar = getOption("kairos.calendar")) {
+  methods::callNextMethod(x, ..., calendar = calendar)
 }
+
+#' @export
+#' @rdname data.frame
+#' @aliases as.data.frame,AoristicSum-method
+setMethod("as.data.frame", "AoristicSum", as.data.frame.AoristicSum)
 
 #' @method as.data.frame IncrementTest
 #' @export

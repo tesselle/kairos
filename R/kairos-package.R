@@ -40,6 +40,7 @@
 "_PACKAGE"
 
 #' @import arkhe
+#' @import aion
 #' @importFrom dimensio ca get_coordinates get_eigenvalues
 #' get_replications predict
 #' @importFrom extraDistr ptnorm
@@ -51,6 +52,5 @@
 #' @importFrom methods as callGeneric callNextMethod new setClass setGeneric
 #' setMethod validObject .valueClassTest
 #' @importFrom rlang .data
-#' @importFrom stats sd weighted.mean
-#' @importFrom utils head
+#' @importFrom tabula resample
 NULL

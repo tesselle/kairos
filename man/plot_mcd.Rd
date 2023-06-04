@@ -3,37 +3,81 @@
 \docType{methods}
 \name{plot_mcd}
 \alias{plot_mcd}
-\alias{autoplot,MeanDate-method}
 \alias{plot,MeanDate,missing-method}
-\alias{autoplot,SimulationMeanDate-method}
 \alias{plot,SimulationMeanDate,missing-method}
 \title{MCD Plot}
 \usage{
-\S4method{autoplot}{MeanDate}(object, ..., select = NULL, decreasing = TRUE)
+\S4method{plot}{MeanDate,missing}(
+  x,
+  calendar = getOption("kairos.calendar"),
+  decreasing = TRUE,
+  main = NULL,
+  sub = NULL,
+  ann = graphics::par("ann"),
+  axes = TRUE,
+  frame.plot = axes,
+  panel.first = NULL,
+  panel.last = NULL,
+  ...
+)
 
-\S4method{plot}{MeanDate,missing}(x, select = NULL, decreasing = TRUE, ...)
-
-\S4method{autoplot}{SimulationMeanDate}(object, ..., select = NULL, decreasing = TRUE)
-
-\S4method{plot}{SimulationMeanDate,missing}(x, select = NULL, decreasing = TRUE, ...)
+\S4method{plot}{SimulationMeanDate,missing}(
+  x,
+  calendar = getOption("kairos.calendar"),
+  interval = "student",
+  level = 0.8,
+  decreasing = TRUE,
+  main = NULL,
+  sub = NULL,
+  ann = graphics::par("ann"),
+  axes = TRUE,
+  frame.plot = axes,
+  panel.first = NULL,
+  panel.last = NULL,
+  ...
+)
 }
 \arguments{
-\item{object, x}{A \linkS4class{MeanDate} object.}
+\item{x}{A \linkS4class{MeanDate} object.}
 
-\item{...}{Currently not used.}
-
-\item{select}{A \code{\link{numeric}} or \code{\link{character}} vector giving the selection of
-the assemblage that are drawn.}
+\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
+(see \code{\link[=calendar]{calendar()}}).}
 
 \item{decreasing}{A \code{\link{logical}} scalar: should the sort be increasing or
 decreasing?}
+
+\item{main}{A \code{\link{character}} string giving a main title for the plot.}
+
+\item{sub}{A \code{\link{character}} string giving a subtitle for the plot.}
+
+\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x,
+y and z axis labels) appear on the plot?}
+
+\item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
+
+\item{frame.plot}{A \code{\link{logical}} scalar: should a box be drawn around the
+plot?}
+
+\item{panel.first}{An an \code{expression} to be evaluated after the plot axes are
+set up but before any plotting takes place. This can be useful for drawing
+background grids.}
+
+\item{panel.last}{An \code{expression} to be evaluated after plotting has taken
+place but before the axes, title and box are added.}
+
+\item{...}{Further \link[graphics:par]{graphical parameters}.}
+
+\item{interval}{A \code{\link{character}} string giving the type of confidence
+interval to be returned. It must be one "\code{student}" (the default),
+"\code{normal}", "\code{percentiles}" or "\code{range}" (min-max).
+Any unambiguous substring can be given.}
+
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
+Only used if \code{interval} is not "\code{range}".}
 }
 \value{
-\itemize{
-\item \code{autoplot()} returns a \code{\link[ggplot2:ggplot]{ggplot}} object.
-\item \code{plot()} is called it for its side-effects: it results in a graphic being
+\code{plot()} is called it for its side-effects: it results in a graphic being
 displayed (invisibly returns \code{x}).
-}
 }
 \description{
 MCD Plot
@@ -56,13 +100,14 @@ dates <- list(
 mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 
 ## Calculate MCD
-mc_dates <- mcd(zuni[100:125, ], dates = mid)
-head(mc_dates)
+(mc_dates <- mcd(zuni[100:125, ], dates = mid))
+
+## Get MCD in years CE
+time(mc_dates, calendar = CE())
 
 ## Plot
 plot(mc_dates)
 
-\donttest{
 ## Bootstrap resampling
 boot <- bootstrap(mc_dates, n = 30)
 head(boot)
@@ -72,9 +117,8 @@ jack <- jackknife(mc_dates)
 head(jack)
 
 ## Simulation
-sim <- simulate(mc_dates, n = 30, interval = "percentiles")
-plot(sim)
-}
+sim <- simulate(mc_dates, nsim = 30)
+plot(sim, interval = "range", pch = 16)
 }
 \seealso{
 \code{\link[=mcd]{mcd()}}

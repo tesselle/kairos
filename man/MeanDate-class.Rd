@@ -5,32 +5,24 @@
 \alias{MeanDate-class}
 \alias{.MeanDate}
 \title{Mean Date}
-\arguments{
-\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
-}
 \description{
 An S4 class to store the weighted mean date (e.g. Mean Ceramic Date) of
 archaeological assemblages.
 }
+\details{
+Dates are internally stored as \emph{\link[aion:RataDie-class]{rata die}}.
+}
 \section{Slots}{
 
 \describe{
-\item{\code{types}}{A length-\eqn{p} \code{\link{numeric}} vector giving the dates of the
-(ceramic) types.}
+\item{\code{dates}}{A length-\eqn{p} \code{\link{numeric}} vector giving the dates of the
+(ceramic) types expressed in \emph{\link[aion:RataDie-class]{rata die}}.}
 
-\item{\code{weights}}{An \eqn{m \times p}{m x p} \code{\link{integer}} \code{\link{matrix}} giving the
-weights used.}
-
-\item{\code{simulation}}{A three columns \code{\link{numeric}} matrix giving the summary
-statistics of the simulated dates (\code{mean} and \code{lower} and \code{upper} boundaries
-of the confidence interval).}
-
-\item{\code{replications}}{An \code{\link{integer}} giving the number of bootstrap
-replications.}
+\item{\code{replications}}{A \code{numeric} \code{\link{matrix}} giving the replications.}
 }}
 
 \note{
-This class inherits from base \code{\link{numeric}}.
+This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
 }
 \section{Coerce}{
 
@@ -41,6 +33,8 @@ In the code snippets below, \code{x} is a \code{MeanDate} object.
 }
 
 \seealso{
+\code{\link[aion:TimeSeries-class]{aion::TimeSeries}}
+
 Other classes: 
 \code{\link{AoristicSum-class}},
 \code{\link{CountApportion-class}},

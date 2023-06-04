@@ -6,7 +6,7 @@ NULL
 #' @aliases seriate_average,data.frame-method
 setMethod(
   f = "seriate_average",
-  signature = signature(object = "data.frame"),
+  signature = c(object = "data.frame"),
   definition = function(object, margin = c(1, 2), axes = 1, ...) {
     object <- data.matrix(object)
     methods::callGeneric(object, margin = margin, axes = axes, ...)
@@ -18,7 +18,7 @@ setMethod(
 #' @aliases seriate_average,matrix-method
 setMethod(
   f = "seriate_average",
-  signature = signature(object = "matrix"),
+  signature = c(object = "matrix"),
   definition = function(object, margin = c(1, 2), axes = 1, ...) {
     ## Validation
     arkhe::assert_length(axes, 1)

@@ -1,9 +1,27 @@
-# ACCESSORS
-#' @include AllClasses.R
+# SUBSET
+#' @include AllGenerics.R
 NULL
 
 # Extract ======================================================================
 ## [ ---------------------------------------------------------------------------
+#' @export
+#' @rdname subset
+#' @aliases [,MeanDate-method
+setMethod(
+  f = "[",
+  signature = c(x = "MeanDate"),
+  function(x, i, j, ..., drop = FALSE) {
+    z <- methods::callNextMethod() # Method for `TimeSeries`
+
+    if (is.null(dim(z)) || isTRUE(drop)) return(z)
+
+    dates <- x@dates
+    if (!missing(j)) {
+      dates <- dates[j]
+    }
+    methods::initialize(x, z, dates = dates)
+  }
+)
 
 ## [[ --------------------------------------------------------------------------
 #' Extract Parts of an Object

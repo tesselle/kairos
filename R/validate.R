@@ -7,14 +7,12 @@ setValidity(
   Class = "MeanDate",
   method = function(object) {
     # Get data
-    types <- object@types
-    weights <- object@weights
+    dates <- object@dates
     m <- nrow(weights)
-    p <- ncol(weights)
+    p <- ncol(object)
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_length(object, m)),
-      arkhe::validate(arkhe::assert_length(types, p))
+      arkhe::validate(arkhe::assert_length(dates, p))
     )
 
     # Return cnd, if any
@@ -47,13 +45,9 @@ setValidity(
   Class = "AoristicSum",
   method = function(object) {
     # Get data
-    from <- object@from
-    to <- object@to
-    step <- object@step
     weights <- object@weights
     groups <- object@groups
     breaks <- object@breaks
-    blocks <- object@blocks
     p <- object@p
 
     i <- nrow(p)
@@ -61,13 +55,9 @@ setValidity(
     k <- length(unique(groups))
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_length(from, i)),
-      arkhe::validate(arkhe::assert_length(to, i)),
-      arkhe::validate(arkhe::assert_scalar(step, "numeric")),
       arkhe::validate(arkhe::assert_length(weights, i)),
       arkhe::validate(arkhe::assert_length(groups, i)),
       arkhe::validate(arkhe::assert_length(breaks, j + 1)),
-      arkhe::validate(arkhe::assert_length(blocks, j)),
       arkhe::validate(arkhe::assert_dimensions(p, c(i, j, k)))
     )
 

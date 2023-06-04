@@ -2,7 +2,8 @@
   op <- options()
   op.kairos <- list(
     kairos.precision = 0,
-    kairos.progress = TRUE
+    kairos.progress = TRUE,
+    kairos.calendar = aion::CE()
   )
   toset <- !(names(op.kairos) %in% names(op))
   if(any(toset)) options(op.kairos[toset])

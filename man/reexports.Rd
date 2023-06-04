@@ -7,6 +7,15 @@
 \alias{replace_zero}
 \alias{remove_NA}
 \alias{remove_zero}
+\alias{calendar}
+\alias{BP}
+\alias{b2k}
+\alias{BC}
+\alias{BCE}
+\alias{AD}
+\alias{CE}
+\alias{start}
+\alias{time}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -14,6 +23,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{aion}{\code{\link[aion:gregorian]{AD}}, \code{\link[aion:gregorian]{BC}}, \code{\link[aion:gregorian]{BCE}}, \code{\link[aion:gregorian]{BP}}, \code{\link[aion:gregorian]{CE}}, \code{\link[aion:gregorian]{b2k}}, \code{\link[aion]{calendar}}, \code{\link[aion]{start}}, \code{\link[aion]{start}}, \code{\link[aion]{time}}}
+
   \item{arkhe}{\code{\link[arkhe:missing]{remove_NA}}, \code{\link[arkhe:zero]{remove_zero}}, \code{\link[arkhe:missing]{replace_NA}}, \code{\link[arkhe:zero]{replace_zero}}}
 }}
 

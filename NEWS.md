@@ -1,4 +1,16 @@
 # kairos 1.2.0.9000
+## New classes and methods
+* Add `image()` methods.
+
+## Internals
+* `MeanDate` and `AoristicSum` classes now inherit from `TimeSeries` (see **aion**).
+
+## Bugfixes & changes
+* Remove previously deprecated methods.
+
+## Breaking changes
+* For consistency, all `mcd()` methods now return a `MeanDate` object.
+* Remove all `autoplot()` methods to reduce dependencies (use **graphics** instead of **ggplot2**).
 
 # kairos 1.2.0
 ## New classes and methods

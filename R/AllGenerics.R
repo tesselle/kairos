@@ -8,6 +8,28 @@ setGeneric("jackknife", package = "arkhe")
 setGeneric("bootstrap", package = "arkhe")
 
 # Mutators =====================================================================
+## Subset ----------------------------------------------------------------------
+#' Extract or Replace Parts of an Object
+#'
+#' Operators acting on objects to extract or replace parts.
+#' @param x An object from which to extract element(s) or in which to replace
+#'  element(s).
+#' @param i,j Indices specifying elements to extract or replace.
+#' @param drop A [`logical`] scalar: should the result be coerced to
+#'  the lowest possible dimension? This only works for extracting elements,
+#'  not for the replacement.
+# @param value A possible value for the element(s) of `x`.
+#' @param ... Currently not used.
+#' @return
+#'  A subsetted object.
+# @example inst/examples/ex-subset.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name subset
+#' @rdname subset
+NULL
+
 ## Extract ---------------------------------------------------------------------
 #' Get or Set Parts of an Object
 #'
@@ -55,6 +77,23 @@ setGeneric(
   def = function(x) standardGeneric("get_weights")
 )
 
+## Coerce ----------------------------------------------------------------------
+#' Coerce to a Data Frame
+#'
+#' @param x An object.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]). If `NULL`, *rata die* are returned.
+#' @param ... Further parameters to be passed to [data.frame()].
+#' @return
+#'  A [`data.frame`] with an extra `time` column giving the (decimal) years at
+#'  which the time series was sampled.
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name data.frame
+#' @rdname data.frame
+NULL
+
 # Resampling methods ===========================================================
 #' Resample Mean Ceramic Dates
 #'
@@ -64,12 +103,11 @@ setGeneric(
 #' @param object A [MeanDate-class] object (typically returned by [mcd()]).
 #' @param n A non-negative [`integer`] specifying the number of bootstrap
 #'  replications.
+#' @param nsim A non-negative [`integer`] specifying the number of simulations.
 #' @param f A [`function`] that takes a single numeric vector (the result of
 #'  the resampling procedure) as argument.
-#' @param interval A [`character`] string giving the type of confidence
-#'  interval to be returned. It must be one "`student`" (the default),
-#'  "`normal`" or "`percentiles`". Any unambiguous substring can be given.
-#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]).
 #' @return
 #'  If `f` is `NULL`, `bootstrap()` and `jackknife()` return a [`data.frame`]
 #'  with the following elements (else, returns the result of `f` applied to the
@@ -146,8 +184,10 @@ NULL
 #' Estimates the Mean Ceramic Date of an assemblage.
 #' @param object A length-\eqn{p} [`numeric`] vector, an \eqn{m \times p}{m x p}
 #'  `numeric` [`matrix`] or [`data.frame`] of count data (absolute frequencies).
-#' @param dates A length-\eqn{p} [`numeric`] vector of dates expressed in CE
-#'  years (BCE years must be given as negative numbers).
+#'  A [`data.frame`] will be coerced to a `numeric` `matrix` via [data.matrix()].
+#' @param dates A length-\eqn{p} [`numeric`] vector of dates expressed in years.
+#' @param calendar A [`TimeScale-class`] object specifying the calendar of
+#'  `dates` (see [calendar()]).
 #' @param ... Currently not used.
 #' @details
 #'  The Mean Ceramic Date (MCD) is a point estimate of the occupation of an
@@ -167,7 +207,7 @@ NULL
 #'  not make sense in most situations). You can change this behavior with
 #'  `options(kairos.precision = x)` (for `x` decimal places).
 #' @return
-#'  A single [`numeric`] value or a [MeanDate-class] object.
+#'  A [MeanDate-class] object.
 #' @seealso [plot()][plot_mcd], [bootstrap()][resample_mcd],
 #'  [jackknife()][resample_mcd], [simulate()][resample_mcd]
 #' @references
@@ -298,15 +338,18 @@ setGeneric(
 #' Aoristic Analysis
 #'
 #' Computes the aoristic sum.
-#' @param x,y A [`numeric`] vector. If `y` is missing, an attempt is made to
+#' @param x,y A [`numeric`] vector giving the lower and upper boundaries of the
+#'  time intervals, respectively. If `y` is missing, an attempt is made to
 #'  interpret `x` in a suitable way (see [grDevices::xy.coords()]).
 #' @param step A length-one [`integer`] vector giving the step size, i.e. the
-#'  width of each time step in the time series (in years CE; defaults to
-#'  \eqn{1} - i.e. annual level).
+#'  width of each time step in the time series (defaults to \eqn{1},
+#'  i.e. annual level).
 #' @param start A length-one [`numeric`] vector giving the beginning of the time
-#'  window (in years CE).
-#' @param stop A length-one [`numeric`] vector giving the end of the time
-#'  window (in years CE).
+#'  window.
+#' @param end A length-one [`numeric`] vector giving the end of the time
+#'  window.
+#' @param calendar A [`TimeScale-class`] object specifying the calendar of
+#'  `x` and `y` (see [calendar()]).
 #' @param weight A [`logical`] scalar: should the aoristic sum be weighted by
 #'  the length of periods (default). If `FALSE` the aoristic sum is the number
 #'  of elements within a time block.
@@ -500,15 +543,33 @@ setGeneric(
 ## AoristicSum -----------------------------------------------------------------
 #' Plot Aoristic Analysis
 #'
-#' @param object,x An [AoristicSum-class] object.
+#' @param x An [AoristicSum-class] object.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]).
+#' @param type A [`character`] string specifying whether bar or density should
+#'  be plotted? It must be one of "`bar`" or "`density`". Any unambiguous
+#'  substring can be given.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
-#' @param facet A [`logical`] scalar: should a matrix of panels defined by
-#'  groups be drawn?
-#' @param ... Currently not used.
+#' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
+#'  flipped from side 2 (left) to 4 (right) from series to series?
+#' @param ncol An [`integer`] specifying the number of columns to use when
+#'  `type` is "`multiple`". Defaults to 1 for up to 4 series, otherwise to 2.
+#' @param main A [`character`] string giving a main title for the plot.
+#' @param sub A [`character`] string giving a subtitle for the plot.
+#' @param ann A [`logical`] scalar: should the default annotation (title and x,
+#'  y and z axis labels) appear on the plot?
+#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
+#' @param frame.plot A [`logical`] scalar: should a box be drawn around the
+#'  plot?
+#' @param panel.first An an `expression` to be evaluated after the plot axes are
+#'  set up but before any plotting takes place. This can be useful for drawing
+#'  background grids.
+#' @param panel.last An `expression` to be evaluated after plotting has taken
+#'  place but before the axes, title and box are added.
+#' @param ... Further [graphical parameters][graphics::par].
 #' @return
-#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
-#'  * `plot()` is called it for its side-effects: it results in a graphic being
-#'    displayed (invisibly returns `x`).
+#'   `plot()` is called it for its side-effects: it results in a graphic being
+#'   displayed (invisibly returns `x`).
 #' @seealso [aoristic()], [roc()]
 #' @example inst/examples/ex-aoristic.R
 #' @author N. Frerebeau
@@ -521,16 +582,33 @@ NULL
 ## MeanDate ---------------------------------------------------------------------
 #' MCD Plot
 #'
-#' @param object,x A [MeanDate-class] object.
-#' @param select A [`numeric`] or [`character`] vector giving the selection of
-#'  the assemblage that are drawn.
+#' @param x A [MeanDate-class] object.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]).
+#' @param interval A [`character`] string giving the type of confidence
+#'  interval to be returned. It must be one "`student`" (the default),
+#'  "`normal`", "`percentiles`" or "`range`" (min-max).
+#'  Any unambiguous substring can be given.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Only used if `interval` is not "`range`".
 #' @param decreasing A [`logical`] scalar: should the sort be increasing or
 #'  decreasing?
-#' @param ... Currently not used.
+#' @param main A [`character`] string giving a main title for the plot.
+#' @param sub A [`character`] string giving a subtitle for the plot.
+#' @param ann A [`logical`] scalar: should the default annotation (title and x,
+#'  y and z axis labels) appear on the plot?
+#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
+#' @param frame.plot A [`logical`] scalar: should a box be drawn around the
+#'  plot?
+#' @param panel.first An an `expression` to be evaluated after the plot axes are
+#'  set up but before any plotting takes place. This can be useful for drawing
+#'  background grids.
+#' @param panel.last An `expression` to be evaluated after plotting has taken
+#'  place but before the axes, title and box are added.
+#' @param ... Further [graphical parameters][graphics::par].
 #' @return
-#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
-#'  * `plot()` is called it for its side-effects: it results in a graphic being
-#'    displayed (invisibly returns `x`).
+#'  `plot()` is called it for its side-effects: it results in a graphic being
+#'  displayed (invisibly returns `x`).
 #' @seealso [mcd()]
 #' @example inst/examples/ex-mcd.R
 #' @author N. Frerebeau

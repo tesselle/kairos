@@ -8,16 +8,11 @@
 \alias{simulate,MeanDate-method}
 \title{Resample Mean Ceramic Dates}
 \usage{
-\S4method{bootstrap}{MeanDate}(object, n = 1000, f = NULL)
+\S4method{bootstrap}{MeanDate}(object, n = 1000, f = NULL, calendar = getOption("kairos.calendar"))
 
-\S4method{jackknife}{MeanDate}(object)
+\S4method{jackknife}{MeanDate}(object, f = NULL, calendar = getOption("kairos.calendar"))
 
-\S4method{simulate}{MeanDate}(
-  object,
-  n = 1000,
-  interval = c("student", "normal", "percentiles"),
-  level = 0.8
-)
+\S4method{simulate}{MeanDate}(object, nsim = 1000)
 }
 \arguments{
 \item{object}{A \linkS4class{MeanDate} object (typically returned by \code{\link[=mcd]{mcd()}}).}
@@ -28,11 +23,10 @@ replications.}
 \item{f}{A \code{\link{function}} that takes a single numeric vector (the result of
 the resampling procedure) as argument.}
 
-\item{interval}{A \code{\link{character}} string giving the type of confidence
-interval to be returned. It must be one "\code{student}" (the default),
-"\code{normal}" or "\code{percentiles}". Any unambiguous substring can be given.}
+\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
+(see \code{\link[=calendar]{calendar()}}).}
 
-\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
+\item{nsim}{A non-negative \code{\link{integer}} specifying the number of simulations.}
 }
 \value{
 If \code{f} is \code{NULL}, \code{bootstrap()} and \code{jackknife()} return a \code{\link{data.frame}}

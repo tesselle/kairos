@@ -8,20 +8,15 @@
 \description{
 An S4 class to represent an aoristic analysis results.
 }
+\details{
+Dates are internally stored as \emph{\link[aion:RataDie-class]{rata die}}.
+}
 \section{Slots}{
 
 \describe{
-\item{\code{from}}{A \code{\link{numeric}} vector.}
-
-\item{\code{to}}{A \code{\link{numeric}} vector.}
-
-\item{\code{step}}{A length-one \code{\link{numeric}} vector giving the time-blocks width.}
-
 \item{\code{weights}}{A \code{\link{numeric}} vector.}
 
-\item{\code{breaks}}{A \code{\link{numeric}} vector giving the date break between time-blocks.}
-
-\item{\code{blocks}}{A \code{\link{character}} vector giving the time-blocks.}
+\item{\code{breaks}}{A \code{\link{RataDie}} vector giving the date break between time-blocks.}
 
 \item{\code{p}}{A \code{\link{numeric}} \code{\link{array}} giving the aorisitic probabilities.}
 
@@ -29,7 +24,7 @@ An S4 class to represent an aoristic analysis results.
 }}
 
 \note{
-This class inherits from base \code{\link{matrix}}.
+This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
 }
 \seealso{
 Other classes: 

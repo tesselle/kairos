@@ -7,7 +7,7 @@ NULL
 #' @aliases seriate_refine,AveragePermutationOrder-method
 setMethod(
   f = "seriate_refine",
-  signature = signature(object = "AveragePermutationOrder"),
+  signature = c(object = "AveragePermutationOrder"),
   definition = function(object, cutoff, margin = 1, axes = 1, n = 30, ...) {
     ## Partial bootstrap CA
     ## /!\ Be careful: AveragePermutationOrder inherits from CA
@@ -21,7 +21,7 @@ setMethod(
 #' @aliases seriate_refine,BootstrapCA-method
 setMethod(
   f = "seriate_refine",
-  signature = signature(object = "BootstrapCA"),
+  signature = c(object = "BootstrapCA"),
   definition = function(object, cutoff, margin = 1, axes = 1, ...) {
     ## Validation
     if (!is.function(cutoff)) {

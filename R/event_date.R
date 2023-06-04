@@ -7,7 +7,7 @@ NULL
 #' @aliases event,data.frame,numeric-method
 setMethod(
   f = "event",
-  signature = signature(object = "data.frame", dates = "numeric"),
+  signature = c(object = "data.frame", dates = "numeric"),
   definition = function(object, dates, rank = 10, cutoff = NULL, ...) {
     object <- data.matrix(object)
     methods::callGeneric(object, dates, rank = rank, cutoff = cutoff, ...)
@@ -18,7 +18,7 @@ setMethod(
 #' @aliases event,matrix,numeric-method
 setMethod(
   f = "event",
-  signature = signature(object = "matrix", dates = "numeric"),
+  signature = c(object = "matrix", dates = "numeric"),
   definition = function(object, dates, rank = 10, cutoff = NULL, ...) {
     ## /!\ Deprecate cutoff /!\
     if (!is.null(cutoff)) {
@@ -57,7 +57,7 @@ setMethod(
 #' @aliases predict_event,EventDate,missing-method
 setMethod(
   f = "predict_event",
-  signature = signature(object = "EventDate", data = "missing"),
+  signature = c(object = "EventDate", data = "missing"),
   definition = function(object, margin = 1, level = 0.95) {
     data <- object@data
     methods::callGeneric(object, data = data, margin = margin, level = level)
@@ -69,7 +69,7 @@ setMethod(
 #' @aliases predict_event,EventDate,matrix-method
 setMethod(
   f = "predict_event",
-  signature = signature(object = "EventDate", data = "matrix"),
+  signature = c(object = "EventDate", data = "matrix"),
   definition = function(object, data, margin = 1, level = 0.95) {
     ## Correspondence analysis
     ca_coord <- dimensio::predict(object, data, margin = margin)
@@ -91,7 +91,7 @@ setMethod(
 #' @aliases predict_accumulation,EventDate,missing-method
 setMethod(
   f = "predict_accumulation",
-  signature = signature(object = "EventDate", data = "missing"),
+  signature = c(object = "EventDate", data = "missing"),
   definition = function(object) {
     data <- object@data
     methods::callGeneric(object, data = data)
@@ -103,7 +103,7 @@ setMethod(
 #' @aliases predict_accumulation,EventDate,matrix-method
 setMethod(
   f = "predict_accumulation",
-  signature = signature(object = "EventDate", data = "matrix"),
+  signature = c(object = "EventDate", data = "matrix"),
   definition = function(object, data) {
     ## Predict event date
     col_event <- predict_event(object, data, margin = 2)

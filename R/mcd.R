@@ -8,14 +8,10 @@ NULL
 #' @aliases mcd,numeric,numeric-method
 setMethod(
   f = "mcd",
-  signature = signature(object = "numeric", dates = "numeric"),
-  definition = function(object, dates) {
-    ## Validation
-    arkhe::assert_length(dates, length(object))
-    # arkhe::assert_count(object)
-
-    x <- stats::weighted.mean(x = dates, w = object)
-    round(x, digits = getOption("kairos.precision"))
+  signature = c(object = "numeric", dates = "numeric"),
+  definition = function(object, dates, calendar = CE()) {
+    object <- matrix(object, nrow = 1)
+    methods::callGeneric(object, dates = dates, calendar = calendar)
   }
 )
 
@@ -24,10 +20,10 @@ setMethod(
 #' @aliases mcd,data.frame,numeric-method
 setMethod(
   f = "mcd",
-  signature = signature(object = "data.frame", dates = "numeric"),
-  definition = function(object, dates) {
+  signature = c(object = "data.frame", dates = "numeric"),
+  definition = function(object, dates, calendar = CE()) {
     object <- data.matrix(object)
-    methods::callGeneric(object, dates = dates)
+    methods::callGeneric(object, dates = dates, calendar = calendar)
   }
 )
 
@@ -36,24 +32,27 @@ setMethod(
 #' @aliases mcd,matrix,numeric-method
 setMethod(
   f = "mcd",
-  signature = signature(object = "matrix", dates = "numeric"),
-  definition = function(object, dates) {
-    ## Calculate MCD
-    mcd_dates <- apply(
-      X = object,
-      MARGIN = 1,
-      FUN = mcd,
-      dates = dates
-    )
+  signature = c(object = "matrix", dates = "numeric"),
+  definition = function(object, dates, calendar = CE()) {
+    ## Validation
+    arkhe::assert_length(dates, NCOL(object))
 
-    names(mcd_dates) <- rownames(object)
-    .MeanDate(
-      mcd_dates,
-      weights = object,
-      types = dates
+    ## Calculate MCD
+    mcd_dates <- apply(X = object, MARGIN = 1, FUN = .mcd, dates = dates)
+
+    ts <- aion::series(
+      object,
+      time = mcd_dates,
+      calendar = calendar
     )
+    .MeanDate(ts, dates = aion::fixed(dates, calendar = calendar))
   }
 )
+
+.mcd <- function(x, dates) {
+  x <- stats::weighted.mean(x = dates, w = x)
+  round(x, digits = getOption("kairos.precision"))
+}
 
 # Resample =====================================================================
 #' @export
@@ -61,17 +60,18 @@ setMethod(
 #' @aliases bootstrap,MeanDate-method
 setMethod(
   f = "bootstrap",
-  signature = signature(object = "MeanDate"),
-  definition = function(object, n = 1000, f = NULL) {
+  signature = c(object = "MeanDate"),
+  definition = function(object, n = 1000, f = NULL,
+                        calendar = getOption("kairos.calendar")) {
 
-    w <- get_weights(object)
+    w <- object
     m <- nrow(w)
     p <- ncol(w)
     seq_col <- seq_len(p)
 
-    dates <- object@types
+    dates <- aion::as_year(object@dates, calendar = calendar)
     theta <- function(x, counts, dates) {
-      mcd(counts[x], dates[x])
+      .mcd(counts[x], dates[x])
     }
 
     results <- vector(mode = "list", length = m)
@@ -97,16 +97,17 @@ setMethod(
 #' @aliases jackknife,MeanDate-method
 setMethod(
   f = "jackknife",
-  signature = signature(object = "MeanDate"),
-  definition = function(object) {
+  signature = c(object = "MeanDate"),
+  definition = function(object, f = NULL,
+                        calendar = getOption("kairos.calendar")) {
 
-    w <- get_weights(object)
+    w <- object
     m <- nrow(w)
     p <- ncol(w)
 
-    dates <- object@types
+    dates <- aion::as_year(object@dates, calendar = calendar)
     theta <- function(x, counts, dates) {
-      mcd(counts[x], dates[x])
+      .mcd(counts[x], dates[x])
     }
 
     results <- vector(mode = "list", length = m)
@@ -115,7 +116,8 @@ setMethod(
         object = seq_len(p),
         do = theta,
         counts = w[i, ],
-        dates = dates
+        dates = dates,
+        f = f
       )
     }
     results <- do.call(rbind, results)
@@ -129,85 +131,101 @@ setMethod(
 #' @aliases simulate,MeanDate-method
 setMethod(
   f = "simulate",
-  signature = signature(object = "MeanDate"),
-  definition = function(object, n = 1000,
-                        interval = c("student", "normal", "percentiles"),
-                        level = 0.80) {
+  signature = c(object = "MeanDate"),
+  definition = function(object, nsim = 1000) {
 
-    fun <- function(x) conf(x, level = level, type = interval)
     results <- apply(
-      X = get_weights(object),
+      X = object,
       MARGIN = 1,
-      FUN = resample,
-      do = mcd,
-      n = n,
-      dates = object@types,
-      f = fun
+      FUN = tabula::resample,
+      do = .mcd,
+      n = nsim,
+      dates = object@dates,
+      f = function(x) x
     )
 
-    sim <- .SimulationMeanDate(
-      object,
-      simulation = t(results),
-      level = level,
-      replications = as.integer(n)
-    )
-    names(sim) <- names(object)
-    sim
+    .SimulationMeanDate(object, replications = t(results))
   }
 )
 
-conf <- function(x, type = c("percentiles", "student", "normal"),
-                 level = 0.80) {
-  type <- match.arg(type, several.ok = FALSE)
-  if (type == "percentiles") {
-    ## Confidence interval as described in Kintigh 1989
-    k <- (1 - level) / 2
-    conf <- stats::quantile(x, probs = c(k, 1 - k), names = FALSE)
-  } else {
-    ## Confidence interval
-    conf <- arkhe::confidence(x, level = level, type = type)
-  }
-
-  result <- c(mean(x), conf)
-  names(result) <- c("mean", "lower", "upper")
-  result
-}
-
 # Plot =========================================================================
 #' @export
-#' @method autoplot MeanDate
-autoplot.MeanDate <- function(object, ..., select = NULL, decreasing = TRUE) {
-  ## Select data
-  data <- as.data.frame(object)
-  index <- select_by_indices(cases = data$names, select = select)
-  data <- data[index, ]
+#' @method plot MeanDate
+plot.MeanDate <- function(x, calendar = getOption("kairos.calendar"),
+                          decreasing = TRUE,
+                          main = NULL, sub = NULL,
+                          ann = graphics::par("ann"), axes = TRUE,
+                          frame.plot = axes,
+                          panel.first = NULL, panel.last = NULL, ...) {
+  ## Get data
+  n <- NROW(x)
+  sites <- rownames(x) %||% paste0("S1", n)
+
+  ## Graphical parameters
+  col <- list(...)$col %||% graphics::par("col")
+  bg <- list(...)$bg %||% graphics::par("bg")
+  pch <- list(...)$pch %||% c(16)
+  cex <- list(...)$cex %||% graphics::par("cex")
+  lwd <- list(...)$lwd %||% graphics::par("lwd")
+  cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
+  col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
+  font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
+  if (length(col) != n) col <- rep(col, length.out = n)
+  if (length(bg) != n) bg <- rep(bg, length.out = n)
+  if (length(pch) != n) pch <- rep(pch, length.out = n)
+  if (length(cex) != n) cex <- rep(cex, length.out = n)
+  if (length(lwd) != n) lwd <- rep(lwd, length.out = n)
+
+  ## Save and restore
+  mar <- graphics::par("mar")
+  mar[2] <- inch2line(sites, cex = cex.axis) + 0.5
+  old_par <- graphics::par(mar = mar)
+  on.exit(graphics::par(old_par))
+
+  ## Open new window
+  grDevices::dev.hold()
+  on.exit(grDevices::dev.flush(), add = TRUE)
+  graphics::plot.new()
+
+  ## Set plotting coordinates
+  years <- time(x, calendar = NULL)
+  xlim <- range(years)
+  ylim <- c(1, n)
+  graphics::plot.window(xlim = xlim, ylim = ylim)
+
+  ## Evaluate pre-plot expressions
+  panel.first
 
   ## Order data
-  data <- data[order(data$dates), ]
-  lvl <- unique(data$names)
-  lvl <- if (decreasing) rev(lvl) else lvl
-  data$names <- factor(data$names, levels = lvl)
+  k <- order(years, decreasing = decreasing)
 
-  ## ggplot2
-  aes_point <- ggplot2::aes(x = .data$dates, y = .data$names)
+  ## Plot
+  graphics::points(x = years[k], y = seq_len(n), col = col[k],
+                   bg = bg[k], pch = pch[k], cex = cex[k], lwd = lwd[k])
 
-  ggplot2::ggplot(data = data) +
-    ggplot2::geom_point(mapping = aes_point) +
-    ggplot2::scale_x_continuous(name = "Mean Date (year CE)") +
-    ggplot2::scale_y_discrete(name = "Assemblage")
-}
+  ## Evaluate post-plot and pre-axis expressions
+  panel.last
 
-#' @export
-#' @rdname plot_mcd
-#' @aliases autoplot,MeanDate-method
-setMethod("autoplot", "MeanDate", autoplot.MeanDate)
+  ## Construct Axis
+  if (axes) {
+    axis_year(x = years, side = 1, format = TRUE, calendar = calendar)
+    graphics::axis(side = 2, at = seq_len(n), labels = sites[k],
+                   xpd = NA, cex.axis = cex.axis, las = 1,
+                   col.axis = col.axis, font.axis = font.axis)
+  }
 
-#' @export
-#' @method plot MeanDate
-plot.MeanDate <- function(x, select = NULL, decreasing = TRUE, ...) {
-  gg <- autoplot(object = x, select = select, decreasing = decreasing) +
-    ggplot2::theme_bw()
-  print(gg)
+  ## Plot frame
+  if (frame.plot) {
+    graphics::box()
+  }
+
+  ## Add annotation
+  if (ann) {
+    xlab <- format(calendar)
+    ylab <- NULL
+    graphics::title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...)
+  }
+
   invisible(x)
 }
 
@@ -217,45 +235,94 @@ plot.MeanDate <- function(x, select = NULL, decreasing = TRUE, ...) {
 setMethod("plot", c(x = "MeanDate", y = "missing"), plot.MeanDate)
 
 #' @export
-#' @method autoplot SimulationMeanDate
-autoplot.SimulationMeanDate <- function(object, ..., select = NULL,
-                                        decreasing = TRUE) {
-  ## Select data
-  data <- as.data.frame(object)
-  index <- select_by_indices(cases = data$names, select = select)
-  data <- data[index, ]
+#' @method plot SimulationMeanDate
+plot.SimulationMeanDate <- function(x, calendar = getOption("kairos.calendar"),
+                                    interval = "student", level = 0.80,
+                                    decreasing = TRUE,
+                                    main = NULL, sub = NULL,
+                                    ann = graphics::par("ann"), axes = TRUE,
+                                    frame.plot = axes,
+                                    panel.first = NULL, panel.last = NULL, ...) {
+  ## Get data
+  n <- NROW(x)
+  sites <- rownames(x) %||% paste0("S1", n)
+
+  ## Compute confidence interval
+  fun <- function(x) conf(x, level = level, type = interval)
+  inter <- apply(X = x@replications, MARGIN = 1, FUN = fun)
+
+  ## Graphical parameters
+  col <- list(...)$col %||% graphics::par("col")
+  bg <- list(...)$bg %||% graphics::par("bg")
+  pch <- list(...)$pch %||% c(16)
+  cex <- list(...)$cex %||% graphics::par("cex")
+  lty <- list(...)$lty %||% graphics::par("lty")
+  lwd <- list(...)$lwd %||% graphics::par("lwd")
+  cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
+  col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
+  font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
+  if (length(col) != n) col <- rep(col, length.out = n)
+  if (length(bg) != n) bg <- rep(bg, length.out = n)
+  if (length(pch) != n) pch <- rep(pch, length.out = n)
+  if (length(cex) != n) cex <- rep(cex, length.out = n)
+  if (length(lty) != n) lty <- rep(lty, length.out = n)
+  if (length(lwd) != n) lwd <- rep(lwd, length.out = n)
+
+  ## Save and restore
+  mar <- graphics::par("mar")
+  mar[2] <- inch2line(sites, cex = cex.axis) + 0.5
+  old_par <- graphics::par(mar = mar)
+  on.exit(graphics::par(old_par))
+
+  ## Open new window
+  grDevices::dev.hold()
+  on.exit(grDevices::dev.flush(), add = TRUE)
+  graphics::plot.new()
+
+  ## Set plotting coordinates
+  years <- time(x, calendar = NULL)
+  xlim <- range(inter)
+  ylim <- c(1, n)
+  graphics::plot.window(xlim = xlim, ylim = ylim)
+
+  ## Evaluate pre-plot expressions
+  panel.first
 
   ## Order data
-  data <- data[order(data$dates), ]
-  lvl <- unique(data$names)
-  lvl <- if (decreasing) rev(lvl) else lvl
-  data$names <- factor(data$names, levels = lvl)
+  k <- order(years, decreasing = decreasing)
 
-  ## ggplot2
-  aes_point <- ggplot2::aes(x = .data$mean, y = .data$names)
-  aes_segm <- ggplot2::aes(x = .data$lower, xend = .data$upper,
-                           y = .data$names, yend = .data$names)
+  ## Plot
+  graphics::segments(x0 = inter[2, k], y0 = seq_len(n),
+                     x1 = inter[3, k], y1 = seq_len(n),
+                     col = col[k], lty = lty[k], lwd = lwd[k])
+  graphics::points(x = years[k], y = seq_len(n), col = col[k],
+                   bg = bg[k], pch = pch[k], cex = cex[k], lwd = lwd[k])
 
-  ggplot2::ggplot(data = data) +
-    ggplot2::geom_segment(mapping = aes_segm) +
-    ggplot2::geom_point(mapping = aes_point) +
-    ggplot2::scale_x_continuous(name = "Mean Date (year CE)") +
-    ggplot2::scale_y_discrete(name = "Assemblage")
-}
+  ## Evaluate post-plot and pre-axis expressions
+  panel.last
 
-#' @export
-#' @rdname plot_mcd
-#' @aliases autoplot,SimulationMeanDate-method
-setMethod("autoplot", "SimulationMeanDate", autoplot.SimulationMeanDate)
+  ## Construct Axis
+  if (axes) {
+    axis_year(x = years, side = 1, format = TRUE, calendar = calendar)
+    graphics::axis(side = 2, at = seq_len(n), labels = sites[k],
+                   xpd = NA, cex.axis = cex.axis, las = 1,
+                   col.axis = col.axis, font.axis = font.axis)
+  }
 
-#' @export
-#' @method plot SimulationMeanDate
-plot.SimulationMeanDate <- function(x, select = NULL, decreasing = TRUE, ...) {
-  cap <- sprintf("Simulated assemblages, %d replications.", x@replications)
-  gg <- autoplot(object = x, select = select, decreasing = decreasing) +
-    ggplot2::labs(caption = cap) +
-    ggplot2::theme_bw()
-  print(gg)
+  ## Plot frame
+  if (frame.plot) {
+    graphics::box()
+  }
+
+  ## Add annotation
+  if (ann) {
+    ## Caption
+    cap <- sprintf("Simulated assemblages, %d replications.", NCOL(x@replications))
+    xlab <- format(calendar)
+    ylab <- NULL
+    graphics::title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...)
+  }
+
   invisible(x)
 }
 
@@ -264,3 +331,22 @@ plot.SimulationMeanDate <- function(x, select = NULL, decreasing = TRUE, ...) {
 #' @aliases plot,SimulationMeanDate,missing-method
 setMethod("plot", c(x = "SimulationMeanDate", y = "missing"),
           plot.SimulationMeanDate)
+
+conf <- function(x, type = c("percentiles", "student", "normal", "range"),
+                 level = 0.80) {
+  type <- match.arg(type, several.ok = FALSE)
+  if (type == "range") {
+    conf <- range(x, na.rm = FALSE)
+  } else if (type == "percentiles") {
+    ## Confidence interval as described in Kintigh 1989
+    k <- (1 - level) / 2
+    conf <- stats::quantile(x, probs = c(k, 1 - k), names = FALSE)
+  } else {
+    ## Confidence interval
+    conf <- arkhe::confidence_mean(x, level = level, type = type)
+  }
+
+  result <- c(mean(x), conf)
+  names(result) <- c("mean", "lower", "upper")
+  result
+}

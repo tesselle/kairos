@@ -7,7 +7,7 @@ NULL
 #' @aliases fit,data.frame,numeric-method
 setMethod(
   f = "fit",
-  signature = signature(object = "data.frame", dates = "numeric"),
+  signature = c(object = "data.frame", dates = "numeric"),
   definition = function(object, dates) {
     object <- data.matrix(object)
     methods::callGeneric(object, dates = dates)
@@ -19,7 +19,7 @@ setMethod(
 #' @aliases fit,matrix,numeric-method
 setMethod(
   f = "fit",
-  signature = signature(object = "matrix", dates = "numeric"),
+  signature = c(object = "matrix", dates = "numeric"),
   definition = function(object, dates) {
     ## Validation
     arkhe::assert_length(dates, nrow(object))
