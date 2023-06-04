@@ -1,24 +1,5 @@
 # HELPERS
 
-## /!\ TEMPORARY WORKAROUND
-## TODO: remove eppm() and resample() as soon as tabula is ready
-eppm <- function(object) {
-  # Independance
-  values <- apply(
-    X = object, MARGIN = 1, FUN = function(x, column_total, grand_total) {
-      sum(x) * column_total / grand_total
-    },
-    column_total = colSums(object),
-    grand_total = sum(object)
-  )
-  # Threshold
-  threshold <- (object - t(values)) / rowSums(object)
-  threshold[threshold < 0] <- 0
-
-  dimnames(threshold) <- dimnames(object)
-  threshold
-}
-
 `%||%` <- function(x, y) {
   if (!is.null(x) && length(x) != 0) x else y
 }

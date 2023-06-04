@@ -886,14 +886,3 @@ setGeneric(
   name = "get_order",
   def = function(x, ...) standardGeneric("get_order")
 )
-
-# Deprecated ===================================================================
-#' Deprecated Methods
-#'
-#' @inheritParams seriate_refine
-#' @author N. Frerebeau
-#' @docType methods
-#' @name deprecate
-#' @rdname deprecate
-#' @keywords internal
-NULL

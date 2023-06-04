@@ -25,7 +25,7 @@ setMethod(
     stop <- as.integer(stop)
 
     data <- object
-    if (EPPM) data <- eppm(object)
+    if (EPPM) data <- tabula::eppm(object)
 
     # Compute ranks
     # margin = 1 : on rows
