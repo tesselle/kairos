@@ -43,7 +43,6 @@
 #' get_replications predict
 #' @importFrom extraDistr ptnorm
 #' @importFrom grDevices xy.coords
-#' @importFrom Hmisc smean.cl.normal
 #' @importFrom methods as callGeneric callNextMethod new setClass setGeneric
 #' setMethod validObject .valueClassTest
 NULL

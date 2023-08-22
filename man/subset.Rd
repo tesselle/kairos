@@ -20,8 +20,6 @@ element(s).}
 \item{drop}{A \code{\link{logical}} scalar: should the result be coerced to
 the lowest possible dimension? This only works for extracting elements,
 not for the replacement.}
-
-\item{...}{Currently not used.}
 }
 \value{
 A subsetted object.

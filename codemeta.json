@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.2 (2022-10-31)",
+  "runtimePlatform": "R version 4.3.1 (2023-06-16)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -65,18 +65,6 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
-      "identifier": "covr",
-      "name": "covr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=covr"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "folio",
       "name": "folio",
       "version": ">= 1.3.0",
@@ -87,18 +75,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=folio"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "khroma",
-      "name": "khroma",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=khroma"
     },
     {
       "@type": "SoftwareApplication",
@@ -126,9 +102,33 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "rsvg",
+      "name": "rsvg",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rsvg"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "svglite",
+      "name": "svglite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=svglite"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "tabula",
       "name": "tabula",
-      "version": ">= 2.0.0",
+      "version": ">= 3.0.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -139,29 +139,27 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "testthat",
-      "name": "testthat",
-      "version": ">= 3.0.0",
+      "identifier": "tinysnapshot",
+      "name": "tinysnapshot",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=testthat"
+      "sameAs": "https://CRAN.R-project.org/package=tinysnapshot"
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "vdiffr",
-      "name": "vdiffr",
-      "version": ">= 1.0.0",
+      "identifier": "tinytest",
+      "name": "tinytest",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=vdiffr"
+      "sameAs": "https://CRAN.R-project.org/package=tinytest"
     }
   ],
   "softwareRequirements": {
@@ -169,13 +167,26 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.4"
+      "version": ">= 3.5"
     },
     "2": {
       "@type": "SoftwareApplication",
+      "identifier": "aion",
+      "name": "aion",
+      "version": "> 1.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=aion"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
       "identifier": "arkhe",
       "name": "arkhe",
-      "version": ">= 1.0.0",
+      "version": ">= 1.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -184,11 +195,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=arkhe"
     },
-    "3": {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "dimensio",
       "name": "dimensio",
-      "version": ">= 0.3.0",
+      "version": ">= 0.4.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -197,7 +208,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=dimensio"
     },
-    "4": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "extraDistr",
       "name": "extraDistr",
@@ -209,18 +220,6 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=extraDistr"
     },
-    "5": {
-      "@type": "SoftwareApplication",
-      "identifier": "ggplot2",
-      "name": "ggplot2",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
-    },
     "6": {
       "@type": "SoftwareApplication",
       "identifier": "grDevices",
@@ -228,46 +227,22 @@
     },
     "7": {
       "@type": "SoftwareApplication",
-      "identifier": "Hmisc",
-      "name": "Hmisc",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=Hmisc"
-    },
-    "8": {
-      "@type": "SoftwareApplication",
       "identifier": "methods",
       "name": "methods"
     },
-    "9": {
-      "@type": "SoftwareApplication",
-      "identifier": "rlang",
-      "name": "rlang",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rlang"
-    },
-    "10": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "stats",
       "name": "stats"
     },
-    "11": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
     "SystemRequirements": null
   },
-  "fileSize": "834.849KB",
+  "fileSize": "678.806KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -279,10 +254,10 @@
           "familyName": "Frerebeau"
         }
       ],
-      "name": "kairos: Analysis of Chronological Patterns from Archaeological Count Data",
+      "name": "{kairos: Analysis of Chronological Patterns from Archaeological Count Data}",
       "identifier": "10.5281/zenodo.5653896",
       "url": "https://packages.tesselle.org/kairos/",
-      "description": "R package version 1.2.0",
+      "description": "R package version 1.2.0.9000",
       "@id": "https://doi.org/10.5281/zenodo.5653896",
       "sameAs": "https://doi.org/10.5281/zenodo.5653896"
     }

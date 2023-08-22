@@ -223,7 +223,7 @@ plot.IncrementTest <- function(x, calendar = getOption("kairos.calendar"),
   }
 
   ## Method for TimeSeries
-  methods::callNextMethod(x = ts, calendar = calendar, panel = panel_fit,
+  methods::callNextMethod(x = x, calendar = calendar, panel = panel_fit,
                           flip = flip, ncol = ncol,
                           xlab = xlab, ylab = ylab,
                           main = main, sub = sub,

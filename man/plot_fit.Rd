@@ -30,6 +30,8 @@
 \item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
 (see \code{\link[aion:calendar]{calendar()}}).}
 
+\item{col.neutral, col.selection, col.roll}{A vector of colors.}
+
 \item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
 flipped from side 2 (left) to 4 (right) from series to series when \code{facet}
 is "\code{multiple}"?}

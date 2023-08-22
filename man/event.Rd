@@ -59,16 +59,13 @@ the row names of \code{object}.}
 \item{rank}{An \code{\link{integer}} specifying the number of CA factorial components
 to be use for linear model fitting (see details).}
 
+\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
+\code{dates} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
+
 \item{margin}{A \code{\link{numeric}} vector giving the subscripts which the prediction
 will be applied over: \code{1} indicates rows, \code{2} indicates columns.}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
-
-\item{cutoff}{An \code{\link{integer}} giving the cumulative percentage of variance
-used to select CA factorial components for linear model fitting (see
-details). All compounds with a cumulative percentage of variance of less
-than the \code{cutoff} value will be retained.
-This argument is defunct: use \code{rank} instead.}
 }
 \value{
 \itemize{

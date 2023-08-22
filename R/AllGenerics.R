@@ -18,7 +18,7 @@ setGeneric("bootstrap", package = "arkhe")
 #'  the lowest possible dimension? This only works for extracting elements,
 #'  not for the replacement.
 # @param value A possible value for the element(s) of `x`.
-#' @param ... Currently not used.
+# @param ... Currently not used.
 #' @return
 #'  A subsetted object.
 # @example inst/examples/ex-subset.R
@@ -82,6 +82,7 @@ setGeneric(
 #' @param x An object.
 #' @param calendar A [`TimeScale-class`] object specifying the target calendar
 #'  (see [calendar()]). If `NULL`, *rata die* are returned.
+#' @param row.names,optional Currently not used.
 #' @param ... Further parameters to be passed to [data.frame()].
 #' @return
 #'  A [`data.frame`] with an extra `time` column giving the (decimal) years at
@@ -236,14 +237,11 @@ setGeneric(
 #' @param dates A [`numeric`] vector of dates expressed in CE years (BCE years
 #'  must be given as negative numbers). If named, the names must match
 #'  the row names of `object`.
+#' @param calendar A [`TimeScale-class`] object specifying the calendar of
+#'  `dates` (see [calendar()]). Defaults to Gregorian Common Era.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param rank An [`integer`] specifying the number of CA factorial components
 #'  to be use for linear model fitting (see details).
-#' @param cutoff An [`integer`] giving the cumulative percentage of variance
-#'  used to select CA factorial components for linear model fitting (see
-#'  details). All compounds with a cumulative percentage of variance of less
-#'  than the `cutoff` value will be retained.
-#'  This argument is defunct: use `rank` instead.
 #' @param margin A [`numeric`] vector giving the subscripts which the prediction
 #'  will be applied over: `1` indicates rows, `2` indicates columns.
 #' @param ... Further arguments to be passed to internal methods.
@@ -682,6 +680,7 @@ NULL
 #'
 #' Produces an abundance *vs* time diagram.
 #' @param x An [`IncrementTest-class`] object to be plotted.
+#' @param col.neutral,col.selection,col.roll A vector of colors.
 #' @inheritParams aion::plot
 #' @details
 #'  Results of the frequency increment test can be displayed on an abundance

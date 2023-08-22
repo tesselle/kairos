@@ -24,6 +24,8 @@
 
 \item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
 (see \code{\link[=calendar]{calendar()}}). If \code{NULL}, \emph{rata die} are returned.}
+
+\item{row.names, optional}{Currently not used.}
 }
 \value{
 A \code{\link{data.frame}} with an extra \code{time} column giving the (decimal) years at

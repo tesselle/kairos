@@ -38,7 +38,7 @@ setMethod("as.data.frame", "RateOfChange", as.data.frame.RateOfChange)
 
 #' @method as.data.frame IncrementTest
 #' @export
-as.data.frame.IncrementTest <- function(x, ...) {
+as.data.frame.IncrementTest <- function(x, row.names = NULL, optional = FALSE, ...) {
   data.frame(
     t = x@statistic,
     p.value = x@p_value,
