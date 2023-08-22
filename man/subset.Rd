@@ -30,7 +30,9 @@ Operators acting on objects to extract or replace parts.
 \seealso{
 Other mutators: 
 \code{\link{data.frame}},
-\code{\link{mutators}}
+\code{\link{model}},
+\code{\link{mutators}},
+\code{\link{series}()}
 }
 \author{
 N. Frerebeau

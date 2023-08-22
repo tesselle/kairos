@@ -24,7 +24,7 @@ BugReports: https://github.com/tesselle/kairos/issues
 Depends: 
     R (>= 3.5)
 Imports: 
-    aion (> 1.0.0),
+    aion (>= 1.0.1),
     arkhe (>= 1.2.0),
     dimensio (>= 0.4.0),
     extraDistr,
@@ -53,6 +53,7 @@ Collate:
     'apportion.R'
     'coerce.R'
     'event_date.R'
+    'event_model.R'
     'event_plot.R'
     'event_resample.R'
     'fit.R'
@@ -69,5 +70,6 @@ Collate:
     'seriate_refine.R'
     'show.R'
     'subset.R'
+    'summary.R'
     'validate.R'
     'zzz.R'

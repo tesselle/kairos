@@ -6,7 +6,10 @@ NULL
 #' @export
 #' @method as.data.frame MeanDate
 as.data.frame.MeanDate <- function(x, ..., calendar = getOption("kairos.calendar")) {
-  methods::callNextMethod(x, ..., calendar = calendar)
+  data.frame(
+    sample = rownames(x) %||% paste0("S", seq_len(nrow(x))),
+    time = aion::time(x, calendar = calendar)
+  )
 }
 
 #' @export

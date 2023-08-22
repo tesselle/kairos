@@ -12,7 +12,7 @@ end <- c(1325, 1400, 1450, 1300, 1400, 1450, 1450, 1450, 1300)
 ## Apportion ceramic assemblage under flat/uniform distribution
 app_uni <- apportion(bayless, s0 = 1200, s1 = 1350, t0 = start, t1 = end,
                      step = 50, method = "uniform")
-expect_equal_to_reference(app_uni, file = "_snaps/apportion_unirds")
+expect_equal_to_reference(app_uni, file = "_snaps/apportion_uni.rds")
 
 ## Apportion ceramic assemblage under truncated standard normal distribution
 app_trunc <- apportion(bayless, s0 = 1200, s1 = 1350, t0 = start, t1 = end,

@@ -97,7 +97,8 @@ New York: Academic Press.
 \link[=resample_mcd]{jackknife()}, \link[=resample_mcd]{simulate()}
 
 Other dating methods: 
-\code{\link{event}()}
+\code{\link{event}()},
+\code{\link{predict_event}()}
 }
 \author{
 N. Frerebeau

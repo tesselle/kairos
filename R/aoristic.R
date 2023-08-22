@@ -313,7 +313,7 @@ plot.RateOfChange <- function(x, calendar = getOption("kairos.calendar"),
     if (axes) {
       if (do_x) {
         year_axis(side = 1, format = TRUE, calendar = calendar,
-                  xpd = NA, cex.axis = cex.axis,
+                  current_calendar = calendar, cex.axis = cex.axis,
                   col.axis = col.axis, font.axis = font.axis)
       }
       graphics::axis(side = y_side, xpd = NA, cex.axis = cex.axis,

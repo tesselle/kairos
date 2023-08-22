@@ -74,6 +74,8 @@ with the following columns:
 }
 }
 \seealso{
+\code{\link[=event]{event()}}
+
 Other resampling methods: 
 \code{\link{resample_mcd}}
 }

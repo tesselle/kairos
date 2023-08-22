@@ -51,41 +51,47 @@ setMethod(
 
 # Event ========================================================================
 #' @export
-#' @rdname event
+#' @rdname predict_event
 #' @aliases predict_event,EventDate,missing-method
 setMethod(
   f = "predict_event",
   signature = c(object = "EventDate", data = "missing"),
-  definition = function(object, margin = 1, level = 0.95) {
+  definition = function(object, margin = 1, level = 0.95, calendar = NULL) {
     data <- object@data
-    methods::callGeneric(object, data = data, margin = margin, level = level)
+    methods::callGeneric(object, data = data, margin = margin, level = level,
+                         calendar = calendar)
   }
 )
 
 #' @export
-#' @rdname event
+#' @rdname predict_event
 #' @aliases predict_event,EventDate,matrix-method
 setMethod(
   f = "predict_event",
   signature = c(object = "EventDate", data = "matrix"),
-  definition = function(object, data, margin = 1, level = 0.95) {
+  definition = function(object, data, margin = 1, level = 0.95,
+                        calendar = NULL) {
     ## Correspondence analysis
     ca_coord <- dimensio::predict(object, data, margin = margin)
 
     ## Predict event date
-    fit_model <- get_model(object)
+    fit_model <- object@model
     ca_event <- compute_event(fit_model, ca_coord, level = level)
 
     # FIXME: error propagation
     # TODO: check predicted dates consistency
 
-    as.data.frame(ca_event)
+    ## Convert
+    ca_event <- as.data.frame(ca_event)
+    if (is.null(calendar)) return(ca_event)
+    ca_event[] <- lapply(X = ca_event, FUN = aion::as_year, calendar = calendar)
+    ca_event
   }
 )
 
 # Accumulation =================================================================
 #' @export
-#' @rdname event
+#' @rdname predict_event
 #' @aliases predict_accumulation,EventDate,missing-method
 setMethod(
   f = "predict_accumulation",
@@ -97,17 +103,17 @@ setMethod(
 )
 
 #' @export
-#' @rdname event
+#' @rdname predict_event
 #' @aliases predict_accumulation,EventDate,matrix-method
 setMethod(
   f = "predict_accumulation",
   signature = c(object = "EventDate", data = "matrix"),
   definition = function(object, data) {
     ## Predict event date
-    col_event <- predict_event(object, data, margin = 2)
+    col_event <- predict_event(object, data, margin = 2, calendar = NULL)
 
     # Accumulation time point estimate
-    mcd(data, col_event$date)
+    mcd(data, col_event$date, calendar = NULL)
   }
 )
 
@@ -136,16 +142,3 @@ compute_event <- function(fit, data, level) {
   colnames(results) <- c("date", "lower", "upper", "error")
   results
 }
-
-# Summary ======================================================================
-#' @export
-#' @method summary EventDate
-summary.EventDate <- function(object, ...) {
-  summary(get_model(object), ...)
-}
-
-#' @export
-#' @rdname event
-#' @aliases summary,EventDate,missing-method
-setMethod("summary", c(object = "EventDate"), summary.EventDate)
-

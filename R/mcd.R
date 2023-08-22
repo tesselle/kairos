@@ -37,20 +37,24 @@ setMethod(
     ## Validation
     arkhe::assert_length(dates, NCOL(object))
 
+    if (is.null(calendar)) {
+      dates <- aion::as_fixed(dates) # Assume rata die
+    } else {
+      dates <- aion::fixed(dates, calendar = calendar)
+    }
+
     ## Calculate MCD
     mcd_dates <- apply(X = object, MARGIN = 1, FUN = .mcd, dates = dates)
+    mcd_dates <- aion::as_fixed(mcd_dates)
 
-    ts <- aion::series(
-      object,
-      time = mcd_dates,
-      calendar = calendar
-    )
-    .MeanDate(ts, dates = aion::fixed(dates, calendar = calendar))
+    ts <- aion::series(object, time = mcd_dates)
+    rownames(ts) <- rownames(object)
+    .MeanDate(ts, dates = dates)
   }
 )
 
 .mcd <- function(x, dates) {
-  stats::weighted.mean(x = dates, w = x)
+  z <- stats::weighted.mean(x = dates, w = x)
 }
 
 # Resample =====================================================================
@@ -208,7 +212,9 @@ plot.MeanDate <- function(x, calendar = getOption("kairos.calendar"),
 
   ## Construct Axis
   if (axes) {
-    aion::year_axis(side = 1, format = TRUE, calendar = calendar)
+    aion::year_axis(side = 1, format = TRUE, calendar = calendar,
+                    current_calendar = calendar, cex.axis = cex.axis,
+                    col.axis = col.axis, font.axis = font.axis)
     graphics::axis(side = 2, at = n_seq, labels = sites[k],
                    xpd = NA, cex.axis = cex.axis, las = 1,
                    col.axis = col.axis, font.axis = font.axis)
@@ -305,7 +311,9 @@ plot.SimulationMeanDate <- function(x, calendar = getOption("kairos.calendar"),
 
   ## Construct Axis
   if (axes) {
-    aion::year_axis(side = 1, format = TRUE, calendar = calendar)
+    aion::year_axis(side = 1, format = TRUE, calendar = calendar,
+                    current_calendar = calendar, cex.axis = cex.axis,
+                    col.axis = col.axis, font.axis = font.axis)
     graphics::axis(side = 2, at = n_seq, labels = sites[k],
                    xpd = NA, cex.axis = cex.axis, las = 1,
                    col.axis = col.axis, font.axis = font.axis)

@@ -5,42 +5,18 @@
 \alias{mutators}
 \alias{get}
 \alias{set}
-\alias{get_dates}
-\alias{get_dates-method}
-\alias{get_groups}
-\alias{get_groups-method}
-\alias{get_model}
-\alias{get_model-method}
-\alias{get_weights}
-\alias{get_weights-method}
-\alias{get_dates,EventDate-method}
-\alias{get_model,EventDate-method}
-\alias{get_weights,CountApportion-method}
+\alias{weights,AoristicSum-method}
+\alias{weights,CountApportion-method}
 \title{Get or Set Parts of an Object}
 \usage{
-get_dates(x)
+\S4method{weights}{AoristicSum}(object, ...)
 
-get_groups(x)
-
-get_model(x)
-
-get_weights(x)
-
-\S4method{get_dates}{EventDate}(x)
-
-\S4method{get_model}{EventDate}(x)
-
-\S4method{get_weights}{CountApportion}(x)
+\S4method{weights}{CountApportion}(object, ...)
 }
 \arguments{
-\item{x}{An object from which to get or set element(s).}
-}
-\value{
-\itemize{
-\item \verb{set_*()} returns an object of the same sort as \code{x} with the new values
-assigned.
-\item \verb{get_*()} returns the part of \code{x}.
-}
+\item{object}{An object from which to get or set element(s).}
+
+\item{...}{Currently not used.}
 }
 \description{
 Getters and setters to retrieve or set parts of an object.
@@ -48,6 +24,8 @@ Getters and setters to retrieve or set parts of an object.
 \seealso{
 Other mutators: 
 \code{\link{data.frame}},
+\code{\link{model}},
+\code{\link{series}()},
 \code{\link{subset}()}
 }
 \author{

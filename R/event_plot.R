@@ -17,13 +17,13 @@ plot.EventDate <- function(x, type = c("activity", "tempo"), event = FALSE,
   n <- as.integer(n)
 
   ## Get data
-  rows <- predict_event(x, margin = 1)
+  rows <- predict_event(x, margin = 1, calendar = NULL)
   row_dates <- rows$date
   row_lower <- rows$lower
   row_upper <- rows$upper
   row_errors <- rows$error
 
-  columns <- predict_event(x, margin = 2)
+  columns <- predict_event(x, margin = 2, calendar = NULL)
   col_dates <- columns$date
   col_errors <- columns$error
   date_range <- seq(

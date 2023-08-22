@@ -4,18 +4,26 @@ NULL
 
 # Getters ======================================================================
 #' @export
-#' @rdname mutators
+#' @rdname series
 #' @aliases get_dates,EventDate-method
-setMethod("get_dates", "EventDate", function(x) x@dates)
+setMethod(
+  f = "time",
+  signature = "EventDate",
+  definition = function(x, calendar = NULL) {
+    z <- x@dates
+    if (is.null(calendar)) return(z)
+    aion::as_year(z, calendar = calendar, decimal = TRUE)
+  }
+)
 
 #' @export
 #' @rdname mutators
-#' @aliases get_model,EventDate-method
-setMethod("get_model", "EventDate", function(x) x@model)
+#' @aliases weights,AoristicSum-method
+setMethod("weights", "AoristicSum", function(object, ...) object@weights)
 
 #' @export
 #' @rdname mutators
-#' @aliases get_weights,CountApportion-method
-setMethod("get_weights", "CountApportion", function(x) x@p)
+#' @aliases weights,CountApportion-method
+setMethod("weights", "CountApportion", function(object, ...) object@p)
 
 # Setters ======================================================================

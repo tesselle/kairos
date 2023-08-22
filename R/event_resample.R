@@ -11,12 +11,12 @@ setMethod(
   definition = function(object, level = 0.95,
                         progress = getOption("kairos.progress"), ...) {
     ## Get data
-    fit_model <- get_model(object)
-    fit_dates <- get_dates(object)
+    fit_model <- object@model
+    fit_dates <- time(object)
     fit_data <- object@data
     fit_dim <- object@keep
 
-    event <- predict_event(object, level = level)
+    event <- predict_event(object, level = level, calendar = NULL)
 
     ## TODO: check cutoff value
     jack_values <- compute_date_jack(fit_data, fit_dates, rank = length(fit_dim),
@@ -48,7 +48,7 @@ setMethod(
   definition = function(object, level = 0.95, probs = c(0.05, 0.95), n = 1000,
                         progress = getOption("kairos.progress"), ...) {
     ## Get data
-    fit_model <- get_model(object)
+    fit_model <- object@model
     fit_dim <- object@keep
 
     ## Partial bootstrap CA
@@ -137,7 +137,7 @@ compute_date_jack <- function(x, dates, rank = 10,
     ## TODO: warning
     if (any(rowSums(counts) == 0)) next
     model <- event(counts, dates = dates, rank = rank)
-    jack[[j]] <- stats::coef(get_model(model)) # Get model coefficients
+    jack[[j]] <- coef(model) # Get model coefficients
     if (progress_bar) utils::setTxtProgressBar(pbar, j)
   }
 

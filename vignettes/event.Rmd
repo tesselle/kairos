@@ -161,11 +161,33 @@ zuni_dates <- c(
 
 ## Model the event and accumulation date for each assemblage
 model <- event(zuni, dates = zuni_dates, rank = 10)
-summary(get_model(model))
 
+## Model summary
+## (results are expressed in rata die)
+summary(model)
+
+## Extract model coefficients
+## (convert results to Gregorian years)
+coef(model, calendar = CE())
+
+## Extract residual standard deviation
+## (convert results to Gregorian years)
+sigma(model, calendar = CE())
+
+## Extract model residuals
+## (convert results to Gregorian years)
+resid(model, calendar = CE())
+
+## Extract model fitted values
+## (convert results to Gregorian years)
+fitted(model, calendar = CE())
+```
+
+```{r event-predict}
 ## Estimate event dates
-event <- predict_event(model, margin = 1, level = 0.95)
-head(event)
+## (results are expressed in rata die)
+eve <- predict_event(model, margin = 1, level = 0.95)
+head(eve)
 ```
 
 ```{r event-plot, fig.width=7, fig.height=7}
@@ -181,6 +203,7 @@ Resampling methods can be used to check the stability of the resulting model. If
 
 ```{r event-refine, warning=FALSE}
 ## Check model variability
+## (results are expressed in rata die)
 ## Warning: this may take a few seconds
 
 ## Jackknife fabrics

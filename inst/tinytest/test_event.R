@@ -10,7 +10,7 @@ if (requireNamespace("folio", quietly = TRUE)) {
   model <- event(zuni, zuni_dates, rank = 10)
 
   # Date Model =================================================================
-  eve <- predict_event(model)
+  eve <- predict_event(model, calendar = NULL)
   expect_equal_to_reference(eve, file = "_snaps/event.rds")
 
   acc <- predict_accumulation(model)

@@ -33,12 +33,13 @@ NULL
 #' Get or Set Parts of an Object
 #'
 #' Getters and setters to retrieve or set parts of an object.
-#' @param x An object from which to get or set element(s).
+#' @param object An object from which to get or set element(s).
 # @param value A possible value for the element(s) of `x`.
-#' @return
-#'  * `set_*()` returns an object of the same sort as `x` with the new values
-#'    assigned.
-#'  * `get_*()` returns the part of `x`.
+#' @param ... Currently not used.
+# @return
+#  * `set_*()` returns an object of the same sort as `x` with the new values
+#    assigned.
+#  * `get_*()` returns the part of `x`.
 # @example inst/examples/ex-mutators.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -48,33 +49,40 @@ NULL
 #' @aliases get set
 NULL
 
-#' @rdname mutators
-#' @aliases get_dates-method
-setGeneric(
-  name = "get_dates",
-  def = function(x) standardGeneric("get_dates")
-)
+#' Extract Model Results
+#'
+#' @description
+#'  * `coef()` extracts model coefficients (see [stats::coef()]).
+#'  * `fitted()` extracts model fitted values (see [stats::fitted()]).
+#'  * `residuals()` extracts model residuals (see [stats::residuals()]).
+#'  * `sigma()` extracts the residual standard deviation (see [stats::sigma()]).
+#'  * `terms()` extracts model terms (see [stats::terms()]).
+#' @param x,object An [`EventDate-class`] object.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]). If `NULL` (the default), *rata die* are returned.
+#' @param ... Currently not used.
+#' @example inst/examples/ex-event.R
+#' @author N. Frerebeau
+#' @family mutators
+#' @docType methods
+#' @name model
+#' @rdname model
+NULL
 
-#' @rdname mutators
-#' @aliases get_groups-method
-setGeneric(
-  name = "get_groups",
-  def = function(x) standardGeneric("get_groups")
-)
-
-#' @rdname mutators
-#' @aliases get_model-method
-setGeneric(
-  name = "get_model",
-  def = function(x) standardGeneric("get_model")
-)
-
-#' @rdname mutators
-#' @aliases get_weights-method
-setGeneric(
-  name = "get_weights",
-  def = function(x) standardGeneric("get_weights")
-)
+#' Sampling Times
+#'
+#' Get the times at which a time series was sampled.
+#' @param x An \R object.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]). If `NULL` (the default), *rata die* are returned.
+#' @return
+#'  A [`numeric`] vector.
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name series
+#' @rdname series
+NULL
 
 ## Coerce ----------------------------------------------------------------------
 #' Coerce to a Data Frame
@@ -170,6 +178,7 @@ NULL
 #'  }
 #' @return
 #'  A [`data.frame`].
+#' @seealso [event()]
 #' @author N. Frerebeau
 #' @docType methods
 #' @family resampling methods
@@ -224,26 +233,17 @@ setGeneric(
 ## Event Dates -----------------------------------------------------------------
 #' Event and Accumulation Dates
 #'
-#' @description
-#'  * `event()` fit a date event model.
-#'  * `predict_event()` and `predict_accumulation()` estimates the event and
-#'    accumulation dates of an assemblage.
+#' Fits a date event model.
 #' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
 #'  [`data.frame`] of count data (absolute frequencies giving the number of
 #'  individuals for each category, i.e. a contingency table). A [`data.frame`]
 #'  will be coerced to a `numeric` `matrix` via [data.matrix()].
-#' @param data A `numeric` [`matrix`] or a [`data.frame`] of count data
-#'  (absolute frequencies) for which to predict event and accumulation dates.
-#' @param dates A [`numeric`] vector of dates expressed in CE years (BCE years
-#'  must be given as negative numbers). If named, the names must match
+#' @param dates A [`numeric`] vector of dates. If named, the names must match
 #'  the row names of `object`.
-#' @param calendar A [`TimeScale-class`] object specifying the calendar of
-#'  `dates` (see [calendar()]). Defaults to Gregorian Common Era.
-#' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param rank An [`integer`] specifying the number of CA factorial components
 #'  to be use for linear model fitting (see details).
-#' @param margin A [`numeric`] vector giving the subscripts which the prediction
-#'  will be applied over: `1` indicates rows, `2` indicates columns.
+#' @param calendar A [`TimeScale-class`] object specifying the calendar of
+#'  `dates` (see [calendar()]). Defaults to Gregorian Common Era.
 #' @param ... Further arguments to be passed to internal methods.
 #' @details
 #'  This is an implementation of the chronological modeling method proposed by
@@ -261,6 +261,9 @@ setGeneric(
 #'  accumulation dates estimate occurrence of archaeological events and rhythms
 #'  of the long term.
 #'
+#'  Dates are converted to *[rata die][aion::RataDie-class]* before any
+#'  computation.
+#'
 #'  This method relies on strong archaeological and statistical assumptions
 #'  (see `vignette("event")`).
 #' @note
@@ -269,10 +272,9 @@ setGeneric(
 #'  considered **experimental** and subject to major changes in a future
 #'  release.
 #' @return
-#'  * `event()` returns an [`EventDate-class`] object.
-#'  * `predict_event()` returns a [`data.frame`].
-#'  * `predict_accumulation()` returns a [`MeanDate-class`] object.
-#' @seealso [`plot()`][plot_event], [`jackknife()`][resample_event],
+#'  An [`EventDate-class`] object.
+#' @seealso [`plot()`][plot_event], [`predict_event()`][predict_event],
+#'  [`predict_accumulation()`][predict_event], [`jackknife()`][resample_event],
 #'  [`bootstrap()`][resample_event]
 #' @references
 #'  Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans
@@ -309,7 +311,54 @@ setGeneric(
   valueClass = "EventDate"
 )
 
-#' @rdname event
+#' Predict Event and Accumulation Dates
+#'
+#' Estimates the event and accumulation dates of an assemblage.
+#' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
+#'  [`data.frame`] of count data (absolute frequencies giving the number of
+#'  individuals for each category, i.e. a contingency table). A [`data.frame`]
+#'  will be coerced to a `numeric` `matrix` via [data.matrix()].
+#' @param data A `numeric` [`matrix`] or a [`data.frame`] of count data
+#'  (absolute frequencies) for which to predict event and accumulation dates.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]). If `NULL` (the default), *rata die* are returned.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param margin A [`numeric`] vector giving the subscripts which the prediction
+#'  will be applied over: `1` indicates rows, `2` indicates columns.
+#' @param ... Further arguments to be passed to internal methods.
+#' @note
+#'  Bellanger *et al.* did not publish the data supporting their demonstration:
+#'  no replication of their results is possible. This implementation must be
+#'  considered **experimental** and subject to major changes in a future
+#'  release.
+#' @return
+#'  * `predict_event()` returns a [`data.frame`].
+#'  * `predict_accumulation()` returns a [`MeanDate-class`] object.
+#' @seealso [event()]
+#' @references
+#'  Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans
+#'  la matière à partir d'une source matérielle : la céramique médiévale.
+#'  In *Mesure et Histoire Médiévale*. Histoire ancienne et médiévale.
+#'  Paris: Publication de la Sorbonne, p. 119-134.
+#'
+#'  Bellanger, L. & Husi, P. (2012). Statistical Tool for Dating and
+#'  Interpreting Archaeological Contexts Using Pottery. *Journal of
+#'  Archaeological Science*, 39(4), 777-790. \doi{10.1016/j.jas.2011.06.031}.
+#'
+#'  Bellanger, L., Tomassone, R. & Husi, P. (2008). A Statistical Approach for
+#'  Dating Archaeological Contexts. *Journal of Data Science*, 6, 135-154.
+#'
+#'  Bellanger, L., Husi, P. & Tomassone, R. (2006). Une approche statistique
+#'  pour la datation de contextes archéologiques. *Revue de Statistique
+#'  Appliquée*, 54(2), 65-81.
+#'
+#'  Bellanger, L., Husi, P. & Tomassone, R. (2006). Statistical Aspects of
+#'  Pottery Quantification for the Dating of Some Archaeological Contexts.
+#'  *Archaeometry*, 48(1), 169-183. \doi{10.1111/j.1475-4754.2006.00249.x}.
+#' @example inst/examples/ex-event.R
+#' @author N. Frerebeau
+#' @family dating methods
+#' @docType methods
 #' @aliases predict_event-method
 setGeneric(
   name = "predict_event",
@@ -317,15 +366,7 @@ setGeneric(
   valueClass = "data.frame"
 )
 
-#' @rdname event
-#' @aliases predict_event-method
-setGeneric(
-  name = "get_event",
-  def = function(object) standardGeneric("get_event"),
-  valueClass = "TimeSeries"
-)
-
-#' @rdname event
+#' @rdname predict_event
 #' @aliases predict_accumulation-method
 setGeneric(
   name = "predict_accumulation",
@@ -666,6 +707,7 @@ NULL
 #'  Philippe, A. & Vibet, M.-A. (2020). Analysis of Archaeological Phases Using
 #'  the R Package ArchaeoPhases. *Journal of Statistical Software, Code
 #'  Snippets*, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
+#' @seealso [event()]
 #' @example inst/examples/ex-event.R
 #' @author N. Frerebeau
 #' @family plotting methods

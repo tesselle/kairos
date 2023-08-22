@@ -118,6 +118,8 @@ Snippets}, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
 \seealso{
 \code{\link[=event]{event()}}
 
+\code{\link[=event]{event()}}
+
 Other plotting methods: 
 \code{\link{plot_aoristic}},
 \code{\link{plot_fit}},

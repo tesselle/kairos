@@ -36,7 +36,9 @@ Coerce to a Data Frame
 }
 \seealso{
 Other mutators: 
+\code{\link{model}},
 \code{\link{mutators}},
+\code{\link{series}()},
 \code{\link{subset}()}
 }
 \author{

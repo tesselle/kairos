@@ -1,6 +1,7 @@
 # kairos 1.2.0.9000
 ## New classes and methods
 * Add `image()` methods.
+* Add `coef()`, `fitted()`, `residuals()`, `sigma()` and `terms()` to extract values from `EventDate` objects.
 
 ## Internals
 * `MeanDate`, `AoristicSum`, `RateOfChange` and `IncrementTest` classes now inherit from `TimeSeries` (see **aion**).
