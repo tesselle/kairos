@@ -50,8 +50,7 @@ setMethod(
 )
 
 .mcd <- function(x, dates) {
-  x <- stats::weighted.mean(x = dates, w = x)
-  round(x, digits = getOption("kairos.precision"))
+  stats::weighted.mean(x = dates, w = x)
 }
 
 # Resample =====================================================================
@@ -80,7 +79,7 @@ setMethod(
         object = seq_col,
         do = theta,
         n = n,
-        counts = w[i, ],
+        counts = w[i, , 1, drop = TRUE],
         dates = dates,
         f = f
       )
@@ -115,7 +114,7 @@ setMethod(
       results[[i]] <- arkhe::jackknife(
         object = seq_len(p),
         do = theta,
-        counts = w[i, ],
+        counts = w[i, , 1, drop = TRUE],
         dates = dates,
         f = f
       )
@@ -135,9 +134,9 @@ setMethod(
   definition = function(object, nsim = 1000) {
 
     results <- apply(
-      X = object,
+      X = object[, , 1, drop = TRUE],
       MARGIN = 1,
-      FUN = tabula::resample,
+      FUN = resample,
       do = .mcd,
       n = nsim,
       dates = object@dates,
@@ -159,7 +158,8 @@ plot.MeanDate <- function(x, calendar = getOption("kairos.calendar"),
                           panel.first = NULL, panel.last = NULL, ...) {
   ## Get data
   n <- NROW(x)
-  sites <- rownames(x) %||% paste0("S1", n)
+  n_seq <- seq_len(n)
+  sites <- rownames(x) %||% paste0("S", n_seq)
 
   ## Graphical parameters
   col <- list(...)$col %||% graphics::par("col")
@@ -188,7 +188,7 @@ plot.MeanDate <- function(x, calendar = getOption("kairos.calendar"),
   graphics::plot.new()
 
   ## Set plotting coordinates
-  years <- time(x, calendar = NULL)
+  years <- time(x, calendar = calendar)
   xlim <- range(years)
   ylim <- c(1, n)
   graphics::plot.window(xlim = xlim, ylim = ylim)
@@ -200,7 +200,7 @@ plot.MeanDate <- function(x, calendar = getOption("kairos.calendar"),
   k <- order(years, decreasing = decreasing)
 
   ## Plot
-  graphics::points(x = years[k], y = seq_len(n), col = col[k],
+  graphics::points(x = years[k], y = n_seq, col = col[k],
                    bg = bg[k], pch = pch[k], cex = cex[k], lwd = lwd[k])
 
   ## Evaluate post-plot and pre-axis expressions
@@ -208,8 +208,8 @@ plot.MeanDate <- function(x, calendar = getOption("kairos.calendar"),
 
   ## Construct Axis
   if (axes) {
-    axis_year(x = years, side = 1, format = TRUE, calendar = calendar)
-    graphics::axis(side = 2, at = seq_len(n), labels = sites[k],
+    aion::year_axis(side = 1, format = TRUE, calendar = calendar)
+    graphics::axis(side = 2, at = n_seq, labels = sites[k],
                    xpd = NA, cex.axis = cex.axis, las = 1,
                    col.axis = col.axis, font.axis = font.axis)
   }
@@ -245,11 +245,13 @@ plot.SimulationMeanDate <- function(x, calendar = getOption("kairos.calendar"),
                                     panel.first = NULL, panel.last = NULL, ...) {
   ## Get data
   n <- NROW(x)
-  sites <- rownames(x) %||% paste0("S1", n)
+  n_seq <- seq_len(n)
+  sites <- rownames(x) %||% paste0("S1", n_seq)
 
   ## Compute confidence interval
   fun <- function(x) conf(x, level = level, type = interval)
   inter <- apply(X = x@replications, MARGIN = 1, FUN = fun)
+  inter <- apply(X = inter, MARGIN = 1, FUN = as_year, calendar = calendar)
 
   ## Graphical parameters
   col <- list(...)$col %||% graphics::par("col")
@@ -258,15 +260,15 @@ plot.SimulationMeanDate <- function(x, calendar = getOption("kairos.calendar"),
   cex <- list(...)$cex %||% graphics::par("cex")
   lty <- list(...)$lty %||% graphics::par("lty")
   lwd <- list(...)$lwd %||% graphics::par("lwd")
-  cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
-  col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
-  font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
   if (length(col) != n) col <- rep(col, length.out = n)
   if (length(bg) != n) bg <- rep(bg, length.out = n)
   if (length(pch) != n) pch <- rep(pch, length.out = n)
   if (length(cex) != n) cex <- rep(cex, length.out = n)
   if (length(lty) != n) lty <- rep(lty, length.out = n)
   if (length(lwd) != n) lwd <- rep(lwd, length.out = n)
+  cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
+  col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
+  font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
 
   ## Save and restore
   mar <- graphics::par("mar")
@@ -280,7 +282,7 @@ plot.SimulationMeanDate <- function(x, calendar = getOption("kairos.calendar"),
   graphics::plot.new()
 
   ## Set plotting coordinates
-  years <- time(x, calendar = NULL)
+  years <- time(x, calendar = calendar)
   xlim <- range(inter)
   ylim <- c(1, n)
   graphics::plot.window(xlim = xlim, ylim = ylim)
@@ -292,10 +294,10 @@ plot.SimulationMeanDate <- function(x, calendar = getOption("kairos.calendar"),
   k <- order(years, decreasing = decreasing)
 
   ## Plot
-  graphics::segments(x0 = inter[2, k], y0 = seq_len(n),
-                     x1 = inter[3, k], y1 = seq_len(n),
+  graphics::segments(x0 = inter[k, 2], y0 = n_seq,
+                     x1 = inter[k, 3], y1 = n_seq,
                      col = col[k], lty = lty[k], lwd = lwd[k])
-  graphics::points(x = years[k], y = seq_len(n), col = col[k],
+  graphics::points(x = years[k], y = n_seq, col = col[k],
                    bg = bg[k], pch = pch[k], cex = cex[k], lwd = lwd[k])
 
   ## Evaluate post-plot and pre-axis expressions
@@ -303,8 +305,8 @@ plot.SimulationMeanDate <- function(x, calendar = getOption("kairos.calendar"),
 
   ## Construct Axis
   if (axes) {
-    axis_year(x = years, side = 1, format = TRUE, calendar = calendar)
-    graphics::axis(side = 2, at = seq_len(n), labels = sites[k],
+    aion::year_axis(side = 1, format = TRUE, calendar = calendar)
+    graphics::axis(side = 2, at = n_seq, labels = sites[k],
                    xpd = NA, cex.axis = cex.axis, las = 1,
                    col.axis = col.axis, font.axis = font.axis)
   }

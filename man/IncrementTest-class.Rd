@@ -9,12 +9,6 @@
 \usage{
 \S4method{[[}{IncrementTest,ANY,missing}(x, i)
 }
-\arguments{
-\item{x}{An object from which to extract element(s) or in which to replace
-element(s).}
-
-\item{i}{A \code{\link{character}} string specifying elements to extract.}
-}
 \description{
 An S4 class to represent a Frequency Increment Test results.
 }
@@ -28,10 +22,6 @@ corresponding slot values.
 \section{Slots}{
 
 \describe{
-\item{\code{counts}}{An \eqn{m \times p}{m x p} \code{\link{numeric}} matrix of count data.}
-
-\item{\code{dates}}{A length-\eqn{m} \code{\link{numeric}} vector of dates.}
-
 \item{\code{statistic}}{A \code{\link{numeric}} vector giving the values of the t-statistic.}
 
 \item{\code{parameter}}{An \code{\link{integer}} giving the degrees of freedom for the
@@ -40,6 +30,9 @@ t-statistic.}
 \item{\code{p_value}}{A \code{\link{numeric}} vector giving the the p-value for the test.}
 }}
 
+\note{
+This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
+}
 \section{Coerce}{
 
 In the code snippets below, \code{x} is an \code{IncrementTest} object.

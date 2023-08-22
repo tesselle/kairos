@@ -8,24 +8,19 @@ NULL
 setMethod(
   f = "event",
   signature = c(object = "data.frame", dates = "numeric"),
-  definition = function(object, dates, rank = 10, cutoff = NULL, ...) {
+  definition = function(object, dates, rank = 10, calendar = CE(), ...) {
     object <- data.matrix(object)
-    methods::callGeneric(object, dates, rank = rank, cutoff = cutoff, ...)
+    methods::callGeneric(object, dates, rank = rank, calendar = calendar, ...)
   }
 )
+
 #' @export
 #' @rdname event
 #' @aliases event,matrix,numeric-method
 setMethod(
   f = "event",
   signature = c(object = "matrix", dates = "numeric"),
-  definition = function(object, dates, rank = 10, cutoff = NULL, ...) {
-    ## /!\ Deprecate cutoff /!\
-    if (!is.null(cutoff)) {
-      warning("Argument 'cutoff' is defunct; please use 'rank' instead.",
-              call. = FALSE)
-    }
-
+  definition = function(object, dates, rank = 10, calendar = CE(), ...) {
     ## Correspondance analysis
     ## CA computation may rise error (if rows/columns filled only with zeros)
     results_CA <- dimensio::ca(object, rank = rank, ...)
@@ -35,8 +30,11 @@ setMethod(
     row_coord <- dimensio::get_coordinates(results_CA, margin = 1)
     row_coord <- row_coord[, keep_dim]
 
-    ## Gaussian multiple linear regression model
+    ## Rata die
     i <- match(names(dates), rownames(row_coord))
+    dates <- aion::fixed(dates, calendar = calendar)
+
+    ## Gaussian multiple linear regression model
     contexts <- row_coord[i, , drop = FALSE]
     data <- data.frame(date = dates, contexts)
     fit <- stats::lm(date ~ ., data = data)
@@ -116,14 +114,12 @@ setMethod(
 #' Predict event dates
 #'
 #' @param fit A \code{\link[stats:lm]{multiple linear model}}.
-#' @param data A [`numeric`] matrix giving the coordinates in CA
-#'  space.
-#' @param level A length-one [`numeric`] vector giving the
-#'  confidence level.
+#' @param data A [`numeric`] matrix giving the coordinates in CA space.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @return
-#'  A four columns [`numeric`] matrix giving the predicted
-#'  event dates, the corresponding confidence interval boundaries and the
-#'  standard error of the predicted dates.
+#'  A four columns [`numeric`] matrix giving the predicted event dates,
+#'  the corresponding confidence interval boundaries and the standard error of
+#'  the predicted dates.
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd
@@ -138,7 +134,7 @@ compute_event <- function(fit, data, level) {
   )
   rownames(results) <- rownames(data)
   colnames(results) <- c("date", "lower", "upper", "error")
-  round(results, digits = getOption("kairos.precision"))
+  results
 }
 
 # Summary ======================================================================

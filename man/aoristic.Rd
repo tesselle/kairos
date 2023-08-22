@@ -49,7 +49,7 @@ window.}
 window.}
 
 \item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
-\code{x} and \code{y} (see \code{\link[=calendar]{calendar()}}).}
+\code{x} and \code{y} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
 
 \item{weight}{A \code{\link{logical}} scalar: should the aoristic sum be weighted by
 the length of periods (default). If \code{FALSE} the aoristic sum is the number
@@ -61,7 +61,7 @@ be a length-one vector giving the index of the grouping component (column)
 of \code{x}.}
 }
 \value{
-An \linkS4class{AoristicSum} object.
+An \code{\linkS4class{AoristicSum}} object.
 }
 \description{
 Computes the aoristic sum.
@@ -88,16 +88,16 @@ loire_range <- loire[, c("lower", "upper")]
 
 ## Calculate aoristic sum (normal)
 aorist_raw <- aoristic(loire_range, step = 50, weight = FALSE)
-plot(aorist_raw)
+plot(aorist_raw, col = "grey")
 
 ## Calculate aoristic sum (weights)
 aorist_weighted <- aoristic(loire_range, step = 50, weight = TRUE)
-plot(aorist_weighted)
+plot(aorist_weighted, col = "grey")
 
 ## Calculate aoristic sum (weights) by group
 aorist_groups <- aoristic(loire_range, step = 50, weight = TRUE,
                           groups = loire$area)
-plot(aorist_groups, flip = TRUE)
+plot(aorist_groups, flip = TRUE, col = "grey")
 image(aorist_groups)
 
 ## Rate of change
@@ -139,7 +139,7 @@ Analysis of High Volume Crime Patterns. \emph{Journal of Quantitative
 Criminology}, 18(1): 23-43. \doi{10.1023/A:1013240828824}.
 }
 \seealso{
-\code{\link[=roc]{roc()}}, \link[=plot_aoristic]{plot()}
+\code{\link[=roc]{roc()}}, \code{\link[=plot_aoristic]{plot()}}
 
 Other chronological analysis: 
 \code{\link{apportion}()},

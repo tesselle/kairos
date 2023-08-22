@@ -14,18 +14,27 @@ Dates are internally stored as \emph{\link[aion:RataDie-class]{rata die}}.
 \section{Slots}{
 
 \describe{
+\item{\code{breaks}}{A \code{\linkS4class{RataDie}} vector giving the date break between
+time-blocks.}
+
 \item{\code{weights}}{A \code{\link{numeric}} vector.}
 
-\item{\code{breaks}}{A \code{\link{RataDie}} vector giving the date break between time-blocks.}
+\item{\code{groups}}{A \code{\link{character}} vector.}
 
 \item{\code{p}}{A \code{\link{numeric}} \code{\link{array}} giving the aorisitic probabilities.}
-
-\item{\code{groups}}{A \code{\link{character}} vector.}
 }}
 
 \note{
 This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
 }
+\section{Coerce}{
+
+In the code snippets below, \code{x} is an \code{AoristicSum} object.
+\describe{
+\item{\code{as.data.frame(x)}}{Coerces to a \code{\link{data.frame}}.}
+}
+}
+
 \seealso{
 Other classes: 
 \code{\link{CountApportion-class}},

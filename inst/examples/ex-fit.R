@@ -10,8 +10,11 @@ counts <- merzbach[, keep]
 dates <- as.numeric(utils::as.roman(rownames(counts)))
 
 ## Frequency Increment Test
-freq <- fit(counts, dates)
+freq <- fit(counts, dates, calendar = NULL)
+
+## Plot time vs abundance
+plot(freq, calendar = NULL, ncol = 3, xlab = "Phases")
 
 ## Plot time vs abundance and highlight selection
-plot(freq)
-plot(freq, roll = TRUE, window = 5)
+freq <- fit(counts, dates, calendar = NULL, roll = TRUE, window = 5)
+plot(freq, calendar = NULL, ncol = 3, xlab = "Phases")

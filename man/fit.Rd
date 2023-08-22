@@ -10,21 +10,33 @@
 \usage{
 fit(object, dates, ...)
 
-\S4method{fit}{data.frame,numeric}(object, dates)
+\S4method{fit}{data.frame,numeric}(object, dates, calendar = CE(), level = 0.95, roll = FALSE, window = 3)
 
-\S4method{fit}{matrix,numeric}(object, dates)
+\S4method{fit}{matrix,numeric}(object, dates, calendar = CE(), level = 0.95, roll = FALSE, window = 3)
 }
 \arguments{
-\item{object}{An \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or a
-\code{\link{data.frame}} of count data (absolute frequencies).}
+\item{object}{A \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or
+\code{\link{data.frame}} of count data (absolute frequencies giving the number of
+individuals for each category, i.e. a contingency table). A \code{\link{data.frame}}
+will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{data.matrix()}}.}
 
-\item{dates}{A \code{\link{numeric}} vector of dates expressed in CE years (BCE years
-must be given as negative numbers).}
+\item{dates}{A length-\eqn{m} \code{\link{numeric}} vector of dates.}
 
 \item{...}{Currently not used.}
+
+\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
+\code{dates} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
+
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
+
+\item{roll}{A \code{\link{logical}} scalar: should each time series be subsetted to
+look for episodes of selection?}
+
+\item{window}{An odd \code{\link{integer}} giving the size of the rolling
+window. Only used if \code{roll} is \code{TRUE}.}
 }
 \value{
-An \linkS4class{IncrementTest} object.
+An \code{\linkS4class{IncrementTest}} object.
 }
 \description{
 Frequency Increment Test
@@ -33,6 +45,10 @@ Frequency Increment Test
 The Frequency Increment Test (FIT) rejects neutrality if the distribution
 of normalized variant frequency increments exhibits a mean that deviates
 significantly from zero.
+
+If \code{roll} is \code{TRUE}, each time series is subsetted according to \code{window} to
+see if episodes of selection can be identified among variables that might
+not show overall selection.
 }
 \examples{
 ## Data from Crema et al. 2016
@@ -47,11 +63,14 @@ counts <- merzbach[, keep]
 dates <- as.numeric(utils::as.roman(rownames(counts)))
 
 ## Frequency Increment Test
-freq <- fit(counts, dates)
+freq <- fit(counts, dates, calendar = NULL)
+
+## Plot time vs abundance
+plot(freq, calendar = NULL, ncol = 3, xlab = "Phases")
 
 ## Plot time vs abundance and highlight selection
-plot(freq)
-plot(freq, roll = TRUE, window = 5)
+freq <- fit(counts, dates, calendar = NULL, roll = TRUE, window = 5)
+plot(freq, calendar = NULL, ncol = 3, xlab = "Phases")
 }
 \references{
 Feder, A. F., Kryazhimskiy, S. & Plotkin, J. B. (2014). Identifying
@@ -59,7 +78,7 @@ Signatures of Selection in Genetic Time Series. \emph{Genetics}, 196(2):
 509-522. \doi{10.1534/genetics.113.158220}.
 }
 \seealso{
-\link[=plot_fit]{plot()}
+\code{\link[=plot_fit]{plot()}}
 
 Other chronological analysis: 
 \code{\link{aoristic}()},

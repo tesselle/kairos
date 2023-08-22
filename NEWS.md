@@ -3,14 +3,16 @@
 * Add `image()` methods.
 
 ## Internals
-* `MeanDate` and `AoristicSum` classes now inherit from `TimeSeries` (see **aion**).
+* `MeanDate`, `AoristicSum`, `RateOfChange` and `IncrementTest` classes now inherit from `TimeSeries` (see **aion**).
+* Use **tinytest** instead of **testthat**.
 
 ## Bugfixes & changes
 * Remove previously deprecated methods.
 
 ## Breaking changes
+* Use **aion** for internal date representation.
+* Use **graphics** instead of **ggplot2** to reduce hard dependencies (remove all `autoplot()` methods).
 * For consistency, all `mcd()` methods now return a `MeanDate` object.
-* Remove all `autoplot()` methods to reduce dependencies (use **graphics** instead of **ggplot2**).
 
 # kairos 1.2.0
 ## New classes and methods

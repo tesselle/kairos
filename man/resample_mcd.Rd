@@ -15,7 +15,7 @@
 \S4method{simulate}{MeanDate}(object, nsim = 1000)
 }
 \arguments{
-\item{object}{A \linkS4class{MeanDate} object (typically returned by \code{\link[=mcd]{mcd()}}).}
+\item{object}{A \code{\linkS4class{MeanDate}} object (typically returned by \code{\link[=mcd]{mcd()}}).}
 
 \item{n}{A non-negative \code{\link{integer}} specifying the number of bootstrap
 replications.}

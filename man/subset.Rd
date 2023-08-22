@@ -4,21 +4,24 @@
 \name{subset}
 \alias{subset}
 \alias{[,MeanDate-method}
+\alias{[,IncrementTest-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[}{MeanDate}(x, i, j, ..., drop = FALSE)
+\S4method{[}{MeanDate}(x, i, j, k, drop = FALSE)
+
+\S4method{[}{IncrementTest}(x, i, j, k, drop = FALSE)
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace
 element(s).}
 
-\item{i, j}{Indices specifying elements to extract or replace.}
-
-\item{...}{Currently not used.}
+\item{i, j, k}{Indices specifying elements to extract or replace.}
 
 \item{drop}{A \code{\link{logical}} scalar: should the result be coerced to
 the lowest possible dimension? This only works for extracting elements,
 not for the replacement.}
+
+\item{...}{Currently not used.}
 }
 \value{
 A subsetted object.

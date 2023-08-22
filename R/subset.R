@@ -10,16 +10,51 @@ NULL
 setMethod(
   f = "[",
   signature = c(x = "MeanDate"),
-  function(x, i, j, ..., drop = FALSE) {
-    z <- methods::callNextMethod() # Method for `TimeSeries`
-
-    if (is.null(dim(z)) || isTRUE(drop)) return(z)
-
+  function(x, i, j, k, drop = FALSE) {
+    z <- x@.Data
+    time <- x@.Time
     dates <- x@dates
+
+    z <- z[i, j, k, drop = drop]
+    if (!missing(i)) {
+      if (is.character(i)) i <- match(i, dimnames(x)[1L])
+      time <- time[i]
+    }
     if (!missing(j)) {
+      if (is.character(j)) j <- match(j, dimnames(x)[2L])
       dates <- dates[j]
     }
-    methods::initialize(x, z, dates = dates)
+
+    if (isTRUE(drop)) return(z)
+    methods::initialize(x, z, .Time = time, dates = dates)
+  }
+)
+
+#' @export
+#' @rdname subset
+#' @aliases [,IncrementTest-method
+setMethod(
+  f = "[",
+  signature = c(x = "IncrementTest"),
+  function(x, i, j, k, drop = FALSE) {
+    z <- x@.Data
+    time <- x@.Time
+    statistic <- x@statistic
+    p_value <- x@p_value
+
+    z <- z[i, j, k, drop = drop]
+    if (!missing(i)) {
+      if (is.character(i)) i <- match(i, dimnames(x)[1L])
+      time <- time[i]
+    }
+    if (!missing(j)) {
+      if (is.character(j)) j <- match(j, dimnames(x)[2L])
+      statistic <- statistic[j]
+      p_value <- p_value[j]
+    }
+
+    if (isTRUE(drop)) return(z)
+    methods::initialize(x, z, .Time = time, statistic = statistic, p_value = p_value)
   }
 )
 

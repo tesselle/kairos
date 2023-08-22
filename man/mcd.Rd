@@ -18,19 +18,20 @@ mcd(object, dates, ...)
 \S4method{mcd}{matrix,numeric}(object, dates, calendar = CE())
 }
 \arguments{
-\item{object}{A length-\eqn{p} \code{\link{numeric}} vector, an \eqn{m \times p}{m x p}
-\code{numeric} \code{\link{matrix}} or \code{\link{data.frame}} of count data (absolute frequencies).
-A \code{\link{data.frame}} will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{data.matrix()}}.}
+\item{object}{A \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or
+\code{\link{data.frame}} of count data (absolute frequencies giving the number of
+individuals for each category, i.e. a contingency table). A \code{\link{data.frame}}
+will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{data.matrix()}}.}
 
 \item{dates}{A length-\eqn{p} \code{\link{numeric}} vector of dates expressed in years.}
 
 \item{...}{Currently not used.}
 
 \item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
-\code{dates} (see \code{\link[=calendar]{calendar()}}).}
+\code{dates} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
 }
 \value{
-A \linkS4class{MeanDate} object.
+A \code{\linkS4class{MeanDate}} object.
 }
 \description{
 Estimates the Mean Ceramic Date of an assemblage.
@@ -48,11 +49,6 @@ is created, with the same sample size, by resampling the original
 assemblage with replacement. MCDs are calculated for each replicates and
 upper and lower boundaries of the confidence interval associated with each
 MCD are then returned.
-}
-\note{
-All results are rounded to zero decimal places (sub-annual precision does
-not make sense in most situations). You can change this behavior with
-\code{options(kairos.precision = x)} (for \code{x} decimal places).
 }
 \examples{
 ## Data from Peeples and Schachner 2012

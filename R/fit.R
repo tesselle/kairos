@@ -2,15 +2,18 @@
 #' @include AllGenerics.R AllClasses.R
 NULL
 
+# FIT ==========================================================================
 #' @export
 #' @rdname fit
 #' @aliases fit,data.frame,numeric-method
 setMethod(
   f = "fit",
   signature = c(object = "data.frame", dates = "numeric"),
-  definition = function(object, dates) {
+  definition = function(object, dates, calendar = CE(),
+                        level = 0.95, roll = FALSE, window = 3) {
     object <- data.matrix(object)
-    methods::callGeneric(object, dates = dates)
+    methods::callGeneric(object, dates = dates, calendar = calendar,
+                         level = level, roll = roll, window = window)
   }
 )
 
@@ -20,12 +23,23 @@ setMethod(
 setMethod(
   f = "fit",
   signature = c(object = "matrix", dates = "numeric"),
-  definition = function(object, dates) {
+  definition = function(object, dates, calendar = CE(),
+                        level = 0.95, roll = FALSE, window = 3) {
     ## Validation
+    alpha <- 1 - level
+    half_window <- (window - 1) / 2
     arkhe::assert_length(dates, nrow(object))
 
+    ## Convert to rata die
+    if (is.null(calendar)) {
+      dates <- aion::as_fixed(dates)
+    } else {
+      dates <- aion::fixed(dates, calendar = calendar)
+    }
+
     ## Compute test
-    results <- testFIT(object, dates, roll = FALSE)[[1L]]
+    results <- test_FIT(object, dates, roll = FALSE)
+    results <- results[[1L]]
 
     ## Check results
     failed <- is.na(results$p.value)
@@ -35,9 +49,57 @@ setMethod(
       warning(msg, call. = FALSE)
     }
 
+    ## Rolling window
+    fit_roll <- matrix(FALSE, nrow = nrow(object), ncol = ncol(object))
+    if (roll) {
+      results_roll <- test_FIT(object, dates, roll = roll, window = window)
+      results_roll <- lapply(
+        X = results_roll,
+        FUN = function(x, alpha) { x$p.value <= alpha },
+        alpha = alpha
+      )
+      fit_row <- seq(from = half_window + 1, to = nrow(fit_roll) - half_window)
+      fit_roll[fit_row, ] <- do.call(rbind, results_roll)
+
+      fit_roll <- apply(
+        X = fit_roll,
+        MARGIN = 2,
+        FUN = function(x, half_window) {
+          vapply(
+            X = seq_along(x),
+            FUN = function(x, y, k) {
+              max <- length(y)
+              lower <- x - k
+              lower[lower < 1] <- 1
+              upper <- x + k
+              upper[upper > max] <- max
+              any(y[lower:upper], na.rm = TRUE)
+            },
+            FUN.VALUE = logical(1),
+            y = x,
+            k = half_window
+          )
+        },
+        half_window = half_window
+      )
+    }
+
+    ## Build array
+    select <- results$p.value <= alpha
+    x <- y <- z <- object
+    x[, !select] <- NA
+    y[, select] <- NA
+    z[!fit_roll] <- NA
+
+    res <- array(
+      data = c(z, x, y),
+      dim = c(dim(object), 3),
+      dimnames = c(dimnames(object), list(c("roll", "selection", "neutral")))
+    )
+
+    ts <- aion::series(object = res, time = dates)
     .IncrementTest(
-      counts = object,
-      dates = dates,
+      ts,
       statistic = results$t,
       parameter = 1L,
       p_value = results$p.value
@@ -53,8 +115,10 @@ setMethod(
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd
-testFIT <- function(x, time, roll = FALSE, window = 3, ...) {
+test_FIT <- function(x, time, roll = FALSE, window = 3, ...) {
   ## Prepare data
+  time <- as.numeric(time)
+
   ## Compute frequency as ratio of count of type of interest to all other types
   count_others <- lapply(
     X = seq_len(ncol(x)),
@@ -93,8 +157,9 @@ testFIT <- function(x, time, roll = FALSE, window = 3, ...) {
 
     results[[k]] <- data.frame(
       column = colnames(fit),
-      dates = roll_date,
-      t(fit)
+      time = roll_date,
+      t(fit),
+      row.names = NULL
     )
     k <- k + 1
   }
@@ -140,3 +205,35 @@ FIT <- function(v, t, ...) {
   t_test <- stats::t.test(Y, ...)
   c(t = as.numeric(t_test$statistic), p.value = t_test$p.value)
 }
+
+# Plot =========================================================================
+#' @export
+#' @method plot IncrementTest
+plot.IncrementTest <- function(x, calendar = getOption("kairos.calendar"),
+                               col.neutral = "#004488", col.selection = "#BB5566",
+                               col.roll = "grey", flip = FALSE, ncol = NULL,
+                               xlab = NULL, ylab = NULL,
+                               main = NULL, sub = NULL,
+                               ann = graphics::par("ann"), axes = TRUE,
+                               frame.plot = axes, ...) {
+  ## Panel
+  panel_fit <- function(x, y, ...) {
+    graphics::lines(x, y, ...)
+    graphics::points(x, y, ...)
+  }
+
+  ## Method for TimeSeries
+  methods::callNextMethod(x = ts, calendar = calendar, panel = panel_fit,
+                          flip = flip, ncol = ncol,
+                          xlab = xlab, ylab = ylab,
+                          main = main, sub = sub,
+                          ann = ann, axes = axes,
+                          frame.plot = frame.plot,
+                          col = c(col.roll, col.selection, col.neutral),
+                          lwd = c(10, 1, 1), pch = 16, cex = 1, ...)
+}
+
+#' @export
+#' @rdname plot_fit
+#' @aliases plot,IncrementTest,missing-method
+setMethod("plot", c(x = "IncrementTest", y = "missing"), plot.IncrementTest)

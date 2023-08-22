@@ -6,16 +6,16 @@ loire_range <- loire[, c("lower", "upper")]
 
 ## Calculate aoristic sum (normal)
 aorist_raw <- aoristic(loire_range, step = 50, weight = FALSE)
-plot(aorist_raw)
+plot(aorist_raw, col = "grey")
 
 ## Calculate aoristic sum (weights)
 aorist_weighted <- aoristic(loire_range, step = 50, weight = TRUE)
-plot(aorist_weighted)
+plot(aorist_weighted, col = "grey")
 
 ## Calculate aoristic sum (weights) by group
 aorist_groups <- aoristic(loire_range, step = 50, weight = TRUE,
                           groups = loire$area)
-plot(aorist_groups, flip = TRUE)
+plot(aorist_groups, flip = TRUE, col = "grey")
 image(aorist_groups)
 
 ## Rate of change

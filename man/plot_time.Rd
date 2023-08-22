@@ -10,23 +10,26 @@
 \usage{
 plot_time(object, dates, ...)
 
-\S4method{plot_time}{data.frame,numeric}(object, dates, facet = FALSE)
+\S4method{plot_time}{data.frame,numeric}(object, dates, calendar = getOption("kairos.calendar"), ...)
 
-\S4method{plot_time}{matrix,numeric}(object, dates, facet = FALSE)
+\S4method{plot_time}{matrix,numeric}(object, dates, calendar = getOption("kairos.calendar"), ...)
 }
 \arguments{
-\item{object}{An \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or a
-\code{\link{data.frame}} of count data (absolute frequencies).}
+\item{object}{A \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or
+\code{\link{data.frame}} of count data (absolute frequencies giving the number of
+individuals for each category, i.e. a contingency table). A \code{\link{data.frame}}
+will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{data.matrix()}}.}
 
 \item{dates}{A \code{\link{numeric}} vector of dates.}
 
-\item{...}{Currently not used.}
+\item{...}{Further parameters to be passed to \code{\link[aion:plot]{aion::plot()}}.}
 
-\item{facet}{A \code{\link{logical}} scalar: should a matrix of panels defined by
-type/taxon be drawn?}
+\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
+(see \code{\link[=calendar]{calendar()}}).}
 }
 \value{
-A \code{\link[ggplot2:ggplot]{ggplot}} object.
+\code{plot_time()} is called it for its side-effects: it results in a graphic
+being displayed (invisibly returns \code{object}).
 }
 \description{
 Produces an abundance \emph{vs} time diagram.
@@ -45,8 +48,7 @@ counts <- merzbach[, keep]
 dates <- as.numeric(utils::as.roman(rownames(counts)))
 
 ## Plot abundance vs time
-plot_time(counts, dates)
-plot_time(counts, dates, facet = TRUE)
+plot_time(counts, dates, calendar = NULL, ncol = 3, xlab = "Phases")
 }
 \seealso{
 Other plotting methods: 

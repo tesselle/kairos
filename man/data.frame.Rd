@@ -5,11 +5,17 @@
 \alias{data.frame}
 \alias{as.data.frame,MeanDate-method}
 \alias{as.data.frame,AoristicSum-method}
+\alias{as.data.frame,RateOfChange-method}
+\alias{as.data.frame,IncrementTest-method}
 \title{Coerce to a Data Frame}
 \usage{
 \S4method{as.data.frame}{MeanDate}(x, ..., calendar = getOption("kairos.calendar"))
 
 \S4method{as.data.frame}{AoristicSum}(x, ..., calendar = getOption("kairos.calendar"))
+
+\S4method{as.data.frame}{RateOfChange}(x, ..., calendar = getOption("kairos.calendar"))
+
+\S4method{as.data.frame}{IncrementTest}(x, row.names = NULL, optional = FALSE, ...)
 }
 \arguments{
 \item{x}{An object.}

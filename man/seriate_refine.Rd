@@ -15,7 +15,7 @@ seriate_refine(object, ...)
 \S4method{seriate_refine}{BootstrapCA}(object, cutoff, margin = 1, axes = 1, ...)
 }
 \arguments{
-\item{object}{A \linkS4class{PermutationOrder} object (typically returned by
+\item{object}{A \code{\linkS4class{PermutationOrder}} object (typically returned by
 \code{\link[=seriate_average]{seriate_average()}}).}
 
 \item{...}{Further arguments to be passed to internal methods.}
@@ -33,7 +33,7 @@ used.}
 replications.}
 }
 \value{
-A \linkS4class{RefinePermutationOrder} object.
+A \code{\linkS4class{RefinePermutationOrder}} object.
 }
 \description{
 Refine CA-based Seriation

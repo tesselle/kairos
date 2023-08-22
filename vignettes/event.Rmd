@@ -27,8 +27,10 @@ knitr::opts_chunk$set(
 ```
 
 ```{r packages}
+## Install extra packages (if needed):
+# install.packages("folio") # datasets
+
 # Load packages
-library(folio) # Datasets
 library(kairos)
 ```
 
@@ -146,6 +148,7 @@ This package provides an implementation of the chronological modeling method dev
 ## Bellanger et al. did not publish the data supporting their demonstration: 
 ## no replication of their results is possible. 
 ## Here is an example using the Zuni dataset from Peeples and Schachner 2012
+data("zuni", package = "folio")
 
 ## Assume that some assemblages are reliably dated (this is NOT a real example)
 ## The names of the vector entries must match the names of the assemblages
@@ -157,20 +160,17 @@ zuni_dates <- c(
 )
 
 ## Model the event and accumulation date for each assemblage
-model <- event(zuni, dates = zuni_dates, cutoff = 90)
+model <- event(zuni, dates = zuni_dates, rank = 10)
 summary(get_model(model))
 
 ## Estimate event dates
 event <- predict_event(model, margin = 1, level = 0.95)
 head(event)
-
-## Estimate accumulation dates
-acc <- predict_accumulation(model)
-head(acc)
 ```
 
-```{r event-plot}
+```{r event-plot, fig.width=7, fig.height=7}
 ## Activity plot
+plot(model, type = "activity", event = TRUE, select = 1:6)
 plot(model, type = "activity", event = TRUE, select = "LZ1105")
 
 ## Tempo plot

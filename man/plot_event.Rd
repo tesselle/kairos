@@ -3,25 +3,31 @@
 \docType{methods}
 \name{plot_event}
 \alias{plot_event}
-\alias{autoplot,EventDate-method}
 \alias{plot,EventDate,missing-method}
 \title{Event Plot}
 \usage{
-\S4method{autoplot}{EventDate}(
-  object,
-  ...,
+\S4method{plot}{EventDate,missing}(
+  x,
   type = c("activity", "tempo"),
   event = FALSE,
+  calendar = getOption("kairos.calendar"),
   select = 1,
-  n = 500
+  n = 500,
+  eps = 1e-09,
+  flip = FALSE,
+  ncol = NULL,
+  xlab = NULL,
+  ylab = NULL,
+  main = NULL,
+  sub = NULL,
+  ann = graphics::par("ann"),
+  axes = TRUE,
+  frame.plot = axes,
+  ...
 )
-
-\S4method{plot}{EventDate,missing}(x, type = c("activity", "tempo"), event = FALSE, select = 1, n = 500, ...)
 }
 \arguments{
-\item{object, x}{A \linkS4class{EventDate} object.}
-
-\item{...}{Currently not used.}
+\item{x}{An \code{\linkS4class{EventDate}} object.}
 
 \item{type}{A \code{\link{character}} string indicating the type of plot.
 It must be one of "\code{activity}" (default) or "\code{tempo}".
@@ -30,18 +36,45 @@ Any unambiguous substring can be given.}
 \item{event}{A \code{\link{logical}} scalar: should the distribution of the event date
 be displayed? Only used if type is "\code{activity}".}
 
+\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
+(see \code{\link[aion:calendar]{calendar()}}).}
+
 \item{select}{A \code{\link{numeric}} or \code{\link{character}} vector giving the selection of
 the assemblage that are drawn.}
 
 \item{n}{A length-one non-negative \code{\link{numeric}} vector giving the desired
 length of the vector of quantiles for density computation.}
+
+\item{eps}{A length-one \code{\link{numeric}} value giving the cutoff below which
+values will be removed.}
+
+\item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
+flipped from side 2 (left) to 4 (right) from series to series when \code{facet}
+is "\code{multiple}"?}
+
+\item{ncol}{An \code{\link{integer}} specifying the number of columns to use when
+\code{facet} is "\code{multiple}". Defaults to 1 for up to 4 series, otherwise to 2.}
+
+\item{xlab, ylab}{A \code{\link{character}} vector giving the x and y axis labels.}
+
+\item{main}{A \code{\link{character}} string giving a main title for the plot.}
+
+\item{sub}{A \code{\link{character}} string giving a subtitle for the plot.}
+
+\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x
+and y axis labels) appear on the plot?}
+
+\item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
+
+\item{frame.plot}{A \code{\link{logical}} scalar: should a box be drawn around the
+plot?}
+
+\item{...}{Further parameters to be passed to \code{panel}
+(e.g. \link[graphics:par]{graphical parameters}).}
 }
 \value{
-\itemize{
-\item \code{autoplot()} returns a \code{\link[ggplot2:ggplot]{ggplot}} object.
-\item \code{plot()} is called it for its side-effects: it results in a graphic being
+\code{plot()} is called it for its side-effects: it results in a graphic being
 displayed (invisibly returns \code{x}).
-}
 }
 \description{
 Produces an activity or a tempo plot.
@@ -54,7 +87,7 @@ assemblage dates (\emph{event} and \emph{accumulation} dates; Bellanger and Husi
 is shown as a grey filled area.
 
 The accumulation date can be displayed as a tempo plot (Dye 2016) or an
-activity plot (Philippe and Vibet 2017):
+activity plot (Philippe and Vibet 2020):
 \describe{
 \item{Tempo plot}{A tempo plot estimates the cumulative occurrence of
 archaeological events, such as the slope of the plot directly reflects the
@@ -78,7 +111,7 @@ Dye, T. S. (2016). Long-Term Rhythms in the Development of Hawaiian
 Social Stratification. \emph{Journal of Archaeological Science}, 71, 1-9.
 \doi{10.1016/j.jas.2016.05.006}.
 
-Philippe, A. & Vibet, M.-A. (2017). Analysis of Archaeological Phases Using
+Philippe, A. & Vibet, M.-A. (2020). Analysis of Archaeological Phases Using
 the R Package ArchaeoPhases. \emph{Journal of Statistical Software, Code
 Snippets}, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
 }

@@ -25,13 +25,29 @@ as.data.frame.AoristicSum <- function(x, ..., calendar = getOption("kairos.calen
 #' @aliases as.data.frame,AoristicSum-method
 setMethod("as.data.frame", "AoristicSum", as.data.frame.AoristicSum)
 
+#' @export
+#' @method as.data.frame RateOfChange
+as.data.frame.RateOfChange <- function(x, ..., calendar = getOption("kairos.calendar")) {
+  methods::callNextMethod(x, ..., calendar = calendar)
+}
+
+#' @export
+#' @rdname data.frame
+#' @aliases as.data.frame,RateOfChange-method
+setMethod("as.data.frame", "RateOfChange", as.data.frame.RateOfChange)
+
 #' @method as.data.frame IncrementTest
 #' @export
-as.data.frame.IncrementTest <- function(x, ..., stringsAsFactors = FALSE) {
+as.data.frame.IncrementTest <- function(x, ...) {
   data.frame(
     t = x@statistic,
     p.value = x@p_value,
-    row.names = colnames(x@counts),
-    stringsAsFactors = stringsAsFactors
+    row.names = colnames(x),
+    ...
   )
 }
+
+#' @export
+#' @rdname data.frame
+#' @aliases as.data.frame,IncrementTest-method
+setMethod("as.data.frame", "IncrementTest", as.data.frame.IncrementTest)

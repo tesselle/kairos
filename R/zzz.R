@@ -1,7 +1,6 @@
 .onLoad <- function(libname, pkgname){
   op <- options()
   op.kairos <- list(
-    kairos.precision = 0,
     kairos.progress = TRUE,
     kairos.calendar = aion::CE()
   )

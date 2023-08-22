@@ -3,7 +3,6 @@
 NULL
 
 # S4 dispatch to S3 generics ===================================================
-setGeneric("autoplot", package = "ggplot2")
 setGeneric("jackknife", package = "arkhe")
 setGeneric("bootstrap", package = "arkhe")
 
@@ -14,7 +13,7 @@ setGeneric("bootstrap", package = "arkhe")
 #' Operators acting on objects to extract or replace parts.
 #' @param x An object from which to extract element(s) or in which to replace
 #'  element(s).
-#' @param i,j Indices specifying elements to extract or replace.
+#' @param i,j,k Indices specifying elements to extract or replace.
 #' @param drop A [`logical`] scalar: should the result be coerced to
 #'  the lowest possible dimension? This only works for extracting elements,
 #'  not for the replacement.
@@ -100,7 +99,7 @@ NULL
 #' @description
 #'  * `bootstrap()` generate bootstrap estimations of an [MCD][mcd()].
 #'  * `jackknife()` generate jackknife estimations of an [MCD][mcd()].
-#' @param object A [MeanDate-class] object (typically returned by [mcd()]).
+#' @param object A [`MeanDate-class`] object (typically returned by [mcd()]).
 #' @param n A non-negative [`integer`] specifying the number of bootstrap
 #'  replications.
 #' @param nsim A non-negative [`integer`] specifying the number of simulations.
@@ -130,7 +129,7 @@ NULL
 #' @description
 #'  * `bootstrap()` generate bootstrap estimations of an [event][event()].
 #'  * `jackknife()` generate jackknife estimations of an [event][event()].
-#' @param object An [EventDate-class] object (typically returned by [event()]).
+#' @param object An [`EventDate-class`] object (typically returned by [event()]).
 #' @param n A non-negative [`integer`] specifying the number of bootstrap
 #'  replications.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
@@ -182,12 +181,13 @@ NULL
 #' Mean Ceramic Date
 #'
 #' Estimates the Mean Ceramic Date of an assemblage.
-#' @param object A length-\eqn{p} [`numeric`] vector, an \eqn{m \times p}{m x p}
-#'  `numeric` [`matrix`] or [`data.frame`] of count data (absolute frequencies).
-#'  A [`data.frame`] will be coerced to a `numeric` `matrix` via [data.matrix()].
+#' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
+#'  [`data.frame`] of count data (absolute frequencies giving the number of
+#'  individuals for each category, i.e. a contingency table). A [`data.frame`]
+#'  will be coerced to a `numeric` `matrix` via [data.matrix()].
 #' @param dates A length-\eqn{p} [`numeric`] vector of dates expressed in years.
 #' @param calendar A [`TimeScale-class`] object specifying the calendar of
-#'  `dates` (see [calendar()]).
+#'  `dates` (see [calendar()]). Defaults to Gregorian Common Era.
 #' @param ... Currently not used.
 #' @details
 #'  The Mean Ceramic Date (MCD) is a point estimate of the occupation of an
@@ -202,12 +202,8 @@ NULL
 #'  assemblage with replacement. MCDs are calculated for each replicates and
 #'  upper and lower boundaries of the confidence interval associated with each
 #'  MCD are then returned.
-#' @note
-#'  All results are rounded to zero decimal places (sub-annual precision does
-#'  not make sense in most situations). You can change this behavior with
-#'  `options(kairos.precision = x)` (for `x` decimal places).
 #' @return
-#'  A [MeanDate-class] object.
+#'  A [`MeanDate-class`] object.
 #' @seealso [plot()][plot_mcd], [bootstrap()][resample_mcd],
 #'  [jackknife()][resample_mcd], [simulate()][resample_mcd]
 #' @references
@@ -231,10 +227,12 @@ setGeneric(
 #'  * `event()` fit a date event model.
 #'  * `predict_event()` and `predict_accumulation()` estimates the event and
 #'    accumulation dates of an assemblage.
-#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
-#'  [`data.frame`] of count data (absolute frequencies).
+#' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
+#'  [`data.frame`] of count data (absolute frequencies giving the number of
+#'  individuals for each category, i.e. a contingency table). A [`data.frame`]
+#'  will be coerced to a `numeric` `matrix` via [data.matrix()].
 #' @param data A `numeric` [`matrix`] or a [`data.frame`] of count data
-#'  (absolute frequencies)for which to predict event and accumulation dates.
+#'  (absolute frequencies) for which to predict event and accumulation dates.
 #' @param dates A [`numeric`] vector of dates expressed in CE years (BCE years
 #'  must be given as negative numbers). If named, the names must match
 #'  the row names of `object`.
@@ -268,20 +266,16 @@ setGeneric(
 #'  This method relies on strong archaeological and statistical assumptions
 #'  (see `vignette("event")`).
 #' @note
-#'  All results are rounded to zero decimal places (sub-annual precision does
-#'  not make sense in most situations). You can change this behavior with
-#'  `options(kairos.precision = x)` (for `x` decimal places).
-#'
 #'  Bellanger *et al.* did not publish the data supporting their demonstration:
 #'  no replication of their results is possible. This implementation must be
 #'  considered **experimental** and subject to major changes in a future
 #'  release.
 #' @return
-#'  * `event()` returns an [EventDate-class] object.
+#'  * `event()` returns an [`EventDate-class`] object.
 #'  * `predict_event()` returns a [`data.frame`].
-#'  * `predict_accumulation()` returns a [MeanDate-class] object.
-#' @seealso [plot()][plot_event], [jackknife()][resample_event],
-#'  [bootstrap()][resample_event]
+#'  * `predict_accumulation()` returns a [`MeanDate-class`] object.
+#' @seealso [`plot()`][plot_event], [`jackknife()`][resample_event],
+#'  [`bootstrap()`][resample_event]
 #' @references
 #'  Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans
 #'  la matière à partir d'une source matérielle : la céramique médiévale.
@@ -326,6 +320,14 @@ setGeneric(
 )
 
 #' @rdname event
+#' @aliases predict_event-method
+setGeneric(
+  name = "get_event",
+  def = function(object) standardGeneric("get_event"),
+  valueClass = "TimeSeries"
+)
+
+#' @rdname event
 #' @aliases predict_accumulation-method
 setGeneric(
   name = "predict_accumulation",
@@ -349,7 +351,7 @@ setGeneric(
 #' @param end A length-one [`numeric`] vector giving the end of the time
 #'  window.
 #' @param calendar A [`TimeScale-class`] object specifying the calendar of
-#'  `x` and `y` (see [calendar()]).
+#'  `x` and `y` (see [calendar()]). Defaults to Gregorian Common Era.
 #' @param weight A [`logical`] scalar: should the aoristic sum be weighted by
 #'  the length of periods (default). If `FALSE` the aoristic sum is the number
 #'  of elements within a time block.
@@ -371,8 +373,8 @@ setGeneric(
 #'  problem. This method is not implemented here (for the moment), see the
 #'  [\pkg{aoristAAR} package](https://github.com/ISAAKiel/aoristAAR).
 #' @return
-#'  An [AoristicSum-class] object.
-#' @seealso [roc()], [plot()][plot_aoristic]
+#'  An [`AoristicSum-class`] object.
+#' @seealso [roc()], [`plot()`][plot_aoristic]
 #' @references
 #'  Crema, E. R. (2012). Modelling Temporal Uncertainty in Archaeological
 #'  Analysis. *Journal of Archaeological Method and Theory*, 19(3): 440-61.
@@ -422,8 +424,8 @@ setGeneric(
 #'  details).
 #' @param ... Currently not used.
 #' @return
-#'  A [RateOfChange-class] object.
-#' @seealso [aoristic()], [plot()][plot_aoristic]
+#'  A [`RateOfChange-class`] object.
+#' @seealso [aoristic()], [`plot()`][plot_aoristic]
 #' @references
 #'  Baxter, M. J. & Cool, H. E. M. (2016). Reinventing the Wheel? Modelling
 #'  Temporal Uncertainty with Applications to Brooch Distributions in Roman
@@ -447,8 +449,10 @@ setGeneric(
 ## Apportion -------------------------------------------------------------------
 #' Chronological Apportioning
 #'
-#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
-#'  [`data.frame`] of count data (absolute frequencies).
+#' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
+#'  [`data.frame`] of count data (absolute frequencies giving the number of
+#'  individuals for each category, i.e. a contingency table). A [`data.frame`]
+#'  will be coerced to a `numeric` `matrix` via [data.matrix()].
 #' @param s0 A length-\eqn{m} [`numeric`] vector giving the site beginning dates
 #'  expressed in CE years (BCE years must be given as negative numbers).
 #' @param s1 A length-\eqn{m} [`numeric`] vector giving the site end dates
@@ -472,6 +476,8 @@ setGeneric(
 #'  (defaults to \eqn{2}). Only used if `method` is "`truncated`".
 #' @param progress A [`logical`] scalar: should a progress bar be displayed?
 #' @param ... Currently not used.
+#' @return
+#'  A [`CountApportion-class`] object.
 #' @references
 #'  Roberts, J. M., Mills, B. J., Clark, J. J., Haas, W. R., Huntley, D. L. &
 #'  Trowbridge, M. A. (2012). A Method for Chronological Apportioning of Ceramic
@@ -490,19 +496,31 @@ setGeneric(
 ## Frequency Increment Test ----------------------------------------------------
 #' Frequency Increment Test
 #'
-#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
-#'  [`data.frame`] of count data (absolute frequencies).
-#' @param dates A [`numeric`] vector of dates expressed in CE years (BCE years
-#'  must be given as negative numbers).
+#' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
+#'  [`data.frame`] of count data (absolute frequencies giving the number of
+#'  individuals for each category, i.e. a contingency table). A [`data.frame`]
+#'  will be coerced to a `numeric` `matrix` via [data.matrix()].
+#' @param dates A length-\eqn{m} [`numeric`] vector of dates.
+#' @param calendar A [`TimeScale-class`] object specifying the calendar of
+#'  `dates` (see [calendar()]). Defaults to Gregorian Common Era.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param roll A [`logical`] scalar: should each time series be subsetted to
+#'  look for episodes of selection?
+#' @param window An odd [`integer`] giving the size of the rolling
+#'  window. Only used if `roll` is `TRUE`.
 #' @param ... Currently not used.
 #' @details
 #'  The Frequency Increment Test (FIT) rejects neutrality if the distribution
 #'  of normalized variant frequency increments exhibits a mean that deviates
 #'  significantly from zero.
+#'
+#'  If `roll` is `TRUE`, each time series is subsetted according to `window` to
+#'  see if episodes of selection can be identified among variables that might
+#'  not show overall selection.
 #' @return
-#'  An [IncrementTest-class] object.
+#'  An [`IncrementTest-class`] object.
 #' @example inst/examples/ex-fit.R
-#' @seealso [plot()][plot_fit]
+#' @seealso [`plot()`][plot_fit]
 #' @references
 #'  Feder, A. F., Kryazhimskiy, S. & Plotkin, J. B. (2014). Identifying
 #'  Signatures of Selection in Genetic Time Series. *Genetics*, 196(2):
@@ -522,14 +540,17 @@ setGeneric(
 #' Abundance vs Time Plot
 #'
 #' Produces an abundance *vs* time diagram.
-#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
-#'  [`data.frame`] of count data (absolute frequencies).
+#' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
+#'  [`data.frame`] of count data (absolute frequencies giving the number of
+#'  individuals for each category, i.e. a contingency table). A [`data.frame`]
+#'  will be coerced to a `numeric` `matrix` via [data.matrix()].
 #' @param dates A [`numeric`] vector of dates.
-#' @param facet A [`logical`] scalar: should a matrix of panels defined by
-#'  type/taxon be drawn?
-#' @param ... Currently not used.
+#' @param calendar A [`TimeScale-class`] object specifying the target calendar
+#'  (see [calendar()]).
+#' @param ... Further parameters to be passed to [aion::plot()].
 #' @return
-#'  A [`ggplot`][ggplot2::ggplot] object.
+#'   `plot_time()` is called it for its side-effects: it results in a graphic
+#'   being displayed (invisibly returns `object`).
 #' @example inst/examples/ex-plot.R
 #' @author N. Frerebeau
 #' @family plotting methods
@@ -543,30 +564,12 @@ setGeneric(
 ## AoristicSum -----------------------------------------------------------------
 #' Plot Aoristic Analysis
 #'
-#' @param x An [AoristicSum-class] object.
-#' @param calendar A [`TimeScale-class`] object specifying the target calendar
-#'  (see [calendar()]).
+#' @param x An [`AoristicSum-class`] object.
 #' @param type A [`character`] string specifying whether bar or density should
 #'  be plotted? It must be one of "`bar`" or "`density`". Any unambiguous
 #'  substring can be given.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
-#' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
-#'  flipped from side 2 (left) to 4 (right) from series to series?
-#' @param ncol An [`integer`] specifying the number of columns to use when
-#'  `type` is "`multiple`". Defaults to 1 for up to 4 series, otherwise to 2.
-#' @param main A [`character`] string giving a main title for the plot.
-#' @param sub A [`character`] string giving a subtitle for the plot.
-#' @param ann A [`logical`] scalar: should the default annotation (title and x,
-#'  y and z axis labels) appear on the plot?
-#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
-#' @param frame.plot A [`logical`] scalar: should a box be drawn around the
-#'  plot?
-#' @param panel.first An an `expression` to be evaluated after the plot axes are
-#'  set up but before any plotting takes place. This can be useful for drawing
-#'  background grids.
-#' @param panel.last An `expression` to be evaluated after plotting has taken
-#'  place but before the axes, title and box are added.
-#' @param ... Further [graphical parameters][graphics::par].
+#' @inheritParams aion::plot
 #' @return
 #'   `plot()` is called it for its side-effects: it results in a graphic being
 #'   displayed (invisibly returns `x`).
@@ -582,7 +585,7 @@ NULL
 ## MeanDate ---------------------------------------------------------------------
 #' MCD Plot
 #'
-#' @param x A [MeanDate-class] object.
+#' @param x A [`MeanDate-class`] object.
 #' @param calendar A [`TimeScale-class`] object specifying the target calendar
 #'  (see [calendar()]).
 #' @param interval A [`character`] string giving the type of confidence
@@ -622,7 +625,7 @@ NULL
 #' Event Plot
 #'
 #' Produces an activity or a tempo plot.
-#' @param object,x A [EventDate-class] object.
+#' @param x An [`EventDate-class`] object.
 #' @param type A [`character`] string indicating the type of plot.
 #'  It must be one of "`activity`" (default) or "`tempo`".
 #'  Any unambiguous substring can be given.
@@ -632,7 +635,9 @@ NULL
 #'  length of the vector of quantiles for density computation.
 #' @param event A [`logical`] scalar: should the distribution of the event date
 #'  be displayed? Only used if type is "`activity`".
-#' @param ... Currently not used.
+#' @param eps A length-one [`numeric`] value giving the cutoff below which
+#'  values will be removed.
+#' @inheritParams aion::plot
 #' @section Event and Acccumulation Dates:
 #'  `plot()` displays the probability estimate density curves of archaeological
 #'  assemblage dates (*event* and *accumulation* dates; Bellanger and Husi
@@ -640,7 +645,7 @@ NULL
 #'  is shown as a grey filled area.
 #'
 #'  The accumulation date can be displayed as a tempo plot (Dye 2016) or an
-#'  activity plot (Philippe and Vibet 2017):
+#'  activity plot (Philippe and Vibet 2020):
 #'  \describe{
 #'   \item{Tempo plot}{A tempo plot estimates the cumulative occurrence of
 #'   archaeological events, such as the slope of the plot directly reflects the
@@ -649,9 +654,8 @@ NULL
 #'   tempo plot.}
 #'  }
 #' @return
-#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
-#'  * `plot()` is called it for its side-effects: it results in a graphic being
-#'    displayed (invisibly returns `x`).
+#'  `plot()` is called it for its side-effects: it results in a graphic being
+#'  displayed (invisibly returns `x`).
 #' @references
 #'  Bellanger, L. & Husi, P. (2012). Statistical Tool for Dating and
 #'  Interpreting Archaeological Contexts Using Pottery. *Journal of
@@ -661,7 +665,7 @@ NULL
 #'  Social Stratification. *Journal of Archaeological Science*, 71, 1-9.
 #'  \doi{10.1016/j.jas.2016.05.006}.
 #'
-#'  Philippe, A. & Vibet, M.-A. (2017). Analysis of Archaeological Phases Using
+#'  Philippe, A. & Vibet, M.-A. (2020). Analysis of Archaeological Phases Using
 #'  the R Package ArchaeoPhases. *Journal of Statistical Software, Code
 #'  Snippets*, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
 #' @example inst/examples/ex-event.R
@@ -677,13 +681,8 @@ NULL
 #' Detection of Selective Processes
 #'
 #' Produces an abundance *vs* time diagram.
-#' @param object,x An object to be plotted.
-#' @param level A length-one [`numeric`] vector giving the confidence level.
-#' @param roll A [`logical`] scalar: should each time series be subsetted to
-#'  look for episodes of selection?
-#' @param window An odd [`integer`] giving the size of the rolling
-#'  window. Only used if `roll` is `TRUE`.
-#' @param ... Currently not used.
+#' @param x An [`IncrementTest-class`] object to be plotted.
+#' @inheritParams aion::plot
 #' @details
 #'  Results of the frequency increment test can be displayed on an abundance
 #'  *vs* time diagram aid in the detection and quantification of selective
@@ -693,9 +692,8 @@ NULL
 #'  selection. If so, shading highlights the data points where
 #'  [fit()] identifies selection.
 #' @return
-#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
-#'  * `plot()` is called it for its side-effects: it results in a graphic being
-#'    displayed (invisibly returns `x`).
+#'  `plot()` is called it for its side-effects: it results in a graphic being
+#'  displayed (invisibly returns `x`).
 #' @note
 #'  Displaying FIT results on an abundance *vs* time diagram is adapted from Ben
 #'  Marwick's [original idea](https://github.com/benmarwick/signatselect/).
@@ -712,8 +710,10 @@ NULL
 ## Reciprocal ranking ----------------------------------------------------------
 #' Reciprocal Ranking Seriation
 #'
-#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
-#'  [`data.frame`] of count data (absolute frequencies).
+#' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
+#'  [`data.frame`] of count data (absolute frequencies giving the number of
+#'  individuals for each category, i.e. a contingency table). A [`data.frame`]
+#'  will be coerced to a `numeric` `matrix` via [data.matrix()].
 #' @param EPPM A [`logical`] scalar: should the seriation be computed on EPPM
 #'  instead of raw data?
 #' @param margin A [`numeric`] vector giving the subscripts which the
@@ -758,8 +758,10 @@ setGeneric(
 ## Average Ranking -------------------------------------------------------------
 #' Correspondence Analysis-Based Seriation
 #'
-#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
-#'  [`data.frame`] of count data (absolute frequencies).
+#' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
+#'  [`data.frame`] of count data (absolute frequencies giving the number of
+#'  individuals for each category, i.e. a contingency table). A [`data.frame`]
+#'  will be coerced to a `numeric` `matrix` via [data.matrix()].
 #' @param margin A [`numeric`] vector giving the subscripts which the
 #'  rearrangement will be applied over: `1` indicates rows, `2` indicates
 #'  columns, `c(1, 2)` indicates rows then columns, `c(2, 1)` indicates columns
@@ -775,7 +777,7 @@ setGeneric(
 #'  correspondence analysis space is arbitrary: additional information is needed
 #'  to determine the actual order in time.
 #' @return
-#'  An [AveragePermutationOrder-class] object.
+#'  An [`AveragePermutationOrder-class`] object.
 #' @references
 #'  Ihm, P. (2005). A Contribution to the History of Seriation in Archaeology.
 #'  In C. Weihs & W. Gaul (Eds.), *Classification: The Ubiquitous
@@ -812,7 +814,7 @@ setGeneric(
 ## Refine ----------------------------------------------------------------------
 #' Refine CA-based Seriation
 #'
-#' @param object A [PermutationOrder-class] object (typically returned by
+#' @param object A [`PermutationOrder-class`] object (typically returned by
 #'  [seriate_average()]).
 #' @param cutoff A function that takes a numeric vector as argument and returns
 #'  a single numeric value (see below).
@@ -838,7 +840,7 @@ setGeneric(
 #'  the CA are highly stable and which produces an ordering consistent with the
 #'  assumptions of frequency seriation."
 #' @return
-#'  A [RefinePermutationOrder-class] object.
+#'  A [`RefinePermutationOrder-class`] object.
 #' @references
 #'  Peeples, M. A., & Schachner, G. (2012). Refining correspondence
 #'  analysis-based ceramic seriation of regional data sets. *Journal of
@@ -859,9 +861,11 @@ setGeneric(
 #' @description
 #'  * `permute()` rearranges a data matrix according to a permutation order.
 #'  * `get_order()` returns the seriation order for rows and columns.
-#' @param object An \eqn{m \times p}{m x p} `numeric` [`matrix`] or a
-#'  [`data.frame`] of count data (absolute frequencies).
-#' @param x,order A [PermutationOrder-class] object giving the permutation
+#' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
+#'  [`data.frame`] of count data (absolute frequencies giving the number of
+#'  individuals for each category, i.e. a contingency table). A [`data.frame`]
+#'  will be coerced to a `numeric` `matrix` via [data.matrix()].
+#' @param x,order A [`PermutationOrder-class`] object giving the permutation
 #'  order for rows and columns.
 #' @param margin A [`numeric`] vector giving the subscripts which the
 #'  rearrangement will be applied over: `1` indicates rows, `2` indicates

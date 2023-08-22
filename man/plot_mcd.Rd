@@ -38,7 +38,7 @@
 )
 }
 \arguments{
-\item{x}{A \linkS4class{MeanDate} object.}
+\item{x}{A \code{\linkS4class{MeanDate}} object.}
 
 \item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
 (see \code{\link[=calendar]{calendar()}}).}

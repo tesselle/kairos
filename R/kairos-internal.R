@@ -4,6 +4,27 @@
   if (!is.null(x) && length(x) != 0) x else y
 }
 
+make_par <- function(params, x, n = 0) {
+  p <- params[[x]] %||% graphics::par()[[x]]
+  if (n > 0) p <- rep(p, length.out = n)
+  p
+}
+
+#' Compute x Limits
+#'
+#' Computes x limits for a time series according to a given calendar.
+#' This ensures that the x axis is always in chronological order.
+#' @param x A [`TimeSeries-class`] object.
+#' @param calendar A [`TimeScale-class`] object.
+#' @return A length-two [`numeric`] vector.
+#' @keywords internal
+#' @noRd
+xlim <- function(x, calendar) {
+  x <- range(time(x, calendar = NULL))
+  if (is.null(calendar)) return(x)
+  as_year(x, calendar = calendar)
+}
+
 #' Plotting Dimensions of Character Strings
 #'
 #' Convert string length in inch to number of (margin) lines.#'
@@ -46,6 +67,35 @@ roll <- function(x, window = 3) {
   m <- w[, ceiling(window / 2)]
 
   list(i = inds, w = rep(m, each = window))
+}
+
+#' Resample
+#'
+#' Simulates observations from a multinomial distribution.
+#' @param x A [`numeric`] vector of count data (absolute frequencies).
+#' @param do A [`function`] that takes `x` as an argument
+#'  and returns a single numeric value.
+#' @param n A non-negative [`integer`] specifying the number of bootstrap
+#'  replications.
+#' @param size A non-negative [`integer`] specifying the sample size.
+#' @param f A [`function`] that takes a single numeric vector (the result of
+#'  `do`) as argument.
+#' @param ... Extra arguments passed to `do`.
+#' @return
+#'  If `f` is `NULL`, `resample()` returns the `n` values of `do`. Else,
+#'  returns the result of `f` applied to the `n` values of `do`.
+#' @seealso [stats::rmultinom()]
+#' @keywords internal
+#' @noRd
+resample <- function(x, do, n, size = sum(x), ..., f = NULL) {
+  ## Validation
+  arkhe::assert_count(x)
+
+  prob <- x / sum(x)
+  replicates <- stats::rmultinom(n, size = size, prob = prob)
+  values <- apply(X = replicates, MARGIN = 2, FUN = do, ...)
+  if (is.function(f)) values <- f(values)
+  values
 }
 
 #' Subset

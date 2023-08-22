@@ -29,14 +29,12 @@ setMethod(
                         progress = getOption("kairos.progress")) {
     ## Validation
     method <- match.arg(method, several.ok = FALSE)
-    assert_lower(s0, s1, strict = FALSE)
-    assert_lower(t0, t1, strict = FALSE)
+    arkhe::assert_lower(s0, s1, strict = FALSE)
+    arkhe::assert_lower(t0, t1, strict = FALSE)
 
     ## Get data
     n_site <- nrow(object)
     n_type <- ncol(object)
-    if (length(from) == 0) from <- min(s0)
-    if (length(to) == 0) to <- max(s1)
     span <- to - from
     if (span <= 0) {
       msg <- "The duration of the period of interest cannot be negative (%g)!"

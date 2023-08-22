@@ -72,7 +72,6 @@ setValidity(
   method = function(object) {
     # Get data
     replicates <- object@replicates
-    breaks <- object@breaks
     groups <- object@groups
 
     i <- nrow(object)
@@ -81,8 +80,7 @@ setValidity(
 
     cnd <- list(
       arkhe::validate(arkhe::assert_scalar(replicates, "integer")),
-      arkhe::validate(arkhe::assert_length(groups, k)),
-      arkhe::validate(arkhe::assert_length(breaks, j))
+      arkhe::validate(arkhe::assert_length(groups, k))
     )
 
     # Return cnd, if any
@@ -118,17 +116,13 @@ setValidity(
   Class = "IncrementTest",
   method = function(object) {
     # Get data
-    counts <- object@counts
-    dates <- object@dates
     statistic <- object@statistic
     parameter <- object@parameter
     p_value <- object@p_value
 
-    i <- nrow(counts)
-    j <- ncol(counts)
+    j <- ncol(object)
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_length(dates, i)),
       arkhe::validate(arkhe::assert_length(statistic, j)),
       arkhe::validate(arkhe::assert_scalar(parameter, "integer")),
       arkhe::validate(arkhe::assert_length(p_value, j))

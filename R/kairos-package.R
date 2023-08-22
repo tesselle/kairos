@@ -8,8 +8,6 @@
 #'
 #' @section Package options:
 #'  `kairos` uses the following [options()] to configure behavior:
-#'  * `kairos.precision`: an [`integer`] indicating the number of decimal
-#'    places for years (defaults to \eqn{0}).
 #'  * `kairos.progress`: a [`logical`] scalar. Should progress bars be
 #'    displayed?
 #'
@@ -41,16 +39,11 @@
 
 #' @import arkhe
 #' @import aion
-#' @importFrom dimensio ca get_coordinates get_eigenvalues
+#' @importFrom dimensio ca get_coordinates get_data get_eigenvalues
 #' get_replications predict
 #' @importFrom extraDistr ptnorm
-#' @importFrom ggplot2 autoplot ggplot aes facet_wrap geom_area geom_line
-#' geom_point geom_segment labs mean_cl_normal scale_x_continuous
-#' scale_y_continuous scale_y_discrete stat_summary theme theme_bw vars
 #' @importFrom grDevices xy.coords
 #' @importFrom Hmisc smean.cl.normal
 #' @importFrom methods as callGeneric callNextMethod new setClass setGeneric
 #' setMethod validObject .valueClassTest
-#' @importFrom rlang .data
-#' @importFrom tabula resample
 NULL

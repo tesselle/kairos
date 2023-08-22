@@ -6,6 +6,7 @@
 \alias{event-method}
 \alias{predict_event}
 \alias{predict_event-method}
+\alias{get_event}
 \alias{predict_accumulation}
 \alias{predict_accumulation-method}
 \alias{event,data.frame,numeric-method}
@@ -22,11 +23,13 @@ event(object, dates, ...)
 
 predict_event(object, data, ...)
 
+get_event(object)
+
 predict_accumulation(object, data, ...)
 
-\S4method{event}{data.frame,numeric}(object, dates, rank = 10, cutoff = NULL, ...)
+\S4method{event}{data.frame,numeric}(object, dates, rank = 10, calendar = CE(), ...)
 
-\S4method{event}{matrix,numeric}(object, dates, rank = 10, cutoff = NULL, ...)
+\S4method{event}{matrix,numeric}(object, dates, rank = 10, calendar = CE(), ...)
 
 \S4method{predict_event}{EventDate,missing}(object, margin = 1, level = 0.95)
 
@@ -39,8 +42,10 @@ predict_accumulation(object, data, ...)
 \S4method{summary}{EventDate}(object, ...)
 }
 \arguments{
-\item{object}{An \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or a
-\code{\link{data.frame}} of count data (absolute frequencies).}
+\item{object}{A \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or
+\code{\link{data.frame}} of count data (absolute frequencies giving the number of
+individuals for each category, i.e. a contingency table). A \code{\link{data.frame}}
+will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{data.matrix()}}.}
 
 \item{dates}{A \code{\link{numeric}} vector of dates expressed in CE years (BCE years
 must be given as negative numbers). If named, the names must match
@@ -49,27 +54,27 @@ the row names of \code{object}.}
 \item{...}{Further arguments to be passed to internal methods.}
 
 \item{data}{A \code{numeric} \code{\link{matrix}} or a \code{\link{data.frame}} of count data
-(absolute frequencies)for which to predict event and accumulation dates.}
+(absolute frequencies) for which to predict event and accumulation dates.}
 
 \item{rank}{An \code{\link{integer}} specifying the number of CA factorial components
 to be use for linear model fitting (see details).}
+
+\item{margin}{A \code{\link{numeric}} vector giving the subscripts which the prediction
+will be applied over: \code{1} indicates rows, \code{2} indicates columns.}
+
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
 
 \item{cutoff}{An \code{\link{integer}} giving the cumulative percentage of variance
 used to select CA factorial components for linear model fitting (see
 details). All compounds with a cumulative percentage of variance of less
 than the \code{cutoff} value will be retained.
 This argument is defunct: use \code{rank} instead.}
-
-\item{margin}{A \code{\link{numeric}} vector giving the subscripts which the prediction
-will be applied over: \code{1} indicates rows, \code{2} indicates columns.}
-
-\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
 }
 \value{
 \itemize{
-\item \code{event()} returns an \linkS4class{EventDate} object.
+\item \code{event()} returns an \code{\linkS4class{EventDate}} object.
 \item \code{predict_event()} returns a \code{\link{data.frame}}.
-\item \code{predict_accumulation()} returns a \linkS4class{MeanDate} object.
+\item \code{predict_accumulation()} returns a \code{\linkS4class{MeanDate}} object.
 }
 }
 \description{
@@ -99,10 +104,6 @@ This method relies on strong archaeological and statistical assumptions
 (see \code{vignette("event")}).
 }
 \note{
-All results are rounded to zero decimal places (sub-annual precision does
-not make sense in most situations). You can change this behavior with
-\code{options(kairos.precision = x)} (for \code{x} decimal places).
-
 Bellanger \emph{et al.} did not publish the data supporting their demonstration:
 no replication of their results is possible. This implementation must be
 considered \strong{experimental} and subject to major changes in a future
@@ -139,8 +140,8 @@ for Seriation of Sagalassos Tablewares. In Doerr, M. & Apostolis, S. (eds.),
 \emph{The Digital Heritage of Archaeology}. Athens: Hellenic Ministry of Culture.
 }
 \seealso{
-\link[=plot_event]{plot()}, \link[=resample_event]{jackknife()},
-\link[=resample_event]{bootstrap()}
+\code{\link[=plot_event]{plot()}}, \code{\link[=resample_event]{jackknife()}},
+\code{\link[=resample_event]{bootstrap()}}
 
 Other dating methods: 
 \code{\link{mcd}()}

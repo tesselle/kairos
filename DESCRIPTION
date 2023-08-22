@@ -39,22 +39,16 @@ BugReports: https://github.com/tesselle/kairos/issues
 Depends: 
     R (>= 3.4)
 Imports:
-    aion,
-    arkhe (>= 1.0.0),
-    dimensio (>= 0.3.0),
+    aion (> 1.0.0),
+    arkhe (>= 1.2.0),
+    dimensio (>= 0.4.0),
     extraDistr,
-    ggplot2,
     grDevices,
-    Hmisc,
     methods,
-    rlang,
     stats,
-    tabula (>= 2.0.0),
     utils
 Suggests:
-    covr,
     folio (>= 1.3.0),
-    khroma,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),

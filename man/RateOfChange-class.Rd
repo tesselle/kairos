@@ -8,20 +8,29 @@
 \description{
 An S4 class to represent rates of change from an aoristic analysis.
 }
+\details{
+Dates are internally stored as \emph{\link[aion:RataDie-class]{rata die}}.
+}
 \section{Slots}{
 
 \describe{
 \item{\code{replicates}}{A non-negative \code{\link{integer}} giving the number of
 replications.}
 
-\item{\code{breaks}}{A \code{\link{RataDie}} vector giving the date break between time-blocks.}
-
 \item{\code{groups}}{A \code{\link{character}} vector.}
 }}
 
 \note{
-This class inherits from base \code{\link{array}}.
+This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
 }
+\section{Coerce}{
+
+In the code snippets below, \code{x} is an \code{AoristicSum} object.
+\describe{
+\item{\code{as.data.frame(x)}}{Coerces to a \code{\link{data.frame}}.}
+}
+}
+
 \seealso{
 Other classes: 
 \code{\link{AoristicSum-class}},

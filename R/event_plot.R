@@ -3,20 +3,27 @@
 NULL
 
 #' @export
-#' @method autoplot EventDate
-autoplot.EventDate <- function(object, ..., type = c("activity", "tempo"),
-                               event = FALSE, select = 1, n = 500) {
-  # Validation
+#' @method plot EventDate
+plot.EventDate <- function(x, type = c("activity", "tempo"), event = FALSE,
+                           calendar = getOption("kairos.calendar"),
+                           select = 1, n = 500, eps = 1e-09,
+                           flip = FALSE, ncol = NULL,
+                           xlab = NULL, ylab = NULL,
+                           main = NULL, sub = NULL,
+                           ann = graphics::par("ann"), axes = TRUE,
+                           frame.plot = axes, ...) {
+  ## Validation
   type <- match.arg(type, several.ok = FALSE)
   n <- as.integer(n)
 
-  # Get data
-  rows <- predict_event(object, margin = 1)
+  ## Get data
+  rows <- predict_event(x, margin = 1)
   row_dates <- rows$date
   row_lower <- rows$lower
   row_upper <- rows$upper
   row_errors <- rows$error
-  columns <- predict_event(object, margin = 2)
+
+  columns <- predict_event(x, margin = 2)
   col_dates <- columns$date
   col_errors <- columns$error
   date_range <- seq(
@@ -25,21 +32,16 @@ autoplot.EventDate <- function(object, ..., type = c("activity", "tempo"),
     length.out = n
   )
 
-  # Selection
+  ## Selection
   cases <- rownames(rows)
-  index <- if (is.null(select)) {
-    seq_along(cases)
-  } else if (is.character(select)) {
-    which(cases %in% select)
-  } else {
-    as.numeric(select)
-  }
-  k <- length(index)
-  if (k == 0)
-    stop("Wrong selection.", call. = FALSE)
+  if (is.null(select)) index <- seq_along(cases)
+  else if (is.character(select)) index <- which(cases %in% select)
+  else index <- as.numeric(select)
 
-  # Event date
-  plot_event <- NULL
+  k <- length(index)
+  if (k == 0) stop("Wrong selection.", call. = FALSE)
+
+  ## Event date
   if (type == "activity" && event) {
     date_event <- mapply(
       FUN = stats::dnorm,
@@ -49,21 +51,15 @@ autoplot.EventDate <- function(object, ..., type = c("activity", "tempo"),
       SIMPLIFY = TRUE
     )
     colnames(date_event) <- cases[index]
-
-    # Build a long table for ggplot2
-    row_stacked <- wide2long(date_event)
-    row_stacked$date <- date_range
-    row_stacked <- row_stacked[row_stacked$data >= 10^-9, ]
-
-    colnames(row_stacked) <- c("density", "assemblage", "type", "date")
-    plot_event <- ggplot2::geom_line(data = row_stacked, color = "black")
+  } else {
+    date_event <- matrix(data = NA, nrow = n, ncol = k)
   }
 
-  # Accumulation time
-  # Weighted sum of the fabric dates
-  counts <- object[["data"]][index, , drop = FALSE]
+  ## Accumulation time
+  ## Weighted sum of the fabric dates
+  counts <- dimensio::get_data(x)[index, , drop = FALSE]
   freq <- counts / rowSums(counts)
-  # Tempo vs activity plot
+  ## Tempo vs activity plot
   fun <- switch(
     type,
     activity = stats::dnorm,
@@ -86,49 +82,31 @@ autoplot.EventDate <- function(object, ..., type = c("activity", "tempo"),
   )
   # date_acc <- date_acc / colSums(date_acc)
 
-  # Build a long table for ggplot2
-  col_stacked <- wide2long(date_acc)
-  col_data <- cbind.data.frame(date = date_range, col_stacked)
-  col_data <- col_data[col_data$data >= 10^-6, ]
-  colnames(col_data) <- c("date", "density", "assemblage", "type")
+  ## Time series
+  date_event[date_event < eps] <- NA
+  date_acc[date_acc < eps] <- NA
+  date_drop <- apply(date_event, 1, function(x) all(is.na(x))) &
+    apply(date_acc, 1, function(x) all(is.na(x)))
+  ts <- array(data = c(date_acc, date_event), dim = c(n, k, 2),
+              dimnames = list(NULL, cases[index], c("accumulation", "event")))
+  ts <- aion::series(object = ts[!date_drop, , , drop = FALSE],
+                     time = aion::as_fixed(date_range[!date_drop]))
 
-  # ggplot
-  plot_accumulation <- switch(
+  panel <- switch(
     type,
-    activity = ggplot2::geom_area(fill = "darkgrey", color = "darkgrey",
-                                  alpha = 0.7),
-    tempo = ggplot2::geom_line(color = "black"),
-    NULL
+    activity = function(x, y, ...) {
+      graphics::polygon(x = c(x, rev(x)), y = c(y, rep(0, length(y))),
+                        border = NA, ...)
+      graphics::lines(x, y, col = "black", lty = list(...)$lty)
+    },
+    tempo = function(x, y, ...) graphics::lines(x, y, col = "black", lty = 1)
   )
 
-  # Facet if more than one assemblage is selected
-  plot_facet <- NULL
-  if (k > 1) {
-    plot_facet <- ggplot2::facet_wrap(ggplot2::vars(.data$assemblage),
-                                      nrow = k, scales = "free_y")
-  }
-
-  aes_plot <- ggplot2::aes(x = .data$date, y = .data$density)
-  ggplot2::ggplot(data = col_data, mapping = aes_plot) +
-    plot_accumulation + plot_event + plot_facet +
-    ggplot2::scale_x_continuous(name = "Time") +
-    ggplot2::scale_y_continuous(name = "Density")
-}
-
-#' @export
-#' @rdname plot_event
-#' @aliases autoplot,EventDate-method
-setMethod("autoplot", "EventDate", autoplot.EventDate)
-
-#' @export
-#' @method plot EventDate
-plot.EventDate <- function(x, type = c("activity", "tempo"),
-                           event = FALSE, select = 1, n = 500, ...) {
-  gg <- autoplot(object = x, type = type, event = event,
-                 select = select, n = n) +
-    ggplot2::theme_bw()
-  print(gg)
-  invisible(x)
+  aion::plot(ts, panel = panel, calendar = calendar,
+             flip = flip, ncol = ncol, xlab = xlab, ylab = ylab,
+             main = main, sub = sub, ann = ann, axes = axes,
+             frame.plot = frame.plot,
+             col = c("lightgrey", NA), lty = c(3, 1))
 }
 
 #' @export

@@ -63,51 +63,31 @@ remotes::install_github("tesselle/kairos")
 
 ```{r packages-load}
 ## Load packages
-library(khroma) # Colour schemes
-library(tabula) # Plot methods
 library(kairos)
 ```
 
-**kairos** only supports dates expressed in CE years (BCE years must be given as negative numbers). **All results are rounded to zero decimal places** (sub-annual precision does not make sense in most situations). You can change this behavior with `options(kairos.precision = x)` (for `x` decimal places).
+**kairos** v2.0 uses **aion** for internal date representation. Look at `vignette("aion")` before you start.
 
 *It assumes that you keep your data tidy*: each variable (type/taxa) must be saved in its own column and each observation (sample/case) must be saved in its own row.
 
-```{r seriation, fig.width=5, fig.height=5, out.width='50%', fig.show='hold'}
-## Build an incidence matrix with random data
-set.seed(12345)
-incidence1 <- matrix(sample(0:1, 400, TRUE, c(0.6, 0.4)), nrow = 20)
-incidence1 <- incidence1 > 0 # logical
-
-## Get seriation order on rows and columns
-(indices <- seriate_rank(incidence1, margin = c(1, 2), stop = 100))
-
-## Permute rows and columns
-incidence2 <- permute(incidence1, indices)
-
-## Plot matrix
-tabula::plot_heatmap(incidence1) +
-  khroma::scale_fill_logical()
-tabula::plot_heatmap(incidence2) +
-  khroma::scale_fill_logical()
-```
-
-```{r aoristic, fig.width=5, fig.height=6}
+```{r aoristic, fig.width=7, fig.height=6}
 ## Data from Husi 2022
 data("loire", package = "folio")
-loire <- subset(loire, area %in% c("Anjou", "Blésois", "Orléanais", 
-                                   "Haut-Poitou", "Touraine"))
+keep <- c("Anjou", "Blésois", "Orléanais", "Haut-Poitou", "Touraine")
+loire <- subset(loire, area %in% keep)
 
 ## Get time range
 loire_range <- loire[, c("lower", "upper")]
 
 ## Calculate aoristic sum (weights) by group
-aorist_groups <- aoristic(loire_range, step = 50, weight = TRUE,
-                          groups = loire$area)
-plot(aorist_groups)
+ao <- aoristic(loire_range, step = 50, weight = TRUE, groups = loire$area)
+
+## Plot
+plot(ao, col = "grey")
 
 ## Rate of change by group
-roc_groups <- roc(aorist_groups, n = 30)
-plot(roc_groups)
+ro <- roc(ao, n = 30)
+plot(ro)
 ```
 
 ## Contributing

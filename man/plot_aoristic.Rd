@@ -11,8 +11,7 @@
 \S4method{plot}{AoristicSum,missing}(
   x,
   calendar = getOption("kairos.calendar"),
-  type = c("bar", "density"),
-  panel = graphics::lines,
+  type = c("bar"),
   flip = FALSE,
   ncol = NULL,
   main = NULL,
@@ -31,7 +30,6 @@
   x,
   calendar = getOption("kairos.calendar"),
   level = 0.95,
-  panel = graphics::lines,
   flip = FALSE,
   ncol = NULL,
   main = NULL,
@@ -45,27 +43,28 @@
 )
 }
 \arguments{
-\item{x}{An \linkS4class{AoristicSum} object.}
+\item{x}{An \code{\linkS4class{AoristicSum}} object.}
 
 \item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
-(see \code{\link[=calendar]{calendar()}}).}
+(see \code{\link[aion:calendar]{calendar()}}).}
 
 \item{type}{A \code{\link{character}} string specifying whether bar or density should
 be plotted? It must be one of "\code{bar}" or "\code{density}". Any unambiguous
 substring can be given.}
 
 \item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
-flipped from side 2 (left) to 4 (right) from series to series?}
+flipped from side 2 (left) to 4 (right) from series to series when \code{facet}
+is "\code{multiple}"?}
 
 \item{ncol}{An \code{\link{integer}} specifying the number of columns to use when
-\code{type} is "\code{multiple}". Defaults to 1 for up to 4 series, otherwise to 2.}
+\code{facet} is "\code{multiple}". Defaults to 1 for up to 4 series, otherwise to 2.}
 
 \item{main}{A \code{\link{character}} string giving a main title for the plot.}
 
 \item{sub}{A \code{\link{character}} string giving a subtitle for the plot.}
 
-\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x,
-y and z axis labels) appear on the plot?}
+\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x
+and y axis labels) appear on the plot?}
 
 \item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
 
@@ -79,7 +78,8 @@ background grids.}
 \item{panel.last}{An \code{expression} to be evaluated after plotting has taken
 place but before the axes, title and box are added.}
 
-\item{...}{Further \link[graphics:par]{graphical parameters}.}
+\item{...}{Further parameters to be passed to \code{panel}
+(e.g. \link[graphics:par]{graphical parameters}).}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
 }
@@ -99,16 +99,16 @@ loire_range <- loire[, c("lower", "upper")]
 
 ## Calculate aoristic sum (normal)
 aorist_raw <- aoristic(loire_range, step = 50, weight = FALSE)
-plot(aorist_raw)
+plot(aorist_raw, col = "grey")
 
 ## Calculate aoristic sum (weights)
 aorist_weighted <- aoristic(loire_range, step = 50, weight = TRUE)
-plot(aorist_weighted)
+plot(aorist_weighted, col = "grey")
 
 ## Calculate aoristic sum (weights) by group
 aorist_groups <- aoristic(loire_range, step = 50, weight = TRUE,
                           groups = loire$area)
-plot(aorist_groups, flip = TRUE)
+plot(aorist_groups, flip = TRUE, col = "grey")
 image(aorist_groups)
 
 ## Rate of change

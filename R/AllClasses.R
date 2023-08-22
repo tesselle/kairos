@@ -9,13 +9,13 @@ NULL
 #' @slot dates A length-\eqn{p} [`numeric`] vector giving the dates of the
 #'  (ceramic) types expressed in *[rata die][aion::RataDie-class]*.
 #' @slot replications A `numeric` [`matrix`] giving the replications.
+#' @details
+#'  Dates are internally stored as *[rata die][aion::RataDie-class]*.
 #' @section Coerce:
 #'  In the code snippets below, `x` is a `MeanDate` object.
 #'  \describe{
 #'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
 #'  }
-#' @details
-#'  Dates are internally stored as *[rata die][aion::RataDie-class]*.
 #' @note
 #'  This class inherits from [`aion::TimeSeries-class`].
 #' @seealso [`aion::TimeSeries-class`]
@@ -47,11 +47,14 @@ NULL
 #' assemblages.
 #' @slot contexts A \eqn{m \times p}{m x p} [`integer`] [`matrix`] of count
 #'  data.
-#' @slot dates A length-\eqn{m} [`numeric`] vector of dates.
+#' @slot dates A length-\eqn{m} [`numeric`] vector of dates expressed in
+#'  *[rata die][aion::RataDie-class]*.
 #' @slot model A [multiple linear model][stats::lm()]: the Gaussian
 #'  multiple linear regression model fitted for event date estimation and
 #'  prediction.
 #' @slot keep An [`integer`] vector.
+#' @details
+#'  Dates are internally stored as *[rata die][aion::RataDie-class]*.
 #' @note This class inherits from [`dimensio::CA-class`].
 #' @seealso [`dimensio::CA-class`]
 #' @author N. Frerebeau
@@ -63,7 +66,7 @@ NULL
   Class = "EventDate",
   slots = c(
     contexts = "matrix",
-    dates = "numeric",
+    dates = "RataDie",
     model = "lm",
     keep = "integer"
   ),
@@ -74,12 +77,18 @@ NULL
 #' Aoristic Sum
 #'
 #' An S4 class to represent an aoristic analysis results.
+#' @slot breaks A [`RataDie-class`] vector giving the date break between
+#'  time-blocks.
 #' @slot weights A [`numeric`] vector.
-#' @slot breaks A [`RataDie`] vector giving the date break between time-blocks.
-#' @slot p A [`numeric`] [`array`] giving the aorisitic probabilities.
 #' @slot groups A [`character`] vector.
+#' @slot p A [`numeric`] [`array`] giving the aorisitic probabilities.
 #' @details
 #'  Dates are internally stored as *[rata die][aion::RataDie-class]*.
+#' @section Coerce:
+#'  In the code snippets below, `x` is an `AoristicSum` object.
+#'  \describe{
+#'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
+#'  }
 #' @note
 #'  This class inherits from [`aion::TimeSeries-class`].
 #' @author N. Frerebeau
@@ -90,10 +99,10 @@ NULL
 .AoristicSum <- setClass(
   Class = "AoristicSum",
   slots = c(
-    weights = "numeric",
     breaks = "RataDie",
-    p = "array",
-    groups = "character"
+    weights = "numeric",
+    groups = "character",
+    p = "array"
   ),
   contains = "TimeSeries"
 )
@@ -103,9 +112,16 @@ NULL
 #' An S4 class to represent rates of change from an aoristic analysis.
 #' @slot replicates A non-negative [`integer`] giving the number of
 #'  replications.
-#' @slot breaks A [`RataDie`] vector giving the date break between time-blocks.
 #' @slot groups A [`character`] vector.
-#' @note This class inherits from base [`array`].
+#' @details
+#'  Dates are internally stored as *[rata die][aion::RataDie-class]*.
+#' @section Coerce:
+#'  In the code snippets below, `x` is an `AoristicSum` object.
+#'  \describe{
+#'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
+#'  }
+#' @note
+#'  This class inherits from [`aion::TimeSeries-class`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -115,10 +131,9 @@ NULL
   Class = "RateOfChange",
   slots = c(
     replicates = "integer",
-    breaks = "RataDie",
     groups = "character"
   ),
-  contains = "array"
+  contains = "TimeSeries"
 )
 
 # CountApportion ==================================================================
@@ -159,20 +174,17 @@ NULL
 #' Frequency Increment Test
 #'
 #' An S4 class to represent a Frequency Increment Test results.
-#' @slot counts An \eqn{m \times p}{m x p} [`numeric`] matrix of count data.
-#' @slot dates A length-\eqn{m} [`numeric`] vector of dates.
 #' @slot statistic A [`numeric`] vector giving the values of the t-statistic.
 #' @slot parameter An [`integer`] giving the degrees of freedom for the
 #'  t-statistic.
 #' @slot p_value A [`numeric`] vector giving the the p-value for the test.
-#' @param x An object from which to extract element(s) or in which to replace
-#'  element(s).
-#' @param i A [`character`] string specifying elements to extract.
 #' @section Coerce:
 #'  In the code snippets below, `x` is an `IncrementTest` object.
 #'  \describe{
 #'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
 #'  }
+#' @note
+#'  This class inherits from [`aion::TimeSeries-class`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -181,12 +193,11 @@ NULL
 .IncrementTest <- setClass(
   Class = "IncrementTest",
   slots = c(
-    counts = "matrix",
-    dates = "numeric",
     statistic = "numeric",
     parameter = "integer",
     p_value = "numeric"
-  )
+  ),
+  contains = "TimeSeries"
 )
 
 # PermutationOrder =============================================================
