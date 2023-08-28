@@ -54,7 +54,7 @@ setMethod(
 )
 
 .mcd <- function(x, dates) {
-  z <- stats::weighted.mean(x = dates, w = x)
+  stats::weighted.mean(x = dates, w = x)
 }
 
 # Resample =====================================================================

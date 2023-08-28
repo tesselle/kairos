@@ -10,20 +10,23 @@ if (requireNamespace("folio", quietly = TRUE)) {
   model <- event(zuni, zuni_dates, rank = 10)
 
   # Date Model =================================================================
-  eve <- predict_event(model, calendar = NULL)
-  expect_equal_to_reference(eve, file = "_snaps/event.rds")
+  eve1 <- predict_event(model, margin = 1, calendar = NULL)
+  expect_equivalent_to_reference(eve1, file = "_snaps/event1.rds")
+
+  eve2 <- predict_event(model, margin = 2, calendar = NULL)
+  expect_equivalent_to_reference(eve2, file = "_snaps/event2.rds")
 
   acc <- predict_accumulation(model)
-  expect_equal_to_reference(acc, file = "_snaps/accumulation.rds")
+  expect_equivalent_to_reference(as.data.frame(acc), file = "_snaps/accumulation.rds")
 
   # Event Date =================================================================
   ## Bootstrap
   boot <- with_seed(12345, bootstrap(model, n = 5))
-  expect_equal_to_reference(boot, file = "_snaps/event_bootstrap.rds")
+  expect_equivalent_to_reference(boot, file = "_snaps/event_bootstrap.rds")
 
   ## Jackknife
   jack <- with_seed(12345, jackknife(model))
-  expect_equal_to_reference(jack, file = "_snaps/event_jackknife.rds")
+  expect_equivalent_to_reference(jack, file = "_snaps/event_jackknife.rds")
 
   # Plot =======================================================================
   if (at_home()) {
@@ -47,8 +50,11 @@ if (requireNamespace("folio", quietly = TRUE)) {
                                         select = c("LZ1105", "LZ1103"))
     expect_snapshot_plot(plot_event_tempo, "plot_event_tempo")
 
-  }
+    ## Accumulation date
+    plot_accumulation <- function() plot(acc)
+    expect_snapshot_plot(plot_accumulation, "plot_accumulation")
 
-  ## Errors
-  expect_error(plot(model, select = "X"), "Wrong selection")
+    ## Errors
+    expect_error(plot(model, select = "X"), "Wrong selection")
+  }
 }
