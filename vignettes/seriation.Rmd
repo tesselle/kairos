@@ -141,7 +141,7 @@ tabula::plot_ford(zuni_permuted)
 
 According to @peeples2012, "[this] point removal procedure [results in] a reduced dataset where the position of individuals within the CA are highly stable and which produces an ordering consistent with the assumptions of frequency seriation."
 
-```{r bootstrap, message=FALSE, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
+```{r bootstrap, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
 ## Partial bootstrap CA
 ## Warning: this may take a few seconds!
 zuni_boot <- dimensio::bootstrap(zun_indices, n = 30)
@@ -166,7 +166,7 @@ fun <- function(x) { mean(x) + sd(x) }
 (zuni_refine <- seriate_refine(zun_indices, cutoff = fun, margin = 1))
 
 ## Plot CA results for the rows
-dimensio::viz_rows(zuni_refine, map_color = "observation", pch = 16)
+dimensio::viz_rows(zuni_refine, highlight = "observation", pch = c(16, 15))
 ```
 
 ```{r refine-histogram, fig.width=7, fig.height=3.5}

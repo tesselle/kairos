@@ -3,7 +3,6 @@
 S3method(as.data.frame,AoristicSum)
 S3method(as.data.frame,IncrementTest)
 S3method(as.data.frame,MeanDate)
-S3method(as.data.frame,RateOfChange)
 S3method(coef,EventDate)
 S3method(fitted,EventDate)
 S3method(image,AoristicSum)
