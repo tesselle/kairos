@@ -44,6 +44,10 @@ A convenient and reproducible toolkit for relative and absolute dating and analy
 
 [**tabula**](https://packages.tesselle.org/tabula/) is a companion package to **kairos** that provides functions for visualization and analysis of archaeological count data.
 
+```{r citation, echo=FALSE, comment=''}
+utils::citation("kairos")
+```
+
 ## Installation
 
 You can install the released version of **kairos** from [CRAN](https://CRAN.R-project.org) with:

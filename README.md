@@ -53,6 +53,30 @@ duration of an archaeological site. **kairos** provides methods for:
 package to **kairos** that provides functions for visualization and
 analysis of archaeological count data.
 
+    To cite kairos in publications use:
+
+      Frerebeau N (2023). _kairos: Analysis of Chronological Patterns from
+      Archaeological Count Data_. Université Bordeaux Montaigne, Pessac,
+      France. doi:10.5281/zenodo.5653896
+      <https://doi.org/10.5281/zenodo.5653896>, R package version 2.0.0,
+      <https://packages.tesselle.org/kairos/>.
+
+    Une entrée BibTeX pour les utilisateurs LaTeX est
+
+      @Manual{,
+        author = {Nicolas Frerebeau},
+        title = {{kairos: Analysis of Chronological Patterns from Archaeological Count Data}},
+        year = {2023},
+        organization = {Université Bordeaux Montaigne},
+        address = {Pessac, France},
+        note = {R package version 2.0.0},
+        url = {https://packages.tesselle.org/kairos/},
+        doi = {10.5281/zenodo.5653896},
+      }
+
+    This package is a part of the tesselle project
+    <https://www.tesselle.org>.
+
 ## Installation
 
 You can install the released version of **kairos** from
