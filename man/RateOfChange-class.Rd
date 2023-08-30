@@ -8,20 +8,18 @@
 \description{
 An S4 class to represent rates of change from an aoristic analysis.
 }
-\details{
-Dates are internally stored as \emph{\link[aion:RataDie-class]{rata die}}.
-}
 \section{Slots}{
 
 \describe{
 \item{\code{replicates}}{A non-negative \code{\link{integer}} giving the number of
 replications.}
 
-\item{\code{groups}}{A \code{\link{character}} vector.}
+\item{\code{groups}}{A \code{\link{character}} vector to store the group names (if any).}
 }}
 
 \note{
-This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
+This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}: dates are internally
+stored as \emph{\link[aion:RataDie-class]{rata die}}.
 }
 \section{Coerce}{
 

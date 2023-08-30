@@ -9,9 +9,6 @@
 An S4 class to store the weighted mean date (e.g. Mean Ceramic Date) of
 archaeological assemblages.
 }
-\details{
-Dates are internally stored as \emph{\link[aion:RataDie-class]{rata die}}.
-}
 \section{Slots}{
 
 \describe{
@@ -22,7 +19,8 @@ Dates are internally stored as \emph{\link[aion:RataDie-class]{rata die}}.
 }}
 
 \note{
-This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}.
+This class inherits from \code{\link[aion:TimeSeries-class]{aion::TimeSeries}}: dates are internally
+stored as \emph{\link[aion:RataDie-class]{rata die}}.
 }
 \section{Coerce}{
 

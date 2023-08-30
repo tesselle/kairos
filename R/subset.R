@@ -74,20 +74,7 @@ extract_slot <- function(x, i) {
 }
 
 #' @export
-#' @describeIn IncrementTest-class Extracts information from a slot selected
-#'  by subscript i. i is a length-one character vector. Returns the
-#'  corresponding slot values.
-#' @aliases [[,IncrementTest,ANY,missing-method
-setMethod(
-  f = "[[",
-  signature = c(x = "IncrementTest", i = "ANY", j = "missing"),
-  definition = extract_slot
-)
-
-#' @export
-#' @describeIn PermutationOrder-class Extracts information from a slot selected
-#'  by subscript i. i is a length-one character vector. Returns the
-#'  corresponding slot values.
+#' @rdname subset
 #' @aliases [[,PermutationOrder,ANY,missing-method
 setMethod(
   f = "[[",

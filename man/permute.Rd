@@ -37,12 +37,15 @@ rearrangement will be applied over: \code{1} indicates rows, \code{2} indicates
 columns, \code{c(1, 2)} indicates rows and columns.}
 }
 \value{
-A permuted \code{matrix} or a permuted \code{data.frame} (the same as \code{object}).
+\itemize{
+\item \code{permute()} returns a permuted \code{matrix} or a permuted \code{data.frame}
+(the same as \code{object}).
+}
 }
 \description{
 \itemize{
 \item \code{permute()} rearranges a data matrix according to a permutation order.
-\item \code{get_order()} returns the seriation order for rows and columns.
+\item \code{get_order()} returns the seriation order for rows and/or columns.
 }
 }
 \examples{

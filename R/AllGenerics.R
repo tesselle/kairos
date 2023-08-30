@@ -901,7 +901,7 @@ setGeneric(
 #'
 #' @description
 #'  * `permute()` rearranges a data matrix according to a permutation order.
-#'  * `get_order()` returns the seriation order for rows and columns.
+#'  * `get_order()` returns the seriation order for rows and/or columns.
 #' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
 #'  [`data.frame`] of count data (absolute frequencies giving the number of
 #'  individuals for each category, i.e. a contingency table). A [`data.frame`]
@@ -913,7 +913,8 @@ setGeneric(
 #'  columns, `c(1, 2)` indicates rows and columns.
 #' @param ... Currently not used.
 #' @return
-#'  A permuted `matrix` or a permuted `data.frame` (the same as `object`).
+#'  * `permute()` returns a permuted `matrix` or a permuted `data.frame`
+#'    (the same as `object`).
 #' @seealso [dimensio::ca()]
 #' @example inst/examples/ex-seriation.R
 #' @author N. Frerebeau

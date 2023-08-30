@@ -5,11 +5,14 @@
 \alias{subset}
 \alias{[,MeanDate-method}
 \alias{[,IncrementTest-method}
+\alias{[[,PermutationOrder,ANY,missing-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
 \S4method{[}{MeanDate}(x, i, j, k, drop = FALSE)
 
 \S4method{[}{IncrementTest}(x, i, j, k, drop = FALSE)
+
+\S4method{[[}{PermutationOrder,ANY,missing}(x, i)
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace

@@ -13,8 +13,12 @@ apportioning of artifact types (columns) per site (rows) and per period
 \section{Slots}{
 
 \describe{
-\item{\code{p}}{An \code{\link{array}} giving the probability of apportioning an artifact type
-to a given period.}
+\item{\code{.Data}}{An \eqn{m \times p \times k}{m x p x k} \code{\link{array}} giving the
+proportion of an artifact type (\eqn{p}) for a given period (\eqn{k}).}
+
+\item{\code{p}}{An \eqn{m \times p \times k}{m x p x k} \code{\link{array}} giving the
+probability of apportioning an artifact type (\eqn{p}) to a given period
+(\eqn{k}).}
 
 \item{\code{method}}{A \code{\link{character}} string specifying the distribution used for
 apportioning (type popularity curve).}
@@ -25,7 +29,7 @@ period of interest (in years AD).}
 \item{\code{to}}{A length-one \code{\link{numeric}} vector giving the end of the period of
 interest (in years AD).}
 
-\item{\code{step}}{A length-one \code{\link{integer}} vector giving the step size, i.e. the
+\item{\code{step}}{A length-one \code{\link{numeric}} vector giving the step size, i.e. the
 width of each time step for apportioning (in years AD).}
 }}
 

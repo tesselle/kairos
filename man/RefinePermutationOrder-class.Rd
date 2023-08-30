@@ -12,10 +12,6 @@ An S4 class to store partial bootstrap correspondence analysis results.
 \section{Slots}{
 
 \describe{
-\item{\code{hull}}{A three columns \code{\link{numeric}} matrix giving the vertices
-coordinates (\code{x}, \code{y}) of the convex hull and a identifier (\code{id})
-to link each row to a variable.}
-
 \item{\code{length}}{A \code{\link{numeric}} vector giving the convex hull maximum
 dimension length.}
 
