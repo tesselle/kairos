@@ -1,4 +1,6 @@
 if (requireNamespace("folio", quietly = TRUE)) {
+  source("helpers.R")
+
   data("zuni", package = "folio")
   zuni_dates <- c(
     LZ0569 = 1097, LZ0279 = 1119, CS16 = 1328, LZ0066 = 1111,
@@ -30,7 +32,6 @@ if (requireNamespace("folio", quietly = TRUE)) {
 
   # Plot =======================================================================
   if (at_home()) {
-    source("helpers.R")
     using("tinysnapshot")
     options(tinysnapshot_device = "svglite")
     options(tinysnapshot_height = 7) # inches
