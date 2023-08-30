@@ -113,7 +113,9 @@ setMethod(
     col_event <- predict_event(object, data, margin = 2, calendar = NULL)
 
     # Accumulation time point estimate
-    mcd(data, col_event$date, calendar = NULL)
+    acc <- mcd(data, col_event$date, calendar = NULL)
+
+    as.data.frame(acc)
   }
 )
 

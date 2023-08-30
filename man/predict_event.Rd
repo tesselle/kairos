@@ -46,7 +46,7 @@ will be applied over: \code{1} indicates rows, \code{2} indicates columns.}
 \value{
 \itemize{
 \item \code{predict_event()} returns a \code{\link{data.frame}}.
-\item \code{predict_accumulation()} returns a \code{\linkS4class{MeanDate}} object.
+\item \code{predict_accumulation()} returns a \code{\link{data.frame}}.
 }
 }
 \description{

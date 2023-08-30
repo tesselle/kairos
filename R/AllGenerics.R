@@ -333,7 +333,7 @@ setGeneric(
 #'  release.
 #' @return
 #'  * `predict_event()` returns a [`data.frame`].
-#'  * `predict_accumulation()` returns a [`MeanDate-class`] object.
+#'  * `predict_accumulation()` returns a [`data.frame`].
 #' @seealso [event()]
 #' @references
 #'  Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans
@@ -371,7 +371,7 @@ setGeneric(
 setGeneric(
   name = "predict_accumulation",
   def = function(object, data, ...) standardGeneric("predict_accumulation"),
-  valueClass = "MeanDate"
+  valueClass = "data.frame"
 )
 
 # Chronological Modelling ======================================================

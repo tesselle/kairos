@@ -17,7 +17,7 @@ if (requireNamespace("folio", quietly = TRUE)) {
   expect_equivalent_to_reference(eve2, file = "_snaps/event2.rds")
 
   acc <- predict_accumulation(model)
-  expect_equivalent_to_reference(as.data.frame(acc), file = "_snaps/accumulation.rds")
+  expect_equivalent_to_reference(acc, file = "_snaps/accumulation.rds")
 
   # Event Date =================================================================
   ## Bootstrap
@@ -49,10 +49,6 @@ if (requireNamespace("folio", quietly = TRUE)) {
     plot_event_tempo <- function() plot(model, type = "tempo",
                                         select = c("LZ1105", "LZ1103"))
     expect_snapshot_plot(plot_event_tempo, "plot_event_tempo")
-
-    ## Accumulation date
-    plot_accumulation <- function() plot(acc)
-    expect_snapshot_plot(plot_accumulation, "plot_accumulation")
 
     ## Errors
     expect_error(plot(model, select = "X"), "Wrong selection")
