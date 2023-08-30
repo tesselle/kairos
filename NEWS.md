@@ -1,4 +1,4 @@
-# kairos 1.2.0.9000
+# kairos 2.0.0
 ## New classes and methods
 * Add `image()` methods.
 * Add `coef()`, `fitted()`, `residuals()`, `sigma()` and `terms()` to extract values from `EventDate` objects.

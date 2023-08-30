@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/tesselle/kairos",
   "issueTracker": "https://github.com/tesselle/kairos/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.2.0.9000",
+  "version": "2.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -173,7 +173,7 @@
       "@type": "SoftwareApplication",
       "identifier": "aion",
       "name": "aion",
-      "version": "> 1.0.0",
+      "version": ">= 1.0.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -242,11 +242,11 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "678.806KB",
+  "fileSize": "685.465KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
-      "datePublished": "2022",
+      "datePublished": "2023",
       "author": [
         {
           "@type": "Person",
@@ -257,7 +257,7 @@
       "name": "{kairos: Analysis of Chronological Patterns from Archaeological Count Data}",
       "identifier": "10.5281/zenodo.5653896",
       "url": "https://packages.tesselle.org/kairos/",
-      "description": "R package version 1.2.0.9000",
+      "description": "R package version 2.0.0",
       "@id": "https://doi.org/10.5281/zenodo.5653896",
       "sameAs": "https://doi.org/10.5281/zenodo.5653896"
     }
