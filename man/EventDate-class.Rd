@@ -12,9 +12,6 @@ assemblages.
 \section{Slots}{
 
 \describe{
-\item{\code{contexts}}{A \eqn{m \times p}{m x p} \code{integer} \code{\link{matrix}} of count
-data.}
-
 \item{\code{dates}}{A length-\eqn{m} \code{\link{numeric}} vector of dates expressed in
 \emph{\link[aion:RataDie-class]{rata die}}.}
 

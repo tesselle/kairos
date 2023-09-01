@@ -26,13 +26,12 @@ setValidity(
   method = function(object) {
     # Get data
     data <- object@data
-    contexts <- object@contexts
     dates <- object@dates
     model <- object@model
     keep <- object@keep
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_length(dates, nrow(contexts)))
+      arkhe::validate(arkhe::assert_length(dates, nrow(data)))
     )
 
     # Return cnd, if any

@@ -14,6 +14,8 @@
   select = 1,
   n = 500,
   eps = 1e-09,
+  col.accumulation = "black",
+  col.event = "red",
   flip = FALSE,
   ncol = NULL,
   xlab = NULL,
@@ -30,7 +32,7 @@
 \item{x}{An \code{\linkS4class{EventDate}} object.}
 
 \item{type}{A \code{\link{character}} string indicating the type of plot.
-It must be one of "\code{activity}" (default) or "\code{tempo}".
+It must be one of "\code{activity}" (default) or "\code{tempo}" (see details).
 Any unambiguous substring can be given.}
 
 \item{event}{A \code{\link{logical}} scalar: should the distribution of the event date
@@ -47,6 +49,11 @@ length of the vector of quantiles for density computation.}
 
 \item{eps}{A length-one \code{\link{numeric}} value giving the cutoff below which
 values will be removed.}
+
+\item{col.accumulation}{A color specification for the accumulation density
+curve.}
+
+\item{col.event}{A color specification for the event density curve.}
 
 \item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
 flipped from side 2 (left) to 4 (right) from series to series when \code{facet}
@@ -89,18 +96,29 @@ is shown as a grey filled area.
 The accumulation date can be displayed as a tempo plot (Dye 2016) or an
 activity plot (Philippe and Vibet 2020):
 \describe{
-\item{Tempo plot}{A tempo plot estimates the cumulative occurrence of
+\item{\code{tempo}}{A tempo plot estimates the cumulative occurrence of
 archaeological events, such as the slope of the plot directly reflects the
 pace of change.}
-\item{Activity plot}{An activity plot displays the first derivative of the
+\item{\code{activity}}{An activity plot displays the first derivative of the
 tempo plot.}
 }
 }
 
 \examples{
-\dontrun{
-utils::vignette("event")
-}
+## Data from Peeples and Schachner 2012
+data("zuni", package = "folio")
+
+## Assume that some assemblages are reliably dated (this is NOT a real example)
+zuni_dates <- c(
+  LZ0569 = 1097, LZ0279 = 1119, CS16 = 1328, LZ0066 = 1111,
+  LZ0852 = 1216, LZ1209 = 1251, CS144 = 1262, LZ0563 = 1206,
+  LZ0329 = 1076, LZ0005Q = 859, LZ0322 = 1109, LZ0067 = 863,
+  LZ0578 = 1180, LZ0227 = 1104, LZ0610 = 1074
+)
+
+## Model the event and accumulation date for each assemblage
+model <- event(zuni, zuni_dates, rank = 10)
+plot(model, select = 1:10, event = TRUE, flip = TRUE)
 }
 \references{
 Bellanger, L. & Husi, P. (2012). Statistical Tool for Dating and

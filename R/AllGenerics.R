@@ -241,7 +241,10 @@ setGeneric(
 #' @param dates A [`numeric`] vector of dates. If named, the names must match
 #'  the row names of `object`.
 #' @param rank An [`integer`] specifying the number of CA factorial components
-#'  to be use for linear model fitting (see details).
+#'  to be use for linear model fitting (see details). If `NULL` (the default),
+#'  axes corresponding to at least 60% of the inertia will be used.
+#' @param sup_row A [`numeric`] or [`logical`] vector specifying the indices of
+#'  the supplementary rows.
 #' @param calendar A [`TimeScale-class`] object specifying the calendar of
 #'  `dates` (see [calendar()]). Defaults to Gregorian Common Era.
 #' @param ... Further arguments to be passed to internal methods.
@@ -266,11 +269,6 @@ setGeneric(
 #'
 #'  This method relies on strong archaeological and statistical assumptions
 #'  (see `vignette("event")`).
-#' @note
-#'  Bellanger *et al.* did not publish the data supporting their demonstration:
-#'  no replication of their results is possible. This implementation must be
-#'  considered **experimental** and subject to major changes in a future
-#'  release.
 #' @return
 #'  An [`EventDate-class`] object.
 #' @seealso [`plot()`][plot_event], [`predict_event()`][predict_event],
@@ -326,11 +324,6 @@ setGeneric(
 #' @param margin A [`numeric`] vector giving the subscripts which the prediction
 #'  will be applied over: `1` indicates rows, `2` indicates columns.
 #' @param ... Further arguments to be passed to internal methods.
-#' @note
-#'  Bellanger *et al.* did not publish the data supporting their demonstration:
-#'  no replication of their results is possible. This implementation must be
-#'  considered **experimental** and subject to major changes in a future
-#'  release.
 #' @return
 #'  * `predict_event()` returns a [`data.frame`].
 #'  * `predict_accumulation()` returns a [`data.frame`].
@@ -666,16 +659,19 @@ NULL
 #' Produces an activity or a tempo plot.
 #' @param x An [`EventDate-class`] object.
 #' @param type A [`character`] string indicating the type of plot.
-#'  It must be one of "`activity`" (default) or "`tempo`".
+#'  It must be one of "`activity`" (default) or "`tempo`" (see details).
 #'  Any unambiguous substring can be given.
+#' @param event A [`logical`] scalar: should the distribution of the event date
+#'  be displayed? Only used if type is "`activity`".
 #' @param select A [`numeric`] or [`character`] vector giving the selection of
 #'  the assemblage that are drawn.
 #' @param n A length-one non-negative [`numeric`] vector giving the desired
 #'  length of the vector of quantiles for density computation.
-#' @param event A [`logical`] scalar: should the distribution of the event date
-#'  be displayed? Only used if type is "`activity`".
 #' @param eps A length-one [`numeric`] value giving the cutoff below which
 #'  values will be removed.
+#' @param col.accumulation A color specification for the accumulation density
+#'  curve.
+#' @param col.event A color specification for the event density curve.
 #' @inheritParams aion::plot
 #' @section Event and Acccumulation Dates:
 #'  `plot()` displays the probability estimate density curves of archaeological
@@ -686,10 +682,10 @@ NULL
 #'  The accumulation date can be displayed as a tempo plot (Dye 2016) or an
 #'  activity plot (Philippe and Vibet 2020):
 #'  \describe{
-#'   \item{Tempo plot}{A tempo plot estimates the cumulative occurrence of
+#'   \item{`tempo`}{A tempo plot estimates the cumulative occurrence of
 #'   archaeological events, such as the slope of the plot directly reflects the
 #'   pace of change.}
-#'   \item{Activity plot}{An activity plot displays the first derivative of the
+#'   \item{`activity`}{An activity plot displays the first derivative of the
 #'   tempo plot.}
 #'  }
 #' @return

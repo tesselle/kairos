@@ -98,83 +98,56 @@ resample <- function(x, do, n, size = sum(x), ..., f = NULL) {
   values
 }
 
-#' Subset
+#' Quantiles of a Density Estimate
 #'
-#' Subset a matrix by matching names.
-#' @param x A [`matrix`].
-#' @param y A named [`vector`].
-#' @return A [`matrix`].
-#' @author N. Frerebeau
-#' @family utilities
-#' @keywords internal utilities
+#' @param x A [`numeric`] vector giving the n coordinates of the points where
+#'  the density is estimated.
+#' @param y A `numeric` [`matrix`] of density estimates (each column is a
+#'  density estimate).
+#' @param probs A [`numeric`] vector of probabilities with values in
+#'  \eqn{[0,1]}.
+#' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
+#'  computation proceeds?
+#' @param ... Currently not used.
+#' @return
+#'  A `numeric` [`matrix`] containing the quantiles.
+#' @keywords internal
 #' @noRd
-bind_by_names <- function(x, y) {
-  if (!is.null(names(y)) && !is.null(rownames(x))) {
-    z <- merge(
-      x = data.frame(y),
-      y = as.data.frame(x),
-      by = 0,
-      all.x = FALSE,
-      all.y = TRUE,
-      sort = FALSE
-    )
-    z <- z[, -c(1)] # Remove extra column from merge
-  } else if (nrow(x) == length(y)) {
-    z <- data.frame(y, x)
-  } else {
-    stop("Names are missing.", call. = FALSE)
-  }
-}
+quantile_density <- function(x, y, probs = seq(0, 1, 0.25), na.rm = FALSE, ...) {
+  eps <- 100 * .Machine$double.eps
+  if (anyNA(probs) | any(probs < -eps | probs > 1 + eps))
+    stop(sprintf("%s outside [0,1]", sQuote("probs")))
 
-#' Select
-#'
-#' Select data.
-#' @param cases A vector.
-#' @param select A vector.
-#' @return An [`integer`] vector of indices.
-#' @author N. Frerebeau
-#' @family utilities
-#' @keywords internal utilities
-#' @noRd
-select_by_indices <- function(cases, select = NULL) {
-  if (is.null(select)) {
-    index <- seq_along(cases)
-  } else if (is.character(select)) {
-    index <- which(select == cases)
-  } else {
-    index <- as.integer(select)
-  }
-  if (length(index) == 0) stop("Wrong selection.", call. = FALSE)
-  index
-}
+  q <- apply(
+    X = y,
+    MARGIN = 2,
+    FUN = function(y, x, probs, na.rm) {
+      np <- length(probs)
+      qs <- rep(NA_real_, np)
+      if (na.rm) {
+        i <- !is.na(x) & !is.na(y)
+        x <- x[i]
+        y <- y[i]
+      }
+      if (np > 0) {
+        nn <- length(x)
+        Fx <- cumsum(y * c(0, diff(x)))
+        Fx <- Fx / Fx[nn]
+        for (j in seq_len(np)) {
+          ii <- min(which(Fx >= probs[j]))
+          if (!is.na(ii) && ii >= 1 && ii <= nn) qs[j] <- x[ii]
+        }
+        qs
+      }
+    },
+    x = x,
+    probs = probs,
+    na.rm = na.rm
+  )
 
-#' Build a Long Data Frame
-#'
-#' Stacks vector from a [`data.frame`].
-#' @param x A [`matrix`] or [`data.frame`]
-#' @param value A [`character`] string specifying the name of the
-#'  column containing the result of concatenating `x`.
-#' @param factor A [`logical`] scalar: should row and columns names be
-#'  coerced to factors? The default (`TRUE`) preserves the original
-#'  ordering.
-#' @return A [`data.frame`] withe the following variables:
-#'  "`case`", "`value`" and "`type`".
-#' @author N. Frerebeau
-#' @family utilities
-#' @keywords internal utilities
-#' @noRd
-wide2long <- function(x, value = "data", factor = TRUE) {
-  x <- as.data.frame(x)
-  row_names <- rownames(x)
-  col_names <- rownames(x)
-
-  stacked <- utils::stack(x)
-  long <- cbind.data.frame(stacked, row_names)
-  colnames(long) <- c(value, "type", "case")
-  if (factor) {
-    # Preserves the original ordering of the rows and columns
-    long$case <- factor(long$case, levels = unique(long$case))
-    long$type <- factor(long$type, levels = unique(long$type))
+  if (!is.null(dim(q))) {
+    q <- t(q)
+    colnames(q) <- paste0(round(probs * 100, digits = 0), "%")
   }
-  long
+  q
 }

@@ -20,9 +20,9 @@ predict_accumulation(object, data, ...)
 
 \S4method{predict_event}{EventDate,matrix}(object, data, margin = 1, level = 0.95, calendar = NULL)
 
-\S4method{predict_accumulation}{EventDate,missing}(object)
+\S4method{predict_accumulation}{EventDate,missing}(object, calendar = NULL)
 
-\S4method{predict_accumulation}{EventDate,matrix}(object, data)
+\S4method{predict_accumulation}{EventDate,matrix}(object, data, level = 0.95, calendar = NULL)
 }
 \arguments{
 \item{object}{A \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or
@@ -52,16 +52,21 @@ will be applied over: \code{1} indicates rows, \code{2} indicates columns.}
 \description{
 Estimates the event and accumulation dates of an assemblage.
 }
-\note{
-Bellanger \emph{et al.} did not publish the data supporting their demonstration:
-no replication of their results is possible. This implementation must be
-considered \strong{experimental} and subject to major changes in a future
-release.
-}
 \examples{
-\dontrun{
-utils::vignette("event")
-}
+## Data from Peeples and Schachner 2012
+data("zuni", package = "folio")
+
+## Assume that some assemblages are reliably dated (this is NOT a real example)
+zuni_dates <- c(
+  LZ0569 = 1097, LZ0279 = 1119, CS16 = 1328, LZ0066 = 1111,
+  LZ0852 = 1216, LZ1209 = 1251, CS144 = 1262, LZ0563 = 1206,
+  LZ0329 = 1076, LZ0005Q = 859, LZ0322 = 1109, LZ0067 = 863,
+  LZ0578 = 1180, LZ0227 = 1104, LZ0610 = 1074
+)
+
+## Model the event and accumulation date for each assemblage
+model <- event(zuni, zuni_dates, rank = 10)
+plot(model, select = 1:10, event = TRUE, flip = TRUE)
 }
 \references{
 Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans

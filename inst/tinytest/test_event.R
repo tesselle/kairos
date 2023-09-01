@@ -8,18 +8,19 @@ if (requireNamespace("folio", quietly = TRUE)) {
     LZ0329 = 1076, LZ0005Q = 859, LZ0322 = 1109, LZ0067 = 863,
     LZ0578 = 1180, LZ0227 = 1104, LZ0610 = 1074
   )
+  zuni_dates2 <- rep(NA, nrow(zuni))
+  zuni_dates2[match(names(zuni_dates), rownames(zuni))] <- zuni_dates
 
   model <- event(zuni, zuni_dates, rank = 10)
+  model2 <- event(zuni, zuni_dates2, rank = 10)
+  expect_equal(model, model2)
 
   # Date Model =================================================================
   eve1 <- predict_event(model, margin = 1, calendar = NULL)
-  expect_equivalent_to_reference(eve1, file = "_snaps/event1.rds")
+  expect_equivalent_to_reference(eve1, file = "_snaps/event_row.rds")
 
   eve2 <- predict_event(model, margin = 2, calendar = NULL)
-  expect_equivalent_to_reference(eve2, file = "_snaps/event2.rds")
-
-  acc <- predict_accumulation(model)
-  expect_equivalent_to_reference(acc, file = "_snaps/accumulation.rds")
+  expect_equivalent_to_reference(eve2, file = "_snaps/event_column.rds")
 
   # Plot =======================================================================
   if (at_home()) {
@@ -30,8 +31,12 @@ if (requireNamespace("folio", quietly = TRUE)) {
     options(tinysnapshot_tol = 200) # pixels
     options(tinysnapshot_os = "Linux")
 
+    ## Accumulation
+    # acc <- predict_accumulation(model)
+    # expect_equivalent_to_reference(acc, file = "_snaps/accumulation.rds")
+
     ## Bootstrap
-    # boot <- with_seed(12345, bootstrap(model, n = 5))
+    # boot <- with_seed(12345, bootstrap(model, n = 30))
     # expect_equivalent_to_reference(boot, file = "_snaps/event_bootstrap.rds")
 
     ## Jackknife

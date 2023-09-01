@@ -12,9 +12,9 @@
 \usage{
 event(object, dates, ...)
 
-\S4method{event}{data.frame,numeric}(object, dates, rank = 10, calendar = CE(), ...)
+\S4method{event}{data.frame,numeric}(object, dates, rank = NULL, sup_row = NULL, calendar = CE(), ...)
 
-\S4method{event}{matrix,numeric}(object, dates, rank = 10, calendar = CE(), ...)
+\S4method{event}{matrix,numeric}(object, dates, rank = NULL, sup_row = NULL, calendar = CE(), ...)
 
 \S4method{summary}{EventDate}(object, ...)
 }
@@ -30,7 +30,11 @@ the row names of \code{object}.}
 \item{...}{Further arguments to be passed to internal methods.}
 
 \item{rank}{An \code{\link{integer}} specifying the number of CA factorial components
-to be use for linear model fitting (see details).}
+to be use for linear model fitting (see details). If \code{NULL} (the default),
+axes corresponding to at least 60\% of the inertia will be used.}
+
+\item{sup_row}{A \code{\link{numeric}} or \code{\link{logical}} vector specifying the indices of
+the supplementary rows.}
 
 \item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
 \code{dates} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
@@ -63,16 +67,21 @@ computation.
 This method relies on strong archaeological and statistical assumptions
 (see \code{vignette("event")}).
 }
-\note{
-Bellanger \emph{et al.} did not publish the data supporting their demonstration:
-no replication of their results is possible. This implementation must be
-considered \strong{experimental} and subject to major changes in a future
-release.
-}
 \examples{
-\dontrun{
-utils::vignette("event")
-}
+## Data from Peeples and Schachner 2012
+data("zuni", package = "folio")
+
+## Assume that some assemblages are reliably dated (this is NOT a real example)
+zuni_dates <- c(
+  LZ0569 = 1097, LZ0279 = 1119, CS16 = 1328, LZ0066 = 1111,
+  LZ0852 = 1216, LZ1209 = 1251, CS144 = 1262, LZ0563 = 1206,
+  LZ0329 = 1076, LZ0005Q = 859, LZ0322 = 1109, LZ0067 = 863,
+  LZ0578 = 1180, LZ0227 = 1104, LZ0610 = 1074
+)
+
+## Model the event and accumulation date for each assemblage
+model <- event(zuni, zuni_dates, rank = 10)
+plot(model, select = 1:10, event = TRUE, flip = TRUE)
 }
 \references{
 Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans

@@ -44,8 +44,6 @@ NULL
 #'
 #' An S4 class to store the event and accumulation times of archaeological
 #' assemblages.
-#' @slot contexts A \eqn{m \times p}{m x p} `integer` [`matrix`] of count
-#'  data.
 #' @slot dates A length-\eqn{m} [`numeric`] vector of dates expressed in
 #'  *[rata die][aion::RataDie-class]*.
 #' @slot model A [multiple linear model][stats::lm()]: the Gaussian
@@ -75,7 +73,6 @@ NULL
 .EventDate <- setClass(
   Class = "EventDate",
   slots = c(
-    contexts = "matrix",
     dates = "RataDie",
     model = "lm",
     keep = "integer"
