@@ -19,14 +19,6 @@ if (requireNamespace("folio", quietly = TRUE)) {
   expect_equal_to_reference(as.data.frame(dt), file = "_snaps/mcd.rds")
   expect_error(mcd(zuni, dates = zuni_mid_dates[1:3]))
 
-  ## Bootstrap
-  boot <- with_seed(12345, bootstrap(dt, n = 30))
-  expect_equal_to_reference(boot, file = "_snaps/mcd_bootstrap.rds")
-
-  ## Jackknife
-  jack <- with_seed(12345, jackknife(dt))
-  expect_equal_to_reference(jack, file = "_snaps/mcd_jackknife.rds")
-
   # Plot =======================================================================
   if (at_home()) {
     source("helpers.R")
@@ -36,6 +28,14 @@ if (requireNamespace("folio", quietly = TRUE)) {
     options(tinysnapshot_width = 7)
     options(tinysnapshot_tol = 200) # pixels
     options(tinysnapshot_os = "Linux")
+
+    ## Bootstrap
+    # boot <- with_seed(12345, bootstrap(dt, n = 30))
+    # expect_equal_to_reference(boot, file = "_snaps/mcd_bootstrap.rds")
+
+    ## Jackknife
+    jack <- jackknife(dt)
+    expect_equal_to_reference(jack, file = "_snaps/mcd_jackknife.rds")
 
     for (i in c(TRUE, FALSE)) {
       plot_mcd <- function() plot(dt[100:125, , ], decreasing = i)

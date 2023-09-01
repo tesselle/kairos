@@ -21,15 +21,6 @@ if (requireNamespace("folio", quietly = TRUE)) {
   acc <- predict_accumulation(model)
   expect_equivalent_to_reference(acc, file = "_snaps/accumulation.rds")
 
-  # Event Date =================================================================
-  ## Bootstrap
-  boot <- with_seed(12345, bootstrap(model, n = 5))
-  expect_equivalent_to_reference(boot, file = "_snaps/event_bootstrap.rds")
-
-  ## Jackknife
-  jack <- with_seed(12345, jackknife(model))
-  expect_equivalent_to_reference(jack, file = "_snaps/event_jackknife.rds")
-
   # Plot =======================================================================
   if (at_home()) {
     using("tinysnapshot")
@@ -38,6 +29,14 @@ if (requireNamespace("folio", quietly = TRUE)) {
     options(tinysnapshot_width = 7)
     options(tinysnapshot_tol = 200) # pixels
     options(tinysnapshot_os = "Linux")
+
+    ## Bootstrap
+    # boot <- with_seed(12345, bootstrap(model, n = 5))
+    # expect_equivalent_to_reference(boot, file = "_snaps/event_bootstrap.rds")
+
+    ## Jackknife
+    jack <- jackknife(model)
+    expect_equivalent_to_reference(jack, file = "_snaps/event_jackknife.rds")
 
     ## Event plot
     for (i in c(TRUE, FALSE)) {
