@@ -8,7 +8,7 @@ message: 'To cite package "kairos" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
-version: 2.0.0.9000
+version: 2.0.1
 doi: 10.5281/zenodo.5653896
 abstract: A toolkit for absolute and relative dating and analysis of chronological
   patterns. This package includes functions for chronological modeling and dating
@@ -33,7 +33,7 @@ preferred-citation:
   year: '2023'
   location:
     name: Pessac, France
-  notes: R package version 2.0.0.9000
+  notes: R package version 2.0.1
   url: https://packages.tesselle.org/kairos/
   doi: 10.5281/zenodo.5653896
   institution:

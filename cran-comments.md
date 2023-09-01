@@ -1,13 +1,14 @@
 ## Test environments
 * Local R installation: R 4.3.1
-* Ubuntu 22.04 (on GitHub Actions): R devel, release, oldrel
+* Ubuntu (on GitHub Actions): R devel, release, oldrel
 * Windows (on GitHub Actions and win-builder): R devel, release, oldrel
 * MacOS (on GitHub Actions): R release
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 note
+2 errors | 0 warnings | 0 note
 
+* CRAN check errors on macOS and noLD plateforms have been fixed.
 * Some links in the documentation point to articles behind paywalls that may return an error.
 
 ## revdepcheck results

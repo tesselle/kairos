@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/tesselle/kairos",
   "issueTracker": "https://github.com/tesselle/kairos/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -242,7 +242,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "685.465KB",
+  "fileSize": "708.373KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -257,7 +257,7 @@
       "name": "{kairos: Analysis of Chronological Patterns from Archaeological Count Data}",
       "identifier": "10.5281/zenodo.5653896",
       "url": "https://packages.tesselle.org/kairos/",
-      "description": "R package version 2.0.0",
+      "description": "R package version 2.0.1",
       "@id": "https://doi.org/10.5281/zenodo.5653896",
       "sameAs": "https://doi.org/10.5281/zenodo.5653896"
     }

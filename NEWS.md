@@ -1,4 +1,6 @@
-# kairos 2.0.0.9000
+# kairos 2.0.1
+## Bugfixes & changes
+* Fix support for supplementary rows in `event()`.
 
 # kairos 2.0.0
 ## New classes and methods
