@@ -67,4 +67,3 @@ aion::time
 #' @importFrom aion year_axis
 #' @export
 aion::year_axis
-

@@ -49,7 +49,6 @@
 <text x='38.97' y='145.30' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='10.07px' lengthAdjust='spacingAndGlyphs'>20</text>
 <text x='38.97' y='111.98' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='10.07px' lengthAdjust='spacingAndGlyphs'>40</text>
 <text x='38.97' y='78.66' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='10.07px' lengthAdjust='spacingAndGlyphs'>60</text>
-<polygon points='48.47,180.67 148.04,180.67 148.04,47.52 48.47,47.52 ' style='stroke-width: 0.75;' />
 <text transform='translate(18.06,114.10) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='30.84px' lengthAdjust='spacingAndGlyphs'>BT20</text>
 </g>
 <defs>
@@ -87,7 +86,6 @@
 <text x='38.97' y='223.58' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>100</text>
 <text x='38.97' y='205.58' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>120</text>
 <text x='38.97' y='187.58' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>140</text>
-<polygon points='48.47,313.82 148.04,313.82 148.04,180.67 48.47,180.67 ' style='stroke-width: 0.75;' />
 <text transform='translate(18.06,247.25) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='30.84px' lengthAdjust='spacingAndGlyphs'>BT19</text>
 </g>
 <defs>
@@ -131,7 +129,6 @@
 <text x='38.97' y='397.96' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='10.07px' lengthAdjust='spacingAndGlyphs'>40</text>
 <text x='38.97' y='368.60' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='10.07px' lengthAdjust='spacingAndGlyphs'>60</text>
 <text x='38.97' y='339.25' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='10.07px' lengthAdjust='spacingAndGlyphs'>80</text>
-<polygon points='48.47,446.98 148.04,446.98 148.04,313.82 48.47,313.82 ' style='stroke-width: 0.75;' />
 <text x='98.26' y='483.09' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='42.11px' lengthAdjust='spacingAndGlyphs'>Phases</text>
 <text transform='translate(18.06,380.40) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='30.84px' lengthAdjust='spacingAndGlyphs'>BT24</text>
 </g>
@@ -160,7 +157,6 @@
 <text x='206.97' y='143.04' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='10.07px' lengthAdjust='spacingAndGlyphs'>50</text>
 <text x='206.97' y='101.67' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>100</text>
 <text x='206.97' y='60.30' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>150</text>
-<polygon points='216.47,180.67 316.04,180.67 316.04,47.52 216.47,47.52 ' style='stroke-width: 0.75;' />
 <text transform='translate(186.06,114.10) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='23.21px' lengthAdjust='spacingAndGlyphs'>BT3</text>
 </g>
 <defs>
@@ -192,7 +188,6 @@
 <text x='206.97' y='253.02' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>150</text>
 <text x='206.97' y='228.94' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>200</text>
 <text x='206.97' y='204.86' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>250</text>
-<polygon points='216.47,313.82 316.04,313.82 316.04,180.67 216.47,180.67 ' style='stroke-width: 0.75;' />
 <text transform='translate(186.06,247.25) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='30.84px' lengthAdjust='spacingAndGlyphs'>BT13</text>
 </g>
 <defs>
@@ -240,7 +235,6 @@
 <text x='206.97' y='376.32' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='10.07px' lengthAdjust='spacingAndGlyphs'>80</text>
 <text x='206.97' y='356.43' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>100</text>
 <text x='206.97' y='336.55' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>120</text>
-<polygon points='216.47,446.98 316.04,446.98 316.04,313.82 216.47,313.82 ' style='stroke-width: 0.75;' />
 <text x='266.26' y='483.09' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='42.11px' lengthAdjust='spacingAndGlyphs'>Phases</text>
 <text transform='translate(186.06,380.40) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='23.21px' lengthAdjust='spacingAndGlyphs'>BT2</text>
 </g>
@@ -275,7 +269,6 @@
 <text x='374.97' y='110.64' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='10.07px' lengthAdjust='spacingAndGlyphs'>60</text>
 <text x='374.97' y='87.59' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='10.07px' lengthAdjust='spacingAndGlyphs'>80</text>
 <text x='374.97' y='64.55' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>100</text>
-<polygon points='384.47,180.67 484.04,180.67 484.04,47.52 384.47,47.52 ' style='stroke-width: 0.75;' />
 <text transform='translate(354.06,114.10) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='30.84px' lengthAdjust='spacingAndGlyphs'>BT10</text>
 </g>
 <defs>
@@ -313,7 +306,6 @@
 <text x='374.97' y='220.60' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>250</text>
 <text x='374.97' y='202.14' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>300</text>
 <text x='374.97' y='183.68' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>350</text>
-<polygon points='384.47,313.82 484.04,313.82 484.04,180.67 384.47,180.67 ' style='stroke-width: 0.75;' />
 <text transform='translate(354.06,247.25) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='23.21px' lengthAdjust='spacingAndGlyphs'>BT8</text>
 </g>
 <defs>
@@ -361,7 +353,6 @@
 <text x='374.97' y='372.70' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>300</text>
 <text x='374.97' y='348.38' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>400</text>
 <text x='374.97' y='324.07' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='15.10px' lengthAdjust='spacingAndGlyphs'>500</text>
-<polygon points='384.47,446.98 484.04,446.98 484.04,313.82 384.47,313.82 ' style='stroke-width: 0.75;' />
 <text x='434.26' y='483.09' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='42.11px' lengthAdjust='spacingAndGlyphs'>Phases</text>
 <text transform='translate(354.06,380.40) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='23.21px' lengthAdjust='spacingAndGlyphs'>BT1</text>
 </g>

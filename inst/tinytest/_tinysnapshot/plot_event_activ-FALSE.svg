@@ -48,7 +48,6 @@
 <text x='59.04' y='144.39' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='49.65px' lengthAdjust='spacingAndGlyphs'>0.00008</text>
 <text x='59.04' y='119.79' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='49.65px' lengthAdjust='spacingAndGlyphs'>0.00010</text>
 <text x='59.04' y='95.20' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='49.65px' lengthAdjust='spacingAndGlyphs'>0.00012</text>
-<polygon points='73.44,244.80 473.76,244.80 473.76,72.00 73.44,72.00 ' style='stroke-width: 0.75;' />
 <text transform='translate(27.36,158.40) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='45.47px' lengthAdjust='spacingAndGlyphs'>LZ1105</text>
 </g>
 <defs>
@@ -96,7 +95,6 @@
 <text x='59.04' y='299.65' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='49.65px' lengthAdjust='spacingAndGlyphs'>0.00010</text>
 <text x='59.04' y='276.47' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='49.65px' lengthAdjust='spacingAndGlyphs'>0.00012</text>
 <text x='59.04' y='253.28' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='49.65px' lengthAdjust='spacingAndGlyphs'>0.00014</text>
-<polygon points='73.44,417.60 473.76,417.60 473.76,244.80 73.44,244.80 ' style='stroke-width: 0.75;' />
 <text x='273.60' y='472.32' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='116.19px' lengthAdjust='spacingAndGlyphs'>Gregorian years CE</text>
 <text transform='translate(27.36,331.20) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='45.47px' lengthAdjust='spacingAndGlyphs'>LZ1103</text>
 </g>
