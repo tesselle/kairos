@@ -25,7 +25,7 @@ Depends:
     R (>= 3.5)
 Imports: 
     aion (>= 1.0.2),
-    arkhe (>= 1.2.0),
+    arkhe (>= 1.4.0),
     dimensio (>= 0.4.0),
     extraDistr,
     grDevices,

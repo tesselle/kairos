@@ -182,7 +182,7 @@ plot.MeanDate <- function(x, calendar = getOption("kairos.calendar"),
 
   ## Save and restore
   mar <- graphics::par("mar")
-  mar[2] <- inch2line(sites, cex = cex.axis) + 0.5
+  mar[2] <- arkhe::inch2line(sites, cex = cex.axis) + 0.5
   old_par <- graphics::par(mar = mar)
   on.exit(graphics::par(old_par))
 
@@ -278,7 +278,7 @@ plot.SimulationMeanDate <- function(x, calendar = getOption("kairos.calendar"),
 
   ## Save and restore
   mar <- graphics::par("mar")
-  mar[2] <- inch2line(sites, cex = cex.axis) + 0.5
+  mar[2] <- arkhe::inch2line(sites, cex = cex.axis) + 0.5
   old_par <- graphics::par(mar = mar)
   on.exit(graphics::par(old_par))
 
