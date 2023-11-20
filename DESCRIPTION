@@ -9,7 +9,9 @@ Authors@R: c(
     person("Ben", "Marwick", , "bmarwick@uw.edu", role = "ctb",
            comment = c(ORCID = "0000-0001-7879-4531", affiliation = "University of Washington")),
     person("Anne", "Philippe", , "anne.philippe@univ-nantes.fr", role = "ctb",
-           comment = c(ORCID = "0000-0002-5331-5087", affiliation = "Université de Nantes"))
+           comment = c(ORCID = "0000-0002-5331-5087", affiliation = "Université de Nantes")),
+    person("Université Bordeaux Montaigne", role = "fnd"),
+    person("CNRS", role = "fnd")
   )
 Description: A toolkit for absolute and relative dating and analysis of
     chronological patterns. This package includes functions for

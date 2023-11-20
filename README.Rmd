@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = NULL
 )
+Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
 ```
 
 # kairos <img width=120px src="man/figures/logo.png" align="right" />
@@ -22,7 +23,7 @@ knitr::opts_chunk$set(
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/kairos/badge)](https://www.codefactor.io/repository/github/tesselle/kairos)
 [![Dependencies](https://tinyverse.netlify.com/badge/kairos)](https://cran.r-project.org/package=kairos)
 
-[![r-universe](https://tesselle.r-universe.dev/badges/kairos)](https://tesselle.r-universe.dev){.pkgdown-devel}
+[![r-universe](https://tesselle.r-universe.dev/badges/kairos)](https://tesselle.r-universe.dev/kairos){.pkgdown-devel}
 [![CRAN Version](http://www.r-pkg.org/badges/version/kairos)](https://cran.r-project.org/package=kairos){.pkgdown-release}
 [![CRAN checks](https://badges.cranchecks.info/worst/kairos.svg)](https://cran.r-project.org/web/checks/check_results_kairos.html){.pkgdown-release}
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/kairos)](https://cran.r-project.org/package=kairos){.pkgdown-release}
