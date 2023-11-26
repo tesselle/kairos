@@ -1,6 +1,6 @@
-# kairos 2.0.1.9000
+# kairos 2.0.2
 ## Internals
-* Follow changes in **dimension** v0.5.0.
+* Follow changes in **dimensio** v0.5.0.
 
 # kairos 2.0.1
 ## Bugfixes & changes

@@ -59,7 +59,7 @@ analysis of archaeological count data.
       Frerebeau N (2023). _kairos: Analysis of Chronological Patterns from
       Archaeological Count Data_. Université Bordeaux Montaigne, Pessac,
       France. doi:10.5281/zenodo.5653896
-      <https://doi.org/10.5281/zenodo.5653896>, R package version 2.0.1,
+      <https://doi.org/10.5281/zenodo.5653896>, R package version 2.0.2,
       <https://packages.tesselle.org/kairos/>.
 
     A BibTeX entry for LaTeX users is
@@ -70,7 +70,7 @@ analysis of archaeological count data.
         year = {2023},
         organization = {Université Bordeaux Montaigne},
         address = {Pessac, France},
-        note = {R package version 2.0.1},
+        note = {R package version 2.0.2},
         url = {https://packages.tesselle.org/kairos/},
         doi = {10.5281/zenodo.5653896},
       }

@@ -1,19 +1,20 @@
 ## Test environments
-* Local R installation: R 4.3.1
+* Local R installation: R 4.3.2
 * Ubuntu (on GitHub Actions): R devel, release, oldrel
 * Windows (on GitHub Actions and win-builder): R devel, release, oldrel
 * MacOS (on GitHub Actions): R release
 
 ## R CMD check results
 
-2 errors | 0 warnings | 0 note
+1 errors | 0 warnings | 0 note
 
-* CRAN check errors on macOS and noLD plateforms have been fixed.
+* Failing vignette has been fixed.
 * Some links in the documentation point to articles behind paywalls that may return an error.
 
 ## revdepcheck results
 
 We checked 1 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
 
-* We saw 0 new problems
-* We failed to check 0 packages
+ * We saw 0 new problems
+ * We failed to check 0 packages
+

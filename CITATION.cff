@@ -8,7 +8,7 @@ message: 'To cite package "kairos" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
-version: 2.0.1
+version: 2.0.2
 doi: 10.5281/zenodo.5653896
 abstract: A toolkit for absolute and relative dating and analysis of chronological
   patterns. This package includes functions for chronological modeling and dating
@@ -33,7 +33,7 @@ preferred-citation:
   year: '2023'
   location:
     name: Pessac, France
-  notes: R package version 2.0.1
+  notes: R package version 2.0.2
   url: https://packages.tesselle.org/kairos/
   doi: 10.5281/zenodo.5653896
   institution:
@@ -83,8 +83,8 @@ references:
     email: joseph.roe@iaw.unibe.ch
     orcid: https://orcid.org/0000-0002-1011-1244
     affiliation: Universität Bern
+  version: '>= 1.0.2'
   year: '2023'
-  version: '>= 1.0.1'
 - type: software
   title: arkhe
   abstract: 'arkhe: Tools for Cleaning Rectangular Data'
@@ -97,8 +97,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
+  version: '>= 1.4.0'
   year: '2023'
-  version: '>= 1.2.0'
 - type: software
   title: dimensio
   abstract: 'dimensio: Multivariate Data Analysis'
@@ -111,8 +111,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
+  version: '>= 0.5.0'
   year: '2023'
-  version: '>= 0.4.0'
 - type: software
   title: extraDistr
   abstract: 'extraDistr: Additional Univariate and Multivariate Distributions'
