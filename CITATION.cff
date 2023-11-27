@@ -83,8 +83,8 @@ references:
     email: joseph.roe@iaw.unibe.ch
     orcid: https://orcid.org/0000-0002-1011-1244
     affiliation: Universität Bern
-  version: '>= 1.0.2'
   year: '2023'
+  version: '>= 1.0.2'
 - type: software
   title: arkhe
   abstract: 'arkhe: Tools for Cleaning Rectangular Data'
@@ -97,8 +97,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  version: '>= 1.4.0'
   year: '2023'
+  version: '>= 1.4.0'
 - type: software
   title: dimensio
   abstract: 'dimensio: Multivariate Data Analysis'
@@ -111,8 +111,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  version: '>= 0.5.0'
   year: '2023'
+  version: '>= 0.5.0'
 - type: software
   title: extraDistr
   abstract: 'extraDistr: Additional Univariate and Multivariate Distributions'
@@ -336,6 +336,9 @@ identifiers:
 - description: The versioned DOI for version 2.0.1.
   type: doi
   value: 10.5281/zenodo.8318621
+- description: The versioned DOI for version 2.0.2.
+  type: doi
+  value: 10.5281/zenodo.10209640
 - description: The Software Heritage identifier for version 1.0.1.
   type: swh
   value: swh:1:dir:860da155f1ba36d918009e9fbed2bd223abe5599
