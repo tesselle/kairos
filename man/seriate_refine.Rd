@@ -6,6 +6,7 @@
 \alias{seriate_refine-method}
 \alias{seriate_refine,AveragePermutationOrder-method}
 \alias{seriate_refine,BootstrapCA-method}
+\alias{hist,RefinePermutationOrder-method}
 \title{Refine CA-based Seriation}
 \usage{
 seriate_refine(object, ...)
@@ -13,6 +14,8 @@ seriate_refine(object, ...)
 \S4method{seriate_refine}{AveragePermutationOrder}(object, cutoff, margin = 1, axes = 1, n = 30, ...)
 
 \S4method{seriate_refine}{BootstrapCA}(object, cutoff, margin = 1, axes = 1, ...)
+
+\S4method{hist}{RefinePermutationOrder}(x, ...)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{PermutationOrder}} object (typically returned by
@@ -31,9 +34,15 @@ used.}
 
 \item{n}{A non-negative \code{\link{integer}} giving the number of bootstrap
 replications.}
+
+\item{x}{A \code{\linkS4class{RefinePermutationOrder}} object}
 }
 \value{
-A \code{\linkS4class{RefinePermutationOrder}} object.
+\itemize{
+\item \code{seriate_refine()} returns a \code{\linkS4class{RefinePermutationOrder}} object.
+\item \code{hist()} is called it for its side-effects: it results in a histogram
+being displayed (invisibly returns \code{x}).
+}
 }
 \description{
 Refine CA-based Seriation
@@ -53,6 +62,12 @@ According to Peebles and Schachner (2012), "[this] point removal procedure
 the CA are highly stable and which produces an ordering consistent with the
 assumptions of frequency seriation."
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{hist(RefinePermutationOrder)}: Compute and plot a histogram of convex hull
+maximum dimension length.
+
+}}
 \references{
 Peeples, M. A., & Schachner, G. (2012). Refining correspondence
 analysis-based ceramic seriation of regional data sets. \emph{Journal of

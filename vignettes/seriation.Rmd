@@ -27,10 +27,9 @@ knitr::opts_chunk$set(
 
 ```{r packages}
 ## Install extra packages (if needed):
-## - dimensio: multivariate analysis
 ## - folio: datasets
 ## - tabula: visualization
-# install.packages(c("dimensio", "folio", "tabula"))
+# install.packages(c("folio", "tabula"))
 
 # Load packages
 library(kairos)
@@ -149,12 +148,12 @@ zuni_boot <- dimensio::bootstrap(zun_indices, n = 30)
 ## Bootstrap CA results for the rows
 ## (add convex hull)
 zuni_boot |> 
-  dimensio::viz_rows(col = "lightgrey", pch = 16) |> 
-  dimensio::viz_hull(col = adjustcolor("#004488", alpha = 0.5))
+  dimensio::viz_rows(col = "lightgrey", pch = 16, legend = NULL) |> 
+  dimensio::viz_hull(col = adjustcolor("#004488", alpha = 0.2))
 
 ## Bootstrap CA results for the columns
 zuni_boot |> 
-  dimensio::viz_columns(pch = 16)
+  dimensio::viz_columns(pch = 16, legend = list(x = "topright"))
 ```
 
 ```{r refine, fig.width=7, fig.height=7}
@@ -169,10 +168,9 @@ fun <- function(x) { mean(x) + sd(x) }
 dimensio::viz_rows(zuni_refine, highlight = "observation", pch = c(16, 15))
 ```
 
-```{r refine-histogram, fig.width=7, fig.height=3.5}
+```{r refine-histogram, fig.width=5, fig.height=5}
 ## Histogram of convex hull maximum dimension length
-hist(zuni_refine[["length"]], xlab = "Maximum length", main = "")
-abline(v = zuni_refine[["cutoff"]], col = "red")
+hist(zuni_refine)
 ```
 
 ```{r refine-permutation, fig.width=7, fig.height=7}

@@ -861,6 +861,7 @@ setGeneric(
 #'  refinement will be applied over: `1` indicates rows, `2` indicates columns.
 #' @param axes An [`integer`] vector giving the subscripts of the CA axes to be
 #'  used.
+#' @param x A [`RefinePermutationOrder-class`] object
 #' @param ... Further arguments to be passed to internal methods.
 #' @details
 #'  `seriate_refine()` allows to identify samples that are subject to
@@ -877,7 +878,9 @@ setGeneric(
 #'  the CA are highly stable and which produces an ordering consistent with the
 #'  assumptions of frequency seriation."
 #' @return
-#'  A [`RefinePermutationOrder-class`] object.
+#'  * `seriate_refine()` returns a [`RefinePermutationOrder-class`] object.
+#'  * `hist()` is called it for its side-effects: it results in a histogram
+#'    being displayed (invisibly returns `x`).
 #' @references
 #'  Peeples, M. A., & Schachner, G. (2012). Refining correspondence
 #'  analysis-based ceramic seriation of regional data sets. *Journal of

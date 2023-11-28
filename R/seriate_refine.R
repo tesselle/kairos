@@ -52,8 +52,8 @@ setMethod(
     sup <- which(len >= limit)
 
     ## Seriation
-    ser <- seriate_average(object@data, margin = c(1, 2), axes = axes,
-                           sup_row = sup, ...)
+    ser <- seriate_average(dimensio::get_data(object), margin = c(1, 2),
+                           axes = axes, sup_row = sup, ...)
 
     .RefinePermutationOrder(
       ser,
@@ -64,6 +64,32 @@ setMethod(
     )
   }
 )
+
+#' @export
+#' @method hist RefinePermutationOrder
+hist.RefinePermutationOrder <- function(x, ...) {
+  ## Get data
+  cutoff <- x@cutoff
+
+  graphics::hist(
+    x = x@length,
+    xlab = "Maximum length",
+    main = NULL,
+    las = 1,
+    ...
+  )
+  graphics::abline(v = cutoff, col = "red")
+  graphics::axis(side = 3, at = cutoff, labels = round(cutoff, 2), tick = FALSE,
+                 col = "red", col.ticks = "red", col.axis = "red")
+
+  invisible(x)
+}
+
+#' @export
+#' @describeIn seriate_refine Compute and plot a histogram of convex hull
+#'  maximum dimension length.
+#' @aliases hist,RefinePermutationOrder-method
+setMethod("hist", "RefinePermutationOrder", hist.RefinePermutationOrder)
 
 #' Convex Hull of CA Coordinates
 #'
