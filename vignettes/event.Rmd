@@ -3,19 +3,18 @@ title: "Event Date Model"
 author: "N. Frerebeau"
 date: "`r Sys.Date()`"
 output:
-  rmarkdown::html_vignette:
-    fig_caption: yes
-    toc: true
+  markdown::html_format:
+    options:
+      toc: true
+      number_sections: true
 header-includes:
    - \usepackage{amsmath}
    - \usepackage{amssymb}
 bibliography: bibliography.bib
 vignette: >
   %\VignetteIndexEntry{Event Date Model}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
-  %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
-  chunk_output_type: console
 ---
 
 ```{r setup, include = FALSE, echo=FALSE}
