@@ -3,7 +3,6 @@
 \docType{package}
 \name{kairos-package}
 \alias{kairos-package}
-\alias{_PACKAGE}
 \alias{kairos}
 \title{kairos: Analysis of Chronological Patterns from Archaeological Count Data}
 \description{

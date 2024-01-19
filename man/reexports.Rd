@@ -28,6 +28,6 @@ below to see their documentation.
 \describe{
   \item{aion}{\code{\link[aion:gregorian]{AD}}, \code{\link[aion:gregorian]{BC}}, \code{\link[aion:gregorian]{BCE}}, \code{\link[aion:gregorian]{BP}}, \code{\link[aion:gregorian]{CE}}, \code{\link[aion:gregorian]{b2k}}, \code{\link[aion]{calendar}}, \code{\link[aion]{start}}, \code{\link[aion]{start}}, \code{\link[aion]{time}}, \code{\link[aion]{year_axis}}}
 
-  \item{arkhe}{\code{\link[arkhe]{bootstrap}}, \code{\link[arkhe]{jackknife}}, \code{\link[arkhe:missing]{remove_NA}}, \code{\link[arkhe:zero]{remove_zero}}, \code{\link[arkhe:missing]{replace_NA}}, \code{\link[arkhe:zero]{replace_zero}}}
+  \item{arkhe}{\code{\link[arkhe]{bootstrap}}, \code{\link[arkhe]{jackknife}}, \code{\link[arkhe]{remove_NA}}, \code{\link[arkhe]{remove_zero}}, \code{\link[arkhe]{replace_NA}}, \code{\link[arkhe]{replace_zero}}}
 }}
 
