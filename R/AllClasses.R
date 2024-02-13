@@ -1,7 +1,13 @@
 # CLASSES DEFINITION AND INITIALIZATION
 NULL
 
-# MeanDate ======================================================================
+# Import classes ===============================================================
+#' @importClassesFrom aion TimeSeries
+#' @importClassesFrom aion RataDie
+#' @importClassesFrom dimensio CA
+NULL
+
+# MeanDate =====================================================================
 #' Mean Date
 #'
 #' An S4 class to store the weighted mean date (e.g. Mean Ceramic Date) of
@@ -141,7 +147,7 @@ NULL
   contains = "TimeSeries"
 )
 
-# CountApportion ==================================================================
+# CountApportion ===============================================================
 #' Count Apportioning
 #'
 #' An S4 class to represent an artifact apportioning results. Gives the

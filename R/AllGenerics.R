@@ -2,9 +2,10 @@
 #' @include AllClasses.R
 NULL
 
-# S4 dispatch to S3 generics ===================================================
-setGeneric("jackknife", package = "arkhe")
-setGeneric("bootstrap", package = "arkhe")
+# Import S4 generics ===========================================================
+#' @importMethodsFrom arkhe jackknife
+#' @importMethodsFrom arkhe bootstrap
+NULL
 
 # Mutators =====================================================================
 ## Subset ----------------------------------------------------------------------

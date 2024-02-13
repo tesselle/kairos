@@ -121,7 +121,7 @@ tabula::plot_ford(zuni)
 (zun_indices <- seriate_average(zuni, margin = c(1, 2)))
 
 ## Plot CA results
-dimensio::biplot(zun_indices)
+biplot(zun_indices)
 ```
 
 ```{r ca-permutation, fig.width=7, fig.height=7}
@@ -142,17 +142,17 @@ According to @peeples2012, "[this] point removal procedure [results in] a reduce
 ```{r bootstrap, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
 ## Partial bootstrap CA
 ## Warning: this may take a few seconds!
-zuni_boot <- dimensio::bootstrap(zun_indices, n = 30)
+zuni_boot <- bootstrap(zun_indices, n = 30)
 
 ## Bootstrap CA results for the rows
 ## (add convex hull)
 zuni_boot |> 
-  dimensio::viz_rows(col = "lightgrey", pch = 16, legend = NULL) |> 
-  dimensio::viz_hull(col = adjustcolor("#004488", alpha = 0.2))
+  viz_rows(col = "lightgrey", pch = 16, legend = NULL) |> 
+  viz_hull(col = adjustcolor("#004488", alpha = 0.2))
 
 ## Bootstrap CA results for the columns
 zuni_boot |> 
-  dimensio::viz_columns(pch = 16, legend = list(x = "topright"))
+  viz_columns(pch = 16, legend = list(x = "topright"))
 ```
 
 ```{r refine, fig.width=7, fig.height=7}
@@ -164,7 +164,7 @@ fun <- function(x) { mean(x) + sd(x) }
 (zuni_refine <- seriate_refine(zun_indices, cutoff = fun, margin = 1))
 
 ## Plot CA results for the rows
-dimensio::viz_rows(zuni_refine, highlight = "observation", pch = c(16, 15))
+viz_rows(zuni_refine, highlight = "observation", pch = c(16, 15))
 ```
 
 ```{r refine-histogram, fig.width=5, fig.height=5}

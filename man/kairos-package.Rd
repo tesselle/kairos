@@ -24,6 +24,8 @@ A toolkit for absolute and relative dating and analysis of chronological pattern
 \itemize{
 \item \code{kairos.progress}: a \code{\link{logical}} scalar. Should progress bars be
 displayed?
+\item \code{kairos.calendar}: a \code{\link[aion:TimeScale-class]{aion::TimeScale}} object (default calendar
+for printing).
 }
 }
 

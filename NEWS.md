@@ -1,4 +1,6 @@
 # kairos 2.0.2.9000
+## Internals
+* List **dimensio** in `Depends`.
 
 # kairos 2.0.2
 ## Internals
