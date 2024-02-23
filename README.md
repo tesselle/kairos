@@ -56,7 +56,7 @@ analysis of archaeological count data.
 
     To cite kairos in publications use:
 
-      Frerebeau N (2023). _kairos: Analysis of Chronological Patterns from
+      Frerebeau N (2024). _kairos: Analysis of Chronological Patterns from
       Archaeological Count Data_. Université Bordeaux Montaigne, Pessac,
       France. doi:10.5281/zenodo.5653896
       <https://doi.org/10.5281/zenodo.5653896>, R package version 2.0.2,
@@ -64,10 +64,10 @@ analysis of archaeological count data.
 
     A BibTeX entry for LaTeX users is
 
-      @Manual{,
+      @Manual{R-kairos,
         author = {Nicolas Frerebeau},
         title = {{kairos: Analysis of Chronological Patterns from Archaeological Count Data}},
-        year = {2023},
+        year = {2024},
         organization = {Université Bordeaux Montaigne},
         address = {Pessac, France},
         note = {R package version 2.0.2},
@@ -99,6 +99,7 @@ remotes::install_github("tesselle/kairos")
 ``` r
 ## Load packages
 library(kairos)
+#> Loading required package: dimensio
 ```
 
 **kairos** v2.0 uses **aion** for internal date representation. Look at
@@ -147,8 +148,8 @@ to this project, you agree to abide by its terms.
 
 <div id="ref-bellanger2012" class="csl-entry">
 
-Bellanger, Lise, and Philippe Husi. 2012. “Statistical Tool for Dating
-and Interpreting Archaeological Contexts Using Pottery.” *Journal of
+Bellanger, L., and P. Husi. 2012. “Statistical Tool for Dating and
+Interpreting Archaeological Contexts Using Pottery.” *Journal of
 Archaeological Science* 39 (4): 777–90.
 <https://doi.org/10.1016/j.jas.2011.06.031>.
 
@@ -156,8 +157,8 @@ Archaeological Science* 39 (4): 777–90.
 
 <div id="ref-ratcliffe2000" class="csl-entry">
 
-Ratcliffe, Jerry H. 2000. “Aoristic Analysis: The Spatial Interpretation
-of Unspecific Temporal Events.” *International Journal of Geographical
+Ratcliffe, J. H. 2000. “Aoristic Analysis: The Spatial Interpretation of
+Unspecific Temporal Events.” *International Journal of Geographical
 Information Science* 14 (7): 669–79.
 <https://doi.org/10.1080/136588100424963>.
 
@@ -165,11 +166,10 @@ Information Science* 14 (7): 669–79.
 
 <div id="ref-roberts2012" class="csl-entry">
 
-Roberts, John M., Barbara J. Mills, Jeffery J. Clark, W. Randall Haas,
-Deborah L. Huntley, and Meaghan A. Trowbridge. 2012. “A Method for
-Chronological Apportioning of Ceramic Assemblages.” *Journal of
-Archaeological Science* 39 (5): 1513–20.
-<https://doi.org/10.1016/j.jas.2011.12.022>.
+Roberts, J. M., B. J. Mills, J. J. Clark, W. R. Haas, D. L. Huntley, and
+M. A. Trowbridge. 2012. “A Method for Chronological Apportioning of
+Ceramic Assemblages.” *Journal of Archaeological Science* 39 (5):
+1513–20. <https://doi.org/10.1016/j.jas.2011.12.022>.
 
 </div>
 

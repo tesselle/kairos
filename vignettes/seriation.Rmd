@@ -36,7 +36,7 @@ library(kairos)
 
 ## Introduction
 
-The matrix seriation problem in archaeology is based on three conditions and two assumptions, which @dunnell1970 summarizes as follows.
+The matrix seriation problem in archaeology is based on three conditions and two assumptions, which Dunnell (1970) summarizes as follows.
 
 The homogeneity conditions state that all the groups included in a seriation must:
 
@@ -53,7 +53,7 @@ Theses assumptions create a distributional model and ordering is accomplished by
 
 ## Reciprocal ranking
 
-Reciprocal ranking iteratively rearrange rows and/or columns according to their weighted rank in the data matrix until convergence [@ihm2005].
+Reciprocal ranking iteratively rearrange rows and/or columns according to their weighted rank in the data matrix until convergence (Ihm 2005).
 
 For a given incidence matrix $C$:
 
@@ -82,7 +82,7 @@ tabula::plot_heatmap(incidence1, col = c("white", "black"))
 tabula::plot_heatmap(incidence2, col = c("white", "black"))
 ```
 
-The positive difference from the column mean percentage (in french "écart positif au pourcentage moyen", EPPM) represents a deviation from the situation of statistical independence [@desachy2004]. As independence can be interpreted as the absence of relationships between types and the chronological order of the assemblages, EPPM is a useful graphical tool to explore significance of relationship between rows and columns related to seriation [@desachy2004].
+The positive difference from the column mean percentage (in french "écart positif au pourcentage moyen", EPPM) represents a deviation from the situation of statistical independence (Desachy 2004). As independence can be interpreted as the absence of relationships between types and the chronological order of the assemblages, EPPM is a useful graphical tool to explore significance of relationship between rows and columns related to seriation (Desachy 2004).
 
 ```{r average, fig.width=7, fig.height=3.5}
 ## Replicates Desachy 2004
@@ -135,9 +135,9 @@ tabula::plot_ford(zuni_permuted)
 
 ### Refining
 
-@peeples2012 propose a procedure to identify samples that are subject to sampling error or samples that have underlying structural relationships and might be influencing the ordering along the CA space. This relies on a partial bootstrap approach to CA-based seriation where each sample is replicated `n` times. The maximum dimension length of the convex hull around the sample point cloud allows to remove samples for a given `cutoff` value.
+Peeples and Schachner (2012) propose a procedure to identify samples that are subject to sampling error or samples that have underlying structural relationships and might be influencing the ordering along the CA space. This relies on a partial bootstrap approach to CA-based seriation where each sample is replicated `n` times. The maximum dimension length of the convex hull around the sample point cloud allows to remove samples for a given `cutoff` value.
 
-According to @peeples2012, "[this] point removal procedure [results in] a reduced dataset where the position of individuals within the CA are highly stable and which produces an ordering consistent with the assumptions of frequency seriation."
+According to Peeples and Schachner (2012), "[this] point removal procedure [results in] a reduced dataset where the position of individuals within the CA are highly stable and which produces an ordering consistent with the assumptions of frequency seriation."
 
 ```{r bootstrap, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
 ## Partial bootstrap CA
@@ -182,3 +182,11 @@ tabula::plot_ford(zuni_permuted2)
 ```
 
 ## References
+
+Desachy, B. (2004). Le sériographe EPPM: un outil informatisé de sériation graphique pour tableaux de comptages. *Revue archéologique de Picardie*, 3(1), 39-56. DOI: [10.3406/pica.2004.2396](https://doi.org/10.3406/pica.2004.2396).
+
+Dunnell, R. C. (1970). Seriation Method and Its Evaluation. *American Antiquity*, 35(03), 305-319. DOI: [10.2307/278341](https://doi.org/10.2307/278341).
+
+Ihm, P. (2005). A Contribution to the History of Seriation in Archaeology. In C. Weihs & W. Gaul (Eds.), *Classification: The Ubiquitous Challenge*. Berlin Heidelberg: Springer, p. 307-316. DOI: [10.1007/3-540-28084-7_34](https://doi.org/10.1007/3-540-28084-7_34).
+
+Peeples, M. A. & Schachner, G. (2012). Refining correspondence analysis-based ceramic seriation of regional data sets. *Journal of Archaeological Science*, 39(8), 2818-2827. DOI: [10.1016/j.jas.2012.04.040](https://doi.org/10.1016/j.jas.2012.04.040).
