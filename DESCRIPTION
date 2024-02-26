@@ -35,12 +35,12 @@ Imports:
     stats,
     utils
 Suggests: 
-    folio (>= 1.3.0),
+    folio (>= 1.4.0),
     knitr,
     markdown,
     rsvg,
     svglite,
-    tabula (>= 3.0.0),
+    tabula (>= 3.0.1),
     tinysnapshot,
     tinytest
 VignetteBuilder: 
