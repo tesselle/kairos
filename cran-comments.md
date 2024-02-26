@@ -6,9 +6,8 @@
 
 ## R CMD check results
 
-1 errors | 0 warnings | 0 note
+0 errors | 0 warnings | 0 note
 
-* Failing vignette has been fixed.
 * Some links in the documentation point to articles behind paywalls that may return an error.
 
 ## revdepcheck results
@@ -17,4 +16,3 @@ We checked 1 reverse dependencies, comparing R CMD check results across CRAN and
 
  * We saw 0 new problems
  * We failed to check 0 packages
-

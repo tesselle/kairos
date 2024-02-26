@@ -1,4 +1,7 @@
-# kairos 2.0.2.9000
+# kairos 2.1.0
+## New classes and methods
+* Add `hist()` methods.
+
 ## Internals
 * List **dimensio** in `Depends`.
 

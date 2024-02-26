@@ -8,7 +8,7 @@ message: 'To cite package "kairos" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
-version: 2.0.2
+version: 2.1.0
 doi: 10.5281/zenodo.5653896
 abstract: A toolkit for absolute and relative dating and analysis of chronological
   patterns. This package includes functions for chronological modeling and dating
@@ -30,10 +30,10 @@ preferred-citation:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  year: '2023'
+  year: '2024'
   location:
     name: Pessac, France
-  notes: R package version 2.0.2
+  notes: R package version 2.1.0
   url: https://packages.tesselle.org/kairos/
   doi: 10.5281/zenodo.5653896
   institution:
@@ -62,10 +62,24 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
   version: '>= 3.5'
+- type: software
+  title: dimensio
+  abstract: 'dimensio: Multivariate Data Analysis'
+  notes: Depends
+  url: https://packages.tesselle.org/dimensio/
+  repository: https://CRAN.R-project.org/package=dimensio
+  authors:
+  - family-names: Frerebeau
+    given-names: Nicolas
+    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+    orcid: https://orcid.org/0000-0001-5759-4944
+    affiliation: Université Bordeaux Montaigne
+  version: '>= 0.6.0'
+  year: '2024'
 - type: software
   title: aion
   abstract: 'aion: Archaeological Time Series'
@@ -83,7 +97,7 @@ references:
     email: joseph.roe@iaw.unibe.ch
     orcid: https://orcid.org/0000-0002-1011-1244
     affiliation: Universität Bern
-  year: '2023'
+  year: '2024'
   version: '>= 1.0.2'
 - type: software
   title: arkhe
@@ -97,22 +111,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  year: '2023'
-  version: '>= 1.4.0'
-- type: software
-  title: dimensio
-  abstract: 'dimensio: Multivariate Data Analysis'
-  notes: Imports
-  url: https://packages.tesselle.org/dimensio/
-  repository: https://CRAN.R-project.org/package=dimensio
-  authors:
-  - family-names: Frerebeau
-    given-names: Nicolas
-    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
-    orcid: https://orcid.org/0000-0001-5759-4944
-    affiliation: Université Bordeaux Montaigne
-  year: '2023'
-  version: '>= 0.5.0'
+  year: '2024'
+  version: '>= 1.6.0'
 - type: software
   title: extraDistr
   abstract: 'extraDistr: Additional Univariate and Multivariate Distributions'
@@ -122,7 +122,7 @@ references:
   authors:
   - family-names: Wolodzko
     given-names: Tymoteusz
-  year: '2023'
+  year: '2024'
 - type: software
   title: grDevices
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -131,7 +131,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
 - type: software
@@ -142,7 +142,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
 - type: software
@@ -153,7 +153,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
 - type: software
@@ -164,7 +164,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
 - type: software
@@ -179,8 +179,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  year: '2023'
-  version: '>= 1.3.0'
+  version: '>= 1.4.0'
+  year: '2024'
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -192,50 +192,23 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2023'
+  year: '2024'
 - type: software
-  title: rmarkdown
-  abstract: 'rmarkdown: Dynamic Documents for R'
+  title: markdown
+  abstract: 'markdown: Render Markdown with ''commonmark'''
   notes: Suggests
-  url: https://pkgs.rstudio.com/rmarkdown/
-  repository: https://CRAN.R-project.org/package=rmarkdown
+  url: https://github.com/rstudio/markdown
+  repository: https://CRAN.R-project.org/package=markdown
   authors:
-  - family-names: Allaire
-    given-names: JJ
-    email: jj@posit.co
   - family-names: Xie
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  - family-names: Dervieux
-    given-names: Christophe
-    email: cderv@posit.co
-    orcid: https://orcid.org/0000-0003-4474-2498
-  - family-names: McPherson
-    given-names: Jonathan
-    email: jonathan@posit.co
-  - family-names: Luraschi
-    given-names: Javier
-  - family-names: Ushey
-    given-names: Kevin
-    email: kevin@posit.co
-  - family-names: Atkins
-    given-names: Aron
-    email: aron@posit.co
-  - family-names: Wickham
-    given-names: Hadley
-    email: hadley@posit.co
-  - family-names: Cheng
-    given-names: Joe
-    email: joe@posit.co
-  - family-names: Chang
-    given-names: Winston
-    email: winston@posit.co
-  - family-names: Iannone
-    given-names: Richard
-    email: rich@posit.co
-    orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2023'
+  - family-names: Allaire
+    given-names: JJ
+  - family-names: Horner
+    given-names: Jeffrey
+  year: '2024'
 - type: software
   title: rsvg
   abstract: 'rsvg: Render SVG Images into PDF, PNG, (Encapsulated) PostScript, or
@@ -248,7 +221,7 @@ references:
     given-names: Jeroen
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
-  year: '2023'
+  year: '2024'
 - type: software
   title: svglite
   abstract: 'svglite: An ''SVG'' Graphics Device'
@@ -275,7 +248,7 @@ references:
   - family-names: Lise
     given-names: Vaudor
     email: lise.vaudor@ens-lyon.fr
-  year: '2023'
+  year: '2024'
 - type: software
   title: tabula
   abstract: 'tabula: Analysis and Visualization of Archaeological Count Data'
@@ -288,8 +261,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  year: '2023'
-  version: '>= 3.0.0'
+  version: '>= 3.0.1'
+  year: '2024'
 - type: software
   title: tinysnapshot
   abstract: 'tinysnapshot: Snapshots for Unit Tests using the ''tinytest'' Framework'
@@ -301,7 +274,7 @@ references:
     given-names: Vincent
     email: vincent.arel-bundock@umontreal.ca
     orcid: https://orcid.org/0000-0003-2042-7063
-  year: '2023'
+  year: '2024'
 - type: software
   title: tinytest
   abstract: 'tinytest: Lightweight and Feature Complete Unit Testing Framework'
@@ -313,7 +286,7 @@ references:
     given-names: Mark
     email: mark.vanderloo@gmail.com
     orcid: https://orcid.org/0000-0002-9807-4686
-  year: '2023'
+  year: '2024'
 identifiers:
 - description: The concept DOI.
   type: doi
@@ -341,4 +314,4 @@ identifiers:
   value: 10.5281/zenodo.10209640
 - description: The Software Heritage identifier for version 1.0.1.
   type: swh
-  value: swh:1:dir:860da155f1ba36d918009e9fbed2bd223abe5599
+  value: swh:1:rel:508add25987e0fc9f3f29793df5578337ae2c338
