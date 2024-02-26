@@ -78,8 +78,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  version: '>= 0.6.0'
   year: '2024'
+  version: '>= 0.6.0'
 - type: software
   title: aion
   abstract: 'aion: Archaeological Time Series'
@@ -179,8 +179,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  version: '>= 1.4.0'
   year: '2024'
+  version: '>= 1.4.0'
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -312,6 +312,9 @@ identifiers:
 - description: The versioned DOI for version 2.0.2.
   type: doi
   value: 10.5281/zenodo.10209640
+- description: The versioned DOI for version 2.1.0.
+  type: doi
+  value: 10.5281/zenodo.10711260
 - description: The Software Heritage identifier for version 1.0.1.
   type: swh
   value: swh:1:rel:508add25987e0fc9f3f29793df5578337ae2c338

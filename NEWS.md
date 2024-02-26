@@ -1,3 +1,5 @@
+# kairos 2.1.0.9000
+
 # kairos 2.1.0
 ## New classes and methods
 * Add `hist()` methods.
