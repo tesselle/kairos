@@ -182,7 +182,7 @@ plot.MeanDate <- function(x, calendar = getOption("kairos.calendar"),
 
   ## Save and restore
   mar <- graphics::par("mar")
-  mar[2] <- arkhe::inch2line(sites, cex = cex.axis) + 0.5
+  mar[2] <- inch2line(sites, cex = cex.axis) + 0.5
   old_par <- graphics::par(mar = mar)
   on.exit(graphics::par(old_par))
 
@@ -278,7 +278,7 @@ plot.SimulationMeanDate <- function(x, calendar = getOption("kairos.calendar"),
 
   ## Save and restore
   mar <- graphics::par("mar")
-  mar[2] <- arkhe::inch2line(sites, cex = cex.axis) + 0.5
+  mar[2] <- inch2line(sites, cex = cex.axis) + 0.5
   old_par <- graphics::par(mar = mar)
   on.exit(graphics::par(old_par))
 
@@ -359,4 +359,21 @@ conf <- function(x, type = c("percentiles", "student", "normal", "range"),
   result <- c(mean(x), conf)
   names(result) <- c("mean", "lower", "upper")
   result
+}
+
+#' Plotting Dimensions of Character Strings
+#'
+#' Convert string length in inch to number of (margin) lines.
+#' @param x A [`character`] vector of string whose length is to be calculated.
+#' @param ... Further parameter to be passed to [graphics::strwidth()]`, such as
+#'  `cex`.
+#' @return
+#'  A [`numeric`] vector (maximum string width in units of margin lines).
+#' @note For internal use only.
+#' @family graphic tools
+#' @keywords internal
+#' @noRd
+inch2line <- function(x, ...) {
+  (max(graphics::strwidth(x, units = "inch", ...)) /
+     graphics::par("cin")[2] + graphics::par("mgp")[2]) * graphics::par("cex")
 }
