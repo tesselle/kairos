@@ -8,7 +8,7 @@
 [![R-CMD-check](https://github.com/tesselle/kairos/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/kairos/actions)
 [![codecov](https://codecov.io/gh/tesselle/kairos/branch/master/graph/badge.svg)](https://app.codecov.io/gh/tesselle/kairos)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/kairos/badge)](https://www.codefactor.io/repository/github/tesselle/kairos)
-[![Dependencies](https://tinyverse.netlify.com/badge/kairos)](https://cran.r-project.org/package=kairos)
+[![Dependencies](https://tinyverse.netlify.app/badge/kairos)](https://cran.r-project.org/package=kairos)
 
 <a href="https://tesselle.r-universe.dev/kairos"
 class="pkgdown-devel"><img
@@ -54,29 +54,18 @@ duration of an archaeological site. **kairos** provides methods for:
 package to **kairos** that provides functions for visualization and
 analysis of archaeological count data.
 
-    To cite kairos in publications use:
+------------------------------------------------------------------------
 
-      Frerebeau N (2024). _kairos: Analysis of Chronological Patterns from
-      Archaeological Count Data_. Université Bordeaux Montaigne, Pessac,
-      France. doi:10.5281/zenodo.5653896
-      <https://doi.org/10.5281/zenodo.5653896>, R package version 2.1.0,
-      <https://packages.tesselle.org/kairos/>.
+To cite kairos in publications use:
 
-    A BibTeX entry for LaTeX users is
+Frerebeau N (2024). *kairos: Analysis of Chronological Patterns from
+Archaeological Count Data*. Université Bordeaux Montaigne, Pessac,
+France. <doi:10.5281/zenodo.5653896>
+<https://doi.org/10.5281/zenodo.5653896>, R package version 2.1.1,
+<https://packages.tesselle.org/kairos/>.
 
-      @Manual{R-kairos,
-        author = {Nicolas Frerebeau},
-        title = {{kairos: Analysis of Chronological Patterns from Archaeological Count Data}},
-        year = {2024},
-        organization = {Université Bordeaux Montaigne},
-        address = {Pessac, France},
-        note = {R package version 2.1.0},
-        url = {https://packages.tesselle.org/kairos/},
-        doi = {10.5281/zenodo.5653896},
-      }
-
-    This package is a part of the tesselle project
-    <https://www.tesselle.org>.
+This package is a part of the tesselle project
+<https://www.tesselle.org>.
 
 ## Installation
 
@@ -144,7 +133,8 @@ to this project, you agree to abide by its terms.
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
 <div id="ref-bellanger2012" class="csl-entry">
 

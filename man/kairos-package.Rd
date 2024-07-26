@@ -14,7 +14,7 @@ A toolkit for absolute and relative dating and analysis of chronological pattern
 \tabular{ll}{
 \strong{Package:} \tab kairos \cr
 \strong{Type:} \tab Package \cr
-\strong{Version:} \tab 2.1.0 \cr
+\strong{Version:} \tab 2.1.1 \cr
 \strong{License:} \tab GPL-3 \cr
 }
 }
@@ -43,7 +43,7 @@ Useful links:
 
 \tabular{ll}{
 Nicolas Frerebeau \tab \emph{Université Bordeaux Montaigne, France} \cr
-Brice Lebrun \tab \emph{Université Bordeaux Montaigne, France} \cr
+Brice Lebrun \tab  \cr
 Ben Marwick \tab \emph{University of Washington, USA} \cr
 Anne Philippe \tab \emph{Université de Nantes, France} \cr
 }

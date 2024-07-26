@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/tesselle/kairos",
   "issueTracker": "https://github.com/tesselle/kairos/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "2.1.0.9000",
+  "version": "2.1.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
+  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -138,7 +138,7 @@
       "@type": "SoftwareApplication",
       "identifier": "tabula",
       "name": "tabula",
-      "version": ">= 3.0.1",
+      "version": ">= 3.1.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -183,7 +183,7 @@
       "@type": "SoftwareApplication",
       "identifier": "dimensio",
       "name": "dimensio",
-      "version": ">= 0.6.0",
+      "version": ">= 0.8.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -196,7 +196,7 @@
       "@type": "SoftwareApplication",
       "identifier": "aion",
       "name": "aion",
-      "version": ">= 1.0.2",
+      "version": ">= 1.0.4",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -252,7 +252,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "707.044KB",
+  "fileSize": "707.351KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -267,7 +267,7 @@
       "name": "{kairos: Analysis of Chronological Patterns from Archaeological Count Data}",
       "identifier": "10.5281/zenodo.5653896",
       "url": "https://packages.tesselle.org/kairos/",
-      "description": "R package version 2.1.0.9000",
+      "description": "R package version 2.1.1",
       "@id": "https://doi.org/10.5281/zenodo.5653896",
       "sameAs": "https://doi.org/10.5281/zenodo.5653896"
     }

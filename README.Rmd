@@ -21,7 +21,7 @@ Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
 [![R-CMD-check](https://github.com/tesselle/kairos/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/kairos/actions)
 [![codecov](https://codecov.io/gh/tesselle/kairos/branch/master/graph/badge.svg)](https://app.codecov.io/gh/tesselle/kairos)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/kairos/badge)](https://www.codefactor.io/repository/github/tesselle/kairos)
-[![Dependencies](https://tinyverse.netlify.com/badge/kairos)](https://cran.r-project.org/package=kairos)
+[![Dependencies](https://tinyverse.netlify.app/badge/kairos)](https://cran.r-project.org/package=kairos)
 
 [![r-universe](https://tesselle.r-universe.dev/badges/kairos)](https://tesselle.r-universe.dev/kairos){.pkgdown-devel}
 [![CRAN Version](http://www.r-pkg.org/badges/version/kairos)](https://cran.r-project.org/package=kairos){.pkgdown-release}
@@ -45,8 +45,11 @@ A convenient and reproducible toolkit for relative and absolute dating and analy
 
 [**tabula**](https://packages.tesselle.org/tabula/) is a companion package to **kairos** that provides functions for visualization and analysis of archaeological count data.
 
-```{r citation, echo=FALSE, comment=''}
-utils::citation("kairos")
+---
+
+```{r citation, echo=FALSE, comment='', results='asis'}
+cite <- utils::citation("kairos")
+print(cite, bibtex = FALSE)
 ```
 
 ## Installation
