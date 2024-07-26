@@ -71,7 +71,7 @@ and y axis labels) appear on the plot?}
 \item{frame.plot}{A \code{\link{logical}} scalar: should a box be drawn around the
 plot?}
 
-\item{panel.first}{An an \code{expression} to be evaluated after the plot axes are
+\item{panel.first}{An \code{expression} to be evaluated after the plot axes are
 set up but before any plotting takes place. This can be useful for drawing
 background grids.}
 
