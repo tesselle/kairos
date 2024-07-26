@@ -40,8 +40,8 @@
 \arguments{
 \item{x}{A \code{\linkS4class{MeanDate}} object.}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
-(see \code{\link[=calendar]{calendar()}}).}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
+calendar (see \code{\link[=calendar]{calendar()}}).}
 
 \item{decreasing}{A \code{\link{logical}} scalar: should the sort be increasing or
 decreasing?}

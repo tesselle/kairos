@@ -36,8 +36,8 @@ axes corresponding to at least 60\% of the inertia will be used.}
 \item{sup_row}{A \code{\link{numeric}} or \code{\link{logical}} vector specifying the indices of
 the supplementary rows.}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
-\code{dates} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the calendar
+of \code{dates} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
 }
 \value{
 An \code{\linkS4class{EventDate}} object.

@@ -24,8 +24,8 @@ will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{
 
 \item{...}{Currently not used.}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
-\code{dates} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the calendar
+of \code{dates} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
 

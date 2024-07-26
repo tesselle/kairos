@@ -90,7 +90,7 @@ NULL
 #' Aoristic Sum
 #'
 #' An S4 class to represent an aoristic analysis results.
-#' @slot breaks A [`RataDie-class`] vector giving the date break between
+#' @slot breaks An [`aion::RataDie-class`] vector giving the date break between
 #'  time-blocks.
 #' @slot weights A [`numeric`] vector.
 #' @slot groups A [`character`] vector to store the group names (if any).

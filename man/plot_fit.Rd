@@ -27,8 +27,8 @@
 \arguments{
 \item{x}{An \code{\linkS4class{IncrementTest}} object to be plotted.}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
-(see \code{\link[aion:calendar]{calendar()}}).}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
+calendar (see \code{\link[=calendar]{calendar()}}).}
 
 \item{col.neutral, col.selection, col.roll}{A vector of colors.}
 

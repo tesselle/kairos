@@ -48,8 +48,8 @@ window.}
 \item{end}{A length-one \code{\link{numeric}} vector giving the end of the time
 window.}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the calendar of
-\code{x} and \code{y} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the calendar
+of \code{x} and \code{y} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
 
 \item{weight}{A \code{\link{logical}} scalar: should the aoristic sum be weighted by
 the length of periods (default). If \code{FALSE} the aoristic sum is the number

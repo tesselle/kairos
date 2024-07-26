@@ -23,8 +23,8 @@ replications.}
 \item{f}{A \code{\link{function}} that takes a single numeric vector (the result of
 the resampling procedure) as argument.}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
-(see \code{\link[=calendar]{calendar()}}).}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
+calendar (see \code{\link[=calendar]{calendar()}}).}
 
 \item{nsim}{A non-negative \code{\link{integer}} specifying the number of simulations.}
 }

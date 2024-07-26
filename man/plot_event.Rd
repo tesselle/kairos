@@ -38,8 +38,8 @@ Any unambiguous substring can be given.}
 \item{event}{A \code{\link{logical}} scalar: should the distribution of the event date
 be displayed? Only used if type is "\code{activity}".}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
-(see \code{\link[aion:calendar]{calendar()}}).}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
+calendar (see \code{\link[=calendar]{calendar()}}).}
 
 \item{select}{A \code{\link{numeric}} or \code{\link{character}} vector giving the selection of
 the assemblage that are drawn.}

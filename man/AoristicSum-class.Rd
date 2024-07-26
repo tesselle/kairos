@@ -11,7 +11,7 @@ An S4 class to represent an aoristic analysis results.
 \section{Slots}{
 
 \describe{
-\item{\code{breaks}}{A \code{\linkS4class{RataDie}} vector giving the date break between
+\item{\code{breaks}}{An \code{\link[aion:RataDie-class]{aion::RataDie}} vector giving the date break between
 time-blocks.}
 
 \item{\code{weights}}{A \code{\link{numeric}} vector.}

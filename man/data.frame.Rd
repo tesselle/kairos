@@ -19,8 +19,8 @@
 
 \item{...}{Further parameters to be passed to \code{\link[=data.frame]{data.frame()}}.}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
-(see \code{\link[=calendar]{calendar()}}). If \code{NULL}, \emph{rata die} are returned.}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
+calendar (see \code{\link[=calendar]{calendar()}}). If \code{NULL}, \emph{rata die} are returned.}
 
 \item{row.names, optional}{Currently not used.}
 }

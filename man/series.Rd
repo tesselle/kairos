@@ -12,8 +12,9 @@
 \arguments{
 \item{x}{An \R object.}
 
-\item{calendar}{A \code{\linkS4class{TimeScale}} object specifying the target calendar
-(see \code{\link[=calendar]{calendar()}}). If \code{NULL} (the default), \emph{rata die} are returned.}
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
+calendar (see \code{\link[=calendar]{calendar()}}). If \code{NULL} (the default), \emph{rata die} are
+returned.}
 }
 \value{
 A \code{\link{numeric}} vector.
