@@ -1,6 +1,7 @@
 ---
 output: github_document
 bibliography: vignettes/bibliography.bib
+nocite: '@*'
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -24,9 +25,9 @@ Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
 [![Dependencies](https://tinyverse.netlify.app/badge/kairos)](https://cran.r-project.org/package=kairos)
 
 [![r-universe](https://tesselle.r-universe.dev/badges/kairos)](https://tesselle.r-universe.dev/kairos){.pkgdown-devel}
-[![CRAN Version](http://www.r-pkg.org/badges/version/kairos)](https://cran.r-project.org/package=kairos){.pkgdown-release}
+[![CRAN Version](https://www.r-pkg.org/badges/version/kairos)](https://cran.r-project.org/package=kairos){.pkgdown-release}
 [![CRAN checks](https://badges.cranchecks.info/worst/kairos.svg)](https://cran.r-project.org/web/checks/check_results_kairos.html){.pkgdown-release}
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/kairos)](https://cran.r-project.org/package=kairos){.pkgdown-release}
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/kairos)](https://cran.r-project.org/package=kairos){.pkgdown-release}
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
