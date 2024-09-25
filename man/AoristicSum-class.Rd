@@ -14,7 +14,8 @@ An S4 class to represent an aoristic analysis results.
 \item{\code{breaks}}{An \code{\link[aion:RataDie-class]{aion::RataDie}} vector giving the date break between
 time-blocks.}
 
-\item{\code{weights}}{A \code{\link{numeric}} vector.}
+\item{\code{span}}{An \code{\link[aion:RataDie-class]{aion::RataDie}} vector giving the duration of
+time-blocks.}
 
 \item{\code{groups}}{A \code{\link{character}} vector to store the group names (if any).}
 

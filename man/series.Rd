@@ -4,10 +4,12 @@
 \name{series}
 \alias{series}
 \alias{time,EventDate-method}
-\alias{get_dates,EventDate-method}
+\alias{span,AoristicSum-method}
 \title{Sampling Times}
 \usage{
 \S4method{time}{EventDate}(x, calendar = NULL)
+
+\S4method{span}{AoristicSum}(x, calendar = NULL)
 }
 \arguments{
 \item{x}{An \R object.}

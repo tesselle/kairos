@@ -92,7 +92,8 @@ NULL
 #' An S4 class to represent an aoristic analysis results.
 #' @slot breaks An [`aion::RataDie-class`] vector giving the date break between
 #'  time-blocks.
-#' @slot weights A [`numeric`] vector.
+#' @slot span An [`aion::RataDie-class`] vector giving the duration of
+#'  time-blocks.
 #' @slot groups A [`character`] vector to store the group names (if any).
 #' @slot p A [`numeric`] [`array`] giving the aorisitic probabilities.
 #' @section Coerce:
@@ -112,7 +113,7 @@ NULL
   Class = "AoristicSum",
   slots = c(
     breaks = "RataDie",
-    weights = "numeric",
+    span = "RataDie",
     groups = "character",
     p = "array"
   ),

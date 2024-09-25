@@ -44,7 +44,7 @@ setValidity(
   Class = "AoristicSum",
   method = function(object) {
     # Get data
-    weights <- object@weights
+    span <- object@span
     groups <- object@groups
     breaks <- object@breaks
     p <- object@p
@@ -54,7 +54,7 @@ setValidity(
     k <- length(unique(groups))
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_length(weights, i)),
+      arkhe::validate(arkhe::assert_length(span, i)),
       arkhe::validate(arkhe::assert_length(groups, i)),
       arkhe::validate(arkhe::assert_length(breaks, j + 1)),
       arkhe::validate(arkhe::assert_dimensions(p, c(i, j, k)))

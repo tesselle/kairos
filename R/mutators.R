@@ -5,7 +5,7 @@ NULL
 # Getters ======================================================================
 #' @export
 #' @rdname series
-#' @aliases get_dates,EventDate-method
+#' @aliases time,EventDate-method
 setMethod(
   f = "time",
   signature = "EventDate",
@@ -17,9 +17,22 @@ setMethod(
 )
 
 #' @export
+#' @rdname series
+#' @aliases span,AoristicSum-method
+setMethod(
+  f = "span",
+  signature = "AoristicSum",
+  definition = function(x, calendar = NULL) {
+    z <- x@span
+    if (is.null(calendar)) return(unclass(z))
+    aion::as_year(z, calendar = calendar, shift = FALSE)
+  }
+)
+
+#' @export
 #' @rdname mutators
 #' @aliases weights,AoristicSum-method
-setMethod("weights", "AoristicSum", function(object, ...) object@weights)
+setMethod("weights", "AoristicSum", function(object, ...) object@p)
 
 #' @export
 #' @rdname mutators

@@ -72,7 +72,7 @@ setMethod(
     .AoristicSum(
       ts,
       breaks = breaks,
-      weights = span,
+      span = span,
       groups = groups,
       p = ao_probs
     )
