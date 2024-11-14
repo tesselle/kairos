@@ -53,16 +53,11 @@ data("compiegne", package = "folio")
 (indices <- seriate_rank(compiegne, EPPM = TRUE, margin = 2))
 
 ## Get permutation order
-get_order(indices, 1) # rows
-get_order(indices, 2) # columns
+order_rows(indices)
+order_columns(indices)
 
 ## Permute columns
 (new <- permute(compiegne, indices))
-
-## See the vignette
-\dontrun{
-utils::vignette("seriation")
-}
 }
 \references{
 Ihm, P. (2005). A Contribution to the History of Seriation in Archaeology.
@@ -74,6 +69,7 @@ Challenge}. Berlin Heidelberg: Springer, p. 307-316.
 \code{\link[dimensio:ca]{dimensio::ca()}}
 
 Other seriation methods: 
+\code{\link{order}()},
 \code{\link{permute}()},
 \code{\link{seriate_rank}()},
 \code{\link{seriate_refine}()}

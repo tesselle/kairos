@@ -6,15 +6,14 @@ if (requireNamespace("folio", quietly = TRUE)) {
   ## Permute rows
   indices_row <- seriate_rank(compiegne, margin = 1)
   exp_row <- c(1, 2, 5, 3, 4)
-  expect_equal(indices_row@rows_order, exp_row)
-  expect_equal(indices_row@columns_order, 1:16)
+  expect_equal(order_rows(indices_row), exp_row)
+  expect_equal(order_columns(indices_row), 1:16)
 
   ## Permute columns
   indices_col <- seriate_rank(compiegne, margin = 2)
   exp_col <- c(14, 1, 11, 3, 16, 12, 5, 2, 15, 13, 4, 7, 6, 9, 10, 8)
-  expect_equal(indices_col@rows_order, 1:5)
-  expect_equal(indices_col@columns_order, exp_col)
-  expect_inherits(get_order(indices_col), "list")
+  expect_equal(order_rows(indices_col), 1:5)
+  expect_equal(order_columns(indices_col), exp_col)
 
   expect_warning(seriate_rank(compiegne, stop = 1, margin = 2))
 

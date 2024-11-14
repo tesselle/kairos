@@ -4,22 +4,15 @@
 \name{permute}
 \alias{permute}
 \alias{permute-method}
-\alias{get_order}
-\alias{get_order-method}
 \alias{permute,data.frame,PermutationOrder-method}
 \alias{permute,matrix,PermutationOrder-method}
-\alias{get_order,PermutationOrder-method}
-\title{Rearranges a Data Matrix}
+\title{Rearrange a Data Matrix}
 \usage{
 permute(object, order, ...)
-
-get_order(x, ...)
 
 \S4method{permute}{data.frame,PermutationOrder}(object, order)
 
 \S4method{permute}{matrix,PermutationOrder}(object, order)
-
-\S4method{get_order}{PermutationOrder}(x, margin = c(1, 2))
 }
 \arguments{
 \item{object}{A \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or
@@ -27,26 +20,16 @@ get_order(x, ...)
 individuals for each category, i.e. a contingency table). A \code{\link{data.frame}}
 will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{data.matrix()}}.}
 
-\item{...}{Currently not used.}
-
-\item{x, order}{A \code{\linkS4class{PermutationOrder}} object giving the permutation
+\item{order}{A \code{\linkS4class{PermutationOrder}} object giving the permutation
 order for rows and columns.}
 
-\item{margin}{A \code{\link{numeric}} vector giving the subscripts which the
-rearrangement will be applied over: \code{1} indicates rows, \code{2} indicates
-columns, \code{c(1, 2)} indicates rows and columns.}
+\item{...}{Currently not used.}
 }
 \value{
-\itemize{
-\item \code{permute()} returns a permuted \code{matrix} or a permuted \code{data.frame}
-(the same as \code{object}).
-}
+A permuted \code{matrix} or a permuted \code{data.frame} (the same as \code{object}).
 }
 \description{
-\itemize{
-\item \code{permute()} rearranges a data matrix according to a permutation order.
-\item \code{get_order()} returns the seriation order for rows and/or columns.
-}
+Rearranges a data matrix according to a permutation order.
 }
 \examples{
 ## Replicates Desachy 2004 results
@@ -57,21 +40,15 @@ data("compiegne", package = "folio")
 (indices <- seriate_rank(compiegne, EPPM = TRUE, margin = 2))
 
 ## Get permutation order
-get_order(indices, 1) # rows
-get_order(indices, 2) # columns
+order_rows(indices)
+order_columns(indices)
 
 ## Permute columns
 (new <- permute(compiegne, indices))
-
-## See the vignette
-\dontrun{
-utils::vignette("seriation")
-}
 }
 \seealso{
-\code{\link[dimensio:ca]{dimensio::ca()}}
-
 Other seriation methods: 
+\code{\link{order}()},
 \code{\link{seriate_average}()},
 \code{\link{seriate_rank}()},
 \code{\link{seriate_refine}()}

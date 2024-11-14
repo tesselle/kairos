@@ -902,25 +902,18 @@ setGeneric(
 )
 
 ## Permute ---------------------------------------------------------------------
-#' Rearranges a Data Matrix
+#' Rearrange a Data Matrix
 #'
-#' @description
-#'  * `permute()` rearranges a data matrix according to a permutation order.
-#'  * `get_order()` returns the seriation order for rows and/or columns.
+#' Rearranges a data matrix according to a permutation order.
 #' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
 #'  [`data.frame`] of count data (absolute frequencies giving the number of
 #'  individuals for each category, i.e. a contingency table). A [`data.frame`]
 #'  will be coerced to a `numeric` `matrix` via [data.matrix()].
-#' @param x,order A [`PermutationOrder-class`] object giving the permutation
+#' @param order A [`PermutationOrder-class`] object giving the permutation
 #'  order for rows and columns.
-#' @param margin A [`numeric`] vector giving the subscripts which the
-#'  rearrangement will be applied over: `1` indicates rows, `2` indicates
-#'  columns, `c(1, 2)` indicates rows and columns.
 #' @param ... Currently not used.
 #' @return
-#'  * `permute()` returns a permuted `matrix` or a permuted `data.frame`
-#'    (the same as `object`).
-#' @seealso [dimensio::ca()]
+#'  A permuted `matrix` or a permuted `data.frame` (the same as `object`).
 #' @example inst/examples/ex-seriation.R
 #' @author N. Frerebeau
 #' @family seriation methods
@@ -931,9 +924,32 @@ setGeneric(
   def = function(object, order, ...) standardGeneric("permute")
 )
 
-#' @rdname permute
-#' @aliases get_order-method
+#' Permutation Order
+#'
+#' Returns the seriation order for rows and/or columns.
+#' @param object A [`PermutationOrder-class`] object giving the permutation
+#'  order for rows and columns.
+#' @param ... Currently not used.
+#' @return
+#'  An [`integer`] vector.
+#' @example inst/examples/ex-seriation.R
+#' @author N. Frerebeau
+#' @family seriation methods
+#' @docType methods
+#' @name order
+#' @rdname order
+NULL
+
+#' @rdname order
+#' @aliases order_rows-method
 setGeneric(
-  name = "get_order",
-  def = function(x, ...) standardGeneric("get_order")
+  name = "order_rows",
+  def = function(object, ...) standardGeneric("order_rows")
+)
+
+#' @rdname order
+#' @aliases order_columns-method
+setGeneric(
+  name = "order_columns",
+  def = function(object, ...) standardGeneric("order_columns")
 )

@@ -26,15 +26,19 @@ setMethod(
 )
 
 #' @export
-#' @rdname permute
-#' @aliases get_order,PermutationOrder-method
+#' @rdname order
+#' @aliases order_rows,PermutationOrder-method
 setMethod(
-  f = "get_order",
+  f = "order_rows",
   signature = c("PermutationOrder"),
-  definition = function(x, margin = c(1, 2)) {
-    o <- list(rows = integer(0), columns = integer(0))
-    o$rows <- if (1 %in% margin) x@rows_order else NULL
-    o$columns <- if (2 %in% margin) x@columns_order else NULL
-    if (length(o) == 1) unname(unlist(o)) else o
-  }
+  definition = function(object) object@rows_order
+)
+
+#' @export
+#' @rdname order
+#' @aliases order_columns,PermutationOrder-method
+setMethod(
+  f = "order_columns",
+  signature = c("PermutationOrder"),
+  definition = function(object) object@columns_order
 )

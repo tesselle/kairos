@@ -2,7 +2,14 @@
 % Please edit documentation in R/kairos-deprecated.R
 \name{kairos-deprecated}
 \alias{kairos-deprecated}
+\alias{get_order}
+\alias{get_order,PermutationOrder-method}
 \title{Deprecated Functions in kairos}
+\usage{
+get_order(x, ...)
+
+\S4method{get_order}{PermutationOrder}(x, margin = c(1, 2))
+}
 \description{
 These functions still work but will be removed (defunct) in the next version.
 }
