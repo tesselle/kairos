@@ -121,12 +121,12 @@ setMethod(
 setMethod(
   f = "predict_event",
   signature = c(object = "EventDate", data = "missing"),
-  definition = function(object, margin = 1, level = 0.95, calendar = NULL) {
-    data <- object@data
-    if (margin == 1) data <- data[, !object@columns@supplement, drop = FALSE]
-    if (margin == 2) data <- data[!object@rows@supplement, , drop = FALSE]
-    methods::callGeneric(object, data = data, margin = margin, level = level,
-                         calendar = calendar)
+  definition = function(object, margin = 1, level = 0.95,
+                        calendar = getOption("kairos.calendar")) {
+    data <- dimensio::get_coordinates(object, margin = margin)
+    data <- as.matrix(data[, -ncol(data), drop = FALSE])
+
+    .predict_event(object, data, level = level, calendar = calendar)
   }
 )
 
@@ -137,23 +137,34 @@ setMethod(
   f = "predict_event",
   signature = c(object = "EventDate", data = "matrix"),
   definition = function(object, data, margin = 1, level = 0.95,
-                        calendar = NULL) {
+                        calendar = getOption("kairos.calendar")) {
     ## Correspondence analysis
-    ca_coord <- dimensio::predict(object, data, margin = margin)
+    data <- dimensio::predict(object, data, margin = margin)
 
-    ## Predict event date
-    fit_model <- object@model
-    ca_event <- compute_event(fit_model, ca_coord, level = level)
-
-    # TODO: check predicted dates consistency
-
-    ## Convert
-    ca_event <- as.data.frame(ca_event)
-    if (is.null(calendar)) return(ca_event)
-    ca_event[] <- lapply(X = ca_event, FUN = aion::as_year, calendar = calendar)
-    ca_event
+    .predict_event(object, data, level = level, calendar = calendar)
   }
 )
+
+.predict_event <- function(object, data, level = 0.95,
+                           calendar = getOption("kairos.calendar")) {
+  ## Predict event date
+  fit_model <- object@model
+  ca_event <- compute_event(fit_model, data, level = level)
+
+  # TODO: check predicted dates consistency
+
+  ## Convert
+  ca_event <- as.data.frame(ca_event)
+  if (is.null(calendar)) return(ca_event)
+
+  ca_event[] <- lapply(
+    X = ca_event,
+    FUN = aion::as_year,
+    calendar = calendar,
+    decimal = TRUE
+  )
+  ca_event
+}
 
 #' @export
 #' @rdname density_event
@@ -201,10 +212,10 @@ setMethod(
 setMethod(
   f = "predict_accumulation",
   signature = c(object = "EventDate", data = "missing"),
-  definition = function(object, calendar = NULL) {
+  definition = function(object, level = 0.95,
+                        calendar = getOption("kairos.calendar")) {
     data <- object@data
-    data <- data[!object@rows@supplement, , drop = FALSE]
-    methods::callGeneric(object, data = data, calendar = calendar)
+    methods::callGeneric(object, data = data, level = level, calendar = calendar)
   }
 )
 
@@ -214,9 +225,10 @@ setMethod(
 setMethod(
   f = "predict_accumulation",
   signature = c(object = "EventDate", data = "matrix"),
-  definition = function(object, data, level = 0.95, calendar = NULL) {
+  definition = function(object, data, level = 0.95,
+                        calendar = getOption("kairos.calendar")) {
     ## Predict event date
-    col_event <- predict_event(object, data, margin = 2, calendar = NULL)
+    col_event <- predict_event(object, margin = 2, calendar = NULL)
 
     ## Accumulation time point estimate
     date_range <- seq(
@@ -248,7 +260,13 @@ setMethod(
     quant <- as.data.frame(quant)
     colnames(quant) <- c("date", "lower", "upper")
     if (is.null(calendar)) return(quant)
-    quant[] <- lapply(X = quant, FUN = aion::as_year, calendar = calendar)
+
+    quant[] <- lapply(
+      X = quant,
+      FUN = aion::as_year,
+      calendar = calendar,
+      decimal = TRUE
+    )
     quant
   }
 )
@@ -310,7 +328,6 @@ setMethod(
       },
       density = col_density
     )
-    # date_acc <- date_acc / colSums(date_acc)
 
     aion::series(object = date_acc, time = dates)
   }

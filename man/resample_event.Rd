@@ -74,8 +74,6 @@ with the following columns:
 }
 }
 \seealso{
-\code{\link[=event]{event()}}
-
 Other event date tools: 
 \code{\link{density_event}()},
 \code{\link{event}()},

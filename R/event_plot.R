@@ -68,6 +68,8 @@ plot.EventDate <- function(x, type = c("activity", "tempo"), event = FALSE,
              main = main, sub = sub, ann = ann, axes = axes,
              frame.plot = frame.plot,
              col = col, lty = c(0, 0))
+
+  invisible(x)
 }
 
 #' @export

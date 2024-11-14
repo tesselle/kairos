@@ -16,13 +16,33 @@ predict_event(object, data, ...)
 
 predict_accumulation(object, data, ...)
 
-\S4method{predict_event}{EventDate,missing}(object, margin = 1, level = 0.95, calendar = NULL)
+\S4method{predict_event}{EventDate,missing}(
+  object,
+  margin = 1,
+  level = 0.95,
+  calendar = getOption("kairos.calendar")
+)
 
-\S4method{predict_event}{EventDate,matrix}(object, data, margin = 1, level = 0.95, calendar = NULL)
+\S4method{predict_event}{EventDate,matrix}(
+  object,
+  data,
+  margin = 1,
+  level = 0.95,
+  calendar = getOption("kairos.calendar")
+)
 
-\S4method{predict_accumulation}{EventDate,missing}(object, calendar = NULL)
+\S4method{predict_accumulation}{EventDate,missing}(
+  object,
+  level = 0.95,
+  calendar = getOption("kairos.calendar")
+)
 
-\S4method{predict_accumulation}{EventDate,matrix}(object, data, level = 0.95, calendar = NULL)
+\S4method{predict_accumulation}{EventDate,matrix}(
+  object,
+  data,
+  level = 0.95,
+  calendar = getOption("kairos.calendar")
+)
 }
 \arguments{
 \item{object}{An \code{\linkS4class{EventDate}} object.}
@@ -38,8 +58,7 @@ will be applied over: \code{1} indicates rows, \code{2} indicates columns.}
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
 
 \item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
-calendar (see \code{\link[=calendar]{calendar()}}). If \code{NULL} (the default), \emph{rata die} are
-returned.}
+calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL}, \emph{rata die} are returned.}
 }
 \value{
 A \code{\link{data.frame}}.
@@ -85,8 +104,6 @@ Pottery Quantification for the Dating of Some Archaeological Contexts.
 \emph{Archaeometry}, 48(1), 169-183. \doi{10.1111/j.1475-4754.2006.00249.x}.
 }
 \seealso{
-\code{\link[=event]{event()}}
-
 Other event date tools: 
 \code{\link{density_event}()},
 \code{\link{event}()},

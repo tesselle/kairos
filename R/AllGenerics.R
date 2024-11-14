@@ -282,17 +282,15 @@ setGeneric(
 #' Estimates the event and accumulation dates of an assemblage.
 #' @param object An [`EventDate-class`] object.
 #' @param data A `numeric` [`matrix`] or a [`data.frame`] of count data
-#'  (absolute frequencies) for which to predict event and accumulation dates.
+#' (absolute frequencies) for which to predict event and accumulation dates.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [calendar()]). If `NULL` (the default), *rata die* are
-#'  returned.
+#'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param margin A [`numeric`] vector giving the subscripts which the prediction
 #'  will be applied over: `1` indicates rows, `2` indicates columns.
 #' @param ... Further arguments to be passed to internal methods.
 #' @return
 #'  A [`data.frame`].
-#' @seealso [event()]
 #' @references
 #'  Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans
 #'  la matière à partir d'une source matérielle : la céramique médiévale.
@@ -411,7 +409,6 @@ setGeneric(
 #'  }
 #' @return
 #'  A [`data.frame`].
-#' @seealso [event()]
 #' @author N. Frerebeau
 #' @docType methods
 #' @family event date tools

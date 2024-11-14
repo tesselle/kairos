@@ -1,4 +1,6 @@
 # kairos 2.1.1.9000
+## Bugfixes & changes
+* Fix a bug in `predict_event()` and `predict_accumulation()`: supplementary rows are no longer ignored.
 
 # kairos 2.1.1
 ## Internals

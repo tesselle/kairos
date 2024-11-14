@@ -25,6 +25,9 @@ if (requireNamespace("folio", quietly = TRUE)) {
   eve2 <- predict_event(model, margin = 2, calendar = NULL)
   expect_equivalent_to_reference(eve2, file = "_snaps/event_column.rds")
 
+  acc <- predict_accumulation(model, calendar = NULL)
+  expect_equivalent_to_reference(acc, file = "_snaps/accumulation.rds", tolerance = 0.0005)
+
   # Plot =======================================================================
   if (at_home()) {
     using("tinysnapshot")
@@ -34,10 +37,6 @@ if (requireNamespace("folio", quietly = TRUE)) {
     options(tinysnapshot_tol = 200) # pixels
     options(tinysnapshot_os = "Linux")
 
-    ## Accumulation
-    # acc <- predict_accumulation(model)
-    # expect_equivalent_to_reference(acc, file = "_snaps/accumulation.rds")
-
     ## Bootstrap
     # boot <- with_seed(12345, bootstrap(model, n = 30))
     # expect_equivalent_to_reference(boot, file = "_snaps/event_bootstrap.rds")
@@ -46,14 +45,17 @@ if (requireNamespace("folio", quietly = TRUE)) {
     jack <- jackknife(model)
     expect_equivalent_to_reference(jack, file = "_snaps/event_jackknife.rds")
 
-    ## Event plot
-    for (i in c(TRUE, FALSE)) {
-      plot_event_activ <- function() plot(model, type = "activity", event = i,
-                                          select = c("LZ1105", "LZ1103"))
-      expect_snapshot_plot(plot_event_activ, paste0("plot_event_activ-", i))
-    }
-
     ## Activity plot
+    plot_event_activ1 <- function() plot(model, type = "activity", event = FALSE,
+                                         select = c("LZ1105", "LZ1103"))
+    expect_snapshot_plot(plot_event_activ1, "plot_event_activity1")
+
+    ## Event plot
+    plot_event_activ2 <- function() plot(model, type = "activity", event = TRUE,
+                                         select = c("LZ1105", "LZ1103"))
+    expect_snapshot_plot(plot_event_activ2, "plot_event_activity2")
+
+    ## Tempo plot
     plot_event_tempo <- function() plot(model, type = "tempo",
                                         select = c("LZ1105", "LZ1103"))
     expect_snapshot_plot(plot_event_tempo, "plot_event_tempo")

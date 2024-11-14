@@ -180,7 +180,6 @@ fitted(model, calendar = CE())
 
 ```{r event-predict}
 ## Estimate event dates
-## (results are expressed in rata die)
 eve <- predict_event(model, margin = 1, level = 0.95)
 head(eve)
 ```
