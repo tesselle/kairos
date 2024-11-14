@@ -280,10 +280,7 @@ setGeneric(
 #' Predict Event and Accumulation Dates
 #'
 #' Estimates the event and accumulation dates of an assemblage.
-#' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
-#'  [`data.frame`] of count data (absolute frequencies giving the number of
-#'  individuals for each category, i.e. a contingency table). A [`data.frame`]
-#'  will be coerced to a `numeric` `matrix` via [data.matrix()].
+#' @param object An [`EventDate-class`] object.
 #' @param data A `numeric` [`matrix`] or a [`data.frame`] of count data
 #'  (absolute frequencies) for which to predict event and accumulation dates.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
@@ -294,8 +291,7 @@ setGeneric(
 #'  will be applied over: `1` indicates rows, `2` indicates columns.
 #' @param ... Further arguments to be passed to internal methods.
 #' @return
-#'  * `predict_event()` returns a [`data.frame`].
-#'  * `predict_accumulation()` returns a [`data.frame`].
+#'  A [`data.frame`].
 #' @seealso [event()]
 #' @references
 #'  Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans
@@ -334,6 +330,40 @@ setGeneric(
   name = "predict_accumulation",
   def = function(object, data, ...) standardGeneric("predict_accumulation"),
   valueClass = "data.frame"
+)
+
+#' Density of Event and Accumulation Dates
+#'
+#' Estimates the event and accumulation density.
+#' @param object An [`EventDate-class`] object.
+#' @param dates A [`numeric`] vector of dates expressed as `calendar` years or
+#'  *rata die* (if `calendar` is `NULL`).
+#' @param calendar An [`aion::TimeScale-class`] object specifying the
+#'  calendar (see [aion::calendar()]). If `NULL` (the default), *rata die* are
+#'  expected.
+#' @param type A [`character`] string indicating the type of plot.
+#'  It must be one of "`activity`" (default) or "`tempo`" (see details).
+#'  Any unambiguous substring can be given.
+#' @param n A length-one non-negative [`numeric`] vector giving the desired
+#'  length of the vector of quantiles for density computation.
+#' @param ... Currently not used.
+#' @return
+#'  An [`aion::TimeSeries-class`] object.
+#' @example inst/examples/ex-event.R
+#' @author N. Frerebeau
+#' @family event date tools
+#' @docType methods
+#' @aliases density_event-method
+setGeneric(
+  name = "density_event",
+  def = function(object, ...) standardGeneric("density_event")
+)
+
+#' @rdname density_event
+#' @aliases density_accumulation-method
+setGeneric(
+  name = "density_accumulation",
+  def = function(object, ...) standardGeneric("density_accumulation")
 )
 
 #' Resample Event Dates
@@ -392,6 +422,7 @@ NULL
 #' Extract Event Date Model Results
 #'
 #' @description
+#'  * `summary()` summarizes linear model fit.
 #'  * `coef()` extracts model coefficients (see [stats::coef()]).
 #'  * `fitted()` extracts model fitted values (see [stats::fitted()]).
 #'  * `residuals()` extracts model residuals (see [stats::residuals()]).
@@ -406,8 +437,8 @@ NULL
 #' @author N. Frerebeau
 #' @family event date tools
 #' @docType methods
-#' @name model
-#' @rdname model
+#' @name model_event
+#' @rdname model_event
 NULL
 
 #' Plot Event and Accumulation Dates
@@ -415,7 +446,7 @@ NULL
 #' Produces an activity or a tempo plot.
 #' @param x An [`EventDate-class`] object.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [calendar()]).
+#'  calendar (see [aion::calendar()]).
 #' @param type A [`character`] string indicating the type of plot.
 #'  It must be one of "`activity`" (default) or "`tempo`" (see details).
 #'  Any unambiguous substring can be given.

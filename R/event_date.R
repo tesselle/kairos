@@ -155,6 +155,45 @@ setMethod(
   }
 )
 
+#' @export
+#' @rdname density_event
+#' @aliases density_event,EventDate-method
+setMethod(
+  f = "density_event",
+  signature = c(object = "EventDate"),
+  definition = function(object, dates = NULL, calendar = NULL, n = 500, ...) {
+    ## Get data
+    rows <- predict_event(object, margin = 1, calendar = NULL)
+    row_dates <- rows$date
+    row_errors <- rows$error
+
+    if (is.null(dates)) {
+      dates <- seq(
+        from = min(rows$lower, na.rm = TRUE) * 0.96,
+        to = max(rows$upper, na.rm = TRUE) * 1.04,
+        length.out = n
+      )
+    }
+    if (is.null(calendar)) {
+      dates <- aion::as_fixed(dates)
+    } else {
+      dates <- aion::fixed(dates, calendar = calendar)
+    }
+
+    ## Density estimation
+    date_event <- mapply(
+      FUN = stats::dnorm,
+      mean = row_dates,
+      sd = row_errors,
+      MoreArgs = list(x = dates),
+      SIMPLIFY = TRUE
+    )
+
+    colnames(date_event) <- rownames(rows)
+    aion::series(object = date_event, time = dates)
+  }
+)
+
 # Accumulation =================================================================
 #' @export
 #' @rdname predict_event
@@ -214,6 +253,70 @@ setMethod(
   }
 )
 
+#' @export
+#' @rdname density_event
+#' @aliases density_accumulation,EventDate-method
+setMethod(
+  f = "density_accumulation",
+  signature = c(object = "EventDate"),
+  definition = function(object, dates = NULL, calendar = NULL,
+                        type = c("activity", "tempo"), n = 500, ...) {
+    ## Validation
+    type <- match.arg(type, several.ok = FALSE)
+
+    ## Get data
+    columns <- predict_event(object, margin = 2, calendar = NULL)
+    col_dates <- columns$date
+    col_errors <- columns$error
+
+    if (is.null(dates)) {
+      dates <- seq(
+        from = min(columns$lower, na.rm = TRUE) * 0.96,
+        to = max(columns$upper, na.rm = TRUE) * 1.04,
+        length.out = n
+      )
+    }
+    if (is.null(calendar)) {
+      dates <- aion::as_fixed(dates)
+    } else {
+      dates <- aion::fixed(dates, calendar = calendar)
+    }
+
+    ## Weighted sum of the fabric dates
+    counts <- dimensio::get_data(object)
+    freq <- counts / rowSums(counts)
+
+    ## Tempo vs activity plot
+    fun <- switch(
+      type,
+      activity = stats::dnorm,
+      tempo = stats::pnorm
+    )
+
+    ## Density estimation
+    col_density <- mapply(
+      FUN = fun,
+      mean = col_dates,
+      sd = col_errors,
+      MoreArgs = list(dates),
+      SIMPLIFY = TRUE
+    )
+
+    date_acc <- apply(
+      X = freq,
+      MARGIN = 1,
+      FUN = function(x, density) {
+        colSums(t(density) * as.numeric(x))
+      },
+      density = col_density
+    )
+    # date_acc <- date_acc / colSums(date_acc)
+
+    aion::series(object = date_acc, time = dates)
+  }
+)
+
+# Helpers ======================================================================
 #' Predict event dates
 #'
 #' @param fit A \code{\link[stats:lm]{multiple linear model}}.

@@ -25,10 +25,7 @@ predict_accumulation(object, data, ...)
 \S4method{predict_accumulation}{EventDate,matrix}(object, data, level = 0.95, calendar = NULL)
 }
 \arguments{
-\item{object}{A \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or
-\code{\link{data.frame}} of count data (absolute frequencies giving the number of
-individuals for each category, i.e. a contingency table). A \code{\link{data.frame}}
-will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{data.matrix()}}.}
+\item{object}{An \code{\linkS4class{EventDate}} object.}
 
 \item{data}{A \code{numeric} \code{\link{matrix}} or a \code{\link{data.frame}} of count data
 (absolute frequencies) for which to predict event and accumulation dates.}
@@ -45,10 +42,7 @@ calendar (see \code{\link[=calendar]{calendar()}}). If \code{NULL} (the default)
 returned.}
 }
 \value{
-\itemize{
-\item \code{predict_event()} returns a \code{\link{data.frame}}.
-\item \code{predict_accumulation()} returns a \code{\link{data.frame}}.
-}
+A \code{\link{data.frame}}.
 }
 \description{
 Estimates the event and accumulation dates of an assemblage.
@@ -94,8 +88,9 @@ Pottery Quantification for the Dating of Some Archaeological Contexts.
 \code{\link[=event]{event()}}
 
 Other event date tools: 
+\code{\link{density_event}()},
 \code{\link{event}()},
-\code{\link{model}},
+\code{\link{model_event}},
 \code{\link{plot_event}},
 \code{\link{resample_event}}
 }

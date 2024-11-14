@@ -110,7 +110,8 @@ for Seriation of Sagalassos Tablewares. In Doerr, M. & Apostolis, S. (eds.),
 \code{\link[=resample_event]{bootstrap()}}
 
 Other event date tools: 
-\code{\link{model}},
+\code{\link{density_event}()},
+\code{\link{model_event}},
 \code{\link{plot_event}},
 \code{\link{predict_event}()},
 \code{\link{resample_event}}

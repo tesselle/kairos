@@ -18,7 +18,7 @@ if (requireNamespace("folio", quietly = TRUE)) {
   model2 <- event(zuni, zuni_dates2, rank = 10)
   expect_equal(model, model2)
 
-  # Date Model =================================================================
+  # Date model =================================================================
   eve1 <- predict_event(model, margin = 1, calendar = NULL)
   expect_equivalent_to_reference(eve1, file = "_snaps/event_row.rds")
 

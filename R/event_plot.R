@@ -15,26 +15,16 @@ plot.EventDate <- function(x, type = c("activity", "tempo"), event = FALSE,
                            frame.plot = axes, ...) {
   ## Validation
   type <- match.arg(type, several.ok = FALSE)
-  n <- as.integer(n)
 
-  ## Get data
-  rows <- predict_event(x, margin = 1, calendar = NULL)
-  row_dates <- rows$date
-  row_lower <- rows$lower
-  row_upper <- rows$upper
-  row_errors <- rows$error
+  ## Event date
+  date_event <- density_event(x, n = n)
+  date_range <- aion::time(date_event)
+  cases <- colnames(date_event)
 
-  columns <- predict_event(x, margin = 2, calendar = NULL)
-  col_dates <- columns$date
-  col_errors <- columns$error
-  date_range <- seq(
-    from = min(row_lower, na.rm = TRUE) * 0.96,
-    to = max(row_upper, na.rm = TRUE) * 1.04,
-    length.out = n
-  )
+  ## Accumulation time
+  date_acc <- density_accumulation(x, dates = date_range, type = type, n = n)
 
   ## Selection
-  cases <- rownames(rows)
   if (is.null(select)) index <- seq_along(cases)
   else if (is.character(select)) index <- which(cases %in% select)
   else index <- as.numeric(select)
@@ -42,54 +32,23 @@ plot.EventDate <- function(x, type = c("activity", "tempo"), event = FALSE,
   k <- length(index)
   if (k == 0) stop("Wrong selection.", call. = FALSE)
 
-  ## Event date
-  if (type == "activity" && event) {
-    date_event <- mapply(
-      FUN = stats::dnorm,
-      mean = row_dates[index],
-      sd = row_errors[index],
-      MoreArgs = list(x = date_range),
-      SIMPLIFY = TRUE
-    )
-    colnames(date_event) <- cases[index]
-  } else {
-    date_event <- matrix(data = NA, nrow = n, ncol = k)
+  if (type != "activity" || !event) {
+    date_event <- array(data = NA, dim = list(n, k, 1))
   }
 
-  ## Accumulation time
-  ## Weighted sum of the fabric dates
-  counts <- dimensio::get_data(x)[index, , drop = FALSE]
-  freq <- counts / rowSums(counts)
-  ## Tempo vs activity plot
-  fun <- switch(
-    type,
-    activity = stats::dnorm,
-    tempo = stats::pnorm
-  )
-  col_density <- mapply(
-    FUN = fun,
-    mean = col_dates,
-    sd = col_errors,
-    MoreArgs = list(date_range),
-    SIMPLIFY = TRUE
-  )
-  date_acc <- apply(
-    X = freq,
-    MARGIN = 1,
-    FUN = function(x, density) {
-      colSums(t(density) * as.numeric(x))
-    },
-    density = col_density
-  )
-  # date_acc <- date_acc / colSums(date_acc)
+  date_event <- date_event[, index, , drop = FALSE]
+  date_acc <- date_acc[, index, , drop = FALSE]
 
-  ## Time series
+  ## Cleaning
   # date_acc[date_acc < eps] <- NA
   date_event[date_event < eps] <- NA
-  date_drop <- apply(date_event, 1, function(x) all(is.na(x))) &
-    apply(date_acc, 1, function(x) all(is.na(x)))
-  ts <- array(data = c(date_acc, date_event), dim = c(n, k, 2),
-              dimnames = list(NULL, cases[index], c("accumulation", "event")))
+  na_event <- apply(date_event, 1, function(x) all(is.na(x)))
+  na_acc <- apply(date_acc, 1, function(x) all(is.na(x)))
+  date_drop <- na_event & na_acc
+
+  ## Time series
+  ts <- array(data = c(date_acc, date_event), dim = c(n, k, 2))
+  dimnames(ts) <- list(NULL, cases[index], c("accumulation", "event"))
   ts <- aion::series(object = ts[!date_drop, , , drop = FALSE],
                      time = aion::as_fixed(date_range[!date_drop]))
 

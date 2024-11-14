@@ -77,8 +77,9 @@ with the following columns:
 \code{\link[=event]{event()}}
 
 Other event date tools: 
+\code{\link{density_event}()},
 \code{\link{event}()},
-\code{\link{model}},
+\code{\link{model_event}},
 \code{\link{plot_event}},
 \code{\link{predict_event}()}
 }

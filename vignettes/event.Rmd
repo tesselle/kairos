@@ -161,10 +161,6 @@ zuni_dates <- c(
 ## Model the event and accumulation date for each assemblage
 model <- event(zuni, dates = zuni_dates, rank = 10)
 
-## Model summary
-## (results are expressed in rata die)
-summary(model)
-
 ## Extract model coefficients
 ## (convert results to Gregorian years)
 coef(model, calendar = CE())

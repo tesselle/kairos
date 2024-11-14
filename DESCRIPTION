@@ -72,6 +72,5 @@ Collate:
     'seriate_refine.R'
     'show.R'
     'subset.R'
-    'summary.R'
     'validate.R'
     'zzz.R'
