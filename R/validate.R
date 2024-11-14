@@ -57,7 +57,7 @@ setValidity(
       arkhe::validate(arkhe::assert_length(span, i)),
       arkhe::validate(arkhe::assert_length(groups, i)),
       arkhe::validate(arkhe::assert_length(breaks, j + 1)),
-      arkhe::validate(arkhe::assert_dimensions(p, c(i, j, k)))
+      arkhe::validate(arkhe::assert_dim(p, c(i, j, k)))
     )
 
     # Return cnd, if any
@@ -78,7 +78,7 @@ setValidity(
     k <- dim(groups)[[3]]
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_scalar(replicates, "integer")),
+      arkhe::validate(arkhe::assert_length(replicates, 1)),
       arkhe::validate(arkhe::assert_length(groups, k))
     )
 
@@ -99,10 +99,10 @@ setValidity(
     step <- object@step
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_scalar(from, "numeric")),
-      arkhe::validate(arkhe::assert_scalar(to, "numeric")),
-      arkhe::validate(arkhe::assert_scalar(method, "character")),
-      arkhe::validate(arkhe::assert_dimensions(p, dim(object)))
+      arkhe::validate(arkhe::assert_length(from, 1)),
+      arkhe::validate(arkhe::assert_length(to, 1)),
+      arkhe::validate(arkhe::assert_length(method, 1)),
+      arkhe::validate(arkhe::assert_dim(p, dim(object)))
     )
 
     # Return cnd, if any
@@ -123,7 +123,7 @@ setValidity(
 
     cnd <- list(
       arkhe::validate(arkhe::assert_length(statistic, j)),
-      arkhe::validate(arkhe::assert_scalar(parameter, "integer")),
+      arkhe::validate(arkhe::assert_length(parameter, 1)),
       arkhe::validate(arkhe::assert_length(p_value, j))
     )
 

@@ -1,3 +1,6 @@
+Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
+options(kairos.calendar = calendar("CE"))
+
 if (requireNamespace("folio", quietly = TRUE)) {
   data("zuni", package = "folio")
 

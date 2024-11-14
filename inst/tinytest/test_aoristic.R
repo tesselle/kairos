@@ -1,3 +1,6 @@
+Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
+options(kairos.calendar = calendar("CE"))
+
 # Aoristic sum =================================================================
 ## Exemple from Palmisano et al. 2017
 span <- data.frame(
@@ -9,6 +12,9 @@ span <- data.frame(
 ## Calculate aoristic sum (normal)
 aorist_raw <- aoristic(span, step = 200, weight = FALSE)
 expect_equal_to_reference(aorist_raw, file = "_snaps/aoristic_raw.rds")
+
+expect_equal(weights(aorist_raw), aorist_raw@p)
+expect_equal(length(span(aorist_raw)), 4L)
 
 ## Calculate aoristic sum (weights)
 aorist_weight <- aoristic(span, step = 200, weight = TRUE)
@@ -28,6 +34,8 @@ expect_error(aoristic(span, groups = "grp"), "does not have component")
 ## Calculate aoristic sum (weights) by group
 aorist_group <- aoristic(span, step = 200, weight = TRUE, groups = groups)
 expect_equal_to_reference(aorist_group, file = "_snaps/aoristic_group.rds")
+
+expect_equal(dim(weights(aorist_group)), c(10L, 4L, 2L))
 
 aorist_A <- aoristic(span[groups == "A", ], step = 200, weight = TRUE)
 aorist_B <- aoristic(span[groups == "B", ], step = 200, weight = TRUE)
