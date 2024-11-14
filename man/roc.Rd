@@ -67,12 +67,11 @@ Analysis. \emph{Journal of Archaeological Method and Theory}, 19(3): 440-61.
 \seealso{
 \code{\link[=aoristic]{aoristic()}}, \code{\link[=plot_aoristic]{plot()}}
 
-Other chronological analysis: 
+Other aoristic analysis: 
 \code{\link{aoristic}()},
-\code{\link{apportion}()},
-\code{\link{fit}()}
+\code{\link{plot_aoristic}}
 }
 \author{
 N. Frerebeau
 }
-\concept{chronological analysis}
+\concept{aoristic analysis}

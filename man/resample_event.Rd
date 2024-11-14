@@ -76,10 +76,13 @@ with the following columns:
 \seealso{
 \code{\link[=event]{event()}}
 
-Other resampling methods: 
-\code{\link{resample_mcd}}
+Other event date tools: 
+\code{\link{event}()},
+\code{\link{model}},
+\code{\link{plot_event}},
+\code{\link{predict_event}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{resampling methods}
+\concept{event date tools}

@@ -9,6 +9,6 @@ summary.EventDate <- function(object, ...) {
 }
 
 #' @export
-#' @rdname event
+#' @rdname model
 #' @aliases summary,EventDate,missing-method
 setMethod("summary", c(object = "EventDate"), summary.EventDate)

@@ -96,11 +96,15 @@ New York: Academic Press.
 \link[=plot_mcd]{plot()}, \link[=resample_mcd]{bootstrap()},
 \link[=resample_mcd]{jackknife()}, \link[=resample_mcd]{simulate()}
 
+Other mean ceramic date tools: 
+\code{\link{plot_mcd}},
+\code{\link{resample_mcd}}
+
 Other dating methods: 
-\code{\link{event}()},
-\code{\link{predict_event}()}
+\code{\link{event}()}
 }
 \author{
 N. Frerebeau
 }
 \concept{dating methods}
+\concept{mean ceramic date tools}

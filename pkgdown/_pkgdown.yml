@@ -4,18 +4,21 @@ template:
   package: tekton
 
 reference:
-- title: Dating Methods
-  contents:
-  - has_concept("dating methods")
-- title: Chronological Patterns
-  contents:
-  - has_concept("chronological analysis")
 - title: Seriation Methods
   contents:
   - has_concept("seriation methods")
-- title: Resampling Methods
+- title: Aoristic Analysis
   contents:
-  - has_concept("resampling methods")
+  - has_concept("aoristic analysis")
+- title: Mean Ceramic Date
+  contents:
+  - has_concept("mean ceramic date tools")
+- title: Event Date
+  contents:
+  - has_concept("event date tools")
+- title: Chronological Analysis
+  contents:
+  - has_concept("chronological analysis")
 - title: Visualization
   contents:
   - has_concept("plotting methods")

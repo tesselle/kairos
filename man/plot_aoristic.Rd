@@ -122,13 +122,11 @@ plot(roc_groups, flip = TRUE)
 \seealso{
 \code{\link[=aoristic]{aoristic()}}, \code{\link[=roc]{roc()}}
 
-Other plotting methods: 
-\code{\link{plot_event}},
-\code{\link{plot_fit}},
-\code{\link{plot_mcd}},
-\code{\link{plot_time}()}
+Other aoristic analysis: 
+\code{\link{aoristic}()},
+\code{\link{roc}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{plotting methods}
+\concept{aoristic analysis}

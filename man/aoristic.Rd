@@ -141,12 +141,11 @@ Criminology}, 18(1): 23-43. \doi{10.1023/A:1013240828824}.
 \seealso{
 \code{\link[=roc]{roc()}}, \code{\link[=plot_aoristic]{plot()}}
 
-Other chronological analysis: 
-\code{\link{apportion}()},
-\code{\link{fit}()},
+Other aoristic analysis: 
+\code{\link{plot_aoristic}},
 \code{\link{roc}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{chronological analysis}
+\concept{aoristic analysis}

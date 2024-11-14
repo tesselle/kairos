@@ -4,7 +4,7 @@
 \name{plot_event}
 \alias{plot_event}
 \alias{plot,EventDate,missing-method}
-\title{Event Plot}
+\title{Plot Event and Accumulation Dates}
 \usage{
 \S4method{plot}{EventDate,missing}(
   x,
@@ -138,13 +138,13 @@ Snippets}, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
 
 \code{\link[=event]{event()}}
 
-Other plotting methods: 
-\code{\link{plot_aoristic}},
-\code{\link{plot_fit}},
-\code{\link{plot_mcd}},
-\code{\link{plot_time}()}
+Other event date tools: 
+\code{\link{event}()},
+\code{\link{model}},
+\code{\link{predict_event}()},
+\code{\link{resample_event}}
 }
 \author{
 N. Frerebeau
 }
-\concept{plotting methods}
+\concept{event date tools}

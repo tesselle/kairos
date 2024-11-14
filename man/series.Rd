@@ -15,7 +15,7 @@
 \item{x}{An \R object.}
 
 \item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
-calendar (see \code{\link[=calendar]{calendar()}}). If \code{NULL} (the default), \emph{rata die} are
+calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL} (the default), \emph{rata die} are
 returned.}
 }
 \value{
@@ -27,7 +27,6 @@ Get the times at which a time series was sampled.
 \seealso{
 Other mutators: 
 \code{\link{data.frame}},
-\code{\link{model}},
 \code{\link{mutators}},
 \code{\link{subset}()}
 }

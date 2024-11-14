@@ -101,13 +101,11 @@ plot(freq, calendar = NULL, ncol = 3, xlab = "Phases")
 \seealso{
 \code{\link[=fit]{fit()}}
 
-Other plotting methods: 
-\code{\link{plot_aoristic}},
-\code{\link{plot_event}},
-\code{\link{plot_mcd}},
-\code{\link{plot_time}()}
+Other chronological analysis: 
+\code{\link{apportion}()},
+\code{\link{fit}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{plotting methods}
+\concept{chronological analysis}

@@ -93,11 +93,13 @@ Pottery Quantification for the Dating of Some Archaeological Contexts.
 \seealso{
 \code{\link[=event]{event()}}
 
-Other dating methods: 
+Other event date tools: 
 \code{\link{event}()},
-\code{\link{mcd}()}
+\code{\link{model}},
+\code{\link{plot_event}},
+\code{\link{resample_event}}
 }
 \author{
 N. Frerebeau
 }
-\concept{dating methods}
+\concept{event date tools}

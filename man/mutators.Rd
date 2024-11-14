@@ -24,7 +24,6 @@ Getters and setters to retrieve or set parts of an object.
 \seealso{
 Other mutators: 
 \code{\link{data.frame}},
-\code{\link{model}},
 \code{\link{series}()},
 \code{\link{subset}()}
 }

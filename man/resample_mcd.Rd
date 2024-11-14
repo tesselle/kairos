@@ -46,10 +46,11 @@ with the following elements (else, returns the result of \code{f} applied to the
 }
 }
 \seealso{
-Other resampling methods: 
-\code{\link{resample_event}}
+Other mean ceramic date tools: 
+\code{\link{mcd}()},
+\code{\link{plot_mcd}}
 }
 \author{
 N. Frerebeau
 }
-\concept{resampling methods}
+\concept{mean ceramic date tools}

@@ -81,9 +81,8 @@ Signatures of Selection in Genetic Time Series. \emph{Genetics}, 196(2):
 \code{\link[=plot_fit]{plot()}}
 
 Other chronological analysis: 
-\code{\link{aoristic}()},
 \code{\link{apportion}()},
-\code{\link{roc}()}
+\code{\link{plot_fit}}
 }
 \author{
 N. Frerebeau
