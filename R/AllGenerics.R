@@ -336,8 +336,8 @@ setGeneric(
 #' @param object An [`EventDate-class`] object.
 #' @param dates A [`numeric`] vector of dates expressed as `calendar` years or
 #'  *rata die* (if `calendar` is `NULL`).
-#' @param calendar An [`aion::TimeScale-class`] object specifying the
-#'  calendar (see [aion::calendar()]). If `NULL` (the default), *rata die* are
+#' @param calendar An [`aion::TimeScale-class`] object specifying the calendar
+#'  of `dates` (see [aion::calendar()]). If `NULL` (the default), *rata die* are
 #'  expected.
 #' @param type A [`character`] string indicating the type of plot.
 #'  It must be one of "`activity`" (default) or "`tempo`" (see details).
@@ -375,6 +375,8 @@ setGeneric(
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param probs A [`numeric`] vector of probabilities with values in
 #'  \eqn{[0,1]}.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
 #' @param progress A [`logical`] scalar: should a progress bar be displayed?
 #' @param ... Further arguments to be passed to internal methods.
 #' @details
@@ -387,8 +389,8 @@ setGeneric(
 #'  with the following columns:
 #'  \describe{
 #'   \item{`mean`}{The jackknife mean (event date).}
-#'   \item{`bias`}{The jackknife estimate of bias.}
-#'   \item{`error`}{The standard error of predicted means.}
+#'   \item{`lower`}{The lower boundary of the confidence interval.}
+#'   \item{`upper`}{The upper boundary of the confidence interval.}
 #'  }
 #'
 #'  If `bootstrap()` is used, a large number of new bootstrap assemblages is

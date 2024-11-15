@@ -7,13 +7,20 @@
 \alias{bootstrap,EventDate-method}
 \title{Resample Event Dates}
 \usage{
-\S4method{jackknife}{EventDate}(object, level = 0.95, progress = getOption("kairos.progress"), ...)
+\S4method{jackknife}{EventDate}(
+  object,
+  level = 0.95,
+  calendar = getOption("kairos.calendar"),
+  progress = getOption("kairos.progress"),
+  ...
+)
 
 \S4method{bootstrap}{EventDate}(
   object,
   level = 0.95,
   probs = c(0.05, 0.95),
   n = 1000,
+  calendar = getOption("kairos.calendar"),
   progress = getOption("kairos.progress"),
   ...
 )
@@ -22,6 +29,9 @@
 \item{object}{An \code{\linkS4class{EventDate}} object (typically returned by \code{\link[=event]{event()}}).}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.}
+
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
+calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL}, \emph{rata die} are returned.}
 
 \item{progress}{A \code{\link{logical}} scalar: should a progress bar be displayed?}
 
@@ -52,8 +62,8 @@ the resampling procedure (jackknifing fabrics) for each assemblage (in rows)
 with the following columns:
 \describe{
 \item{\code{mean}}{The jackknife mean (event date).}
-\item{\code{bias}}{The jackknife estimate of bias.}
-\item{\code{error}}{The standard error of predicted means.}
+\item{\code{lower}}{The lower boundary of the confidence interval.}
+\item{\code{upper}}{The upper boundary of the confidence interval.}
 }
 
 If \code{bootstrap()} is used, a large number of new bootstrap assemblages is

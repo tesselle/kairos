@@ -90,7 +90,11 @@ setMethod(
 
     ## Rata die
     ok <- !row_coord$.sup & !is.na(dates)
-    rd <- aion::fixed(dates[ok], calendar = calendar)
+    if (is.null(calendar)) {
+      rd <- aion::as_fixed(dates[ok])
+    } else {
+      rd <- aion::fixed(dates[ok], calendar = calendar)
+    }
 
     ## Gaussian multiple linear regression model
     contexts <- data.frame(
@@ -100,9 +104,13 @@ setMethod(
     fit <- stats::lm(date ~ ., data = contexts)
 
     ## FIXME: temporary workaround until aion::fixed() can deal with NA
-    dates_na <- is.na(dates)
+    dates_not_na <- which(!is.na(dates))
     rt <- rep(NA_real_, length(dates))
-    rt[!dates_na] <- aion::fixed(dates[!dates_na], calendar = calendar)
+    if (is.null(calendar)) {
+      rt[dates_not_na] <- aion::as_fixed(dates[dates_not_na])
+    } else {
+      rt[dates_not_na] <- aion::fixed(dates[dates_not_na], calendar = calendar)
+    }
     rt <- aion::as_fixed(rt)
 
     .EventDate(
@@ -346,16 +354,22 @@ setMethod(
 #' @author N. Frerebeau
 #' @keywords internal
 #' @noRd
-compute_event <- function(fit, data, level) {
+compute_event <- function(fit, data, level, error = TRUE) {
   data <- as.data.frame(data)
 
-  date_predict <- stats::predict.lm(fit, data, se.fit = TRUE,
-                                    interval = "confidence", level = level)
-  results <- cbind(
-    date_predict$fit, # Three columns matrix: predicted value + CI boundaries
-    date_predict$se.fit
+  date_predict <- stats::predict.lm(
+    object = fit,
+    newdata = data,
+    se.fit = TRUE,
+    interval = "confidence",
+    level = level
   )
+
+  # Three columns matrix: predicted value + CI boundaries
+  results <- as.data.frame(date_predict$fit)
   rownames(results) <- rownames(data)
-  colnames(results) <- c("date", "lower", "upper", "error")
+  colnames(results) <- c("date", "lower", "upper")
+  if (error) results$error <- date_predict$se.fit
+
   results
 }

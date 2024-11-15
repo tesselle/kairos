@@ -33,8 +33,8 @@ density_accumulation(object, ...)
 \item{dates}{A \code{\link{numeric}} vector of dates expressed as \code{calendar} years or
 \emph{rata die} (if \code{calendar} is \code{NULL}).}
 
-\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the
-calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL} (the default), \emph{rata die} are
+\item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the calendar
+of \code{dates} (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL} (the default), \emph{rata die} are
 expected.}
 
 \item{n}{A length-one non-negative \code{\link{numeric}} vector giving the desired

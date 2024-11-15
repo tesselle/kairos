@@ -9,35 +9,81 @@ setMethod(
   f = "jackknife",
   signature = c(object = "EventDate"),
   definition = function(object, level = 0.95,
+                        calendar = getOption("kairos.calendar"),
                         progress = getOption("kairos.progress"), ...) {
     ## Get data
     fit_model <- object@model
     fit_dates <- time(object)
-    fit_data <- object@data
+    fit_data <- dimensio::get_data(object)
     fit_dim <- object@keep
 
-    event <- predict_event(object, level = level, calendar = NULL)
+    ## Compute event dates
+    event <- predict_event(object, level = level, calendar = calendar)
 
-    ## TODO: check cutoff value
-    jack_values <- compute_date_jack(fit_data, fit_dates, rank = length(fit_dim),
-                                     progress = progress)
+    ## Jackknife model coefficients
+    jack_values <- compute_date_jack(
+      x = fit_data,
+      dates = fit_dates,
+      rank = length(fit_dim),
+      progress = progress
+    )
     jack_coef <- colMeans(jack_values)
 
     ## Change lm coefficients (UGLY)
     fit_model$coefficients <- jack_coef[c(1, fit_dim + 1)]
 
     ## Predict event date for each context
-    results_CA <- dimensio::ca(fit_data, ...)
-    row_coord <- dimensio::get_coordinates(results_CA, margin = 1)
+    row_coord <- dimensio::get_coordinates(object, margin = 1)
+    jack_event <- compute_event(fit_model, row_coord, level = level, error = FALSE)
 
-    jack_event <- compute_event(fit_model, row_coord, level = level)
     results <- as.data.frame(jack_event)
-
-    results$bias <- (ncol(fit_data) - 1) * (results$date - event$date)
-
-    return(results)
+    if (!is.null(calendar)) {
+      results[] <- lapply(
+        X = results,
+        FUN = aion::as_year,
+        calendar = calendar,
+        decimal = TRUE
+      )
+    }
+    results
   }
 )
+
+#' Jackknife Fabrics
+#'
+#' Compute date event jackknifed statistics for each replicated sample.
+#' @param x A [`numeric`] matrix of count data.
+#' @param dates A [`numeric`] vector of known dates.
+#' @param rank A [`numeric`] value.
+#' @param progress A [`logical`] scalar: should a progress bar be displayed?
+#' @param ... Currently not used].
+#' @return A `numeric` [`matrix`] of linear model coefficients.
+#' @author N. Frerebeau
+#' @keywords internal
+#' @noRd
+compute_date_jack <- function(x, dates, rank = 10,
+                              progress = getOption("kairos.progress"), ...) {
+  m <- ncol(x)
+  k <- seq_len(m)
+  jack <- vector(mode = "list", length = m)
+
+  progress_bar <- interactive() && progress
+  if (progress_bar) pbar <- utils::txtProgressBar(max = m, style = 3)
+
+  for (j in k) {
+    ## Removing a column may lead to rows filled only with zeros
+    ## TODO: warning
+    counts <- x[, -j, drop = FALSE]
+    if (any(rowSums(counts) == 0)) next
+
+    model <- event(counts, dates = dates, rank = rank, calendar = NULL)
+    jack[[j]] <- coef(model) # Get model coefficients
+    if (progress_bar) utils::setTxtProgressBar(pbar, j)
+  }
+
+  if (progress_bar) close(pbar)
+  do.call(rbind, jack)
+}
 
 #' @export
 #' @rdname resample_event
@@ -46,6 +92,7 @@ setMethod(
   f = "bootstrap",
   signature = c(object = "EventDate"),
   definition = function(object, level = 0.95, probs = c(0.05, 0.95), n = 1000,
+                        calendar = getOption("kairos.calendar"),
                         progress = getOption("kairos.progress"), ...) {
     ## Get data
     fit_model <- object@model
@@ -68,7 +115,17 @@ setMethod(
       level = level,
       probs = probs
     )
-    as.data.frame(t(event_rows))
+
+    results <- as.data.frame(t(event_rows))
+    if (is.null(calendar)) return(results)
+
+    results[] <- lapply(
+      X = results,
+      FUN = aion::as_year,
+      calendar = calendar,
+      decimal = TRUE
+    )
+    results
   }
 )
 
@@ -105,39 +162,4 @@ compute_date_boot <- function(x, axes, model, level, probs = c(0.05, 0.95)) {
   quant <- paste0("Q", round(probs * 100, 0))
   names(distrib) <- c("min", "mean", "max", quant)
   return(distrib)
-}
-
-#' Jackknife Fabrics
-#'
-#' Compute date event jackknifed statistics for each replicated sample.
-#' @param x A [`numeric`] matrix of count data.
-#' @param dates A [`numeric`] vector of known dates.
-#' @param rank A [`numeric`] value.
-#' @param progress A [`logical`] scalar: should a progress bar be displayed?
-#' @param ... Currently not used].
-#' @return A [`numeric`] vector of linear model coefficients.
-#' @author N. Frerebeau
-#' @keywords internal
-#' @noRd
-compute_date_jack <- function(x, dates, rank = 10,
-                              progress = getOption("kairos.progress"), ...) {
-  m <- ncol(x)
-  k <- seq_len(m)
-  jack <- vector(mode = "list", length = m)
-
-  progress_bar <- interactive() && progress
-  if (progress_bar) pbar <- utils::txtProgressBar(max = m, style = 3)
-
-  for (j in k) {
-    counts <- x[, -j, drop = FALSE]
-    ## Removing a column may lead to rows filled only with zeros
-    ## TODO: warning
-    if (any(rowSums(counts) == 0)) next
-    model <- event(counts, dates = dates, rank = rank)
-    jack[[j]] <- coef(model) # Get model coefficients
-    if (progress_bar) utils::setTxtProgressBar(pbar, j)
-  }
-
-  if (progress_bar) close(pbar)
-  do.call(rbind, jack)
 }

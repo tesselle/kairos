@@ -197,9 +197,6 @@ Resampling methods can be used to check the stability of the resulting model. If
 
 ```{r event-refine, warning=FALSE}
 ## Check model variability
-## (results are expressed in rata die)
-## Warning: this may take a few seconds
-
 ## Jackknife fabrics
 jack <- jackknife(model)
 head(jack)
