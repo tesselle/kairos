@@ -327,7 +327,7 @@ plot.SimulationMeanDate <- function(x, calendar = getOption("kairos.calendar"),
   ## Add annotation
   if (ann) {
     ## Caption
-    cap <- sprintf("Simulated assemblages, %d replications.", NCOL(x@replications))
+    cap <- sprintf(tr_("Simulated assemblages, %d replications."), NCOL(x@replications))
     xlab <- format(calendar)
     ylab <- NULL
     graphics::title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...)

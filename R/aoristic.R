@@ -89,11 +89,11 @@ setMethod(
                         calendar = CE(), weight = TRUE, groups = NULL) {
     xy <- grDevices::xy.coords(x)
     g <- groups
-    if (!is.null(g) && length(g) == 1) {
+    if (is.list(x) && !is.null(g) && length(g) == 1) {
       g <- x[[g]]
       if (is.null(g)) {
-        msg <- sprintf("%s is a list, but does not have component %s.",
-                       sQuote("x"), sQuote(groups))
+        txt <- tr_("%s is a list, but does not have component %s.")
+        msg <- sprintf(txt, sQuote("x"), sQuote(groups))
         stop(msg, call. = FALSE)
       }
     }
@@ -245,7 +245,7 @@ plot.RateOfChange <- function(x, calendar = getOption("kairos.calendar"),
   n_seq <- seq_len(n)
   if (is.null(ncol)) ncol <- if (n > 4) 2 else 1
   n_row <- ceiling(n / ncol)
-  ylabs <- dimnames(x)[[3L]] %||% c("Rate of Change")
+  ylabs <- dimnames(x)[[3L]] %||% c(tr_("Rate of Change"))
 
   ## Compute mean and confidence interval
   ci <- apply(

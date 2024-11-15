@@ -31,15 +31,12 @@ setMethod(
     method <- match.arg(method, several.ok = FALSE)
     arkhe::assert_lower(s0, s1, strict = FALSE)
     arkhe::assert_lower(t0, t1, strict = FALSE)
+    arkhe::assert_lower(from, to, strict = TRUE)
 
     ## Get data
     n_site <- nrow(object)
     n_type <- ncol(object)
     span <- to - from
-    if (span <= 0) {
-      msg <- "The duration of the period of interest cannot be negative (%g)!"
-      stop(sprintf(msg, span), call. = FALSE)
-    }
 
     ## Number of periods (rounded toward the smallest integer)
     n_periode <- ceiling(span / step)

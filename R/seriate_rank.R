@@ -20,25 +20,21 @@ setMethod(
   f = "seriate_rank",
   signature = c(object = "matrix"),
   definition = function(object, EPPM = FALSE, margin = c(1, 2), stop = 100) {
-    # Validation
+    ## Validation
     margin <- as.integer(margin)
     stop <- as.integer(stop)
 
     data <- object
     if (EPPM) data <- tabula::eppm(object)
 
-    # Compute ranks
-    # margin = 1 : on rows
-    # margin = 2 : on columns
+    ## Compute ranks
+    ## margin = 1 : on rows
+    ## margin = 2 : on columns
     reorder <- function(x, margin) {
       i <- seq_len(nrow(x))
       j <- seq_len(ncol(x))
-      k <- switch(
-        margin,
-        `1` = colSums(t(x) * j) / rowSums(x),
-        `2` = colSums(x * i) / colSums(x),
-        stop("`margin` subscript out of bounds.", call. = FALSE)
-      )
+      if (margin == 1) k <- colSums(t(x) * j) / rowSums(x)
+      if (margin == 2) k <- colSums(x * i) / colSums(x)
       order(k)
     }
 
@@ -55,7 +51,8 @@ setMethod(
       convergence <- identical(index, old_index)
       start <- start + 1
       if (start >= stop) {
-        warning("Convergence not reached (possible infinite loop).", call. = FALSE)
+        msg <- tr_("Convergence not reached (possible infinite loop).")
+        warning(msg, call. = FALSE)
         break
       }
     }

@@ -30,7 +30,7 @@ plot.EventDate <- function(x, type = c("activity", "tempo"), event = FALSE,
   else index <- as.numeric(select)
 
   k <- length(index)
-  if (k == 0) stop("Wrong selection.", call. = FALSE)
+  if (k == 0) stop(tr_("Wrong selection."), call. = FALSE)
 
   if (type != "activity" || !event) {
     date_event <- array(data = NA, dim = list(n, k, 1))

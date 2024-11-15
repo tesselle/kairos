@@ -1,0 +1,75 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: kairos 2.1.1.9000\n"
+"POT-Creation-Date: 2024-11-15 16:48+0100\n"
+"PO-Revision-Date: 2024-11-15 16:35+0100\n"
+"Last-Translator: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne."
+"fr>\n"
+"Language-Team: fr\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: aoristic.R:95
+msgid "%s is a list, but does not have component %s."
+msgstr "%s est une liste, mais n'a pas d'élément %s."
+
+#: aoristic.R:248
+msgid "Rate of Change"
+msgstr "Taux de changement"
+
+#: event_plot.R:33
+msgid "Wrong selection."
+msgstr "Sélection erronée."
+
+#: fit.R:200
+msgid "A minimum of three time points is needed."
+msgstr "Un minimum de trois points dans le temps est nécessaire."
+
+#: mcd.R:330
+msgid "Simulated assemblages, %d replications."
+msgstr "Assemblages simulés, %d réplications."
+
+#: seriate_rank.R:54
+msgid "Convergence not reached (possible infinite loop)."
+msgstr "La convergence n'est pas atteinte (éventuelle boucle infinie)."
+
+#: seriate_refine.R:74
+msgid "Maximum length"
+msgstr "Longueur maximale"
+
+#: show.R:17
+msgid "Multiple Linear Regression"
+msgstr "Régression linéaire multiple"
+
+#: show.R:18
+msgid "* R-squared: %s"
+msgstr "* Coefficient de détermination: %s"
+
+#: show.R:19
+msgid "* Adjusted R-squared: %s"
+msgstr "* Coefficient de détermination ajusté: %s"
+
+#: show.R:20
+msgid "* Residual standard error: %s"
+msgstr "* Erreur standard des résidus : %s"
+
+#: show.R:35
+msgid "Permutation order for matrix seriation"
+msgstr "Ordre de permutation pour la sériation de matrice"
+
+#: show.R:36
+msgid "* Row order: %s"
+msgstr "* Ordre des lignes: %s"
+
+#: show.R:37
+msgid "* Column order: %s"
+msgstr "* Ordre des colonnes: %s"
+
+#: fit.R:47
+msgid "%d element was skipped: %s."
+msgid_plural "%d elements were skipped: %s."
+msgstr[0] "%d élément a été ignoré: %s."
+msgstr[1] "%d éléments ont été ignorés: %s."

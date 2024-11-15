@@ -24,9 +24,7 @@ setMethod(
   signature = c(object = "BootstrapCA"),
   definition = function(object, cutoff, margin = 1, axes = 1, ...) {
     ## Validation
-    if (!is.function(cutoff)) {
-      stop(sQuote("cutoff"), " must be a function.", call. = FALSE)
-    }
+    arkhe::assert_function(cutoff)
 
     ca_rep <- dimensio::get_replications(object, margin = margin)
 
@@ -73,7 +71,7 @@ hist.RefinePermutationOrder <- function(x, ...) {
 
   graphics::hist(
     x = x@length,
-    xlab = "Maximum length",
+    xlab = tr_("Maximum length"),
     main = NULL,
     las = 1,
     ...

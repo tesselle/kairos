@@ -14,10 +14,10 @@ setMethod(
     cat(
       show_ca,
       "",
-      paste0("Multiple Linear Regression", ":"),
-      sprintf("* R-squared: %s", round(summary_lm$r.squared, 3)),
-      sprintf("* Adjusted R-squared: %s", round(summary_lm$adj.r.squared, 3)),
-      sprintf("* Residual standard error: %s", round(sig, 2)),
+      paste0(tr_("Multiple Linear Regression"), ":"),
+      sprintf(tr_("* R-squared: %s"), round(summary_lm$r.squared, 3)),
+      sprintf(tr_("* Adjusted R-squared: %s"), round(summary_lm$adj.r.squared, 3)),
+      sprintf(tr_("* Residual standard error: %s"), round(sig, 2)),
       sep = "\n"
     )
   }
@@ -32,9 +32,9 @@ setMethod(
     rows <- strtrim(paste0(object@rows_order, collapse = " "), k)
     columns <- strtrim(paste0(object@columns_order, collapse = " "), k)
     cat(
-      paste0("Permutation order for matrix seriation", ":"),
-      sprintf("* Row order: %s", paste0(rows, "...")),
-      sprintf("* Column order: %s", paste0(columns, "...")),
+      paste0(tr_("Permutation order for matrix seriation"), ":"),
+      sprintf(tr_("* Row order: %s"), paste0(rows, "...")),
+      sprintf(tr_("* Column order: %s"), paste0(columns, "...")),
       sep = "\n"
     )
   }

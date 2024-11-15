@@ -44,8 +44,10 @@ setMethod(
     ## Check results
     failed <- is.na(results$p.value)
     if (any(failed)) {
-      msg <- sprintf("%d elements were skipped:\n%s", sum(failed),
-                     paste0("* ", rownames(results)[failed], collapse = "\n"))
+      txt <- ngettext(sum(failed), "%d element was skipped: %s.",
+                      "%d elements were skipped: %s.")
+      msg <- sprintf(txt, sum(failed),
+                     paste0(rownames(results)[failed], collapse = ", "))
       warning(msg, call. = FALSE)
     }
 
@@ -194,8 +196,9 @@ FIT <- function(v, t, ...) {
   index <- v > 0
   v <- v[index]
   t <- t[index]
-  if (length(t) < 3)
-    stop("A minimum of three time points is needed.", call. = FALSE)
+  if (length(t) < 3) {
+    stop(tr_("A minimum of three time points is needed."), call. = FALSE)
+  }
 
   ## Rescaled allele-frequency increments
   Y <- diff(v, lag = 1) /
