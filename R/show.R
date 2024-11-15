@@ -2,6 +2,27 @@
 #' @include AllClasses.R
 NULL
 
+# EventDate ====================================================================
+setMethod(
+  f = "show",
+  signature = "EventDate",
+  definition = function(object) {
+    show_ca <- utils::capture.output(methods::callNextMethod(object))
+    summary_lm <- summary(object)
+    sig <- sigma(object, calendar = getOption("kairos.calendar"))
+
+    cat(
+      show_ca,
+      "",
+      paste0("Multiple Linear Regression", ":"),
+      sprintf("* R-squared: %s", round(summary_lm$r.squared, 3)),
+      sprintf("* Adjusted R-squared: %s", round(summary_lm$adj.r.squared, 3)),
+      sprintf("* Residual standard error: %s", round(sig, 2)),
+      sep = "\n"
+    )
+  }
+)
+
 # PermutationOrder =============================================================
 setMethod(
   f = "show",
@@ -11,10 +32,9 @@ setMethod(
     rows <- strtrim(paste0(object@rows_order, collapse = " "), k)
     columns <- strtrim(paste0(object@columns_order, collapse = " "), k)
     cat(
-      sprintf("<%s>", class(object)),
-      "Permutation order for matrix seriation:",
-      sprintf("- Row order: %s", paste0(rows, "...")),
-      sprintf("- Column order: %s", paste0(columns, "...")),
+      paste0("Permutation order for matrix seriation", ":"),
+      sprintf("* Row order: %s", paste0(rows, "...")),
+      sprintf("* Column order: %s", paste0(columns, "...")),
       sep = "\n"
     )
   }
@@ -31,9 +51,9 @@ setMethod(
     pc <- round(keep * 100 / total)
     methods::callNextMethod(object)
     cat(
-      "Partial bootstrap refinement:",
-      sprintf("- Cutoff value: %s", round(object@cutoff, digits = 2)),
-      sprintf("- %s to keep: %d of %d (%g%%)", value, keep, total, pc),
+      paste0("Partial bootstrap refinement", ":"),
+      sprintf("* Cutoff value: %s", round(object@cutoff, digits = 2)),
+      sprintf("* %s to keep: %d of %d (%g%%)", value, keep, total, pc),
       sep = "\n")
   }
 )
