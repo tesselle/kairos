@@ -19,6 +19,15 @@ if (requireNamespace("folio", quietly = TRUE)) {
   expect_equal(model, model2)
 
   # Date model =================================================================
+  event_summary <- summary(model)
+  expect_snapshot_print(event_summary, "event_summary")
+  # coef(model)
+  # fitted(model)
+  # residuals(model)
+  # sigma(model)
+  event_terms <- terms(model)
+  expect_snapshot_print(event_terms, "event_terms")
+
   eve1 <- predict_event(model, margin = 1, calendar = NULL)
   expect_equivalent_to_reference(eve1, file = "_snaps/event_row.rds")
 

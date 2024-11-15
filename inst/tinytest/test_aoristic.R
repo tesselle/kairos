@@ -12,6 +12,7 @@ span <- data.frame(
 ## Calculate aoristic sum (normal)
 aorist_raw <- aoristic(span, step = 200, weight = FALSE)
 expect_equal_to_reference(aorist_raw, file = "_snaps/aoristic_raw.rds")
+expect_equal_to_reference(as.data.frame(aorist_raw), file = "_snaps/aoristic.rds")
 
 expect_equal(weights(aorist_raw), aorist_raw@p)
 expect_equal(length(span(aorist_raw)), 4L)

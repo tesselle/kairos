@@ -25,7 +25,7 @@ if (requireNamespace("folio", quietly = TRUE)) {
 
   expected <- c("N", "A", "C", "K", "P", "L", "B", "E",
                 "I", "M", "D", "G", "O", "J", "F", "H")
-  expect_equal(LETTERS[indices@columns_order], expected)
+  expect_equal(LETTERS[order_columns(indices)], expected)
 
   # Reciprocal Ranking - Incidence =============================================
   incid <- compiegne > 0
@@ -34,16 +34,24 @@ if (requireNamespace("folio", quietly = TRUE)) {
 
   exp_row <- c(1, 2, 3, 4, 5)
   exp_col <- c(1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 14, 15, 13, 16, 9)
-  expect_equal(indices@rows_order, exp_row)
-  expect_equal(indices@columns_order, exp_col)
+  expect_equal(order_rows(indices), exp_row)
+  expect_equal(order_columns(indices), exp_col)
 
   # Average Ranking ============================================================
   indices <- seriate_average(compiegne, margin = c(1, 2))
 
   exp_row <- c(1, 2, 3, 4, 5)
   exp_col <- c(14, 11, 1, 12, 3, 16, 5, 2, 15, 13, 7, 4, 6, 10, 9, 8)
-  expect_equal(indices@rows_order, exp_row)
-  expect_equal(indices@columns_order, exp_col)
+  expect_equal(order_rows(indices), exp_row)
+  expect_equal(order_columns(indices), exp_col)
+  expect_equal(
+    permute(compiegne, indices),
+    compiegne[order_rows(indices), order_columns(indices)]
+  )
+  expect_equal(
+    permute(as.matrix(compiegne), indices),
+    as.matrix(compiegne)[order_rows(indices), order_columns(indices)]
+  )
 
   expect_error(seriate_average(merzbach), "Empty columns detected.")
 }

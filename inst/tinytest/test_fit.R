@@ -15,7 +15,7 @@ if (requireNamespace("folio", quietly = TRUE)) {
 
   ## Frequency Increment Test
   freq <- fit(counts, dates, calendar = NULL)
-  expect_equal_to_reference(freq, file = "_snaps/fit.rds")
+  expect_equal_to_reference(as.data.frame(freq), file = "_snaps/fit.rds")
 
   ## Highlight selection
   roll <- fit(counts, dates, calendar = NULL, roll = TRUE, window = 5)
