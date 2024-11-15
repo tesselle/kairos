@@ -99,8 +99,6 @@ freq <- fit(counts, dates, calendar = NULL, roll = TRUE, window = 5)
 plot(freq, calendar = NULL, ncol = 3, xlab = "Phases")
 }
 \seealso{
-\code{\link[=fit]{fit()}}
-
 Other chronological analysis: 
 \code{\link{apportion}()},
 \code{\link{fit}()}

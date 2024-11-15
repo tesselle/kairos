@@ -112,8 +112,6 @@ NULL
 #'  MCD are then returned.
 #' @return
 #'  A [`MeanDate-class`] object.
-#' @seealso [plot()][plot_mcd], [bootstrap()][resample_mcd],
-#'  [jackknife()][resample_mcd], [simulate()][resample_mcd]
 #' @references
 #'  South, S. A. (1977). *Method and Theory in Historical Archaeology*.
 #'  New York: Academic Press.
@@ -188,7 +186,6 @@ NULL
 #' @return
 #'  `plot()` is called it for its side-effects: it results in a graphic being
 #'  displayed (invisibly returns `x`).
-#' @seealso [mcd()]
 #' @example inst/examples/ex-mcd.R
 #' @author N. Frerebeau
 #' @family mean ceramic date tools
@@ -539,7 +536,6 @@ NULL
 #'  [\pkg{aoristAAR} package](https://github.com/ISAAKiel/aoristAAR).
 #' @return
 #'  An [`AoristicSum-class`] object.
-#' @seealso [roc()], [`plot()`][plot_aoristic]
 #' @references
 #'  Crema, E. R. (2012). Modelling Temporal Uncertainty in Archaeological
 #'  Analysis. *Journal of Archaeological Method and Theory*, 19(3): 440-61.
@@ -589,7 +585,6 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return
 #'  A [`RateOfChange-class`] object.
-#' @seealso [aoristic()], [`plot()`][plot_aoristic]
 #' @references
 #'  Baxter, M. J. & Cool, H. E. M. (2016). Reinventing the Wheel? Modelling
 #'  Temporal Uncertainty with Applications to Brooch Distributions in Roman
@@ -623,7 +618,6 @@ setGeneric(
 #' @return
 #'   `plot()` is called it for its side-effects: it results in a graphic being
 #'   displayed (invisibly returns `x`).
-#' @seealso [aoristic()], [roc()]
 #' @example inst/examples/ex-aoristic.R
 #' @author N. Frerebeau
 #' @family aoristic analysis
@@ -708,7 +702,6 @@ setGeneric(
 #' @return
 #'  An [`IncrementTest-class`] object.
 #' @example inst/examples/ex-fit.R
-#' @seealso [`plot()`][plot_fit]
 #' @references
 #'  Feder, A. F., Kryazhimskiy, S. & Plotkin, J. B. (2014). Identifying
 #'  Signatures of Selection in Genetic Time Series. *Genetics*, 196(2):
@@ -745,7 +738,6 @@ setGeneric(
 #' @note
 #'  Displaying FIT results on an abundance *vs* time diagram is adapted from Ben
 #'  Marwick's [original idea](https://github.com/benmarwick/signatselect/).
-#' @seealso [fit()]
 #' @example inst/examples/ex-fit.R
 #' @author N. Frerebeau
 #' @family chronological analysis

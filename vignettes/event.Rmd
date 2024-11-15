@@ -182,6 +182,10 @@ fitted(model, calendar = CE())
 ## Estimate event dates
 eve <- predict_event(model, margin = 1, level = 0.95)
 head(eve)
+
+## Estimate accumulation dates (median)
+acc <- predict_accumulation(model, level = 0.95)
+head(acc)
 ```
 
 ```{r event-plot, fig.width=7, fig.height=7}

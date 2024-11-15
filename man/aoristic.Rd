@@ -139,8 +139,6 @@ Analysis of High Volume Crime Patterns. \emph{Journal of Quantitative
 Criminology}, 18(1): 23-43. \doi{10.1023/A:1013240828824}.
 }
 \seealso{
-\code{\link[=roc]{roc()}}, \code{\link[=plot_aoristic]{plot()}}
-
 Other aoristic analysis: 
 \code{\link{plot_aoristic}},
 \code{\link{roc}()}

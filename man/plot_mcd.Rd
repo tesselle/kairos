@@ -121,8 +121,6 @@ sim <- simulate(mc_dates, nsim = 30)
 plot(sim, interval = "range", pch = 16)
 }
 \seealso{
-\code{\link[=mcd]{mcd()}}
-
 Other mean ceramic date tools: 
 \code{\link{mcd}()},
 \code{\link{resample_mcd}}
