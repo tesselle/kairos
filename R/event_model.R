@@ -2,6 +2,8 @@
 #' @include AllGenerics.R
 NULL
 
+# TODO: use aion::calendar_year() once released.
+
 #' @export
 #' @method summary EventDate
 summary.EventDate <- function(object, ...) {
@@ -18,7 +20,7 @@ setMethod("summary", c(object = "EventDate"), summary.EventDate)
 coef.EventDate <- function(object, calendar = NULL, ...) {
   z <- stats::coef(object@model, ...)
   if (is.null(calendar)) return(z)
-  aion::as_year(z, calendar = calendar) - aion::calendar_fixed(calendar)
+  z / calendar@year # Approximate
 }
 
 #' @export
@@ -44,7 +46,7 @@ setMethod("fitted", "EventDate", fitted.EventDate)
 residuals.EventDate <- function(object, calendar = NULL, ...) {
   z <- stats::residuals(object@model, ...)
   if (is.null(calendar)) return(z)
-  aion::as_year(z, calendar = calendar) - aion::calendar_fixed(calendar)
+  z / calendar@year # Approximate
 }
 
 #' @export
@@ -57,7 +59,7 @@ setMethod("residuals", "EventDate", residuals.EventDate)
 sigma.EventDate <- function(object, calendar = NULL, ...) {
   z <- stats::sigma(object@model, ...)
   if (is.null(calendar)) return(z)
-  aion::as_year(z, calendar = calendar) - aion::calendar_fixed(calendar)
+  z / calendar@year # Approximate
 }
 
 #' @export

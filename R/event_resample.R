@@ -77,7 +77,7 @@ compute_date_jack <- function(x, dates, rank = 10,
     if (any(rowSums(counts) == 0)) next
 
     model <- event(counts, dates = dates, rank = rank, calendar = NULL)
-    jack[[j]] <- coef(model) # Get model coefficients
+    jack[[j]] <- coef(model, calendar = NULL) # Get model coefficients
     if (progress_bar) utils::setTxtProgressBar(pbar, j)
   }
 
