@@ -7,11 +7,13 @@
 #' }
 #'
 #' @section Package options:
-#'  `kairos` uses the following [options()] to configure behavior:
-#'  * `kairos.progress`: a [`logical`] scalar. Should progress bars be
-#'    displayed?
+#'  \pkg{kairos} uses the following [options()] to configure behavior:
 #'  * `kairos.calendar`: a [`aion::TimeScale-class`] object (default calendar
-#'    for printing).
+#'    for printing; see [aion::calendar()]).
+#'  * `kairos.progress`: a [`logical`] scalar. Should progress bars be
+#'    displayed? Defaults to [interactive()].
+#'  * `kairos.verbose`: a [`logical`] scalar. Should \R report extra information
+#'    on progress? Defaults to [interactive()].
 #'
 #' @author
 #' **Full list of authors and contributors** (alphabetic order)

@@ -12,7 +12,16 @@ event(object, dates, ...)
 
 \S4method{event}{data.frame,numeric}(object, dates, rank = NULL, sup_row = NULL, calendar = CE(), ...)
 
-\S4method{event}{matrix,numeric}(object, dates, rank = NULL, sup_row = NULL, calendar = CE(), ...)
+\S4method{event}{matrix,numeric}(
+  object,
+  dates,
+  calendar = CE(),
+  rank = NULL,
+  sup_row = NULL,
+  total = 5,
+  verbose = getOption("kairos.verbose"),
+  ...
+)
 }
 \arguments{
 \item{object}{A \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or
@@ -34,6 +43,13 @@ the supplementary rows.}
 
 \item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the calendar
 of \code{dates} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
+
+\item{total}{A length-one \code{\link{numeric}} vector specifying the minimum total of
+a row/column. Rows/columns whose total is less than this value will be
+omitted from the analysis.}
+
+\item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
+on progress?}
 }
 \value{
 An \code{\linkS4class{EventDate}} object.

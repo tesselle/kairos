@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kairos 2.1.1.9000\n"
-"POT-Creation-Date: 2024-11-15 16:48+0100\n"
+"POT-Creation-Date: 2024-11-16 15:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 
 #: aoristic.R:248
 msgid "Rate of Change"
+msgstr ""
+
+#: event_date.R:161
+msgid "All dates are missing!"
 msgstr ""
 
 #: event_plot.R:33
@@ -66,6 +70,30 @@ msgstr ""
 #: show.R:37
 msgid "* Column order: %s"
 msgstr ""
+
+#: event_date.R:135
+msgid "%d column has a grand total of less than %d."
+msgid_plural "%d columns have a grand total of less than %d."
+msgstr[0] ""
+msgstr[1] ""
+
+#: event_date.R:141
+msgid "%d row has a grand total of less than %d."
+msgid_plural "%d rows have a grand total of less than %d."
+msgstr[0] ""
+msgstr[1] ""
+
+#: event_date.R:147
+msgid "%d supplementary row has a grand total of less than %d."
+msgid_plural "%d supplementary rows have a grand total of less than %d."
+msgstr[0] ""
+msgstr[1] ""
+
+#: event_date.R:154
+msgid "It was omitted from the analysis."
+msgid_plural "They were omitted from the analysis."
+msgstr[0] ""
+msgstr[1] ""
 
 #: fit.R:47
 msgid "%d element was skipped: %s."

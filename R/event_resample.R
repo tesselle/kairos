@@ -10,7 +10,8 @@ setMethod(
   signature = c(object = "EventDate"),
   definition = function(object, level = 0.95,
                         calendar = getOption("kairos.calendar"),
-                        progress = getOption("kairos.progress"), ...) {
+                        progress = getOption("kairos.progress"),
+                        verbose = getOption("kairos.verbose"), ...) {
     ## Get data
     fit_model <- object@model
     fit_dates <- time(object)
@@ -25,7 +26,8 @@ setMethod(
       x = fit_data,
       dates = fit_dates,
       rank = length(fit_dim),
-      progress = progress
+      progress = progress,
+      verbose = verbose
     )
     jack_coef <- colMeans(jack_values)
 
@@ -62,7 +64,7 @@ setMethod(
 #' @keywords internal
 #' @noRd
 compute_date_jack <- function(x, dates, rank = 10,
-                              progress = getOption("kairos.progress"), ...) {
+                              progress = FALSE, verbose = FALSE, ...) {
   m <- ncol(x)
   k <- seq_len(m)
   jack <- vector(mode = "list", length = m)
@@ -71,12 +73,8 @@ compute_date_jack <- function(x, dates, rank = 10,
   if (progress_bar) pbar <- utils::txtProgressBar(max = m, style = 3)
 
   for (j in k) {
-    ## Removing a column may lead to rows filled only with zeros
-    ## TODO: warning
     counts <- x[, -j, drop = FALSE]
-    if (any(rowSums(counts) == 0)) next
-
-    model <- event(counts, dates = dates, rank = rank, calendar = NULL)
+    model <- event(counts, dates = dates, calendar = NULL, rank = rank, verbose = verbose)
     jack[[j]] <- coef(model, calendar = NULL) # Get model coefficients
     if (progress_bar) utils::setTxtProgressBar(pbar, j)
   }

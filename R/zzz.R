@@ -1,7 +1,8 @@
 .onLoad <- function(libname, pkgname){
   op <- options()
   op.kairos <- list(
-    kairos.progress = TRUE,
+    kairos.verbose = interactive(),
+    kairos.progress = interactive(),
     kairos.calendar = aion::CE()
   )
   toset <- !(names(op.kairos) %in% names(op))

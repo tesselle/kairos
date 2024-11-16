@@ -20,7 +20,7 @@ setMethod("summary", c(object = "EventDate"), summary.EventDate)
 coef.EventDate <- function(object, calendar = NULL, ...) {
   z <- stats::coef(object@model, ...)
   if (is.null(calendar)) return(z)
-  z / calendar@year # Approximate
+  unclass(z) / calendar@year # Approximate
 }
 
 #' @export
@@ -46,7 +46,7 @@ setMethod("fitted", "EventDate", fitted.EventDate)
 residuals.EventDate <- function(object, calendar = NULL, ...) {
   z <- stats::residuals(object@model, ...)
   if (is.null(calendar)) return(z)
-  z / calendar@year # Approximate
+  unclass(z) / calendar@year # Approximate
 }
 
 #' @export
@@ -59,7 +59,7 @@ setMethod("residuals", "EventDate", residuals.EventDate)
 sigma.EventDate <- function(object, calendar = NULL, ...) {
   z <- stats::sigma(object@model, ...)
   if (is.null(calendar)) return(z)
-  z / calendar@year # Approximate
+  unclass(z) / calendar@year # Approximate
 }
 
 #' @export

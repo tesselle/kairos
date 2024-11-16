@@ -22,8 +22,9 @@ setMethod(
 setMethod(
   f = "event",
   signature = c(object = "matrix", dates = "numeric"),
-  definition = function(object, dates, rank = NULL, sup_row = NULL,
-                        calendar = CE(), ...) {
+  definition = function(object, dates, calendar = CE(),
+                        rank = NULL, sup_row = NULL, total = 5,
+                        verbose = getOption("kairos.verbose"), ...) {
     ## Sample
     n <- nrow(object)
 
@@ -35,9 +36,6 @@ setMethod(
       dates[i] <- old_dates
     }
     arkhe::assert_length(dates, nrow(object))
-    if (all(is.na(dates))) {
-      stop("", call. = FALSE)
-    }
 
     ## Supplementary rows
     sup <- logical(n)
@@ -48,33 +46,13 @@ setMethod(
     dates_ref <- dates[!sup]
     dates_sup <- dates[sup]
 
-    ## Validation
-    clean <- TRUE
-    while (clean) {
-      rm_col <- colSums(data_ref) < 5
-      if (any(rm_col)) {
-        data_ref <- data_ref[, !rm_col, drop = FALSE]
-        data_sup <- data_sup[, !rm_col, drop = FALSE]
-      }
+    ## Cleansing
+    data_clean <- clean_total(data_ref, data_sup, dates_ref, dates_sup,
+                              total = total, verbose = verbose)
 
-      rm_row_ref <- rowSums(data_ref) < 5
-      if (any(rm_row_ref)) {
-        data_ref <- data_ref[!rm_row_ref, , drop = FALSE]
-        dates_ref <- dates_ref[!rm_row_ref]
-      }
-
-      rm_row_sup <- rowSums(data_sup) < 5
-      if (any(data_sup)) {
-        data_sup <- data_sup[!rm_row_sup, , drop = FALSE]
-        dates_sup <- dates_sup[!rm_row_sup]
-      }
-
-      if (!any(rm_col) & !any(rm_row_ref) & !any(rm_row_sup)) clean <- FALSE
-    }
-
-    data <- rbind(data_ref, data_sup)
-    dates <- c(dates_ref, dates_sup)
-    sup <- seq_along(dates_sup) + length(dates_ref)
+    data <- rbind(data_clean$data_ref, data_clean$data_sup)
+    dates <- c(data_clean$dates_ref, data_clean$dates_sup)
+    sup <- seq_along(data_clean$dates_sup) + length(data_clean$dates_ref)
 
     ## Correspondance analysis
     if (is.null(rank)) {
@@ -82,24 +60,23 @@ setMethod(
       eig <- dimensio::get_eigenvalues(tmp)
       rank <- which.max(eig$cumulative >= 60)
     }
-    rank <- min(rank, dim(data_ref) - 1)
+    rank <- min(rank, dim(data) - 1)
     results_CA <- dimensio::ca(data, rank = rank, sup_row = sup, ...)
 
     ## Get row coordinates
     row_coord <- dimensio::get_coordinates(results_CA, margin = 1)
 
     ## Rata die
-    ok <- !row_coord$.sup & !is.na(dates)
     if (is.null(calendar)) {
-      rd <- aion::as_fixed(dates[ok])
+      rd <- aion::as_fixed(data_clean$dates_ref)
     } else {
-      rd <- aion::fixed(dates[ok], calendar = calendar)
+      rd <- aion::fixed(data_clean$dates_ref, calendar = calendar)
     }
 
     ## Gaussian multiple linear regression model
     contexts <- data.frame(
       date = rd,
-      row_coord[ok, -ncol(row_coord), drop = FALSE]
+      row_coord[!row_coord$.sup, -ncol(row_coord), drop = FALSE]
     )
     fit <- stats::lm(date ~ ., data = contexts)
 
@@ -121,6 +98,76 @@ setMethod(
     )
   }
 )
+
+clean_total <- function(data_ref, data_sup, dates_ref, dates_sup,
+                        total = 5, verbose = TRUE) {
+
+  clean <- TRUE
+  n_rm_col <- n_rm_ref <- n_rm_sup <- 0
+
+  while (clean) {
+    rm_col <- colSums(data_ref) < total
+    n_rm_col <- n_rm_col + sum(rm_col)
+    if (any(rm_col)) {
+      data_ref <- data_ref[, !rm_col, drop = FALSE]
+      data_sup <- data_sup[, !rm_col, drop = FALSE]
+    }
+
+    rm_row_ref <- rowSums(data_ref) < total
+    n_rm_ref <- n_rm_ref + sum(rm_row_ref)
+    if (any(rm_row_ref)) {
+      data_ref <- data_ref[!rm_row_ref, , drop = FALSE]
+      dates_ref <- dates_ref[!rm_row_ref]
+    }
+
+    rm_row_sup <- rowSums(data_sup) < total
+    n_rm_sup <- n_rm_sup + sum(rm_row_sup)
+    if (any(data_sup)) {
+      data_sup <- data_sup[!rm_row_sup, , drop = FALSE]
+      dates_sup <- dates_sup[!rm_row_sup]
+    }
+
+    if (!any(rm_col) & !any(rm_row_ref) & !any(rm_row_sup)) clean <- FALSE
+  }
+
+  if (isTRUE(verbose)) {
+    if (n_rm_col > 0) {
+      msg <- ngettext(n_rm_col,
+                      "%d column has a grand total of less than %d.",
+                      "%d columns have a grand total of less than %d.")
+      message(sprintf(msg, n_rm_col, total))
+    }
+    if (n_rm_ref > 0) {
+      msg <- ngettext(n_rm_ref,
+                      "%d row has a grand total of less than %d.",
+                      "%d rows have a grand total of less than %d.")
+      message(sprintf(msg, n_rm_ref, total))
+    }
+    if (n_rm_sup > 0) {
+      msg <- ngettext(n_rm_sup,
+                      "%d supplementary row has a grand total of less than %d.",
+                      "%d supplementary rows have a grand total of less than %d.")
+      message(sprintf(msg, n_rm_sup, total))
+    }
+    n_rm <- n_rm_col + n_rm_ref + n_rm_sup
+    if (n_rm > 0) {
+      msg <- ngettext(n_rm, "It was omitted from the analysis.",
+                      "They were omitted from the analysis.")
+      message(msg)
+    }
+  }
+
+  if (all(is.na(dates_ref))) {
+    stop(tr_("All dates are missing!"), call. = FALSE)
+  }
+
+  list(
+    data_ref = data_ref,
+    data_sup = data_sup,
+    dates_ref = dates_ref,
+    dates_sup = dates_sup
+  )
+}
 
 # Event ========================================================================
 #' @export

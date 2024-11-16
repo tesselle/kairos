@@ -12,6 +12,7 @@
   level = 0.95,
   calendar = getOption("kairos.calendar"),
   progress = getOption("kairos.progress"),
+  verbose = getOption("kairos.verbose"),
   ...
 )
 
@@ -34,6 +35,9 @@
 calendar (see \code{\link[aion:calendar]{aion::calendar()}}). If \code{NULL}, \emph{rata die} are returned.}
 
 \item{progress}{A \code{\link{logical}} scalar: should a progress bar be displayed?}
+
+\item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
+on progress?}
 
 \item{...}{Further arguments to be passed to internal methods.}
 

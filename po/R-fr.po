@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kairos 2.1.1.9000\n"
-"POT-Creation-Date: 2024-11-15 16:48+0100\n"
+"POT-Creation-Date: 2024-11-16 15:00+0100\n"
 "PO-Revision-Date: 2024-11-15 16:35+0100\n"
 "Last-Translator: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne."
 "fr>\n"
@@ -19,6 +19,10 @@ msgstr "%s est une liste, mais n'a pas d'élément %s."
 #: aoristic.R:248
 msgid "Rate of Change"
 msgstr "Taux de changement"
+
+#: event_date.R:161
+msgid "All dates are missing!"
+msgstr "Toutes les dates sont manquantes!"
 
 #: event_plot.R:33
 msgid "Wrong selection."
@@ -67,6 +71,30 @@ msgstr "* Ordre des lignes: %s"
 #: show.R:37
 msgid "* Column order: %s"
 msgstr "* Ordre des colonnes: %s"
+
+#: event_date.R:135
+msgid "%d column has a grand total of less than %d."
+msgid_plural "%d columns have a grand total of less than %d."
+msgstr[0] "%d colonne a un total inférieur à %d."
+msgstr[1] "%d colonnes ont un total inférieur à %d."
+
+#: event_date.R:141
+msgid "%d row has a grand total of less than %d."
+msgid_plural "%d rows have a grand total of less than %d."
+msgstr[0] "%d ligne a un total inférieur à %d."
+msgstr[1] "%d lignes ont un total inférieur à %d."
+
+#: event_date.R:147
+msgid "%d supplementary row has a grand total of less than %d."
+msgid_plural "%d supplementary rows have a grand total of less than %d."
+msgstr[0] "%d ligne supplémentaire a un total inférieur à %d."
+msgstr[1] "%d lignes supplémentaires ont un total inférieur à %d."
+
+#: event_date.R:154
+msgid "It was omitted from the analysis."
+msgid_plural "They were omitted from the analysis."
+msgstr[0] "Elle a été ignorée lors de l'analyse."
+msgstr[1] "Elles ont été ignorées lors de l'analyse."
 
 #: fit.R:47
 msgid "%d element was skipped: %s."

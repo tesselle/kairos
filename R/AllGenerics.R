@@ -204,13 +204,18 @@ NULL
 #'  will be coerced to a `numeric` `matrix` via [data.matrix()].
 #' @param dates A [`numeric`] vector of dates. If named, the names must match
 #'  the row names of `object`.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the calendar
+#'  of `dates` (see [calendar()]). Defaults to Gregorian Common Era.
 #' @param rank An [`integer`] specifying the number of CA factorial components
 #'  to be use for linear model fitting (see details). If `NULL` (the default),
 #'  axes corresponding to at least 60% of the inertia will be used.
 #' @param sup_row A [`numeric`] or [`logical`] vector specifying the indices of
 #'  the supplementary rows.
-#' @param calendar An [`aion::TimeScale-class`] object specifying the calendar
-#'  of `dates` (see [calendar()]). Defaults to Gregorian Common Era.
+#' @param total A length-one [`numeric`] vector specifying the minimum total of
+#'  a row/column. Rows/columns whose total is less than this value will be
+#'  omitted from the analysis.
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
 #' @param ... Further arguments to be passed to internal methods.
 #' @details
 #'  This is an implementation of the chronological modeling method proposed by
@@ -375,6 +380,8 @@ setGeneric(
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
 #'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
 #' @param progress A [`logical`] scalar: should a progress bar be displayed?
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
 #' @param ... Further arguments to be passed to internal methods.
 #' @details
 #'  If `jackknife()` is used, one type/fabric is removed at a
