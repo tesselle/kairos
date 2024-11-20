@@ -76,6 +76,7 @@ Archaeological Science}, 39(8), 2818-2827.
 }
 \seealso{
 Other seriation methods: 
+\code{\link{assess}()},
 \code{\link{order}()},
 \code{\link{permute}()},
 \code{\link{seriate_average}()},

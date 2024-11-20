@@ -48,6 +48,7 @@ order_columns(indices)
 }
 \seealso{
 Other seriation methods: 
+\code{\link{assess}()},
 \code{\link{permute}()},
 \code{\link{seriate_average}()},
 \code{\link{seriate_rank}()},

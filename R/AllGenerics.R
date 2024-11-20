@@ -930,14 +930,54 @@ setGeneric(
   def = function(object, ...) standardGeneric("seriate_refine")
 )
 
+## Assess ----------------------------------------------------------------------
+#' Statistical Significance of Seriation Solutions
+#'
+#' Tests the significance of seriation solutions.
+#' @param object A [`PermutationOrder-class`] object giving the permutation
+#'  order for rows and columns (typically returned by [seriate_average()]).
+#' @param axes An [`integer`] vector giving the subscripts of the CA axes to be
+#'  used.
+#' @param n A non-negative [`integer`] giving the number of bootstrap
+#'  replications.
+#' @param progress A [`logical`] scalar: should a progress bar be displayed?
+#' @param ... Currently not used.
+#' @return
+#'  A [`list`] with the following elements:
+#'  \describe{
+#'   \item{`random`}{A [`numeric`] vector giving the randomized total number of
+#'   modes values.}
+#'   \item{`observed`}{A [`numeric`] value giving the observed total number of
+#'   modes.}
+#'   \item{`expected`}{A [`numeric`] value giving the expected total number of
+#'   modes if all types had unimodal distributions.}
+#'   \item{`maximum`}{A [`numeric`] value giving the maximum total number of
+#'   modes.}
+#'   \item{`coef`}{A [`numeric`] value giving the seriation coefficient (a value
+#'   close to 1 indicates a strong fit to the seriation model, while a value
+#'   close to 0 indicates a poor fit).}
+#'  }
+#' @references
+#'  Porčić, M. (2013). The Goodness of Fit and Statistical Significance of
+#'  Seriation Solutions. *Journal of Archaeological Science*, 40(12): 4552-4559.
+#'  \doi{10.1016/j.jas.2013.07.013}.
+#' @example inst/examples/ex-assess.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family seriation methods
+#' @aliases assess-method
+setGeneric(
+  name = "assess",
+  def = function(object, ...) standardGeneric("assess")
+)
+
 ## Permute ---------------------------------------------------------------------
 #' Rearrange a Data Matrix
 #'
 #' Rearranges a data matrix according to a permutation order.
 #' @param object A \eqn{m \times p}{m x p} `numeric` [`matrix`] or
 #'  [`data.frame`] of count data (absolute frequencies giving the number of
-#'  individuals for each category, i.e. a contingency table). A [`data.frame`]
-#'  will be coerced to a `numeric` `matrix` via [data.matrix()].
+#'  individuals for each category, i.e. a contingency table).
 #' @param order A [`PermutationOrder-class`] object giving the permutation
 #'  order for rows and columns.
 #' @param ... Currently not used.

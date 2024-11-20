@@ -69,6 +69,7 @@ Challenge}. Berlin Heidelberg: Springer, p. 307-316.
 \code{\link[dimensio:ca]{dimensio::ca()}}
 
 Other seriation methods: 
+\code{\link{assess}()},
 \code{\link{order}()},
 \code{\link{permute}()},
 \code{\link{seriate_rank}()},

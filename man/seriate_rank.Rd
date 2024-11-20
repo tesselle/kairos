@@ -77,6 +77,7 @@ Challenge}. Berlin Heidelberg: Springer, p. 307-316.
 }
 \seealso{
 Other seriation methods: 
+\code{\link{assess}()},
 \code{\link{order}()},
 \code{\link{permute}()},
 \code{\link{seriate_average}()},

@@ -17,8 +17,7 @@ permute(object, order, ...)
 \arguments{
 \item{object}{A \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or
 \code{\link{data.frame}} of count data (absolute frequencies giving the number of
-individuals for each category, i.e. a contingency table). A \code{\link{data.frame}}
-will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{data.matrix()}}.}
+individuals for each category, i.e. a contingency table).}
 
 \item{order}{A \code{\linkS4class{PermutationOrder}} object giving the permutation
 order for rows and columns.}
@@ -48,6 +47,7 @@ order_columns(indices)
 }
 \seealso{
 Other seriation methods: 
+\code{\link{assess}()},
 \code{\link{order}()},
 \code{\link{seriate_average}()},
 \code{\link{seriate_rank}()},
