@@ -36,8 +36,7 @@ Other classes:
 \code{\link{EventDate-class}},
 \code{\link{IncrementTest-class}},
 \code{\link{MeanDate-class}},
-\code{\link{PermutationOrder-class}},
-\code{\link{RefinePermutationOrder-class}}
+\code{\link{PermutationOrder-class}}
 }
 \author{
 N. Frerebeau

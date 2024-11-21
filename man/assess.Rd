@@ -78,9 +78,9 @@ Seriation Solutions. \emph{Journal of Archaeological Science}, 40(12): 4552-4559
 Other seriation methods: 
 \code{\link{order}()},
 \code{\link{permute}()},
+\code{\link{refine}()},
 \code{\link{seriate_average}()},
-\code{\link{seriate_rank}()},
-\code{\link{seriate_refine}()}
+\code{\link{seriate_rank}()}
 }
 \author{
 N. Frerebeau

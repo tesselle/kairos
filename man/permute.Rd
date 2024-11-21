@@ -49,9 +49,9 @@ order_columns(indices)
 Other seriation methods: 
 \code{\link{assess}()},
 \code{\link{order}()},
+\code{\link{refine}()},
 \code{\link{seriate_average}()},
-\code{\link{seriate_rank}()},
-\code{\link{seriate_refine}()}
+\code{\link{seriate_rank}()}
 }
 \author{
 N. Frerebeau

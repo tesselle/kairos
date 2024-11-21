@@ -10,9 +10,23 @@
 \usage{
 seriate_average(object, ...)
 
-\S4method{seriate_average}{data.frame}(object, margin = c(1, 2), axes = 1, ...)
+\S4method{seriate_average}{data.frame}(
+  object,
+  margin = c(1, 2),
+  axes = 1,
+  sup_row = NULL,
+  sup_col = NULL,
+  ...
+)
 
-\S4method{seriate_average}{matrix}(object, margin = c(1, 2), axes = 1, ...)
+\S4method{seriate_average}{matrix}(
+  object,
+  margin = c(1, 2),
+  axes = 1,
+  sup_row = NULL,
+  sup_col = NULL,
+  ...
+)
 }
 \arguments{
 \item{object}{A \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or
@@ -20,7 +34,7 @@ seriate_average(object, ...)
 individuals for each category, i.e. a contingency table). A \code{\link{data.frame}}
 will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{data.matrix()}}.}
 
-\item{...}{Further arguments to be passed to internal methods.}
+\item{...}{Currently not used.}
 
 \item{margin}{A \code{\link{numeric}} vector giving the subscripts which the
 rearrangement will be applied over: \code{1} indicates rows, \code{2} indicates
@@ -29,6 +43,12 @@ then rows.}
 
 \item{axes}{An \code{\link{integer}} vector giving the subscripts of the CA axes to be
 used.}
+
+\item{sup_row}{A \code{vector} specifying the indices of the supplementary rows
+(see \code{\link[dimensio:ca]{dimensio::ca()}}).}
+
+\item{sup_col}{A \code{vector} specifying the indices of the supplementary columns
+(see \code{\link[dimensio:ca]{dimensio::ca()}}).}
 }
 \value{
 An \code{\linkS4class{AveragePermutationOrder}} object.
@@ -72,8 +92,8 @@ Other seriation methods:
 \code{\link{assess}()},
 \code{\link{order}()},
 \code{\link{permute}()},
-\code{\link{seriate_rank}()},
-\code{\link{seriate_refine}()}
+\code{\link{refine}()},
+\code{\link{seriate_rank}()}
 }
 \author{
 N. Frerebeau

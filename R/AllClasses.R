@@ -256,29 +256,3 @@ NULL
   Class = "AveragePermutationOrder",
   contains = c("PermutationOrder", "CA")
 )
-
-# RefineCA =====================================================================
-#' Partial Bootstrap CA
-#'
-#' An S4 class to store partial bootstrap correspondence analysis results.
-#' @slot length A [`numeric`] vector giving the convex hull maximum
-#'  dimension length.
-#' @slot cutoff A length-one [`numeric`] vector giving the cutoff value for
-#'  samples selection.
-#' @slot keep An [`integer`] vector giving the subscript of the variables
-#'  to be kept.
-#' @author N. Frerebeau
-#' @family classes
-#' @docType class
-#' @aliases RefineCA-class
-#' @keywords internal
-.RefinePermutationOrder <- setClass(
-  Class = "RefinePermutationOrder",
-  slots = c(
-    length = "numeric",
-    cutoff = "numeric",
-    keep = "integer",
-    margin = "integer"
-  ),
-  contains = "AveragePermutationOrder"
-)

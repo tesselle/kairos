@@ -38,8 +38,7 @@ Other classes:
 \code{\link{EventDate-class}},
 \code{\link{MeanDate-class}},
 \code{\link{PermutationOrder-class}},
-\code{\link{RateOfChange-class}},
-\code{\link{RefinePermutationOrder-class}}
+\code{\link{RateOfChange-class}}
 }
 \author{
 N. Frerebeau

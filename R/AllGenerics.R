@@ -840,7 +840,11 @@ setGeneric(
 #'  then rows.
 #' @param axes An [`integer`] vector giving the subscripts of the CA axes to be
 #'  used.
-#' @param ... Further arguments to be passed to internal methods.
+#' @param sup_row A `vector` specifying the indices of the supplementary rows
+#'  (see [dimensio::ca()]).
+#' @param sup_col A `vector` specifying the indices of the supplementary columns
+#'  (see [dimensio::ca()]).
+#' @param ... Currently not used.
 #' @details
 #'  Correspondence analysis (CA) is an effective method for the seriation of
 #'  archaeological assemblages. The order of the rows and columns is given by
@@ -887,7 +891,8 @@ setGeneric(
 #' Refine CA-based Seriation
 #'
 #' @param object A [`PermutationOrder-class`] object (typically returned by
-#'  [seriate_average()]).
+#'  [seriate_average()]) or a [`dimensio::BootstrapCA-class`] object (typically
+#'  returned by [dimensio::bootstrap()]).
 #' @param cutoff A function that takes a numeric vector as argument and returns
 #'  a single numeric value (see below).
 #' @param n A non-negative [`integer`] giving the number of bootstrap
@@ -896,38 +901,49 @@ setGeneric(
 #'  refinement will be applied over: `1` indicates rows, `2` indicates columns.
 #' @param axes An [`integer`] vector giving the subscripts of the CA axes to be
 #'  used.
-#' @param x A [`RefinePermutationOrder-class`] object
-#' @param ... Further arguments to be passed to internal methods.
+#' @param ... Currently not used.
 #' @details
-#'  `seriate_refine()` allows to identify samples that are subject to
-#'  sampling error or samples that have underlying structural relationships
-#'  and might be influencing the ordering along the CA space.
+#'  `refine()` allows to identify samples that are subject to sampling error or
+#'  samples that have underlying structural relationships and might be
+#'  influencing the ordering along the CA space.
 #'
 #'  This relies on a partial bootstrap approach to CA-based seriation where each
-#'  sample is replicated `n` times. The maximum dimension length of
-#'  the convex hull around the sample point cloud allows to remove samples for
-#'  a given `cutoff` value.
+#'  sample is replicated `n` times. The maximum dimension length of the convex
+#'  hull around the sample point cloud allows to remove samples for a given
+#'  `cutoff` value.
 #'
 #'  According to Peebles and Schachner (2012), "\[this\] point removal procedure
 #'  \[results in\] a reduced dataset where the position of individuals within
 #'  the CA are highly stable and which produces an ordering consistent with the
 #'  assumptions of frequency seriation."
+#'
+#'  See `vignette("seriation")`.
 #' @return
-#'  * `seriate_refine()` returns a [`RefinePermutationOrder-class`] object.
-#'  * `hist()` is called it for its side-effects: it results in a histogram
-#'    being displayed (invisibly returns `x`).
+#'  A [`list`] with the following elements:
+#'  \describe{
+#'   \item{`length`}{A [`numeric`] vector giving the convex hull maximum
+#'   dimension length.}
+#'   \item{`cutoff`}{A [`numeric`] value giving the cutoff value for samples
+#'   selection.}
+#'   \item{`exclude`}{An [`integer`] vector giving the subscript of the
+#'   observations to be removed.}
+#'   \item{`margin`}{A [`numeric`] value specifying the dimension along which
+#'   the refinement procedure has been applied: `1` indicates rows,
+#'   `2` indicates columns.}
+#'  }
 #' @references
 #'  Peeples, M. A., & Schachner, G. (2012). Refining correspondence
 #'  analysis-based ceramic seriation of regional data sets. *Journal of
 #'  Archaeological Science*, 39(8), 2818-2827.
 #'  \doi{10.1016/j.jas.2012.04.040}.
+#' @seealso [dimensio::bootstrap()]
 #' @author N. Frerebeau
 #' @docType methods
 #' @family seriation methods
-#' @aliases seriate_refine-method
+#' @aliases refine-method
 setGeneric(
-  name = "seriate_refine",
-  def = function(object, ...) standardGeneric("seriate_refine")
+  name = "refine",
+  def = function(object, ...) standardGeneric("refine")
 )
 
 ## Assess ----------------------------------------------------------------------

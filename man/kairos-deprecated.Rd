@@ -4,11 +4,24 @@
 \alias{kairos-deprecated}
 \alias{get_order}
 \alias{get_order,PermutationOrder-method}
+\alias{seriate_refine}
+\alias{seriate_refine-method}
+\alias{seriate_refine,AveragePermutationOrder-method}
+\alias{seriate_refine,BootstrapCA-method}
+\alias{hist,RefinePermutationOrder-method}
 \title{Deprecated Functions in kairos}
 \usage{
 get_order(x, ...)
 
 \S4method{get_order}{PermutationOrder}(x, margin = c(1, 2))
+
+seriate_refine(object, ...)
+
+\S4method{seriate_refine}{AveragePermutationOrder}(object, cutoff, margin = 1, axes = 1, n = 30, ...)
+
+\S4method{seriate_refine}{BootstrapCA}(object, cutoff, margin = 1, axes = 1, ...)
+
+\S4method{hist}{RefinePermutationOrder}(x, ...)
 }
 \description{
 These functions still work but will be removed (defunct) in the next version.

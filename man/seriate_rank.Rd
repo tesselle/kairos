@@ -80,8 +80,8 @@ Other seriation methods:
 \code{\link{assess}()},
 \code{\link{order}()},
 \code{\link{permute}()},
-\code{\link{seriate_average}()},
-\code{\link{seriate_refine}()}
+\code{\link{refine}()},
+\code{\link{seriate_average}()}
 }
 \author{
 N. Frerebeau

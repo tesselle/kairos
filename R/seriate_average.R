@@ -7,9 +7,11 @@ NULL
 setMethod(
   f = "seriate_average",
   signature = c(object = "data.frame"),
-  definition = function(object, margin = c(1, 2), axes = 1, ...) {
+  definition = function(object, margin = c(1, 2), axes = 1,
+                        sup_row = NULL, sup_col = NULL, ...) {
     object <- data.matrix(object)
-    methods::callGeneric(object, margin = margin, axes = axes, ...)
+    methods::callGeneric(object, margin = margin, axes = axes,
+                         sup_row = sup_row, sup_col = sup_col, ...)
   }
 )
 
@@ -19,7 +21,8 @@ setMethod(
 setMethod(
   f = "seriate_average",
   signature = c(object = "matrix"),
-  definition = function(object, margin = c(1, 2), axes = 1, ...) {
+  definition = function(object, margin = c(1, 2), axes = 1,
+                        sup_row = NULL, sup_col = NULL, ...) {
     ## Validation
     arkhe::assert_length(axes, 1)
 
@@ -31,7 +34,7 @@ setMethod(
     j <- seq_len(ncol(object))
 
     ## Correspondence analysis
-    corresp <- dimensio::ca(object, ...)
+    corresp <- dimensio::ca(object, sup_row = sup_row, sup_col = sup_col)
     coords <- list(
       rows = dimensio::get_coordinates(corresp, margin = 1),
       columns = dimensio::get_coordinates(corresp, margin = 2)
@@ -42,8 +45,8 @@ setMethod(
     coords$columns <- coords$columns[order(corresp@columns@order), ]
 
     ## Seriation order
-    row_coords <- if (1 %in% margin) order(coords$rows[, axes]) else i
-    col_coords <- if (2 %in% margin) order(coords$columns[, axes]) else j
+    row_coords <- if (any(margin == 1)) order(coords$rows[, axes]) else i
+    col_coords <- if (any(margin == 2)) order(coords$columns[, axes]) else j
 
     ## New PermutationOrder object
     .AveragePermutationOrder(
