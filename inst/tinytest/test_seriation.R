@@ -54,4 +54,11 @@ if (requireNamespace("folio", quietly = TRUE)) {
   )
 
   expect_error(seriate_average(merzbach), "Empty columns detected.")
+
+  # Seriation significance =====================================================
+  S <- assess(indices, axes = 1, n = 0)
+  expect_equal(S$observed, 21)
+  expect_equal(S$expected, 16)
+  expect_equal(S$maximum, 40)
+  expect_equal(round(S$coef, 2), 0.79)
 }

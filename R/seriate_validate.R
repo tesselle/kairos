@@ -9,6 +9,10 @@ setMethod(
   signature = c(object = "AveragePermutationOrder"),
   definition = function(object, axes = 1, n = 1000,
                         progress = getOption("kairos.progress")) {
+    ## Validation
+    arkhe::assert_length(axes, 1)
+    arkhe::assert_length(n, 1)
+
     ## Reorder along 'axes'
     data <- dimensio::get_data(object)
     perm <- permute(data, object)
@@ -17,25 +21,27 @@ setMethod(
     freq <- data / rowSums(data)
     a <- sum(apply(X = freq, MARGIN = 2, FUN = local_maxima))
 
-    progress_bar <- interactive() && progress
-    if (progress_bar) pbar <- utils::txtProgressBar(max = n, style = 3)
-
     b <- numeric(n)
-    for (i in seq_len(n)) {
-      ## Randomize original data
-      i_obj <- apply(X = data, MARGIN = 2, FUN = sample, replace = FALSE)
+    if (n > 0) {
+      progress_bar <- interactive() && isTRUE(progress)
+      if (progress_bar) pbar <- utils::txtProgressBar(max = n, style = 3)
 
-      ## Number of local maxima
-      i_ca <- seriate_average(i_obj, margin = c(1, 2), axes = axes)
-      i_perm <- permute(i_obj, i_ca)
-      i_freq <- i_perm / rowSums(i_perm)
+      for (i in seq_len(n)) {
+        ## Randomize original data
+        i_obj <- apply(X = data, MARGIN = 2, FUN = sample, replace = FALSE)
 
-      b[[i]] <- sum(apply(X = i_freq, MARGIN = 2, FUN = local_maxima))
+        ## Number of local maxima
+        i_ca <- seriate_average(i_obj, margin = c(1, 2), axes = axes)
+        i_perm <- permute(i_obj, i_ca)
+        i_freq <- i_perm / rowSums(i_perm)
 
-      if (progress_bar) utils::setTxtProgressBar(pbar, i)
+        b[[i]] <- sum(apply(X = i_freq, MARGIN = 2, FUN = local_maxima))
+
+        if (progress_bar) utils::setTxtProgressBar(pbar, i)
+      }
+
+      if (progress_bar) close(pbar)
     }
-
-    if (progress_bar) close(pbar)
 
     ## Seriation coefficient
     E <- ncol(data)
@@ -58,4 +64,3 @@ local_maxima <- function(x) {
   right <- c(x[-1L], 0)
   sum(x > left & x > right)
 }
-
