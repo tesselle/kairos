@@ -69,7 +69,7 @@ compute_date_jack <- function(x, dates, rank = 10,
   k <- seq_len(m)
   jack <- vector(mode = "list", length = m)
 
-  progress_bar <- interactive() && progress
+  progress_bar <- interactive() && isTRUE(progress)
   if (progress_bar) pbar <- utils::txtProgressBar(max = m, style = 3)
 
   for (j in k) {

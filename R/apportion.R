@@ -68,7 +68,7 @@ setMethod(
     k_site <- seq_len(n_site)
     k_type <- seq_len(n_type)
 
-    progress_bar <- interactive() && progress
+    progress_bar <- interactive() && isTRUE(progress)
     if (progress_bar) pbar <- utils::txtProgressBar(max = n_site, style = 3)
 
     for (i in k_site) {
