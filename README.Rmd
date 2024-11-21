@@ -20,7 +20,7 @@ Sys.setenv(LANGUAGE = "en") # Force locale
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/tesselle/kairos/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/kairos/actions)
-[![codecov](https://codecov.io/gh/tesselle/kairos/branch/master/graph/badge.svg)](https://app.codecov.io/gh/tesselle/kairos)
+[![codecov](https://codecov.io/gh/tesselle/kairos/branch/main/graph/badge.svg)](https://app.codecov.io/gh/tesselle/kairos)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/kairos/badge)](https://www.codefactor.io/repository/github/tesselle/kairos)
 [![Dependencies](https://tinyverse.netlify.app/badge/kairos)](https://cran.r-project.org/package=kairos)
 
@@ -36,13 +36,14 @@ Sys.setenv(LANGUAGE = "en") # Force locale
 
 ## Overview
 
-A convenient and reproducible toolkit for relative and absolute dating and analysis of chronological patterns. This package includes functions for chronological modeling and dating of archaeological assemblages from count data. It provides methods for matrix seriation. It also allows to compute time point estimates and density estimates of the occupation and duration of an archaeological site. **kairos** provides methods for:
+A toolkit for relative and absolute dating and analysis of chronological patterns. This package includes functions for chronological modeling and dating of archaeological assemblages from count data. It provides methods for matrix seriation. It also allows to compute time point estimates and density estimates of the occupation and duration of an archaeological site. **kairos** provides methods for:
 
-* Matrix seriation: `seriate_rank()` and `seriate_average()`
-* Mean ceramic date estimation [@south1977]: `mcd()`
-* Event and accumulation date estimation [@bellanger2012]: `event()`
-* Aoristic analysis [@ratcliffe2000]: `aoristic()`
-* Chronological apportioning [@roberts2012]: `apportion()`
+* Matrix seriation: `seriate_rank()` and `seriate_average()`.
+* Testing matrix seriation results [@porcic2013; @peeples2012]: `assess()` and `refine()`.
+* Mean ceramic date estimation [@south1977]: `mcd()`.
+* Event and accumulation date estimation [@bellanger2012]: `event()`.
+* Aoristic analysis [@ratcliffe2000]: `aoristic()`.
+* Chronological apportioning [@roberts2012]: `apportion()`.
 
 [**tabula**](https://packages.tesselle.org/tabula/) is a companion package to **kairos** that provides functions for visualization and analysis of archaeological count data.
 
@@ -75,7 +76,7 @@ remotes::install_github("tesselle/kairos")
 library(kairos)
 ```
 
-**kairos** v2.0 uses **aion** for internal date representation. Look at `vignette("aion")` before you start.
+**kairos** uses [**aion**](https://packages.tesselle.org/aion/) for internal date representation. Look at `vignette("aion", package = "aion")` before you start.
 
 *It assumes that you keep your data tidy*: each variable (type/taxa) must be saved in its own column and each observation (sample/case) must be saved in its own row.
 
@@ -95,6 +96,7 @@ ao <- aoristic(loire_range, step = 50, weight = TRUE, groups = loire$area)
 plot(ao, col = "grey")
 
 ## Rate of change by group
+set.seed(12345) # Set seed for reproductibility
 ro <- roc(ao, n = 30)
 plot(ro)
 ```

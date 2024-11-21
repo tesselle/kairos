@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/tesselle/kairos/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/kairos/actions)
-[![codecov](https://codecov.io/gh/tesselle/kairos/branch/master/graph/badge.svg)](https://app.codecov.io/gh/tesselle/kairos)
+[![codecov](https://codecov.io/gh/tesselle/kairos/branch/main/graph/badge.svg)](https://app.codecov.io/gh/tesselle/kairos)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/kairos/badge)](https://www.codefactor.io/repository/github/tesselle/kairos)
 [![Dependencies](https://tinyverse.netlify.app/badge/kairos)](https://cran.r-project.org/package=kairos)
 
@@ -36,19 +36,21 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 ## Overview
 
-A convenient and reproducible toolkit for relative and absolute dating
-and analysis of chronological patterns. This package includes functions
-for chronological modeling and dating of archaeological assemblages from
-count data. It provides methods for matrix seriation. It also allows to
-compute time point estimates and density estimates of the occupation and
-duration of an archaeological site. **kairos** provides methods for:
+A toolkit for relative and absolute dating and analysis of chronological
+patterns. This package includes functions for chronological modeling and
+dating of archaeological assemblages from count data. It provides
+methods for matrix seriation. It also allows to compute time point
+estimates and density estimates of the occupation and duration of an
+archaeological site. **kairos** provides methods for:
 
-- Matrix seriation: `seriate_rank()` and `seriate_average()`
-- Mean ceramic date estimation (South 1977): `mcd()`
+- Matrix seriation: `seriate_rank()` and `seriate_average()`.
+- Testing matrix seriation results (Porčić 2013; Peeples and Schachner
+  2012): `assess()` and `refine()`.
+- Mean ceramic date estimation (South 1977): `mcd()`.
 - Event and accumulation date estimation (Bellanger and Husi 2012):
-  `event()`
-- Aoristic analysis (Ratcliffe 2000): `aoristic()`
-- Chronological apportioning (Roberts et al. 2012): `apportion()`
+  `event()`.
+- Aoristic analysis (Ratcliffe 2000): `aoristic()`.
+- Chronological apportioning (Roberts et al. 2012): `apportion()`.
 
 [**tabula**](https://packages.tesselle.org/tabula/) is a companion
 package to **kairos** that provides functions for visualization and
@@ -91,8 +93,9 @@ library(kairos)
 #> Loading required package: dimensio
 ```
 
-**kairos** v2.0 uses **aion** for internal date representation. Look at
-`vignette("aion")` before you start.
+**kairos** uses [**aion**](https://packages.tesselle.org/aion/) for
+internal date representation. Look at
+`vignette("aion", package = "aion")` before you start.
 
 *It assumes that you keep your data tidy*: each variable (type/taxa)
 must be saved in its own column and each observation (sample/case) must
@@ -119,6 +122,7 @@ plot(ao, col = "grey")
 ``` r
 
 ## Rate of change by group
+set.seed(12345) # Set seed for reproductibility
 ro <- roc(ao, n = 30)
 plot(ro)
 ```
