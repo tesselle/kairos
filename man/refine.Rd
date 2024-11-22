@@ -77,6 +77,7 @@ Archaeological Science}, 39(8), 2818-2827.
 \code{\link[dimensio:reexports]{dimensio::bootstrap()}}
 
 Other seriation methods: 
+\code{\link{as_seriation}()},
 \code{\link{assess}()},
 \code{\link{order}()},
 \code{\link{permute}()},

@@ -76,6 +76,7 @@ Seriation Solutions. \emph{Journal of Archaeological Science}, 40(12): 4552-4559
 }
 \seealso{
 Other seriation methods: 
+\code{\link{as_seriation}()},
 \code{\link{order}()},
 \code{\link{permute}()},
 \code{\link{refine}()},

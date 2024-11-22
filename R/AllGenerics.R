@@ -887,6 +887,27 @@ setGeneric(
 #   valueClass = "PermutationOrder"
 # )
 
+#' Coerce an \R Object to a Seriation Order
+#'
+#' @param object An \R object.
+#' @param margin A [`numeric`] vector giving the subscripts which the
+#'  rearrangement will be applied over: `1` indicates rows, `2` indicates
+#'  columns, `c(1, 2)` indicates rows then columns, `c(2, 1)` indicates columns
+#'  then rows.
+#' @param axes An [`integer`] vector giving the subscripts of the CA axes to be
+#'  used.
+#' @param ... Currently not used.
+#' @return
+#'  A [`PermutationOrder-class`] object.
+#' @author N. Frerebeau
+#' @family seriation methods
+#' @docType methods
+#' @aliases as_seriation-method
+setGeneric(
+  name = "as_seriation",
+  def = function(object, ...) standardGeneric("as_seriation")
+)
+
 ## Refine ----------------------------------------------------------------------
 #' Refine CA-based Seriation
 #'

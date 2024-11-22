@@ -47,6 +47,7 @@ order_columns(indices)
 }
 \seealso{
 Other seriation methods: 
+\code{\link{as_seriation}()},
 \code{\link{assess}()},
 \code{\link{order}()},
 \code{\link{refine}()},

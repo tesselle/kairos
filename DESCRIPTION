@@ -68,6 +68,7 @@ Collate:
     'reexport.R'
     'seriation_assess.R'
     'seriation_average.R'
+    'seriation_coerce.R'
     'seriation_permute.R'
     'seriation_rank.R'
     'seriation_refine.R'
