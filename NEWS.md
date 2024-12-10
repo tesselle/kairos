@@ -1,6 +1,18 @@
-# kairos 2.1.1.9000
+# kairos 2.2.0
+## New classes and methods
+* Add `as_seriation()` to coerce objects to seriation orders.
+* Add `assess()` to test the significance of seriation solutions (#4).
+* Add `density_event()` and `density_accumulation()` to compute density estimates of event and accumulation dates.
+* Add `order_rows()` and `order_columns()` to get permutation order.
+* Add `refine()` to refine CA-based seriation.
+
+## Enhancements
+* Translate into French.
+
 ## Bugfixes & changes
 * Fix a bug in `predict_event()` and `predict_accumulation()`: supplementary rows are no longer ignored.
+* Fix calendar in `jackknife()` and `bootstrap()` methods for `EventDate-class`.
+* Deprecate `get_order()` and `seriate_refine()`.
 
 # kairos 2.1.1
 ## Internals

@@ -8,7 +8,7 @@ message: 'To cite package "kairos" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
-version: 2.1.1
+version: 2.2.0
 doi: 10.5281/zenodo.5653896
 identifiers:
 - description: The concept DOI.
@@ -41,6 +41,9 @@ identifiers:
 - description: The versioned DOI for version 2.1.1.
   type: doi
   value: 10.5281/zenodo.12967467
+- description: The CRAN DOI
+  type: doi
+  value: 10.32614/cran.package.kairos
 - description: The Software Heritage identifier for version 1.0.1.
   type: swh
   value: swh:1:rel:508add25987e0fc9f3f29793df5578337ae2c338
@@ -54,7 +57,6 @@ authors:
   given-names: Nicolas
   email: nicolas.frerebeau@u-bordeaux-montaigne.fr
   orcid: https://orcid.org/0000-0001-5759-4944
-  affiliation: Université Bordeaux Montaigne
 preferred-citation:
   type: manual
   title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
@@ -63,12 +65,11 @@ preferred-citation:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-    affiliation: Université Bordeaux Montaigne
   year: '2024'
   institution:
     name: Université Bordeaux Montaigne
     address: Pessac, France
-  notes: R package version 2.1.1
+  notes: R package version 2.2.0
   url: https://packages.tesselle.org/kairos/
   doi: 10.5281/zenodo.5653896
 repository: https://CRAN.R-project.org/package=kairos
@@ -79,7 +80,6 @@ contact:
   given-names: Nicolas
   email: nicolas.frerebeau@u-bordeaux-montaigne.fr
   orcid: https://orcid.org/0000-0001-5759-4944
-  affiliation: Université Bordeaux Montaigne
 keywords:
 - chronology
 - matrix seriation
@@ -109,30 +109,27 @@ references:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-    affiliation: Université Bordeaux Montaigne
   year: '2024'
   doi: 10.32614/CRAN.package.dimensio
-  version: '>= 0.8.0'
+  version: '>= 0.10.1'
 - type: software
   title: aion
   abstract: 'aion: Archaeological Time Series'
   notes: Imports
   url: https://packages.tesselle.org/aion/
-  repository: https://tesselle.r-universe.dev
+  repository: https://CRAN.R-project.org/package=aion
   authors:
   - family-names: Frerebeau
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-    affiliation: Université Bordeaux Montaigne
   - family-names: Roe
     given-names: Joe
     email: joseph.roe@iaw.unibe.ch
     orcid: https://orcid.org/0000-0002-1011-1244
-    affiliation: Universität Bern
   year: '2024'
   doi: 10.32614/CRAN.package.aion
-  version: '>= 1.0.4'
+  version: '>= 1.3.0'
 - type: software
   title: arkhe
   abstract: 'arkhe: Tools for Cleaning Rectangular Data'
@@ -144,10 +141,9 @@ references:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-    affiliation: Université Bordeaux Montaigne
   year: '2024'
   doi: 10.32614/CRAN.package.arkhe
-  version: '>= 1.6.0'
+  version: '>= 1.9.0'
 - type: software
   title: extraDistr
   abstract: 'extraDistr: Additional Univariate and Multivariate Distributions'
@@ -169,7 +165,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.grDevices
 - type: software
   title: methods
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -180,7 +175,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.methods
 - type: software
   title: stats
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -191,7 +185,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.stats
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -202,7 +195,6 @@ references:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
   year: '2024'
-  doi: 10.32614/CRAN.package.utils
 - type: software
   title: folio
   abstract: 'folio: Datasets for Teaching Archaeology and Paleontology'
@@ -217,7 +209,7 @@ references:
     affiliation: Université Bordeaux Montaigne
   year: '2024'
   doi: 10.32614/CRAN.package.folio
-  version: '>= 1.4.0'
+  version: '>= 1.5.0'
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -258,7 +250,7 @@ references:
   authors:
   - family-names: Ooms
     given-names: Jeroen
-    email: jeroen@berkeley.edu
+    email: jeroenooms@gmail.com
     orcid: https://orcid.org/0000-0002-4035-0289
   year: '2024'
   doi: 10.32614/CRAN.package.rsvg
@@ -304,7 +296,7 @@ references:
     affiliation: Université Bordeaux Montaigne
   year: '2024'
   doi: 10.32614/CRAN.package.tabula
-  version: '>= 3.1.0'
+  version: '>= 3.1.1'
 - type: software
   title: tinysnapshot
   abstract: 'tinysnapshot: Snapshots for Unit Tests using the ''tinytest'' Framework'
