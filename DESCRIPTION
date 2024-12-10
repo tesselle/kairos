@@ -1,6 +1,6 @@
 Package: kairos
 Title: Analysis of Chronological Patterns from Archaeological Count Data
-Version: 2.2.0
+Version: 2.2.0.9000
 Authors@R: c(
     person("Nicolas", "Frerebeau", , "nicolas.frerebeau@u-bordeaux-montaigne.fr", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5759-4944")),

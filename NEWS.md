@@ -1,3 +1,5 @@
+# kairos 2.2.0.9000
+
 # kairos 2.2.0
 ## New classes and methods
 * Add `as_seriation()` to coerce objects to seriation orders.
