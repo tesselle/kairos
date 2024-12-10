@@ -25,17 +25,17 @@ URL: https://packages.tesselle.org/kairos/,
 BugReports: https://github.com/tesselle/kairos/issues
 Depends: 
     R (>= 3.5),
-    dimensio (>= 0.10.0)
+    dimensio (>= 0.10.1)
 Imports: 
-    aion (>= 1.2.0),
-    arkhe (>= 1.8.0),
+    aion (>= 1.3.0),
+    arkhe (>= 1.9.0),
     extraDistr,
     grDevices,
     methods,
     stats,
     utils
 Suggests: 
-    folio (>= 1.4.0),
+    folio (>= 1.5.0),
     knitr,
     markdown,
     rsvg,
