@@ -3,15 +3,17 @@ Title: Analysis of Chronological Patterns from Archaeological Count Data
 Version: 2.2.0.9000
 Authors@R: c(
     person("Nicolas", "Frerebeau", , "nicolas.frerebeau@u-bordeaux-montaigne.fr", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-5759-4944")),
-    person("Brice", "Lebrun", , "brice.lebrun@u-bordeaux-montaigne.fr", role = "ctb",
+           comment = c(ORCID = "0000-0001-5759-4944", ROR = "03pbgwk21")),
+    person("Brice", "Lebrun", role = "art",
            comment = c(ORCID = "0000-0001-7503-8685", "Logo designer")),
     person("Ben", "Marwick", , "bmarwick@uw.edu", role = "ctb",
-           comment = c(ORCID = "0000-0001-7879-4531")),
+           comment = c(ORCID = "0000-0001-7879-4531", ROR = "00cvxb145")),
     person("Anne", "Philippe", , "anne.philippe@univ-nantes.fr", role = "ctb",
-           comment = c(ORCID = "0000-0002-5331-5087")),
-    person("Université Bordeaux Montaigne", role = "fnd"),
-    person("CNRS", role = "fnd")
+           comment = c(ORCID = "0000-0002-5331-5087", ROR = "03gnr7b55")),
+    person("Université Bordeaux Montaigne", role = "fnd",
+           comment = c(ROR = "03pbgwk21")),
+    person("CNRS", role = "fnd",
+           comment = c(ROR = "02feahw73"))
   )
 Description: A toolkit for absolute and relative dating and analysis of
     chronological patterns. This package includes functions for
