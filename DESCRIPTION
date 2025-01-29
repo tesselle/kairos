@@ -20,9 +20,9 @@ Description: A toolkit for absolute and relative dating and analysis of
     to compute time point estimates and density estimates of the
     occupation and duration of an archaeological site.
 License: GPL (>= 3)
-URL: https://packages.tesselle.org/kairos/,
-    https://github.com/tesselle/kairos
-BugReports: https://github.com/tesselle/kairos/issues
+URL: https://codeberg.org/tesselle/kairos,
+    https://packages.tesselle.org/kairos/
+BugReports: https://codeberg.org/tesselle/kairos/issues
 Depends: 
     R (>= 3.5),
     dimensio (>= 0.10.1)

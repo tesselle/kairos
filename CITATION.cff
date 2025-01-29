@@ -76,7 +76,7 @@ preferred-citation:
   url: https://packages.tesselle.org/kairos/
   doi: 10.5281/zenodo.5653896
 repository: https://CRAN.R-project.org/package=kairos
-repository-code: https://github.com/tesselle/kairos
+repository-code: https://codeberg.org/tesselle/kairos
 url: https://packages.tesselle.org/kairos/
 contact:
 - family-names: Frerebeau

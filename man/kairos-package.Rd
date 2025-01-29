@@ -34,9 +34,9 @@ on progress? Defaults to \code{\link[=interactive]{interactive()}}.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://codeberg.org/tesselle/kairos}
   \item \url{https://packages.tesselle.org/kairos/}
-  \item \url{https://github.com/tesselle/kairos}
-  \item Report bugs at \url{https://github.com/tesselle/kairos/issues}
+  \item Report bugs at \url{https://codeberg.org/tesselle/kairos/issues}
 }
 
 }

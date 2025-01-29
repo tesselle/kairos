@@ -5,9 +5,6 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/tesselle/kairos/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/kairos/actions)
-[![codecov](https://codecov.io/gh/tesselle/kairos/branch/main/graph/badge.svg)](https://app.codecov.io/gh/tesselle/kairos)
-[![CodeFactor](https://www.codefactor.io/repository/github/tesselle/kairos/badge)](https://www.codefactor.io/repository/github/tesselle/kairos)
 [![Dependencies](https://tinyverse.netlify.app/badge/kairos)](https://cran.r-project.org/package=kairos)
 
 <a href="https://tesselle.r-universe.dev/kairos"
@@ -78,11 +75,11 @@ You can install the released version of **kairos** from
 install.packages("kairos")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+And the development version from [Codeberg](https://codeberg.org/) with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("tesselle/kairos")
+remotes::install_git("https://codeberg.org/tesselle/kairos")
 ```
 
 ## Usage
