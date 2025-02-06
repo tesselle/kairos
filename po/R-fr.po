@@ -2,15 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kairos 2.1.1.9000\n"
 "POT-Creation-Date: 2024-11-16 15:00+0100\n"
-"PO-Revision-Date: 2024-11-15 16:35+0100\n"
-"Last-Translator: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne."
-"fr>\n"
-"Language-Team: fr\n"
+"PO-Revision-Date: 2025-02-06 12:54+0000\n"
+"Last-Translator: nfrerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>\n"
+"Language-Team: French <https://translate.codeberg.org/projects/tesselle/"
+"kairos/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: aoristic.R:95
 msgid "%s is a list, but does not have component %s."
@@ -22,7 +23,7 @@ msgstr "Taux de changement"
 
 #: event_date.R:161
 msgid "All dates are missing!"
-msgstr "Toutes les dates sont manquantes!"
+msgstr "Toutes les dates sont manquantes !"
 
 #: event_plot.R:33
 msgid "Wrong selection."
@@ -50,11 +51,11 @@ msgstr "Régression linéaire multiple"
 
 #: show.R:18
 msgid "* R-squared: %s"
-msgstr "* Coefficient de détermination: %s"
+msgstr "* Coefficient de détermination : %s"
 
 #: show.R:19
 msgid "* Adjusted R-squared: %s"
-msgstr "* Coefficient de détermination ajusté: %s"
+msgstr "* Coefficient de détermination ajusté : %s"
 
 #: show.R:20
 msgid "* Residual standard error: %s"
@@ -66,11 +67,11 @@ msgstr "Ordre de permutation pour la sériation de matrice"
 
 #: show.R:36
 msgid "* Row order: %s"
-msgstr "* Ordre des lignes: %s"
+msgstr "* Ordre des lignes : %s"
 
 #: show.R:37
 msgid "* Column order: %s"
-msgstr "* Ordre des colonnes: %s"
+msgstr "* Ordre des colonnes : %s"
 
 #: event_date.R:135
 msgid "%d column has a grand total of less than %d."
@@ -99,5 +100,5 @@ msgstr[1] "Elles ont été ignorées lors de l'analyse."
 #: fit.R:47
 msgid "%d element was skipped: %s."
 msgid_plural "%d elements were skipped: %s."
-msgstr[0] "%d élément a été ignoré: %s."
-msgstr[1] "%d éléments ont été ignorés: %s."
+msgstr[0] "%d élément a été ignoré : %s."
+msgstr[1] "%d éléments ont été ignorés : %s."
