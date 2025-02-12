@@ -16,6 +16,7 @@ A toolkit for absolute and relative dating and analysis of chronological pattern
 \strong{Type:} \tab Package \cr
 \strong{Version:} \tab 2.2.0 \cr
 \strong{License:} \tab GPL-3 \cr
+\strong{Zenodo:} \tab \doi{10.5281/zenodo.5653896} \cr
 }
 }
 \section{Package options}{

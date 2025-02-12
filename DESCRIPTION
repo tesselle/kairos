@@ -50,6 +50,10 @@ VignetteBuilder:
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+X-schema.org-applicationCategory: Archaeological Science
+X-schema.org-isPartOf: https://www.tesselle.org
+X-schema.org-keywords: chronology, matrix-seriation, archaeology,
+    archaeological-science, r-package
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'

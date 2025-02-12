@@ -113,3 +113,52 @@ Languages currently available are English (`en`) and French (`fr`).
 Please note that the **kairos** project is released with a [Contributor Code of Conduct](https://www.tesselle.org/conduct.html). By contributing to this project, you agree to abide by its terms.
 
 ## References
+
+```{r metadata, include=FALSE}
+## Update codemeta.json
+codemetar::write_codemeta(verbose = FALSE)
+
+## Update CITATION.cff
+cff_keys <- list(
+  identifiers = list(
+    list(description = "The concept DOI.",
+         type = "doi",
+         value = "10.5281/zenodo.5653896"),
+    list(description = "The versioned DOI for version 1.0.0.",
+         type = "doi",
+         value = "10.5281/zenodo.5653897"),
+    list(description = "The versioned DOI for version 1.0.1.",
+         type = "doi",
+         value = "10.5281/zenodo.6349207"),
+    list(description = "The versioned DOI for version 1.1.0.",
+         type = "doi",
+         value = "10.5281/zenodo.6659732"),
+    list(description = "The versioned DOI for version 1.2.0.",
+         type = "doi",
+         value = "10.5281/zenodo.7307327"),
+    list(description = "The versioned DOI for version 2.0.0.",
+         type = "doi",
+         value = "10.5281/zenodo.8301347"),
+    list(description = "The versioned DOI for version 2.0.1.",
+         type = "doi",
+         value = "10.5281/zenodo.8318621"),
+    list(description = "The versioned DOI for version 2.0.2.",
+         type = "doi",
+         value = "10.5281/zenodo.10209640"),
+    list(description = "The versioned DOI for version 2.1.0.",
+         type = "doi",
+         value = "10.5281/zenodo.10711260"),
+    list(description = "The versioned DOI for version 2.1.1.",
+         type = "doi",
+         value = "10.5281/zenodo.12967467"),
+    list(description = "The versioned DOI for version 2.2.0.",
+         type = "doi",
+         value = "10.5281/zenodo.14357977"),
+    list(description = "The CRAN DOI",
+         type = "doi",
+         value = "10.32614/cran.package.kairos")
+  )
+)
+cff <- cffr::cff_create("DESCRIPTION", keys = cff_keys)
+if (cffr::cff_validate(cff)) cffr::cff_write(cff, outfile = "CITATION.cff")
+```

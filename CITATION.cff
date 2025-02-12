@@ -47,9 +47,6 @@ identifiers:
 - description: The CRAN DOI
   type: doi
   value: 10.32614/cran.package.kairos
-- description: The Software Heritage identifier for version 1.0.1.
-  type: swh
-  value: swh:1:rel:508add25987e0fc9f3f29793df5578337ae2c338
 abstract: A toolkit for absolute and relative dating and analysis of chronological
   patterns. This package includes functions for chronological modeling and dating
   of archaeological assemblages from count data. It provides methods for matrix seriation.
@@ -85,10 +82,10 @@ contact:
   orcid: https://orcid.org/0000-0001-5759-4944
 keywords:
 - chronology
-- matrix seriation
+- matrix-seriation
 - archaeology
-- archaeological science
-- r package
+- archaeological-science
+- r-package
 references:
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
