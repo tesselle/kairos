@@ -23,8 +23,6 @@ A toolkit for absolute and relative dating and analysis of chronological pattern
 
 \pkg{kairos} uses the following \code{\link[=options]{options()}} to configure behavior:
 \itemize{
-\item \code{kairos.calendar}: a \code{\link[aion:TimeScale-class]{aion::TimeScale}} object (default calendar
-for printing; see \code{\link[aion:calendar]{aion::calendar()}}).
 \item \code{kairos.progress}: a \code{\link{logical}} scalar. Should progress bars be
 displayed? Defaults to \code{\link[=interactive]{interactive()}}.
 \item \code{kairos.verbose}: a \code{\link{logical}} scalar. Should \R report extra information

@@ -8,9 +8,9 @@
 \alias{simulate,MeanDate-method}
 \title{Resample Mean Ceramic Dates}
 \usage{
-\S4method{bootstrap}{MeanDate}(object, n = 1000, f = NULL, calendar = getOption("kairos.calendar"))
+\S4method{bootstrap}{MeanDate}(object, n = 1000, f = NULL, calendar = get_calendar())
 
-\S4method{jackknife}{MeanDate}(object, f = NULL, calendar = getOption("kairos.calendar"))
+\S4method{jackknife}{MeanDate}(object, f = NULL, calendar = get_calendar())
 
 \S4method{simulate}{MeanDate}(object, nsim = 1000)
 }

@@ -8,9 +8,9 @@
 \alias{as.data.frame,IncrementTest-method}
 \title{Coerce to a Data Frame}
 \usage{
-\S4method{as.data.frame}{MeanDate}(x, ..., calendar = getOption("kairos.calendar"))
+\S4method{as.data.frame}{MeanDate}(x, ..., calendar = get_calendar())
 
-\S4method{as.data.frame}{AoristicSum}(x, ..., calendar = getOption("kairos.calendar"))
+\S4method{as.data.frame}{AoristicSum}(x, ..., calendar = get_calendar())
 
 \S4method{as.data.frame}{IncrementTest}(x, row.names = NULL, optional = FALSE, ...)
 }

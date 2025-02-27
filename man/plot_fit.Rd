@@ -8,7 +8,7 @@
 \usage{
 \S4method{plot}{IncrementTest,missing}(
   x,
-  calendar = getOption("kairos.calendar"),
+  calendar = get_calendar(),
   col.neutral = "#004488",
   col.selection = "#BB5566",
   col.roll = "grey",

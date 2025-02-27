@@ -17,7 +17,7 @@ refine(object, ...)
 \arguments{
 \item{object}{A \code{\linkS4class{PermutationOrder}} object (typically returned by
 \code{\link[=seriate_average]{seriate_average()}}) or a \code{\link[dimensio:BootstrapCA-class]{dimensio::BootstrapCA}} object (typically
-returned by \code{\link[dimensio:reexports]{dimensio::bootstrap()}}).}
+returned by \code{\link[dimensio:bootstrap]{dimensio::bootstrap()}}).}
 
 \item{...}{Currently not used.}
 
@@ -74,7 +74,7 @@ Archaeological Science}, 39(8), 2818-2827.
 \doi{10.1016/j.jas.2012.04.040}.
 }
 \seealso{
-\code{\link[dimensio:reexports]{dimensio::bootstrap()}}
+\code{\link[dimensio:bootstrap]{dimensio::bootstrap()}}
 
 Other seriation methods: 
 \code{\link{as_seriation}()},

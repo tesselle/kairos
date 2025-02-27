@@ -5,7 +5,7 @@ NULL
 # To data.frame ================================================================
 #' @export
 #' @method as.data.frame MeanDate
-as.data.frame.MeanDate <- function(x, ..., calendar = getOption("kairos.calendar")) {
+as.data.frame.MeanDate <- function(x, ..., calendar = get_calendar()) {
   data.frame(
     sample = rownames(x) %||% paste0("S", seq_len(nrow(x))),
     time = aion::time(x, calendar = calendar)
@@ -19,7 +19,7 @@ setMethod("as.data.frame", "MeanDate", as.data.frame.MeanDate)
 
 #' @export
 #' @method as.data.frame AoristicSum
-as.data.frame.AoristicSum <- function(x, ..., calendar = getOption("kairos.calendar")) {
+as.data.frame.AoristicSum <- function(x, ..., calendar = get_calendar()) {
   block_start <- utils::head(x@breaks, -1)
   block_end <- utils::tail(x@breaks, -1)
 

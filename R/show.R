@@ -9,7 +9,7 @@ setMethod(
   definition = function(object) {
     show_ca <- utils::capture.output(methods::callNextMethod(object))
     summary_lm <- summary(object)
-    sig <- sigma(object, calendar = getOption("kairos.calendar"))
+    sig <- sigma(object, calendar = get_calendar())
 
     cat(
       show_ca,

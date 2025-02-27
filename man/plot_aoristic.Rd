@@ -10,7 +10,7 @@
 \usage{
 \S4method{plot}{AoristicSum,missing}(
   x,
-  calendar = getOption("kairos.calendar"),
+  calendar = get_calendar(),
   type = c("bar"),
   flip = FALSE,
   ncol = NULL,
@@ -24,11 +24,11 @@
   ...
 )
 
-\S4method{image}{AoristicSum}(x, calendar = getOption("kairos.calendar"), ...)
+\S4method{image}{AoristicSum}(x, calendar = get_calendar(), ...)
 
 \S4method{plot}{RateOfChange,missing}(
   x,
-  calendar = getOption("kairos.calendar"),
+  calendar = get_calendar(),
   level = 0.95,
   flip = FALSE,
   ncol = NULL,

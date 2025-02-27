@@ -10,7 +10,7 @@ setMethod(
   f = "plot_time",
   signature = c(object = "data.frame", dates = "numeric"),
   definition = function(object, dates,
-                        calendar = getOption("kairos.calendar"), ...) {
+                        calendar = get_calendar(), ...) {
     object <- data.matrix(object)
     methods::callGeneric(object, dates = dates, calendar = calendar, ...)
     invisible(object)
@@ -25,7 +25,7 @@ setMethod(
   f = "plot_time",
   signature = c(object = "matrix", dates = "numeric"),
   definition = function(object, dates,
-                        calendar = getOption("kairos.calendar"), ...) {
+                        calendar = get_calendar(), ...) {
     ## Validation
     arkhe::assert_type(dates, "numeric")
     arkhe::assert_length(dates, nrow(object))

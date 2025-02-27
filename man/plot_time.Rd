@@ -10,9 +10,9 @@
 \usage{
 plot_time(object, dates, ...)
 
-\S4method{plot_time}{data.frame,numeric}(object, dates, calendar = getOption("kairos.calendar"), ...)
+\S4method{plot_time}{data.frame,numeric}(object, dates, calendar = get_calendar(), ...)
 
-\S4method{plot_time}{matrix,numeric}(object, dates, calendar = getOption("kairos.calendar"), ...)
+\S4method{plot_time}{matrix,numeric}(object, dates, calendar = get_calendar(), ...)
 }
 \arguments{
 \item{object}{A \eqn{m \times p}{m x p} \code{numeric} \code{\link{matrix}} or

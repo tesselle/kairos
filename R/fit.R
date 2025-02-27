@@ -212,7 +212,7 @@ FIT <- function(v, t, ...) {
 # Plot =========================================================================
 #' @export
 #' @method plot IncrementTest
-plot.IncrementTest <- function(x, calendar = getOption("kairos.calendar"),
+plot.IncrementTest <- function(x, calendar = get_calendar(),
                                col.neutral = "#004488", col.selection = "#BB5566",
                                col.roll = "grey", flip = FALSE, ncol = NULL,
                                xlab = NULL, ylab = NULL,

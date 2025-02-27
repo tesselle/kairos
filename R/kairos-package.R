@@ -9,8 +9,6 @@
 #'
 #' @section Package options:
 #'  \pkg{kairos} uses the following [options()] to configure behavior:
-#'  * `kairos.calendar`: a [`aion::TimeScale-class`] object (default calendar
-#'    for printing; see [aion::calendar()]).
 #'  * `kairos.progress`: a [`logical`] scalar. Should progress bars be
 #'    displayed? Defaults to [interactive()].
 #'  * `kairos.verbose`: a [`logical`] scalar. Should \R report extra information

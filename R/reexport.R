@@ -20,6 +20,14 @@ arkhe::remove_zero
 #' @export
 arkhe::remove_constant
 
+#' @importFrom aion get_calendar
+#' @export
+aion::get_calendar
+
+#' @importFrom aion set_calendar
+#' @export
+aion::set_calendar
+
 #' @importFrom aion calendar
 #' @export
 aion::calendar

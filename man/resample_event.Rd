@@ -10,7 +10,7 @@
 \S4method{jackknife}{EventDate}(
   object,
   level = 0.95,
-  calendar = getOption("kairos.calendar"),
+  calendar = get_calendar(),
   progress = getOption("kairos.progress"),
   verbose = getOption("kairos.verbose"),
   ...
@@ -21,7 +21,7 @@
   level = 0.95,
   probs = c(0.05, 0.95),
   n = 1000,
-  calendar = getOption("kairos.calendar"),
+  calendar = get_calendar(),
   progress = getOption("kairos.progress"),
   ...
 )

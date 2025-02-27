@@ -5,7 +5,7 @@ NULL
 #' @export
 #' @method plot EventDate
 plot.EventDate <- function(x, type = c("activity", "tempo"), event = FALSE,
-                           calendar = getOption("kairos.calendar"),
+                           calendar = get_calendar(),
                            select = 1, n = 500, eps = 1e-09,
                            col.accumulation = "black", col.event = "red",
                            flip = FALSE, ncol = NULL,

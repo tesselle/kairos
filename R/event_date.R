@@ -177,7 +177,7 @@ setMethod(
   f = "predict_event",
   signature = c(object = "EventDate", data = "missing"),
   definition = function(object, margin = 1, level = 0.95,
-                        calendar = getOption("kairos.calendar")) {
+                        calendar = get_calendar()) {
     data <- dimensio::get_coordinates(object, margin = margin)
     data <- as.matrix(data[, -ncol(data), drop = FALSE])
 
@@ -192,7 +192,7 @@ setMethod(
   f = "predict_event",
   signature = c(object = "EventDate", data = "matrix"),
   definition = function(object, data, margin = 1, level = 0.95,
-                        calendar = getOption("kairos.calendar")) {
+                        calendar = get_calendar()) {
     ## Correspondence analysis
     data <- dimensio::predict(object, data, margin = margin)
 
@@ -201,7 +201,7 @@ setMethod(
 )
 
 .predict_event <- function(object, data, level = 0.95,
-                           calendar = getOption("kairos.calendar")) {
+                           calendar = get_calendar()) {
   ## Predict event date
   fit_model <- object@model
   ca_event <- compute_event(fit_model, data, level = level)
@@ -268,7 +268,7 @@ setMethod(
   f = "predict_accumulation",
   signature = c(object = "EventDate", data = "missing"),
   definition = function(object, level = 0.95,
-                        calendar = getOption("kairos.calendar")) {
+                        calendar = get_calendar()) {
     data <- object@data
     methods::callGeneric(object, data = data, level = level, calendar = calendar)
   }
@@ -281,7 +281,7 @@ setMethod(
   f = "predict_accumulation",
   signature = c(object = "EventDate", data = "matrix"),
   definition = function(object, data, level = 0.95,
-                        calendar = getOption("kairos.calendar")) {
+                        calendar = get_calendar()) {
     ## Predict event date
     col_event <- predict_event(object, margin = 2, calendar = NULL)
 

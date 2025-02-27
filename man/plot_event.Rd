@@ -10,7 +10,7 @@
   x,
   type = c("activity", "tempo"),
   event = FALSE,
-  calendar = getOption("kairos.calendar"),
+  calendar = get_calendar(),
   select = 1,
   n = 500,
   eps = 1e-09,

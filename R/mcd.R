@@ -65,7 +65,7 @@ setMethod(
   f = "bootstrap",
   signature = c(object = "MeanDate"),
   definition = function(object, n = 1000, f = NULL,
-                        calendar = getOption("kairos.calendar")) {
+                        calendar = get_calendar()) {
 
     w <- object
     m <- nrow(w)
@@ -102,7 +102,7 @@ setMethod(
   f = "jackknife",
   signature = c(object = "MeanDate"),
   definition = function(object, f = NULL,
-                        calendar = getOption("kairos.calendar")) {
+                        calendar = get_calendar()) {
 
     w <- object
     m <- nrow(w)
@@ -154,7 +154,7 @@ setMethod(
 # Plot =========================================================================
 #' @export
 #' @method plot MeanDate
-plot.MeanDate <- function(x, calendar = getOption("kairos.calendar"),
+plot.MeanDate <- function(x, calendar = get_calendar(),
                           decreasing = TRUE,
                           main = NULL, sub = NULL,
                           ann = graphics::par("ann"), axes = TRUE,
@@ -242,7 +242,7 @@ setMethod("plot", c(x = "MeanDate", y = "missing"), plot.MeanDate)
 
 #' @export
 #' @method plot SimulationMeanDate
-plot.SimulationMeanDate <- function(x, calendar = getOption("kairos.calendar"),
+plot.SimulationMeanDate <- function(x, calendar = get_calendar(),
                                     interval = "student", level = 0.80,
                                     decreasing = TRUE,
                                     main = NULL, sub = NULL,

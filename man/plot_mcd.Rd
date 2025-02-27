@@ -9,7 +9,7 @@
 \usage{
 \S4method{plot}{MeanDate,missing}(
   x,
-  calendar = getOption("kairos.calendar"),
+  calendar = get_calendar(),
   decreasing = TRUE,
   main = NULL,
   sub = NULL,
@@ -23,7 +23,7 @@
 
 \S4method{plot}{SimulationMeanDate,missing}(
   x,
-  calendar = getOption("kairos.calendar"),
+  calendar = get_calendar(),
   interval = "student",
   level = 0.8,
   decreasing = TRUE,

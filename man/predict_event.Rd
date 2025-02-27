@@ -16,33 +16,19 @@ predict_event(object, data, ...)
 
 predict_accumulation(object, data, ...)
 
-\S4method{predict_event}{EventDate,missing}(
-  object,
-  margin = 1,
-  level = 0.95,
-  calendar = getOption("kairos.calendar")
-)
+\S4method{predict_event}{EventDate,missing}(object, margin = 1, level = 0.95, calendar = get_calendar())
 
 \S4method{predict_event}{EventDate,matrix}(
   object,
   data,
   margin = 1,
   level = 0.95,
-  calendar = getOption("kairos.calendar")
+  calendar = get_calendar()
 )
 
-\S4method{predict_accumulation}{EventDate,missing}(
-  object,
-  level = 0.95,
-  calendar = getOption("kairos.calendar")
-)
+\S4method{predict_accumulation}{EventDate,missing}(object, level = 0.95, calendar = get_calendar())
 
-\S4method{predict_accumulation}{EventDate,matrix}(
-  object,
-  data,
-  level = 0.95,
-  calendar = getOption("kairos.calendar")
-)
+\S4method{predict_accumulation}{EventDate,matrix}(object, data, level = 0.95, calendar = get_calendar())
 }
 \arguments{
 \item{object}{An \code{\linkS4class{EventDate}} object.}

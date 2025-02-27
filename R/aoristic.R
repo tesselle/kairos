@@ -166,7 +166,7 @@ setMethod(
 ## AoristicSum -----------------------------------------------------------------
 #' @export
 #' @method plot AoristicSum
-plot.AoristicSum <- function(x, calendar = getOption("kairos.calendar"),
+plot.AoristicSum <- function(x, calendar = get_calendar(),
                              type = c("bar"),
                              flip = FALSE, ncol = NULL,
                              main = NULL, sub = NULL,
@@ -221,7 +221,7 @@ setMethod("plot", c(x = "AoristicSum", y = "missing"), plot.AoristicSum)
 
 #' @export
 #' @method image AoristicSum
-image.AoristicSum <- function(x, calendar = getOption("kairos.calendar"), ...) {
+image.AoristicSum <- function(x, calendar = get_calendar(), ...) {
   methods::callNextMethod()
   invisible(x)
 }
@@ -234,7 +234,7 @@ setMethod("image", c(x = "AoristicSum"), image.AoristicSum)
 ## RateOfChange ----------------------------------------------------------------
 #' @export
 #' @method plot RateOfChange
-plot.RateOfChange <- function(x, calendar = getOption("kairos.calendar"),
+plot.RateOfChange <- function(x, calendar = get_calendar(),
                               level = 0.95, flip = FALSE, ncol = NULL,
                               main = NULL, sub = NULL,
                               ann = graphics::par("ann"), axes = TRUE,
