@@ -26,10 +26,10 @@ URL: https://codeberg.org/tesselle/kairos,
     https://packages.tesselle.org/kairos/
 BugReports: https://codeberg.org/tesselle/kairos/issues
 Depends: 
+    aion (>= 1.4.0),
     dimensio (>= 0.12.0),
     R (>= 3.5)
-Imports: 
-    aion (>= 1.4.0),
+Imports:
     arkhe (>= 1.10.0),
     extraDistr,
     grDevices,

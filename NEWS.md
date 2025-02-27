@@ -1,4 +1,6 @@
 # kairos 2.2.0.9000
+## Internals
+* List **aion** in `Depends`.
 
 # kairos 2.2.0
 ## New classes and methods
