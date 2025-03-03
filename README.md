@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Code
+coverage](https://packages.tesselle.org/kairos/coverage/badge.svg)](https://packages.tesselle.org/kairos/coverage/)
 [![Dependencies](https://tinyverse.netlify.app/badge/kairos)](https://cran.r-project.org/package=kairos)
 
 <a href="https://tesselle.r-universe.dev/kairos"
