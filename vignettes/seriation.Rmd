@@ -10,7 +10,6 @@ output:
 header-includes:
    - \usepackage{amsmath}
    - \usepackage{amssymb}
-bibliography: bibliography.bib
 vignette: >
   %\VignetteIndexEntry{Seriation}
   %\VignetteEngine{knitr::knitr}
