@@ -72,7 +72,6 @@ Collate:
     'mcd.R'
     'mutators.R'
     'plot_time.R'
-    'reexport.R'
     'seriation_assess.R'
     'seriation_average.R'
     'seriation_coerce.R'
