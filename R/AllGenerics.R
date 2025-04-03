@@ -72,7 +72,7 @@ NULL
 #'
 #' @param x An object.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [calendar()]). If `NULL`, *rata die* are returned.
+#'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
 #' @param row.names,optional Currently not used.
 #' @param ... Further parameters to be passed to [data.frame()].
 #' @return
@@ -95,7 +95,7 @@ NULL
 #'  will be coerced to a `numeric` `matrix` via [data.matrix()].
 #' @param dates A length-\eqn{p} [`numeric`] vector of dates expressed in years.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the calendar
-#'  of `dates` (see [calendar()]). Defaults to Gregorian Common Era.
+#'  of `dates` (see [aion::calendar()]). Defaults to Gregorian Common Era.
 #' @param ... Currently not used.
 #' @details
 #'  The Mean Ceramic Date (MCD) is a point estimate of the occupation of an
@@ -139,7 +139,7 @@ setGeneric(
 #' @param f A [`function`] that takes a single numeric vector (the result of
 #'  the resampling procedure) as argument.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [calendar()]).
+#'  calendar (see [aion::calendar()]).
 #' @return
 #'  If `f` is `NULL`, `bootstrap()` and `jackknife()` return a [`data.frame`]
 #'  with the following elements (else, returns the result of `f` applied to the
@@ -161,7 +161,7 @@ NULL
 #'
 #' @param x A [`MeanDate-class`] object.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [calendar()]).
+#'  calendar (see [aion::calendar()]).
 #' @param interval A [`character`] string giving the type of confidence
 #'  interval to be returned. It must be one "`student`" (the default),
 #'  "`normal`", "`percentiles`" or "`range`" (min-max).
@@ -205,7 +205,7 @@ NULL
 #' @param dates A [`numeric`] vector of dates. If named, the names must match
 #'  the row names of `object`.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the calendar
-#'  of `dates` (see [calendar()]). Defaults to Gregorian Common Era.
+#'  of `dates` (see [aion::calendar()]). Defaults to Gregorian Common Era.
 #' @param rank An [`integer`] specifying the number of CA factorial components
 #'  to be use for linear model fitting (see details). If `NULL` (the default),
 #'  axes corresponding to at least 60% of the inertia will be used.
@@ -520,7 +520,7 @@ NULL
 #' @param end A length-one [`numeric`] vector giving the end of the time
 #'  window.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the calendar
-#'  of `x` and `y` (see [calendar()]). Defaults to Gregorian Common Era.
+#'  of `x` and `y` (see [aion::calendar()]). Defaults to Gregorian Common Era.
 #' @param weight A [`logical`] scalar: should the aoristic sum be weighted by
 #'  the length of periods (default). If `FALSE` the aoristic sum is the number
 #'  of elements within a time block.
@@ -616,7 +616,7 @@ setGeneric(
 #'
 #' @param x An [`AoristicSum-class`] object.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [calendar()]).
+#'  calendar (see [aion::calendar()]).
 #' @param type A [`character`] string specifying whether bar or density should
 #'  be plotted? It must be one of "`bar`" or "`density`". Any unambiguous
 #'  substring can be given.
@@ -691,7 +691,7 @@ setGeneric(
 #'  will be coerced to a `numeric` `matrix` via [data.matrix()].
 #' @param dates A length-\eqn{m} [`numeric`] vector of dates.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the calendar
-#'  of `dates` (see [calendar()]). Defaults to Gregorian Common Era.
+#'  of `dates` (see [aion::calendar()]). Defaults to Gregorian Common Era.
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param roll A [`logical`] scalar: should each time series be subsetted to
 #'  look for episodes of selection?
@@ -728,7 +728,7 @@ setGeneric(
 #' Produces an abundance *vs* time diagram.
 #' @param x An [`IncrementTest-class`] object to be plotted.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [calendar()]).
+#'  calendar (see [aion::calendar()]).
 #' @param col.neutral,col.selection,col.roll A vector of colors.
 #' @inheritParams aion::plot
 #' @details
@@ -763,7 +763,7 @@ NULL
 #'  will be coerced to a `numeric` `matrix` via [data.matrix()].
 #' @param dates A [`numeric`] vector of dates.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [calendar()]).
+#'  calendar (see [aion::calendar()]).
 #' @param ... Further parameters to be passed to [aion::plot()].
 #' @return
 #'   `plot_time()` is called it for its side-effects: it results in a graphic

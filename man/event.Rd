@@ -42,7 +42,7 @@ axes corresponding to at least 60\% of the inertia will be used.}
 the supplementary rows.}
 
 \item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the calendar
-of \code{dates} (see \code{\link[=calendar]{calendar()}}). Defaults to Gregorian Common Era.}
+of \code{dates} (see \code{\link[aion:calendar]{aion::calendar()}}). Defaults to Gregorian Common Era.}
 
 \item{total}{A length-one \code{\link{numeric}} vector specifying the minimum total of
 a row/column. Rows/columns whose total is less than this value will be

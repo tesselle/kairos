@@ -24,7 +24,7 @@ replications.}
 the resampling procedure) as argument.}
 
 \item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
-calendar (see \code{\link[=calendar]{calendar()}}).}
+calendar (see \code{\link[aion:calendar]{aion::calendar()}}).}
 
 \item{nsim}{A non-negative \code{\link{integer}} specifying the number of simulations.}
 }

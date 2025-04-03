@@ -25,7 +25,7 @@ will be coerced to a \code{numeric} \code{matrix} via \code{\link[=data.matrix]{
 \item{...}{Further parameters to be passed to \code{\link[aion:plot]{aion::plot()}}.}
 
 \item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
-calendar (see \code{\link[=calendar]{calendar()}}).}
+calendar (see \code{\link[aion:calendar]{aion::calendar()}}).}
 }
 \value{
 \code{plot_time()} is called it for its side-effects: it results in a graphic

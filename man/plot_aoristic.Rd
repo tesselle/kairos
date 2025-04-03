@@ -46,7 +46,7 @@
 \item{x}{An \code{\linkS4class{AoristicSum}} object.}
 
 \item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
-calendar (see \code{\link[=calendar]{calendar()}}).}
+calendar (see \code{\link[aion:calendar]{aion::calendar()}}).}
 
 \item{type}{A \code{\link{character}} string specifying whether bar or density should
 be plotted? It must be one of "\code{bar}" or "\code{density}". Any unambiguous
