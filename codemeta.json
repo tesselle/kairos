@@ -248,7 +248,7 @@
   "applicationCategory": "ArchaeologicalScience",
   "isPartOf": "https://www.tesselle.org",
   "keywords": ["chronology", "matrix-seriation", "archaeology", "archaeological-science", "r-package"],
-  "fileSize": "993.293KB",
+  "fileSize": "992.29KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
