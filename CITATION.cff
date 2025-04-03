@@ -8,7 +8,7 @@ message: 'To cite package "kairos" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
-version: 2.2.0
+version: 2.2.1
 doi: 10.5281/zenodo.5653896
 identifiers:
 - description: The concept DOI.
@@ -65,11 +65,11 @@ preferred-citation:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-  year: '2024'
+  year: '2025'
   institution:
     name: Université Bordeaux Montaigne
     address: Pessac, France
-  notes: R package version 2.2.0
+  notes: R package version 2.2.1
   url: https://packages.tesselle.org/kairos/
   doi: 10.5281/zenodo.5653896
 repository: https://CRAN.R-project.org/package=kairos
@@ -88,34 +88,9 @@ keywords:
 - r-package
 references:
 - type: software
-  title: 'R: A Language and Environment for Statistical Computing'
-  notes: Depends
-  url: https://www.R-project.org/
-  authors:
-  - name: R Core Team
-  institution:
-    name: R Foundation for Statistical Computing
-    address: Vienna, Austria
-  year: '2024'
-  version: '>= 3.5'
-- type: software
-  title: dimensio
-  abstract: 'dimensio: Multivariate Data Analysis'
-  notes: Depends
-  url: https://packages.tesselle.org/dimensio/
-  repository: https://CRAN.R-project.org/package=dimensio
-  authors:
-  - family-names: Frerebeau
-    given-names: Nicolas
-    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
-    orcid: https://orcid.org/0000-0001-5759-4944
-  year: '2024'
-  doi: 10.32614/CRAN.package.dimensio
-  version: '>= 0.10.1'
-- type: software
   title: aion
   abstract: 'aion: Archaeological Time Series'
-  notes: Imports
+  notes: Depends
   url: https://packages.tesselle.org/aion/
   repository: https://CRAN.R-project.org/package=aion
   authors:
@@ -127,9 +102,34 @@ references:
     given-names: Joe
     email: joseph.roe@iaw.unibe.ch
     orcid: https://orcid.org/0000-0002-1011-1244
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.aion
-  version: '>= 1.3.0'
+  version: '>= 1.4.0'
+- type: software
+  title: dimensio
+  abstract: 'dimensio: Multivariate Data Analysis'
+  notes: Depends
+  url: https://packages.tesselle.org/dimensio/
+  repository: https://CRAN.R-project.org/package=dimensio
+  authors:
+  - family-names: Frerebeau
+    given-names: Nicolas
+    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+    orcid: https://orcid.org/0000-0001-5759-4944
+  year: '2025'
+  doi: 10.32614/CRAN.package.dimensio
+  version: '>= 0.13.0'
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
+  version: '>= 3.5'
 - type: software
   title: arkhe
   abstract: 'arkhe: Tools for Cleaning Rectangular Data'
@@ -141,9 +141,9 @@ references:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.arkhe
-  version: '>= 1.9.0'
+  version: '>= 1.10.0'
 - type: software
   title: extraDistr
   abstract: 'extraDistr: Additional Univariate and Multivariate Distributions'
@@ -153,7 +153,7 @@ references:
   authors:
   - family-names: Wolodzko
     given-names: Tymoteusz
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.extraDistr
 - type: software
   title: grDevices
@@ -164,7 +164,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
+  year: '2025'
 - type: software
   title: methods
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -174,7 +174,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
+  year: '2025'
 - type: software
   title: stats
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -184,7 +184,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
+  year: '2025'
 - type: software
   title: utils
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -194,7 +194,7 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
+  year: '2025'
 - type: software
   title: folio
   abstract: 'folio: Datasets for Teaching Archaeology and Paleontology'
@@ -207,7 +207,7 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.folio
   version: '>= 1.5.0'
 - type: software
@@ -221,7 +221,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.knitr
 - type: software
   title: markdown
@@ -238,7 +238,7 @@ references:
     given-names: JJ
   - family-names: Horner
     given-names: Jeffrey
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.markdown
 - type: software
   title: rsvg
@@ -252,7 +252,7 @@ references:
     given-names: Jeroen
     email: jeroenooms@gmail.com
     orcid: https://orcid.org/0000-0002-4035-0289
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.rsvg
 - type: software
   title: svglite
@@ -280,7 +280,7 @@ references:
   - family-names: Lise
     given-names: Vaudor
     email: lise.vaudor@ens-lyon.fr
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.svglite
 - type: software
   title: tabula
@@ -293,10 +293,9 @@ references:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-    affiliation: Université Bordeaux Montaigne
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.tabula
-  version: '>= 3.1.1'
+  version: '>= 3.2.0'
 - type: software
   title: tinysnapshot
   abstract: 'tinysnapshot: Snapshots for Unit Tests using the ''tinytest'' Framework'
@@ -308,7 +307,7 @@ references:
     given-names: Vincent
     email: vincent.arel-bundock@umontreal.ca
     orcid: https://orcid.org/0000-0003-2042-7063
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.tinysnapshot
 - type: software
   title: tinytest
@@ -322,6 +321,6 @@ references:
     name-particle: van der
     email: mark.vanderloo@gmail.com
     orcid: https://orcid.org/0000-0002-9807-4686
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.tinytest
 

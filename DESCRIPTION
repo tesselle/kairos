@@ -1,20 +1,21 @@
 Package: kairos
 Title: Analysis of Chronological Patterns from Archaeological Count Data
-Version: 2.2.0.9000
+Version: 2.2.1
 Authors@R: c(
     person("Nicolas", "Frerebeau", , "nicolas.frerebeau@u-bordeaux-montaigne.fr", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0001-5759-4944", ROR = "03pbgwk21")),
+           comment = c(ORCID = "0000-0001-5759-4944")),
     person("Brice", "Lebrun", role = "art",
            comment = c(ORCID = "0000-0001-7503-8685", "Logo designer")),
     person("Ben", "Marwick", , "bmarwick@uw.edu", role = "ctb",
-           comment = c(ORCID = "0000-0001-7879-4531", ROR = "00cvxb145")),
+           comment = c(ORCID = "0000-0001-7879-4531")),
     person("Anne", "Philippe", , "anne.philippe@univ-nantes.fr", role = "ctb",
-           comment = c(ORCID = "0000-0002-5331-5087", ROR = "03gnr7b55")),
+           comment = c(ORCID = "0000-0002-5331-5087")),
     person("Université Bordeaux Montaigne", role = "fnd",
            comment = c(ROR = "03pbgwk21")),
     person("CNRS", role = "fnd",
            comment = c(ROR = "02feahw73"))
   )
+Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
 Description: A toolkit for absolute and relative dating and analysis of
     chronological patterns. This package includes functions for
     chronological modeling and dating of archaeological assemblages from
@@ -27,7 +28,7 @@ URL: https://codeberg.org/tesselle/kairos,
 BugReports: https://codeberg.org/tesselle/kairos/issues
 Depends: 
     aion (>= 1.4.0),
-    dimensio (>= 0.12.0),
+    dimensio (>= 0.13.0),
     R (>= 3.5)
 Imports:
     arkhe (>= 1.10.0),
@@ -42,7 +43,7 @@ Suggests:
     markdown,
     rsvg,
     svglite,
-    tabula (>= 3.1.1),
+    tabula (>= 3.2.0),
     tinysnapshot,
     tinytest
 VignetteBuilder: 

@@ -59,10 +59,10 @@ analysis of archaeological count data.
 
 To cite kairos in publications use:
 
-Frerebeau N (2024). *kairos: Analysis of Chronological Patterns from
+Frerebeau N (2025). *kairos: Analysis of Chronological Patterns from
 Archaeological Count Data*. Université Bordeaux Montaigne, Pessac,
 France. <doi:10.5281/zenodo.5653896>
-<https://doi.org/10.5281/zenodo.5653896>, R package version 2.2.0,
+<https://doi.org/10.5281/zenodo.5653896>, R package version 2.2.1,
 <https://packages.tesselle.org/kairos/>.
 
 This package is a part of the tesselle project
@@ -89,6 +89,7 @@ remotes::install_git("https://codeberg.org/tesselle/kairos")
 ``` r
 ## Load packages
 library(kairos)
+#> Loading required package: aion
 #> Loading required package: dimensio
 ```
 
