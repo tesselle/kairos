@@ -194,7 +194,7 @@ Pottery Quantification for the Dating of Some Archaeological Contexts.”
 
 ———. 2006b. “Une approche statistique pour la datation de contextes
 archéologiques.” *Revue de statistique appliquée* 54 (2): 65–81.
-<http://www.numdam.org/item/RSA_2006__54_2_65_0/>.
+<https://www.numdam.org/item/RSA_2006__54_2_65_0/>.
 
 </div>
 

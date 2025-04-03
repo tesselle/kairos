@@ -211,7 +211,7 @@ head(boot)
 
 ## References
 
-Bellanger, L., Husi, P. & Tomassone,  R. (2006). Une approche statistique pour la datation de contextes archéologiques. *Revue de statistique appliquée*, 54(2), 65-81. URL: <http://www.numdam.org/item/RSA_2006__54_2_65_0/>.
+Bellanger, L., Husi, P. & Tomassone,  R. (2006). Une approche statistique pour la datation de contextes archéologiques. *Revue de statistique appliquée*, 54(2), 65-81. URL: <https://www.numdam.org/item/RSA_2006__54_2_65_0/>.
 
 Bellanger, L. & Husi, P. (2012). Statistical Tool for Dating and Interpreting Archaeological Contexts Using Pottery. *Journal of Archaeological Science*, 39(4), 777-790. DOI: [10.1016/j.jas.2011.06.031](https://doi.org/10.1016/j.jas.2011.06.031).
 
