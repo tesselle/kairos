@@ -1,5 +1,4 @@
-Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
-options(kairos.calendar = calendar("CE"))
+Sys.setenv(LANGUAGE = "en")
 
 if (requireNamespace("folio", quietly = TRUE)) {
   data("compiegne", package = "folio")

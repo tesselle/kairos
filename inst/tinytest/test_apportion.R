@@ -1,3 +1,5 @@
+Sys.setenv(LANGUAGE = "en")
+
 # Chronological Apportioning ===================================================
 ## Replication of Roberts et al. 2012
 bayless <- matrix(data = c(4, 333, 11, 11, 13, 1605, 252, 9, 48), nrow = 1)
