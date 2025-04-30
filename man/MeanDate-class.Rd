@@ -14,8 +14,6 @@ archaeological assemblages.
 \describe{
 \item{\code{dates}}{A length-\eqn{p} \code{\link{numeric}} vector giving the dates of the
 (ceramic) types expressed in \emph{\link[aion:RataDie-class]{rata die}}.}
-
-\item{\code{replications}}{A \code{numeric} \code{\link{matrix}} giving the replications.}
 }}
 
 \note{
@@ -39,7 +37,8 @@ Other classes:
 \code{\link{EventDate-class}},
 \code{\link{IncrementTest-class}},
 \code{\link{PermutationOrder-class}},
-\code{\link{RateOfChange-class}}
+\code{\link{RateOfChange-class}},
+\code{\link{SimulationMeanDate-class}}
 }
 \author{
 N. Frerebeau

@@ -38,7 +38,8 @@ Other classes:
 \code{\link{EventDate-class}},
 \code{\link{IncrementTest-class}},
 \code{\link{MeanDate-class}},
-\code{\link{RateOfChange-class}}
+\code{\link{RateOfChange-class}},
+\code{\link{SimulationMeanDate-class}}
 }
 \author{
 N. Frerebeau

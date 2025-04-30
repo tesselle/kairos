@@ -215,7 +215,7 @@ plot.AoristicSum <- function(x, calendar = get_calendar(),
 }
 
 #' @export
-#' @rdname plot_aoristic
+#' @rdname plot.AoristicSum
 #' @aliases plot,AoristicSum,missing-method
 setMethod("plot", c(x = "AoristicSum", y = "missing"), plot.AoristicSum)
 
@@ -227,7 +227,7 @@ image.AoristicSum <- function(x, calendar = get_calendar(), ...) {
 }
 
 #' @export
-#' @rdname plot_aoristic
+#' @rdname plot.AoristicSum
 #' @aliases image,AoristicSum-method
 setMethod("image", c(x = "AoristicSum"), image.AoristicSum)
 
@@ -348,6 +348,6 @@ plot.RateOfChange <- function(x, calendar = get_calendar(),
 }
 
 #' @export
-#' @rdname plot_aoristic
+#' @rdname plot.AoristicSum
 #' @aliases plot,RateOfChange,missing-method
 setMethod("plot", c(x = "RateOfChange", y = "missing"), plot.RateOfChange)

@@ -65,9 +65,10 @@ Analysis. \emph{Journal of Archaeological Method and Theory}, 19(3): 440-61.
 \doi{10.1007/s10816-011-9122-3}.
 }
 \seealso{
+\code{\link[=plot.AoristicSum]{plot()}}
+
 Other aoristic analysis: 
-\code{\link{aoristic}()},
-\code{\link{plot_aoristic}}
+\code{\link{aoristic}()}
 }
 \author{
 N. Frerebeau

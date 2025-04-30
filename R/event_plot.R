@@ -73,6 +73,6 @@ plot.EventDate <- function(x, type = c("activity", "tempo"), event = FALSE,
 }
 
 #' @export
-#' @rdname plot_event
+#' @rdname plot.EventDate
 #' @aliases plot,EventDate,missing-method
 setMethod("plot", c(x = "EventDate", y = "missing"), plot.EventDate)

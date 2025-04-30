@@ -103,15 +103,10 @@ NULL
 #'  of the date midpoints of the ceramic types (based on absolute dates or the
 #'  known production interval) found in a given assemblage. The weights are the
 #'  relative frequencies of the respective types in the assemblage.
-#'
-#'  A bootstrapping procedure is used to estimate the confidence interval of a
-#'  given MCD. For each assemblage, a large number of new bootstrap replicates
-#'  is created, with the same sample size, by resampling the original
-#'  assemblage with replacement. MCDs are calculated for each replicates and
-#'  upper and lower boundaries of the confidence interval associated with each
-#'  MCD are then returned.
 #' @return
 #'  A [`MeanDate-class`] object.
+#' @seealso [`plot()`][plot.MeanDate], [`bootstrap()`][bootstrap.MeanDate],
+#'  [`jackknife()`][jackknife.MeanDate], [`simulate()`][simulate.MeanDate]
 #' @references
 #'  South, S. A. (1977). *Method and Theory in Historical Archaeology*.
 #'  New York: Academic Press.
@@ -126,73 +121,6 @@ setGeneric(
   name = "mcd",
   def = function(object, dates, ...) standardGeneric("mcd")
 )
-
-#' Resample Mean Ceramic Dates
-#'
-#' @description
-#'  * `bootstrap()` generate bootstrap estimations of an [MCD][mcd()].
-#'  * `jackknife()` generate jackknife estimations of an [MCD][mcd()].
-#' @param object A [`MeanDate-class`] object (typically returned by [mcd()]).
-#' @param n A non-negative [`integer`] specifying the number of bootstrap
-#'  replications.
-#' @param nsim A non-negative [`integer`] specifying the number of simulations.
-#' @param f A [`function`] that takes a single numeric vector (the result of
-#'  the resampling procedure) as argument.
-#' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [aion::calendar()]).
-#' @return
-#'  If `f` is `NULL`, `bootstrap()` and `jackknife()` return a [`data.frame`]
-#'  with the following elements (else, returns the result of `f` applied to the
-#'  `n` resampled values) :
-#'  \describe{
-#'   \item{original}{The observed value.}
-#'   \item{mean}{The bootstrap/jackknife estimate of mean.}
-#'   \item{bias}{The bootstrap/jackknife estimate of bias.}
-#'   \item{error}{The boostrap/jackknife estimate of standard erro.}
-#'  }
-#' @author N. Frerebeau
-#' @docType methods
-#' @family mean ceramic date tools
-#' @name resample_mcd
-#' @rdname resample_mcd
-NULL
-
-#' MCD Plot
-#'
-#' @param x A [`MeanDate-class`] object.
-#' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [aion::calendar()]).
-#' @param interval A [`character`] string giving the type of confidence
-#'  interval to be returned. It must be one "`student`" (the default),
-#'  "`normal`", "`percentiles`" or "`range`" (min-max).
-#'  Any unambiguous substring can be given.
-#' @param level A length-one [`numeric`] vector giving the confidence level.
-#'  Only used if `interval` is not "`range`".
-#' @param decreasing A [`logical`] scalar: should the sort be increasing or
-#'  decreasing?
-#' @param main A [`character`] string giving a main title for the plot.
-#' @param sub A [`character`] string giving a subtitle for the plot.
-#' @param ann A [`logical`] scalar: should the default annotation (title and x,
-#'  y and z axis labels) appear on the plot?
-#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
-#' @param frame.plot A [`logical`] scalar: should a box be drawn around the
-#'  plot?
-#' @param panel.first An an `expression` to be evaluated after the plot axes are
-#'  set up but before any plotting takes place. This can be useful for drawing
-#'  background grids.
-#' @param panel.last An `expression` to be evaluated after plotting has taken
-#'  place but before the axes, title and box are added.
-#' @param ... Further [graphical parameters][graphics::par].
-#' @return
-#'  `plot()` is called it for its side-effects: it results in a graphic being
-#'  displayed (invisibly returns `x`).
-#' @example inst/examples/ex-mcd.R
-#' @author N. Frerebeau
-#' @family mean ceramic date tools
-#' @docType methods
-#' @name plot_mcd
-#' @rdname plot_mcd
-NULL
 
 # Event Dates ==================================================================
 #' Event and Accumulation Dates
@@ -240,9 +168,8 @@ NULL
 #'  (see `vignette("event")`).
 #' @return
 #'  An [`EventDate-class`] object.
-#' @seealso [`plot()`][plot_event], [`predict_event()`][predict_event],
-#'  [`predict_accumulation()`][predict_event], [`jackknife()`][resample_event],
-#'  [`bootstrap()`][resample_event]
+#' @seealso [`plot()`][plot.EventDate], [`bootstrap()`][bootstrap.EventDate],
+#'  [`jackknife()`][jackknife.EventDate]
 #' @references
 #'  Bellanger, L. & Husi, P. (2013). Mesurer et modéliser le temps inscrit dans
 #'  la matière à partir d'une source matérielle : la céramique médiévale.
@@ -366,62 +293,6 @@ setGeneric(
   def = function(object, ...) standardGeneric("density_accumulation")
 )
 
-#' Resample Event Dates
-#'
-#' @description
-#'  * `bootstrap()` generate bootstrap estimations of an [event][event()].
-#'  * `jackknife()` generate jackknife estimations of an [event][event()].
-#' @param object An [`EventDate-class`] object (typically returned by [event()]).
-#' @param n A non-negative [`integer`] specifying the number of bootstrap
-#'  replications.
-#' @param level A length-one [`numeric`] vector giving the confidence level.
-#' @param probs A [`numeric`] vector of probabilities with values in
-#'  \eqn{[0,1]}.
-#' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
-#' @param progress A [`logical`] scalar: should a progress bar be displayed?
-#' @param verbose A [`logical`] scalar: should \R report extra information
-#'  on progress?
-#' @param ... Further arguments to be passed to internal methods.
-#' @details
-#'  If `jackknife()` is used, one type/fabric is removed at a
-#'  time and all statistics are recalculated. In this way, one can assess
-#'  whether certain type/fabric has a substantial influence on the date
-#'  estimate.
-#'  A three columns `data.frame` is returned, giving the results of
-#'  the resampling procedure (jackknifing fabrics) for each assemblage (in rows)
-#'  with the following columns:
-#'  \describe{
-#'   \item{`mean`}{The jackknife mean (event date).}
-#'   \item{`lower`}{The lower boundary of the confidence interval.}
-#'   \item{`upper`}{The upper boundary of the confidence interval.}
-#'  }
-#'
-#'  If `bootstrap()` is used, a large number of new bootstrap assemblages is
-#'  created, with the same sample size, by resampling each of the original
-#'  assemblage with replacement. Then, examination of the bootstrap statistics
-#'  makes it possible to pinpoint assemblages that require further
-#'  investigation.
-#'
-#'  A five columns `data.frame` is returned, giving the bootstrap
-#'  distribution statistics for each replicated assemblage (in rows)
-#'  with the following columns:
-#'  \describe{
-#'   \item{`min`}{Minimum value.}
-#'   \item{`mean`}{Mean value (event date).}
-#'   \item{`max`}{Maximum value.}
-#'   \item{`Q5`}{Sample quantile to 0.05 probability.}
-#'   \item{`Q95`}{Sample quantile to 0.95 probability.}
-#'  }
-#' @return
-#'  A [`data.frame`].
-#' @author N. Frerebeau
-#' @docType methods
-#' @family event date tools
-#' @name resample_event
-#' @rdname resample_event
-NULL
-
 #' Extract Event Date Model Results
 #'
 #' @description
@@ -442,67 +313,6 @@ NULL
 #' @docType methods
 #' @name model_event
 #' @rdname model_event
-NULL
-
-#' Plot Event and Accumulation Dates
-#'
-#' Produces an activity or a tempo plot.
-#' @param x An [`EventDate-class`] object.
-#' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [aion::calendar()]).
-#' @param type A [`character`] string indicating the type of plot.
-#'  It must be one of "`activity`" (default) or "`tempo`" (see details).
-#'  Any unambiguous substring can be given.
-#' @param event A [`logical`] scalar: should the distribution of the event date
-#'  be displayed? Only used if type is "`activity`".
-#' @param select A [`numeric`] or [`character`] vector giving the selection of
-#'  the assemblage that are drawn.
-#' @param n A length-one non-negative [`numeric`] vector giving the desired
-#'  length of the vector of quantiles for density computation.
-#' @param eps A length-one [`numeric`] value giving the cutoff below which
-#'  values will be removed.
-#' @param col.accumulation A color specification for the accumulation density
-#'  curve.
-#' @param col.event A color specification for the event density curve.
-#' @inheritParams aion::plot
-#' @section Event and Acccumulation Dates:
-#'  `plot()` displays the probability estimate density curves of archaeological
-#'  assemblage dates (*event* and *accumulation* dates; Bellanger and Husi
-#'  2012). The *event* date is plotted as a line, while the *accumulation* date
-#'  is shown as a grey filled area.
-#'
-#'  The accumulation date can be displayed as a tempo plot (Dye 2016) or an
-#'  activity plot (Philippe and Vibet 2020):
-#'  \describe{
-#'   \item{`tempo`}{A tempo plot estimates the cumulative occurrence of
-#'   archaeological events, such as the slope of the plot directly reflects the
-#'   pace of change.}
-#'   \item{`activity`}{An activity plot displays the first derivative of the
-#'   tempo plot.}
-#'  }
-#' @return
-#'  `plot()` is called it for its side-effects: it results in a graphic being
-#'  displayed (invisibly returns `x`).
-#' @references
-#'  Bellanger, L. & Husi, P. (2012). Statistical Tool for Dating and
-#'  Interpreting Archaeological Contexts Using Pottery. *Journal of
-#'  Archaeological Science*, 39(4), 777-790. \doi{10.1016/j.jas.2011.06.031}.
-#'
-#'  Dye, T. S. (2016). Long-Term Rhythms in the Development of Hawaiian
-#'  Social Stratification. *Journal of Archaeological Science*, 71, 1-9.
-#'  \doi{10.1016/j.jas.2016.05.006}.
-#'
-#'  Philippe, A. & Vibet, M.-A. (2020). Analysis of Archaeological Phases Using
-#'  the R Package ArchaeoPhases. *Journal of Statistical Software, Code
-#'  Snippets*, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
-#' @seealso [event()]
-#' @example inst/examples/ex-event.R
-#' @author N. Frerebeau
-#' @family event date tools
-#' @seealso [event()]
-#' @docType methods
-#' @name plot_event
-#' @rdname plot_event
 NULL
 
 # Aoristic Analysis ============================================================
@@ -543,6 +353,7 @@ NULL
 #'  [\pkg{aoristAAR} package](https://github.com/ISAAKiel/aoristAAR).
 #' @return
 #'  An [`AoristicSum-class`] object.
+#' @seealso [`plot()`][plot.AoristicSum]
 #' @references
 #'  Crema, E. R. (2012). Modelling Temporal Uncertainty in Archaeological
 #'  Analysis. *Journal of Archaeological Method and Theory*, 19(3): 440-61.
@@ -592,6 +403,7 @@ setGeneric(
 #' @param ... Currently not used.
 #' @return
 #'  A [`RateOfChange-class`] object.
+#' @seealso [`plot()`][plot.AoristicSum]
 #' @references
 #'  Baxter, M. J. & Cool, H. E. M. (2016). Reinventing the Wheel? Modelling
 #'  Temporal Uncertainty with Applications to Brooch Distributions in Roman
@@ -611,27 +423,6 @@ setGeneric(
   def = function(object, ...) standardGeneric("roc"),
   valueClass = "RateOfChange"
 )
-
-#' Plot Aoristic Analysis
-#'
-#' @param x An [`AoristicSum-class`] object.
-#' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [aion::calendar()]).
-#' @param type A [`character`] string specifying whether bar or density should
-#'  be plotted? It must be one of "`bar`" or "`density`". Any unambiguous
-#'  substring can be given.
-#' @param level A length-one [`numeric`] vector giving the confidence level.
-#' @inheritParams aion::plot
-#' @return
-#'   `plot()` is called it for its side-effects: it results in a graphic being
-#'   displayed (invisibly returns `x`).
-#' @example inst/examples/ex-aoristic.R
-#' @author N. Frerebeau
-#' @family aoristic analysis
-#' @docType methods
-#' @name plot_aoristic
-#' @rdname plot_aoristic
-NULL
 
 # Chronological Apportioning ===================================================
 #' Chronological Apportioning
@@ -708,6 +499,7 @@ setGeneric(
 #'  not show overall selection.
 #' @return
 #'  An [`IncrementTest-class`] object.
+#' @seealso [`plot()`][plot.IncrementTest]
 #' @example inst/examples/ex-fit.R
 #' @references
 #'  Feder, A. F., Kryazhimskiy, S. & Plotkin, J. B. (2014). Identifying
@@ -722,36 +514,6 @@ setGeneric(
   def = function(object, dates, ...) standardGeneric("fit"),
   valueClass = "IncrementTest"
 )
-
-#' Detection of Selective Processes
-#'
-#' Produces an abundance *vs* time diagram.
-#' @param x An [`IncrementTest-class`] object to be plotted.
-#' @param calendar An [`aion::TimeScale-class`] object specifying the target
-#'  calendar (see [aion::calendar()]).
-#' @param col.neutral,col.selection,col.roll A vector of colors.
-#' @inheritParams aion::plot
-#' @details
-#'  Results of the frequency increment test can be displayed on an abundance
-#'  *vs* time diagram aid in the detection and quantification of selective
-#'  processes in the archaeological record. If `roll` is `TRUE`, each time
-#'  series is subsetted according to `window` to see if episodes of selection
-#'  can be identified among decoration types that might not show overall
-#'  selection. If so, shading highlights the data points where
-#'  [fit()] identifies selection.
-#' @return
-#'  `plot()` is called it for its side-effects: it results in a graphic being
-#'  displayed (invisibly returns `x`).
-#' @note
-#'  Displaying FIT results on an abundance *vs* time diagram is adapted from Ben
-#'  Marwick's [original idea](https://github.com/benmarwick/signatselect/).
-#' @example inst/examples/ex-fit.R
-#' @author N. Frerebeau
-#' @family chronological analysis
-#' @docType methods
-#' @name plot_fit
-#' @rdname plot_fit
-NULL
 
 # Plot =========================================================================
 #' Abundance vs Time Plot
@@ -777,6 +539,310 @@ setGeneric(
   name = "plot_time",
   def = function(object, dates, ...) standardGeneric("plot_time")
 )
+
+#' MCD Plot
+#'
+#' @param x A [`MeanDate-class`] object.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]).
+#' @param interval A [`character`] string giving the type of confidence
+#'  interval to be returned. It must be one "`student`" (the default),
+#'  "`normal`", "`percentiles`" or "`range`" (min-max).
+#'  Any unambiguous substring can be given.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Only used if `interval` is not "`range`".
+#' @param decreasing A [`logical`] scalar: should the sort be increasing or
+#'  decreasing?
+#' @param main A [`character`] string giving a main title for the plot.
+#' @param sub A [`character`] string giving a subtitle for the plot.
+#' @param ann A [`logical`] scalar: should the default annotation (title and x,
+#'  y and z axis labels) appear on the plot?
+#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
+#' @param frame.plot A [`logical`] scalar: should a box be drawn around the
+#'  plot?
+#' @param panel.first An an `expression` to be evaluated after the plot axes are
+#'  set up but before any plotting takes place. This can be useful for drawing
+#'  background grids.
+#' @param panel.last An `expression` to be evaluated after plotting has taken
+#'  place but before the axes, title and box are added.
+#' @param ... Further [graphical parameters][graphics::par].
+#' @return
+#'  `plot()` is called it for its side-effects: it results in a graphic being
+#'  displayed (invisibly returns `x`).
+#' @seealso [mcd()]
+#' @example inst/examples/ex-mcd.R
+#' @author N. Frerebeau
+#' @family plotting methods
+#' @docType methods
+#' @name plot.MeanDate
+#' @rdname plot.MeanDate
+NULL
+
+#' Plot Aoristic Analysis
+#'
+#' @param x An [`AoristicSum-class`] object.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]).
+#' @param type A [`character`] string specifying whether bar or density should
+#'  be plotted? It must be one of "`bar`" or "`density`". Any unambiguous
+#'  substring can be given.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @inheritParams aion::plot
+#' @return
+#'   `plot()` is called it for its side-effects: it results in a graphic being
+#'   displayed (invisibly returns `x`).
+#' @seealso [aoristic()]
+#' @example inst/examples/ex-aoristic.R
+#' @author N. Frerebeau
+#' @family plotting methods
+#' @docType methods
+#' @name plot.AoristicSum
+#' @rdname plot.AoristicSum
+NULL
+
+#' Plot Event and Accumulation Dates
+#'
+#' Produces an activity or a tempo plot.
+#' @param x An [`EventDate-class`] object.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]).
+#' @param type A [`character`] string indicating the type of plot.
+#'  It must be one of "`activity`" (default) or "`tempo`" (see details).
+#'  Any unambiguous substring can be given.
+#' @param event A [`logical`] scalar: should the distribution of the event date
+#'  be displayed? Only used if type is "`activity`".
+#' @param select A [`numeric`] or [`character`] vector giving the selection of
+#'  the assemblage that are drawn.
+#' @param n A length-one non-negative [`numeric`] vector giving the desired
+#'  length of the vector of quantiles for density computation.
+#' @param eps A length-one [`numeric`] value giving the cutoff below which
+#'  values will be removed.
+#' @param col.accumulation A color specification for the accumulation density
+#'  curve.
+#' @param col.event A color specification for the event density curve.
+#' @inheritParams aion::plot
+#' @section Event and Acccumulation Dates:
+#'  `plot()` displays the probability estimate density curves of archaeological
+#'  assemblage dates (*event* and *accumulation* dates; Bellanger and Husi
+#'  2012). The *event* date is plotted as a line, while the *accumulation* date
+#'  is shown as a grey filled area.
+#'
+#'  The accumulation date can be displayed as a tempo plot (Dye 2016) or an
+#'  activity plot (Philippe and Vibet 2020):
+#'  \describe{
+#'   \item{`tempo`}{A tempo plot estimates the cumulative occurrence of
+#'   archaeological events, such as the slope of the plot directly reflects the
+#'   pace of change.}
+#'   \item{`activity`}{An activity plot displays the first derivative of the
+#'   tempo plot.}
+#'  }
+#' @return
+#'  `plot()` is called it for its side-effects: it results in a graphic being
+#'  displayed (invisibly returns `x`).
+#' @references
+#'  Bellanger, L. & Husi, P. (2012). Statistical Tool for Dating and
+#'  Interpreting Archaeological Contexts Using Pottery. *Journal of
+#'  Archaeological Science*, 39(4), 777-790. \doi{10.1016/j.jas.2011.06.031}.
+#'
+#'  Dye, T. S. (2016). Long-Term Rhythms in the Development of Hawaiian
+#'  Social Stratification. *Journal of Archaeological Science*, 71, 1-9.
+#'  \doi{10.1016/j.jas.2016.05.006}.
+#'
+#'  Philippe, A. & Vibet, M.-A. (2020). Analysis of Archaeological Phases Using
+#'  the R Package ArchaeoPhases. *Journal of Statistical Software, Code
+#'  Snippets*, 93(1), 1-25. \doi{10.18637/jss.v093.c01}.
+#' @seealso [event()]
+#' @example inst/examples/ex-event.R
+#' @author N. Frerebeau
+#' @family plotting methods
+#' @docType methods
+#' @name plot.EventDate
+#' @rdname plot.EventDate
+NULL
+
+#' Detection of Selective Processes
+#'
+#' Produces an abundance *vs* time diagram.
+#' @param x An [`IncrementTest-class`] object to be plotted.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]).
+#' @param col.neutral,col.selection,col.roll A vector of colors.
+#' @inheritParams aion::plot
+#' @details
+#'  Results of the frequency increment test can be displayed on an abundance
+#'  *vs* time diagram aid in the detection and quantification of selective
+#'  processes in the archaeological record. If `roll` is `TRUE`, each time
+#'  series is subsetted according to `window` to see if episodes of selection
+#'  can be identified among decoration types that might not show overall
+#'  selection. If so, shading highlights the data points where
+#'  [fit()] identifies selection.
+#' @return
+#'  `plot()` is called it for its side-effects: it results in a graphic being
+#'  displayed (invisibly returns `x`).
+#' @note
+#'  Displaying FIT results on an abundance *vs* time diagram is adapted from Ben
+#'  Marwick's [original idea](https://github.com/benmarwick/signatselect/).
+#' @seealso [fit()]
+#' @example inst/examples/ex-fit.R
+#' @author N. Frerebeau
+#' @family plotting methods
+#' @docType methods
+#' @name plot.IncrementTest
+#' @rdname plot.IncrementTest
+NULL
+
+# Resample =====================================================================
+#' Simulate Mean Ceramic Dates
+#'
+#' Simulates [MCD][mcd()] from a multinomial distribution.
+#' @param object A [`MeanDate-class`] object (typically returned by [mcd()]).
+#' @param nsim A non-negative [`integer`] specifying the number of simulations.
+#' @param seed An object specifying if and how the random number generator
+#'  should be initialized (see [stats::simulate()]).
+#' @param ... Currently not used.
+#' @details
+#'  For each assemblage, a large number of new bootstrap replicates
+#'  is created, with the same sample size, by resampling the original
+#'  assemblage with replacement. MCDs are calculated for each replicates.
+#' @return
+#'  A [`SimulationMeanDate-class`] object.
+#' @seealso [mcd()]
+#' @example inst/examples/ex-mcd.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family resampling methods
+#' @name simulate.MeanDate
+#' @rdname simulate.MeanDate
+NULL
+
+#' Bootstrap Mean Ceramic Dates
+#'
+#' Generates bootstrap estimations of an [MCD][mcd()].
+#' @param object A [`MeanDate-class`] object (typically returned by [mcd()]).
+#' @param n A non-negative [`integer`] specifying the number of bootstrap
+#'  replications.
+#' @param f A [`function`] that takes a single numeric vector (the result of
+#'  the resampling procedure) as argument.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]).
+#' @return
+#'  If `f` is `NULL`, `bootstrap()` returns a [`data.frame`] with the following
+#'  elements (else, returns the result of `f` applied to the `n` resampled
+#'  values) :
+#'  \describe{
+#'   \item{original}{The observed value.}
+#'   \item{mean}{The bootstrap estimate of mean.}
+#'   \item{bias}{The bootstrap estimate of bias.}
+#'   \item{error}{The boostrap estimate of standard error.}
+#'  }
+#' @seealso [mcd()]
+#' @example inst/examples/ex-mcd.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family resampling methods
+#' @name bootstrap.MeanDate
+#' @rdname bootstrap.MeanDate
+NULL
+
+#' Jackknife Mean Ceramic Dates
+#'
+#' Generate jackknife estimations of an [MCD][mcd()].
+#' @param object A [`MeanDate-class`] object (typically returned by [mcd()]).
+#' @param f A [`function`] that takes a single numeric vector (the result of
+#'  the resampling procedure) as argument.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]).
+#' @return
+#'  If `f` is `NULL`, `jackknife()` returns a [`data.frame`] with the following
+#'  elements (else, returns the result of `f` applied to the `n` resampled
+#'  values) :
+#'  \describe{
+#'   \item{original}{The observed value.}
+#'   \item{mean}{The jackknife estimate of mean.}
+#'   \item{bias}{The jackknife estimate of bias.}
+#'   \item{error}{The jackknife estimate of standard erro.}
+#'  }
+#' @seealso [mcd()]
+#' @example inst/examples/ex-mcd.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family resampling methods
+#' @name jackknife.MeanDate
+#' @rdname jackknife.MeanDate
+NULL
+
+#' Bootstrap Event Dates
+#'
+#' Generates bootstrap estimations of an [event date][event()].
+#' @param object An [`EventDate-class`] object (typically returned by [event()]).
+#' @param n A non-negative [`integer`] specifying the number of bootstrap
+#'  replications.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param probs A [`numeric`] vector of probabilities with values in
+#'  \eqn{[0,1]}.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
+#' @param progress A [`logical`] scalar: should a progress bar be displayed?
+#' @param ... Currently not used.
+#' @details
+#'  A large number of new bootstrap assemblages is created, with the same sample
+#'  size, by resampling each of the original assemblage with replacement. Then,
+#'  examination of the bootstrap statistics makes it possible to pinpoint
+#'  assemblages that require further investigation.
+#'
+#'  A five columns `data.frame` is returned, giving the bootstrap
+#'  distribution statistics for each replicated assemblage (in rows)
+#'  with the following columns:
+#'  \describe{
+#'   \item{`min`}{Minimum value.}
+#'   \item{`mean`}{Mean value (event date).}
+#'   \item{`max`}{Maximum value.}
+#'   \item{`Q5`}{Sample quantile to 0.05 probability.}
+#'   \item{`Q95`}{Sample quantile to 0.95 probability.}
+#'  }
+#' @seealso [event()]
+#' @return
+#'  A [`data.frame`].
+#' @author N. Frerebeau
+#' @docType methods
+#' @family resampling methods
+#' @name bootstrap.EventDate
+#' @rdname bootstrap.EventDate
+NULL
+
+#' Jackknife Event Dates
+#'
+#' Generates jackknife estimations of an [event date][event()].
+#' @param object An [`EventDate-class`] object (typically returned by [event()]).
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#' @param calendar An [`aion::TimeScale-class`] object specifying the target
+#'  calendar (see [aion::calendar()]). If `NULL`, *rata die* are returned.
+#' @param progress A [`logical`] scalar: should a progress bar be displayed?
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
+#' @param ... Further arguments to be passed to internal methods.
+#' @details
+#'  One type/fabric is removed at a time and all statistics are recalculated.
+#'  In this way, one can assess whether certain type/fabric has a substantial
+#'  influence on the date estimate.
+#'
+#'  A three columns `data.frame` is returned, giving the results of the
+#'  resampling procedure (jackknifing fabrics) for each assemblage (in rows)
+#'  with the following columns:
+#'  \describe{
+#'   \item{`mean`}{The jackknife mean (event date).}
+#'   \item{`lower`}{The lower boundary of the confidence interval.}
+#'   \item{`upper`}{The upper boundary of the confidence interval.}
+#'  }
+#' @return
+#'  A [`data.frame`].
+#' @seealso [event()]
+#' @author N. Frerebeau
+#' @docType methods
+#' @family resampling methods
+#' @name jackknife.EventDate
+#' @rdname jackknife.EventDate
+NULL
 
 # Seriation Methods ============================================================
 ## Reciprocal ranking ----------------------------------------------------------

@@ -50,6 +50,13 @@ dates <- as.numeric(utils::as.roman(rownames(counts)))
 ## Plot abundance vs time
 plot_time(counts, dates, calendar = NULL, ncol = 3, xlab = "Phases")
 }
+\seealso{
+Other plotting methods: 
+\code{\link{plot.AoristicSum}()},
+\code{\link{plot.EventDate}()},
+\code{\link{plot.IncrementTest}()},
+\code{\link{plot.MeanDate}()}
+}
 \author{
 N. Frerebeau
 }

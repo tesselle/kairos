@@ -1,5 +1,5 @@
 # MEAN CERAMIC DATE
-#' @include AllClasses.R AllGenerics.R
+#' @include AllGenerics.R
 NULL
 
 # MCD ==========================================================================
@@ -56,100 +56,6 @@ setMethod(
 .mcd <- function(x, dates) {
   stats::weighted.mean(x = dates, w = x)
 }
-
-# Resample =====================================================================
-#' @export
-#' @rdname resample_mcd
-#' @aliases bootstrap,MeanDate-method
-setMethod(
-  f = "bootstrap",
-  signature = c(object = "MeanDate"),
-  definition = function(object, n = 1000, f = NULL,
-                        calendar = get_calendar()) {
-
-    w <- object
-    m <- nrow(w)
-    p <- ncol(w)
-    seq_col <- seq_len(p)
-
-    dates <- aion::as_year(object@dates, calendar = calendar)
-    theta <- function(x, counts, dates) {
-      .mcd(counts[x], dates[x])
-    }
-
-    results <- vector(mode = "list", length = m)
-    for (i in seq_len(m)) {
-      results[[i]] <- arkhe::bootstrap(
-        object = seq_col,
-        do = theta,
-        n = n,
-        counts = w[i, , 1, drop = TRUE],
-        dates = dates,
-        f = f
-      )
-    }
-
-    results <- do.call(rbind, results)
-    rownames(results) <- rownames(w)
-    as.data.frame(results)
-  }
-)
-
-#' @export
-#' @rdname resample_mcd
-#' @aliases jackknife,MeanDate-method
-setMethod(
-  f = "jackknife",
-  signature = c(object = "MeanDate"),
-  definition = function(object, f = NULL,
-                        calendar = get_calendar()) {
-
-    w <- object
-    m <- nrow(w)
-    p <- ncol(w)
-
-    dates <- aion::as_year(object@dates, calendar = calendar)
-    theta <- function(x, counts, dates) {
-      .mcd(counts[x], dates[x])
-    }
-
-    results <- vector(mode = "list", length = m)
-    for (i in seq_len(m)) {
-      results[[i]] <- arkhe::jackknife(
-        object = seq_len(p),
-        do = theta,
-        counts = w[i, , 1, drop = TRUE],
-        dates = dates,
-        f = f
-      )
-    }
-    results <- do.call(rbind, results)
-    rownames(results) <- rownames(w)
-    results
-  }
-)
-
-#' @export
-#' @rdname resample_mcd
-#' @aliases simulate,MeanDate-method
-setMethod(
-  f = "simulate",
-  signature = c(object = "MeanDate"),
-  definition = function(object, nsim = 1000) {
-
-    results <- apply(
-      X = object[, , 1, drop = TRUE],
-      MARGIN = 1,
-      FUN = resample,
-      do = .mcd,
-      n = nsim,
-      dates = object@dates,
-      f = function(x) x
-    )
-
-    .SimulationMeanDate(object, replications = t(results))
-  }
-)
 
 # Plot =========================================================================
 #' @export
@@ -236,7 +142,7 @@ plot.MeanDate <- function(x, calendar = get_calendar(),
 }
 
 #' @export
-#' @rdname plot_mcd
+#' @rdname plot.MeanDate
 #' @aliases plot,MeanDate,missing-method
 setMethod("plot", c(x = "MeanDate", y = "missing"), plot.MeanDate)
 
@@ -337,7 +243,7 @@ plot.SimulationMeanDate <- function(x, calendar = get_calendar(),
 }
 
 #' @export
-#' @rdname plot_mcd
+#' @rdname plot.MeanDate
 #' @aliases plot,SimulationMeanDate,missing-method
 setMethod("plot", c(x = "SimulationMeanDate", y = "missing"),
           plot.SimulationMeanDate)

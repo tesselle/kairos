@@ -42,13 +42,6 @@ archaeological site (South 1977). The MCD is estimated as the weighted mean
 of the date midpoints of the ceramic types (based on absolute dates or the
 known production interval) found in a given assemblage. The weights are the
 relative frequencies of the respective types in the assemblage.
-
-A bootstrapping procedure is used to estimate the confidence interval of a
-given MCD. For each assemblage, a large number of new bootstrap replicates
-is created, with the same sample size, by resampling the original
-assemblage with replacement. MCDs are calculated for each replicates and
-upper and lower boundaries of the confidence interval associated with each
-MCD are then returned.
 }
 \examples{
 ## Data from Peeples and Schachner 2012
@@ -93,9 +86,8 @@ South, S. A. (1977). \emph{Method and Theory in Historical Archaeology}.
 New York: Academic Press.
 }
 \seealso{
-Other mean ceramic date tools: 
-\code{\link{plot_mcd}},
-\code{\link{resample_mcd}}
+\code{\link[=plot.MeanDate]{plot()}}, \code{\link[=bootstrap.MeanDate]{bootstrap()}},
+\code{\link[=jackknife.MeanDate]{jackknife()}}, \code{\link[=simulate.MeanDate]{simulate()}}
 
 Other dating methods: 
 \code{\link{event}()}

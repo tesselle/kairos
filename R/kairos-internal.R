@@ -72,35 +72,6 @@ roll <- function(x, window = 3) {
   list(i = inds, w = rep(m, each = window))
 }
 
-#' Resample
-#'
-#' Simulates observations from a multinomial distribution.
-#' @param x A [`numeric`] vector of count data (absolute frequencies).
-#' @param do A [`function`] that takes `x` as an argument
-#'  and returns a single numeric value.
-#' @param n A non-negative [`integer`] specifying the number of bootstrap
-#'  replications.
-#' @param size A non-negative [`integer`] specifying the sample size.
-#' @param f A [`function`] that takes a single numeric vector (the result of
-#'  `do`) as argument.
-#' @param ... Extra arguments passed to `do`.
-#' @return
-#'  If `f` is `NULL`, `resample()` returns the `n` values of `do`. Else,
-#'  returns the result of `f` applied to the `n` values of `do`.
-#' @seealso [stats::rmultinom()]
-#' @keywords internal
-#' @noRd
-resample <- function(x, do, n, size = sum(x), ..., f = NULL) {
-  ## Validation
-  arkhe::assert_count(x)
-
-  prob <- x / sum(x)
-  replicates <- stats::rmultinom(n, size = size, prob = prob)
-  values <- apply(X = replicates, MARGIN = 2, FUN = do, ...)
-  if (is.function(f)) values <- f(values)
-  values
-}
-
 #' Quantiles of a Density Estimate
 #'
 #' @param x A [`numeric`] vector giving the n coordinates of the points where

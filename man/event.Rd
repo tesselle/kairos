@@ -121,16 +121,13 @@ for Seriation of Sagalassos Tablewares. In Doerr, M. & Apostolis, S. (eds.),
 \emph{The Digital Heritage of Archaeology}. Athens: Hellenic Ministry of Culture.
 }
 \seealso{
-\code{\link[=plot_event]{plot()}}, \code{\link[=predict_event]{predict_event()}},
-\code{\link[=predict_event]{predict_accumulation()}}, \code{\link[=resample_event]{jackknife()}},
-\code{\link[=resample_event]{bootstrap()}}
+\code{\link[=plot.EventDate]{plot()}}, \code{\link[=bootstrap.EventDate]{bootstrap()}},
+\code{\link[=jackknife.EventDate]{jackknife()}}
 
 Other event date tools: 
 \code{\link{density_event}()},
 \code{\link{model_event}},
-\code{\link{plot_event}},
-\code{\link{predict_event}()},
-\code{\link{resample_event}}
+\code{\link{predict_event}()}
 
 Other dating methods: 
 \code{\link{mcd}()}

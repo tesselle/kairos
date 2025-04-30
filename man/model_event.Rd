@@ -63,9 +63,7 @@ plot(model, select = 1:10, event = TRUE, flip = TRUE)
 Other event date tools: 
 \code{\link{density_event}()},
 \code{\link{event}()},
-\code{\link{plot_event}},
-\code{\link{predict_event}()},
-\code{\link{resample_event}}
+\code{\link{predict_event}()}
 }
 \author{
 N. Frerebeau

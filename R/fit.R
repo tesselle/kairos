@@ -237,6 +237,6 @@ plot.IncrementTest <- function(x, calendar = get_calendar(),
 }
 
 #' @export
-#' @rdname plot_fit
+#' @rdname plot.IncrementTest
 #' @aliases plot,IncrementTest,missing-method
 setMethod("plot", c(x = "IncrementTest", y = "missing"), plot.IncrementTest)

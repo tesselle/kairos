@@ -93,9 +93,7 @@ Pottery Quantification for the Dating of Some Archaeological Contexts.
 Other event date tools: 
 \code{\link{density_event}()},
 \code{\link{event}()},
-\code{\link{model_event}},
-\code{\link{plot_event}},
-\code{\link{resample_event}}
+\code{\link{model_event}}
 }
 \author{
 N. Frerebeau
