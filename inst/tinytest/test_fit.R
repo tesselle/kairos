@@ -22,13 +22,8 @@ if (requireNamespace("folio", quietly = TRUE)) {
 
   # Plot =======================================================================
   if (at_home()) {
-    source("helpers.R")
     using("tinysnapshot")
-    options(tinysnapshot_device = "svglite")
-    options(tinysnapshot_height = 7) # inches
-    options(tinysnapshot_width = 7)
-    options(tinysnapshot_tol = 200) # pixels
-    options(tinysnapshot_os = "Linux")
+    source("helpers.R")
 
     ## Plot abundance vs time
     plot_time_abundance <- function() plot_time(counts, dates = dates, n = 3)

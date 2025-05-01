@@ -39,13 +39,13 @@
 <line x1='73.44' y1='142.40' x2='66.24' y2='142.40' style='stroke-width: 0.75;' />
 <line x1='73.44' y1='110.40' x2='66.24' y2='110.40' style='stroke-width: 0.75;' />
 <line x1='73.44' y1='78.40' x2='66.24' y2='78.40' style='stroke-width: 0.75;' />
-<text x='59.04' y='242.68' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>0.0</text>
-<text x='59.04' y='210.68' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>0.2</text>
-<text x='59.04' y='178.68' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>0.4</text>
-<text x='59.04' y='146.68' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>0.6</text>
-<text x='59.04' y='114.68' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>0.8</text>
-<text x='59.04' y='82.68' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>1.0</text>
-<text transform='translate(27.36,158.40) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='40.59px' lengthAdjust='spacingAndGlyphs'>LZ1105</text>
+<text x='59.04' y='242.53' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.0</text>
+<text x='59.04' y='210.53' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.2</text>
+<text x='59.04' y='178.53' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.4</text>
+<text x='59.04' y='146.53' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.6</text>
+<text x='59.04' y='114.53' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.8</text>
+<text x='59.04' y='82.53' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>1.0</text>
+<text transform='translate(27.36,158.40) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='39.81px' lengthAdjust='spacingAndGlyphs'>LZ1105</text>
 </g>
 <defs>
   <clipPath id='cpNzMuNDR8NDczLjc2fDI0NC44MHw0MTcuNjA='>
@@ -66,14 +66,14 @@
 <line x1='358.62' y1='417.60' x2='358.62' y2='424.80' style='stroke-width: 0.75;' />
 <line x1='410.55' y1='417.60' x2='410.55' y2='424.80' style='stroke-width: 0.75;' />
 <line x1='462.48' y1='417.60' x2='462.48' y2='424.80' style='stroke-width: 0.75;' />
-<text x='98.97' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='20.58px' lengthAdjust='spacingAndGlyphs'>700</text>
-<text x='150.90' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='20.58px' lengthAdjust='spacingAndGlyphs'>800</text>
-<text x='202.83' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='20.58px' lengthAdjust='spacingAndGlyphs'>900</text>
-<text x='254.76' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='27.45px' lengthAdjust='spacingAndGlyphs'>1000</text>
-<text x='306.69' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='27.45px' lengthAdjust='spacingAndGlyphs'>1100</text>
-<text x='358.62' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='27.45px' lengthAdjust='spacingAndGlyphs'>1200</text>
-<text x='410.55' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='27.45px' lengthAdjust='spacingAndGlyphs'>1300</text>
-<text x='462.48' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='27.45px' lengthAdjust='spacingAndGlyphs'>1400</text>
+<text x='98.97' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>700</text>
+<text x='150.90' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>800</text>
+<text x='202.83' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='20.02px' lengthAdjust='spacingAndGlyphs'>900</text>
+<text x='254.76' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>1000</text>
+<text x='306.69' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='25.80px' lengthAdjust='spacingAndGlyphs'>1100</text>
+<text x='358.62' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>1200</text>
+<text x='410.55' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>1300</text>
+<text x='462.48' y='443.52' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='26.70px' lengthAdjust='spacingAndGlyphs'>1400</text>
 <line x1='73.44' y1='411.20' x2='73.44' y2='251.20' style='stroke-width: 0.75;' />
 <line x1='73.44' y1='411.20' x2='66.24' y2='411.20' style='stroke-width: 0.75;' />
 <line x1='73.44' y1='379.20' x2='66.24' y2='379.20' style='stroke-width: 0.75;' />
@@ -81,13 +81,13 @@
 <line x1='73.44' y1='315.20' x2='66.24' y2='315.20' style='stroke-width: 0.75;' />
 <line x1='73.44' y1='283.20' x2='66.24' y2='283.20' style='stroke-width: 0.75;' />
 <line x1='73.44' y1='251.20' x2='66.24' y2='251.20' style='stroke-width: 0.75;' />
-<text x='59.04' y='415.48' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>0.0</text>
-<text x='59.04' y='383.48' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>0.2</text>
-<text x='59.04' y='351.48' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>0.4</text>
-<text x='59.04' y='319.48' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>0.6</text>
-<text x='59.04' y='287.48' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>0.8</text>
-<text x='59.04' y='255.48' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='16.94px' lengthAdjust='spacingAndGlyphs'>1.0</text>
-<text x='273.60' y='472.32' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='108.10px' lengthAdjust='spacingAndGlyphs'>Gregorian years CE</text>
-<text transform='translate(27.36,331.20) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='40.59px' lengthAdjust='spacingAndGlyphs'>LZ1103</text>
+<text x='59.04' y='415.33' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.0</text>
+<text x='59.04' y='383.33' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.2</text>
+<text x='59.04' y='351.33' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.4</text>
+<text x='59.04' y='319.33' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.6</text>
+<text x='59.04' y='287.33' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.8</text>
+<text x='59.04' y='255.33' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>1.0</text>
+<text x='273.60' y='472.32' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='106.06px' lengthAdjust='spacingAndGlyphs'>Gregorian years CE</text>
+<text transform='translate(27.36,331.20) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='39.81px' lengthAdjust='spacingAndGlyphs'>LZ1103</text>
 </g>
 </svg>
