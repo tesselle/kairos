@@ -1,4 +1,9 @@
 # kairos 2.2.1.9000
+## Bugfixes & changes
+* Deprecate `simulate()`.
+
+## Breaking changes
+* Fix `bootstrap()` method for `MeanDate` objects: revert the change introduced in v1.1.0. By default, bootstrap replicates are drawn from a multinomial distribution.
 
 # kairos 2.2.1
 ## Internals

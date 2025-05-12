@@ -2,6 +2,7 @@
 % Please edit documentation in R/kairos-deprecated.R
 \name{kairos-deprecated}
 \alias{kairos-deprecated}
+\alias{simulate,MeanDate-method}
 \alias{get_order}
 \alias{get_order,PermutationOrder-method}
 \alias{seriate_refine}
@@ -11,6 +12,8 @@
 \alias{hist,RefinePermutationOrder-method}
 \title{Deprecated Functions in kairos}
 \usage{
+\S4method{simulate}{MeanDate}(object, nsim = 1000, seed = NULL, ...)
+
 get_order(x, ...)
 
 \S4method{get_order}{PermutationOrder}(x, margin = c(1, 2))

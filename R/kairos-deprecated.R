@@ -5,6 +5,54 @@
 #' @keywords internal
 NULL
 
+.SimulationMeanDate <- setClass(
+  Class = "SimulationMeanDate",
+  slots = c(
+    replications = "matrix",
+    seed = "numeric"
+  ),
+  contains = "MeanDate"
+)
+
+#' @export
+#' @method simulate MeanDate
+simulate.MeanDate <- function(object, nsim = 1000, seed = NULL, ...) {
+  .Deprecated(new = "bootstrap()", old = "simulate()")
+
+  if (!exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE))
+    stats::runif(1)
+  if (is.null(seed))
+    RNGstate <- get(".Random.seed", envir = .GlobalEnv)
+  else {
+    R.seed <- get(".Random.seed", envir = .GlobalEnv)
+    set.seed(seed)
+    RNGstate <- structure(seed, kind = as.list(RNGkind()))
+    on.exit(assign(".Random.seed", R.seed, envir = .GlobalEnv))
+  }
+
+  results <- apply(
+    X = object[, , 1, drop = TRUE],
+    MARGIN = 1,
+    FUN = resample,
+    do = .mcd,
+    n = nsim,
+    dates = object@dates
+  )
+
+  .SimulationMeanDate(object, replications = t(results), seed = RNGstate)
+}
+
+#' @export
+#' @rdname kairos-deprecated
+#' @aliases simulate,MeanDate-method
+setMethod("simulate", c(object = "MeanDate"), simulate.MeanDate)
+
+resample <- function(x, do, n, size = sum(x), ...) {
+  prob <- x / sum(x)
+  replicates <- stats::rmultinom(n, size = size, prob = prob)
+  apply(X = replicates, MARGIN = 2, FUN = do, ...)
+}
+
 #' @export
 #' @rdname kairos-deprecated
 setGeneric(

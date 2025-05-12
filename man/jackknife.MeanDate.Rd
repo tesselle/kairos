@@ -54,9 +54,6 @@ mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 ## Get MCD in years CE
 time(mc_dates, calendar = CE())
 
-## Plot
-plot(mc_dates)
-
 ## Bootstrap resampling
 boot <- bootstrap(mc_dates, n = 30)
 head(boot)
@@ -65,9 +62,11 @@ head(boot)
 jack <- jackknife(mc_dates)
 head(jack)
 
-## Simulation
-sim <- simulate(mc_dates, nsim = 30)
-plot(sim, interval = "range", pch = 16)
+## Plot
+plot(mc_dates, decreasing = FALSE)
+## Add bootstrap confidence intervals
+segments(x0 = boot$lower, y0 = seq_len(nrow(boot)),
+         x1 = boot$upper, y1 = seq_len(nrow(boot)))
 }
 \seealso{
 \code{\link[=mcd]{mcd()}}
@@ -75,8 +74,7 @@ plot(sim, interval = "range", pch = 16)
 Other resampling methods: 
 \code{\link{bootstrap.EventDate}},
 \code{\link{bootstrap.MeanDate}},
-\code{\link{jackknife.EventDate}},
-\code{\link{simulate.MeanDate}()}
+\code{\link{jackknife.EventDate}}
 }
 \author{
 N. Frerebeau

@@ -9,35 +9,46 @@ NULL
 setMethod(
   f = "bootstrap",
   signature = c(object = "MeanDate"),
-  definition = function(object, n = 1000, f = NULL, calendar = get_calendar()) {
+  definition = function(object, n = 1000, f = NULL, level = 0.95,
+                        interval = c("basic", "normal", "percentiles"),
+                        calendar = get_calendar()) {
+    ## Validation
+    interval <- match.arg(interval, several.ok = FALSE)
 
-    w <- object
-    m <- nrow(w)
-    p <- ncol(w)
+    m <- nrow(object)
+    p <- ncol(object)
     seq_col <- seq_len(p)
-
     dates <- aion::as_year(object@dates, calendar = calendar)
-    theta <- function(x, counts, dates) {
-      .mcd(counts[x], dates[x])
-    }
 
     results <- vector(mode = "list", length = m)
     for (i in seq_len(m)) {
-      results[[i]] <- arkhe::bootstrap(
-        object = seq_col,
-        do = theta,
-        n = n,
-        counts = w[i, , 1, drop = TRUE],
-        dates = dates,
-        f = f
-      )
+      hat <- .mcd(object[i, , 1, drop = TRUE], dates)
+      spl <- t(arkhe::resample_multinomial(object[i, , 1, drop = TRUE], n = n))
+      res <- apply(X = spl, MARGIN = 2, FUN = .mcd, dates = dates)
+      if (is.function(f)) {
+        results[[i]] <- f(res)
+      } else {
+        results[[i]] <- summary_bootstrap(res, hat, level = level, interval = interval)
+      }
     }
 
     results <- do.call(rbind, results)
-    rownames(results) <- rownames(w)
+    rownames(results) <- rownames(object)
     as.data.frame(results)
   }
 )
+
+summary_bootstrap <- function(x, hat, level = 0.95, interval = "basic") {
+  n <- length(x)
+  boot_mean <- mean(x)
+  boot_bias <- boot_mean - hat
+  boot_error <- stats::sd(x)
+
+  ci <- arkhe::confidence_bootstrap(x, level = level, t0 = hat, type = interval)
+  results <- c(hat, boot_mean, boot_bias, boot_error, ci)
+  names(results) <- c("original", "mean", "bias", "error", "lower", "upper")
+  results
+}
 
 # EventDate ====================================================================
 #' @export
@@ -93,7 +104,7 @@ setMethod(
 #' @param model An object of class [`lm`][stats::lm()].
 #' @param level A length-one [`numeric`] vector giving the confidence level.
 #' @param probs A [`numeric`] vector of probabilities with values in \eqn{[0,1]}
-#'  (see [stats:quantile()]).
+#'  (see [stats::quantile()]).
 #' @return A [`numeric`] vector with the following elements:
 #'  \describe{
 #'   \item{`min`}{Minimum value.}

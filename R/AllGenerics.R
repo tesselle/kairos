@@ -106,7 +106,7 @@ NULL
 #' @return
 #'  A [`MeanDate-class`] object.
 #' @seealso [`plot()`][plot.MeanDate], [`bootstrap()`][bootstrap.MeanDate],
-#'  [`jackknife()`][jackknife.MeanDate], [`simulate()`][simulate.MeanDate]
+#'  [`jackknife()`][jackknife.MeanDate]
 #' @references
 #'  South, S. A. (1977). *Method and Theory in Historical Archaeology*.
 #'  New York: Academic Press.
@@ -692,29 +692,6 @@ NULL
 NULL
 
 # Resample =====================================================================
-#' Simulate Mean Ceramic Dates
-#'
-#' Simulates [MCD][mcd()] from a multinomial distribution.
-#' @param object A [`MeanDate-class`] object (typically returned by [mcd()]).
-#' @param nsim A non-negative [`integer`] specifying the number of simulations.
-#' @param seed An object specifying if and how the random number generator
-#'  should be initialized (see [stats::simulate()]).
-#' @param ... Currently not used.
-#' @details
-#'  For each assemblage, a large number of new bootstrap replicates
-#'  is created, with the same sample size, by resampling the original
-#'  assemblage with replacement. MCDs are calculated for each replicates.
-#' @return
-#'  A [`SimulationMeanDate-class`] object.
-#' @seealso [mcd()]
-#' @example inst/examples/ex-mcd.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family resampling methods
-#' @name simulate.MeanDate
-#' @rdname simulate.MeanDate
-NULL
-
 #' Bootstrap Mean Ceramic Dates
 #'
 #' Generates bootstrap estimations of an [MCD][mcd()].
@@ -723,6 +700,13 @@ NULL
 #'  replications.
 #' @param f A [`function`] that takes a single numeric vector (the result of
 #'  the resampling procedure) as argument.
+#' @param level A length-one [`numeric`] vector giving the confidence level.
+#'  Must be a single number between \eqn{0} and \eqn{1}. Only used if `f` is
+#'  `NULL`.
+#' @param interval A [`character`] string giving the type of confidence
+#'  interval to be returned. It must be one "`basic`" (the default), "`normal`"
+#'  or "`percentiles`" (see [arkhe::confidence_bootstrap()]). Any unambiguous
+#'  substring can be given. Only used if `f` is `NULL`.
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
 #'  calendar (see [aion::calendar()]).
 #' @return
@@ -734,6 +718,8 @@ NULL
 #'   \item{mean}{The bootstrap estimate of mean.}
 #'   \item{bias}{The bootstrap estimate of bias.}
 #'   \item{error}{The boostrap estimate of standard error.}
+#'   \item{`lower`}{The lower limit of the bootstrap confidence interval at `level`.}
+#'   \item{`upper`}{The upper limit of the bootstrap confidence interval at `level`.}
 #'  }
 #' @seealso [mcd()]
 #' @example inst/examples/ex-mcd.R
