@@ -56,8 +56,7 @@ with the following columns:
 Other resampling methods: 
 \code{\link{bootstrap.EventDate}},
 \code{\link{bootstrap.MeanDate}},
-\code{\link{jackknife.MeanDate}},
-\code{\link{simulate.MeanDate}()}
+\code{\link{jackknife.MeanDate}}
 }
 \author{
 N. Frerebeau

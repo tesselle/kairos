@@ -2,6 +2,8 @@
 % Please edit documentation in R/kairos-deprecated.R
 \name{kairos-deprecated}
 \alias{kairos-deprecated}
+\alias{simulate,MeanDate-method}
+\alias{plot,SimulationMeanDate,missing-method}
 \alias{get_order}
 \alias{get_order,PermutationOrder-method}
 \alias{seriate_refine}
@@ -11,6 +13,24 @@
 \alias{hist,RefinePermutationOrder-method}
 \title{Deprecated Functions in kairos}
 \usage{
+\S4method{simulate}{MeanDate}(object, nsim = 1000, seed = NULL, ...)
+
+\S4method{plot}{SimulationMeanDate,missing}(
+  x,
+  calendar = get_calendar(),
+  interval = "student",
+  level = 0.8,
+  decreasing = TRUE,
+  main = NULL,
+  sub = NULL,
+  ann = graphics::par("ann"),
+  axes = TRUE,
+  frame.plot = axes,
+  panel.first = NULL,
+  panel.last = NULL,
+  ...
+)
+
 get_order(x, ...)
 
 \S4method{get_order}{PermutationOrder}(x, margin = c(1, 2))

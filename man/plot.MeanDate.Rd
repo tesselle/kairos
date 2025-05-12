@@ -4,28 +4,11 @@
 \name{plot.MeanDate}
 \alias{plot.MeanDate}
 \alias{plot,MeanDate,missing-method}
-\alias{plot,SimulationMeanDate,missing-method}
 \title{MCD Plot}
 \usage{
 \S4method{plot}{MeanDate,missing}(
   x,
   calendar = get_calendar(),
-  decreasing = TRUE,
-  main = NULL,
-  sub = NULL,
-  ann = graphics::par("ann"),
-  axes = TRUE,
-  frame.plot = axes,
-  panel.first = NULL,
-  panel.last = NULL,
-  ...
-)
-
-\S4method{plot}{SimulationMeanDate,missing}(
-  x,
-  calendar = get_calendar(),
-  interval = "student",
-  level = 0.8,
   decreasing = TRUE,
   main = NULL,
   sub = NULL,
@@ -66,14 +49,6 @@ background grids.}
 place but before the axes, title and box are added.}
 
 \item{...}{Further \link[graphics:par]{graphical parameters}.}
-
-\item{interval}{A \code{\link{character}} string giving the type of confidence
-interval to be returned. It must be one "\code{student}" (the default),
-"\code{normal}", "\code{percentiles}" or "\code{range}" (min-max).
-Any unambiguous substring can be given.}
-
-\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
-Only used if \code{interval} is not "\code{range}".}
 }
 \value{
 \code{plot()} is called it for its side-effects: it results in a graphic being
@@ -105,20 +80,21 @@ mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 ## Get MCD in years CE
 time(mc_dates, calendar = CE())
 
-## Plot
-plot(mc_dates)
-
 ## Bootstrap resampling
-boot <- bootstrap(mc_dates, n = 30)
+boot <- bootstrap(mc_dates, n = 100)
 head(boot)
 
 ## Jackknife resampling
 jack <- jackknife(mc_dates)
 head(jack)
 
-## Simulation
-sim <- simulate(mc_dates, nsim = 30)
-plot(sim, interval = "range", pch = 16)
+## Plot
+plot(mc_dates, decreasing = FALSE)
+## Add bootstrap confidence intervals
+segments(
+  x0 = boot$lower, y0 = seq_len(nrow(boot)),
+  x1 = boot$upper, y1 = seq_len(nrow(boot))
+)
 }
 \seealso{
 \code{\link[=mcd]{mcd()}}

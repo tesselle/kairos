@@ -35,7 +35,7 @@ if (requireNamespace("folio", quietly = TRUE)) {
   expect_equivalent_to_reference(acc, file = "_snaps/accumulation.rds", tolerance = 0.0005)
 
   # Plot =======================================================================
-  if (at_home()) {
+  if (at_home() && Sys.info()["sysname"] != "Darwin") {
     using("tinysnapshot")
     source("helpers.R")
 

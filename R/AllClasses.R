@@ -36,34 +36,6 @@ NULL
   contains = "TimeSeries"
 )
 
-#' Simulated Mean Date
-#'
-#' An S4 class to store the simulated weighted mean date (e.g. Mean Ceramic
-#' Date) of archaeological assemblages.
-#' @slot dates A length-\eqn{p} [`numeric`] vector giving the dates of the
-#'  (ceramic) types expressed in *[rata die][aion::RataDie-class]*.
-#' @slot replications A `numeric` [`matrix`] giving the replications.
-#' @slot seed A [`numeric`] vector giving the value of [.Random.seed] before the
-#'  simulation was started; otherwise it is the user specified value with a
-#'  `kind` attribute  with value `as.list(`[RNGkind()]`)`.
-#' @note
-#'  Dates are internally stored as *[rata die][aion::RataDie-class]*.
-#'  This class inherits from [`MeanDate-class`].
-#' @seealso [`MeanDate-class`]
-#' @author N. Frerebeau
-#' @family classes
-#' @docType class
-#' @aliases SimulationMeanDate-class
-#' @keywords internal
-.SimulationMeanDate <- setClass(
-  Class = "SimulationMeanDate",
-  slots = c(
-    replications = "matrix",
-    seed = "numeric"
-  ),
-  contains = "MeanDate"
-)
-
 # EventDate ====================================================================
 #' Date Model
 #'

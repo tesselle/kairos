@@ -27,11 +27,11 @@ URL: https://codeberg.org/tesselle/kairos,
     https://packages.tesselle.org/kairos/
 BugReports: https://codeberg.org/tesselle/kairos/issues
 Depends: 
-    aion (>= 1.4.0),
-    dimensio (>= 0.13.0),
-    R (>= 3.5)
+    R (>= 3.5),
+    aion (>= 1.5.0),
+    dimensio (>= 0.13.0)
 Imports:
-    arkhe (>= 1.10.0),
+    arkhe (>= 1.11.0),
     extraDistr,
     grDevices,
     methods,
@@ -51,7 +51,7 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.2.9000
 X-schema.org-applicationCategory: Archaeological Science
 X-schema.org-isPartOf: https://www.tesselle.org
 X-schema.org-keywords: chronology, matrix-seriation, archaeology,
@@ -81,7 +81,6 @@ Collate:
     'seriation_rank.R'
     'seriation_refine.R'
     'show.R'
-    'simulate.R'
     'subset.R'
     'validate.R'
     'zzz.R'

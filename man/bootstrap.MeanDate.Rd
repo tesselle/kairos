@@ -6,7 +6,15 @@
 \alias{bootstrap,MeanDate-method}
 \title{Bootstrap Mean Ceramic Dates}
 \usage{
-\S4method{bootstrap}{MeanDate}(object, n = 1000, f = NULL, calendar = get_calendar())
+\S4method{bootstrap}{MeanDate}(
+  object,
+  n = 1000,
+  f = NULL,
+  level = 0.95,
+  interval = c("basic", "normal", "percentiles"),
+  calendar = get_calendar(),
+  seed = NULL
+)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{MeanDate}} object (typically returned by \code{\link[=mcd]{mcd()}}).}
@@ -17,8 +25,20 @@ replications.}
 \item{f}{A \code{\link{function}} that takes a single numeric vector (the result of
 the resampling procedure) as argument.}
 
+\item{level}{A length-one \code{\link{numeric}} vector giving the confidence level.
+Must be a single number between \eqn{0} and \eqn{1}. Only used if \code{f} is
+\code{NULL}.}
+
+\item{interval}{A \code{\link{character}} string giving the type of confidence
+interval to be returned. It must be one "\code{basic}" (the default), "\code{normal}"
+or "\code{percentiles}" (see \code{\link[arkhe:confidence_bootstrap]{arkhe::confidence_bootstrap()}}). Any unambiguous
+substring can be given. Only used if \code{f} is \code{NULL}.}
+
 \item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
 calendar (see \code{\link[aion:calendar]{aion::calendar()}}).}
+
+\item{seed}{An object specifying if and how the random number generator
+should be initialized (see \code{\link[stats:simulate]{stats::simulate()}}).}
 }
 \value{
 If \code{f} is \code{NULL}, \code{bootstrap()} returns a \code{\link{data.frame}} with the following
@@ -29,6 +49,8 @@ values) :
 \item{mean}{The bootstrap estimate of mean.}
 \item{bias}{The bootstrap estimate of bias.}
 \item{error}{The boostrap estimate of standard error.}
+\item{\code{lower}}{The lower limit of the bootstrap confidence interval at \code{level}.}
+\item{\code{upper}}{The upper limit of the bootstrap confidence interval at \code{level}.}
 }
 }
 \description{
@@ -57,20 +79,21 @@ mid <- vapply(X = dates, FUN = mean, FUN.VALUE = numeric(1))
 ## Get MCD in years CE
 time(mc_dates, calendar = CE())
 
-## Plot
-plot(mc_dates)
-
 ## Bootstrap resampling
-boot <- bootstrap(mc_dates, n = 30)
+boot <- bootstrap(mc_dates, n = 100)
 head(boot)
 
 ## Jackknife resampling
 jack <- jackknife(mc_dates)
 head(jack)
 
-## Simulation
-sim <- simulate(mc_dates, nsim = 30)
-plot(sim, interval = "range", pch = 16)
+## Plot
+plot(mc_dates, decreasing = FALSE)
+## Add bootstrap confidence intervals
+segments(
+  x0 = boot$lower, y0 = seq_len(nrow(boot)),
+  x1 = boot$upper, y1 = seq_len(nrow(boot))
+)
 }
 \seealso{
 \code{\link[=mcd]{mcd()}}
@@ -78,8 +101,7 @@ plot(sim, interval = "range", pch = 16)
 Other resampling methods: 
 \code{\link{bootstrap.EventDate}},
 \code{\link{jackknife.EventDate}},
-\code{\link{jackknife.MeanDate}},
-\code{\link{simulate.MeanDate}()}
+\code{\link{jackknife.MeanDate}}
 }
 \author{
 N. Frerebeau
