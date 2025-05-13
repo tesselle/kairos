@@ -8,7 +8,7 @@ message: 'To cite package "kairos" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'kairos: Analysis of Chronological Patterns from Archaeological Count Data'
-version: 2.2.1
+version: 2.3.0
 doi: 10.5281/zenodo.5653896
 identifiers:
 - description: The concept DOI.
@@ -72,7 +72,7 @@ preferred-citation:
   institution:
     name: Université Bordeaux Montaigne
     address: Pessac, France
-  notes: R package version 2.2.1
+  notes: R package version 2.3.0
   url: https://packages.tesselle.org/kairos/
   doi: 10.5281/zenodo.5653896
 repository: https://CRAN.R-project.org/package=kairos
@@ -91,6 +91,17 @@ keywords:
 - r-package
 references:
 - type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
+  version: '>= 3.5'
+- type: software
   title: aion
   abstract: 'aion: Archaeological Time Series'
   notes: Depends
@@ -105,9 +116,9 @@ references:
     given-names: Joe
     email: joseph.roe@iaw.unibe.ch
     orcid: https://orcid.org/0000-0002-1011-1244
-  year: '2025'
   doi: 10.32614/CRAN.package.aion
-  version: '>= 1.4.0'
+  version: '>= 1.5.0'
+  year: '2025'
 - type: software
   title: dimensio
   abstract: 'dimensio: Multivariate Data Analysis'
@@ -119,20 +130,9 @@ references:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-  year: '2025'
   doi: 10.32614/CRAN.package.dimensio
   version: '>= 0.13.0'
-- type: software
-  title: 'R: A Language and Environment for Statistical Computing'
-  notes: Depends
-  url: https://www.R-project.org/
-  authors:
-  - name: R Core Team
-  institution:
-    name: R Foundation for Statistical Computing
-    address: Vienna, Austria
   year: '2025'
-  version: '>= 3.5'
 - type: software
   title: arkhe
   abstract: 'arkhe: Tools for Cleaning Rectangular Data'
@@ -146,7 +146,7 @@ references:
     orcid: https://orcid.org/0000-0001-5759-4944
   year: '2025'
   doi: 10.32614/CRAN.package.arkhe
-  version: '>= 1.10.0'
+  version: '>= 1.11.0'
 - type: software
   title: extraDistr
   abstract: 'extraDistr: Additional Univariate and Multivariate Distributions'
@@ -213,6 +213,17 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.folio
   version: '>= 1.5.0'
+- type: software
+  title: fontquiver
+  abstract: 'fontquiver: Set of Installed Fonts'
+  notes: Suggests
+  repository: https://CRAN.R-project.org/package=fontquiver
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@rstudio.com
+  year: '2025'
+  doi: 10.32614/CRAN.package.fontquiver
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -296,9 +307,9 @@ references:
     given-names: Nicolas
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
-  year: '2025'
   doi: 10.32614/CRAN.package.tabula
-  version: '>= 3.2.0'
+  version: '>= 3.3.0'
+  year: '2025'
 - type: software
   title: tinysnapshot
   abstract: 'tinysnapshot: Snapshots for Unit Tests using the ''tinytest'' Framework'

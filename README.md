@@ -62,7 +62,7 @@ To cite kairos in publications use:
 Frerebeau N (2025). *kairos: Analysis of Chronological Patterns from
 Archaeological Count Data*. Université Bordeaux Montaigne, Pessac,
 France. <doi:10.5281/zenodo.5653896>
-<https://doi.org/10.5281/zenodo.5653896>, R package version 2.2.1,
+<https://doi.org/10.5281/zenodo.5653896>, R package version 2.3.0,
 <https://packages.tesselle.org/kairos/>.
 
 This package is a part of the tesselle project

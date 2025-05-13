@@ -12,7 +12,7 @@ A toolkit for absolute and relative dating and analysis of chronological pattern
 }
 \details{
 \tabular{ll}{
-\strong{Version} \tab 2.2.1 \cr
+\strong{Version} \tab 2.3.0 \cr
 \strong{License} \tab GPL-3 \cr
 \strong{CRAN DOI} \tab \doi{10.32614/CRAN.package.kairos} \cr
 \strong{Zenodo DOI} \tab \doi{10.5281/zenodo.5653896} \cr

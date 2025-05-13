@@ -1,6 +1,6 @@
 #' @details
 #' \tabular{ll}{
-#'  **Version** \tab 2.2.1 \cr
+#'  **Version** \tab 2.3.0 \cr
 #'  **License** \tab GPL-3 \cr
 #'  **CRAN DOI** \tab \doi{10.32614/CRAN.package.kairos} \cr
 #'  **Zenodo DOI** \tab \doi{10.5281/zenodo.5653896} \cr
