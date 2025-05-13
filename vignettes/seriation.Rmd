@@ -184,6 +184,7 @@ viz_rows(zuni_supp, extra_quali = "observation", symbol = c(16, 15))
 zuni_permuted2 <- permute(zuni, zuni_supp)
 
 ## Ford diagram
+par(cex.axis = 0.7)
 tabula::plot_ford(zuni_permuted2)
 ```
 
