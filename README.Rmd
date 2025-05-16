@@ -19,8 +19,9 @@ Sys.setenv(LANGUAGE = "en") # Force locale
 # kairos <img width=120px src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
-[![Code coverage](https://packages.tesselle.org/kairos/coverage/badge.svg)](https://packages.tesselle.org/kairos/coverage/)
-[![Dependencies](https://tinyverse.netlify.app/badge/kairos)](https://cran.r-project.org/package=kairos)
+[![status-badge](https://ci.codeberg.org/api/badges/14692/status.svg)](https://ci.codeberg.org/repos/14692){.pkgdown-devel}
+[![Code coverage](https://packages.tesselle.org/kairos/coverage/badge.svg)](https://packages.tesselle.org/kairos/coverage/){.pkgdown-devel}
+[![Dependencies](https://tinyverse.netlify.app/badge/kairos)](https://cran.r-project.org/package=kairos){.pkgdown-devel}
 
 [![r-universe](https://tesselle.r-universe.dev/badges/kairos)](https://tesselle.r-universe.dev/kairos){.pkgdown-devel}
 [![CRAN Version](https://www.r-pkg.org/badges/version/kairos)](https://cran.r-project.org/package=kairos){.pkgdown-release}
