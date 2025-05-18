@@ -24,6 +24,7 @@ Description: A toolkit for absolute and relative dating and analysis of
     occupation and duration of an archaeological site.
 License: GPL (>= 3)
 URL: https://codeberg.org/tesselle/kairos,
+    https://tesselle.r-universe.dev/kairos,
     https://packages.tesselle.org/kairos/
 BugReports: https://codeberg.org/tesselle/kairos/issues
 Depends: 
