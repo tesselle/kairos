@@ -39,8 +39,8 @@ on progress? Defaults to \code{\link[=interactive]{interactive()}}.
 Useful links:
 \itemize{
   \item \url{https://codeberg.org/tesselle/kairos}
-  \item \url{https://tesselle.r-universe.dev/kairos}
   \item \url{https://packages.tesselle.org/kairos/}
+  \item \url{https://tesselle.r-universe.dev/kairos}
   \item Report bugs at \url{https://codeberg.org/tesselle/kairos/issues}
 }
 
@@ -53,8 +53,8 @@ Other contributors:
   \item Brice Lebrun (\href{https://orcid.org/0000-0001-7503-8685}{ORCID}) (Logo designer) [artist]
   \item Ben Marwick \email{bmarwick@uw.edu} (\href{https://orcid.org/0000-0001-7879-4531}{ORCID}) [contributor]
   \item Anne Philippe \email{anne.philippe@univ-nantes.fr} (\href{https://orcid.org/0000-0002-5331-5087}{ORCID}) [contributor]
-  \item Université Bordeaux Montaigne (\href{https://ror.org/03pbgwk21}{ROR}) [funder]
-  \item CNRS (\href{https://ror.org/02feahw73}{ROR}) [funder]
+  \item Université Bordeaux Montaigne (03pbgwk21) [funder]
+  \item CNRS (02feahw73) [funder]
 }
 
 }

@@ -4,7 +4,7 @@
   "identifier": "kairos",
   "description": "A toolkit for absolute and relative dating and analysis of chronological patterns. This package includes functions for chronological modeling and dating of archaeological assemblages from count data. It provides methods for matrix seriation. It also allows to compute time point estimates and density estimates of the occupation and duration of an archaeological site.",
   "name": "kairos: Analysis of Chronological Patterns from Archaeological Count Data",
-  "relatedLink": ["https://packages.tesselle.org/kairos/", "https://CRAN.R-project.org/package=kairos"],
+  "relatedLink": ["https://packages.tesselle.org/kairos/", "https://tesselle.r-universe.dev/kairos", "https://CRAN.R-project.org/package=kairos"],
   "codeRepository": "https://codeberg.org/tesselle/kairos",
   "issueTracker": "https://codeberg.org/tesselle/kairos/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -260,7 +260,7 @@
   "applicationCategory": "ArchaeologicalScience",
   "isPartOf": "https://www.tesselle.org",
   "keywords": ["chronology", "matrix-seriation", "archaeology", "archaeological-science", "r-package"],
-  "fileSize": "1057.616KB",
+  "fileSize": "1035.202KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

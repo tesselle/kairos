@@ -24,8 +24,8 @@ Description: A toolkit for absolute and relative dating and analysis of
     occupation and duration of an archaeological site.
 License: GPL (>= 3)
 URL: https://codeberg.org/tesselle/kairos,
-    https://tesselle.r-universe.dev/kairos,
-    https://packages.tesselle.org/kairos/
+    https://packages.tesselle.org/kairos/,
+    https://tesselle.r-universe.dev/kairos
 BugReports: https://codeberg.org/tesselle/kairos/issues
 Depends: 
     R (>= 3.5),
@@ -52,7 +52,7 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2.9000
+RoxygenNote: 7.3.2
 X-schema.org-applicationCategory: Archaeological Science
 X-schema.org-isPartOf: https://www.tesselle.org
 X-schema.org-keywords: chronology, matrix-seriation, archaeology,

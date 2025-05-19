@@ -1,6 +1,7 @@
 ## Test environments
-* Ubuntu (local): R devel, release, oldrel
+* Ubuntu (local): release
 * Windows (on win-builder): R devel, release, oldrel
+* macOS (on mac-builder): R devel, release
 
 ## R CMD check results
 
