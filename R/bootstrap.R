@@ -11,9 +11,21 @@ setMethod(
   signature = c(object = "MeanDate"),
   definition = function(object, n = 1000, f = NULL, level = 0.95,
                         interval = c("basic", "normal", "percentiles"),
-                        calendar = get_calendar()) {
+                        seed = NULL, calendar = get_calendar()) {
     ## Validation
     interval <- match.arg(interval, several.ok = FALSE)
+
+    ## Seed
+    if (!exists(".Random.seed", envir = .GlobalEnv, inherits = FALSE))
+      stats::runif(1)
+    if (is.null(seed)) {
+      RNGstate <- get(".Random.seed", envir = .GlobalEnv)
+    } else {
+      R.seed <- get(".Random.seed", envir = .GlobalEnv)
+      set.seed(seed)
+      RNGstate <- structure(seed, kind = as.list(RNGkind()))
+      on.exit(assign(".Random.seed", R.seed, envir = .GlobalEnv))
+    }
 
     m <- nrow(object)
     p <- ncol(object)
@@ -33,8 +45,10 @@ setMethod(
     }
 
     results <- do.call(rbind, results)
+    results <- as.data.frame(results)
     rownames(results) <- rownames(object)
-    as.data.frame(results)
+    attr(results, "seed") <- RNGstate
+    results
   }
 )
 

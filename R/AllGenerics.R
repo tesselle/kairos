@@ -707,6 +707,8 @@ NULL
 #'  interval to be returned. It must be one "`basic`" (the default), "`normal`"
 #'  or "`percentiles`" (see [arkhe::confidence_bootstrap()]). Any unambiguous
 #'  substring can be given. Only used if `f` is `NULL`.
+#' @param seed An object specifying if and how the random number generator
+#'  should be initialized (see [stats::simulate()]).
 #' @param calendar An [`aion::TimeScale-class`] object specifying the target
 #'  calendar (see [aion::calendar()]).
 #' @return
@@ -714,10 +716,10 @@ NULL
 #'  elements (else, returns the result of `f` applied to the `n` resampled
 #'  values) :
 #'  \describe{
-#'   \item{original}{The observed value.}
-#'   \item{mean}{The bootstrap estimate of mean.}
-#'   \item{bias}{The bootstrap estimate of bias.}
-#'   \item{error}{The boostrap estimate of standard error.}
+#'   \item{`original`}{The observed value.}
+#'   \item{`mean`}{The bootstrap estimate of mean.}
+#'   \item{`bias`}{The bootstrap estimate of bias.}
+#'   \item{`error`}{The boostrap estimate of standard error.}
 #'   \item{`lower`}{The lower limit of the bootstrap confidence interval at `level`.}
 #'   \item{`upper`}{The upper limit of the bootstrap confidence interval at `level`.}
 #'  }
@@ -743,10 +745,10 @@ NULL
 #'  elements (else, returns the result of `f` applied to the `n` resampled
 #'  values) :
 #'  \describe{
-#'   \item{original}{The observed value.}
-#'   \item{mean}{The jackknife estimate of mean.}
-#'   \item{bias}{The jackknife estimate of bias.}
-#'   \item{error}{The jackknife estimate of standard erro.}
+#'   \item{`original`}{The observed value.}
+#'   \item{`mean`}{The jackknife estimate of mean.}
+#'   \item{`bias`}{The jackknife estimate of bias.}
+#'   \item{`error`}{The jackknife estimate of standard erro.}
 #'  }
 #' @seealso [mcd()]
 #' @example inst/examples/ex-mcd.R

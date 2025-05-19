@@ -31,6 +31,7 @@ setMethod(
       )
     }
     results <- do.call(rbind, results)
+    results <- as.data.frame(results)
     rownames(results) <- rownames(w)
     results
   }

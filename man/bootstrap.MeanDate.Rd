@@ -12,6 +12,7 @@
   f = NULL,
   level = 0.95,
   interval = c("basic", "normal", "percentiles"),
+  seed = NULL,
   calendar = get_calendar()
 )
 }
@@ -33,6 +34,9 @@ interval to be returned. It must be one "\code{basic}" (the default), "\code{nor
 or "\code{percentiles}" (see \code{\link[arkhe:confidence_bootstrap]{arkhe::confidence_bootstrap()}}). Any unambiguous
 substring can be given. Only used if \code{f} is \code{NULL}.}
 
+\item{seed}{An object specifying if and how the random number generator
+should be initialized (see \code{\link[stats:simulate]{stats::simulate()}}).}
+
 \item{calendar}{An \code{\link[aion:TimeScale-class]{aion::TimeScale}} object specifying the target
 calendar (see \code{\link[aion:calendar]{aion::calendar()}}).}
 }
@@ -41,10 +45,10 @@ If \code{f} is \code{NULL}, \code{bootstrap()} returns a \code{\link{data.frame}
 elements (else, returns the result of \code{f} applied to the \code{n} resampled
 values) :
 \describe{
-\item{original}{The observed value.}
-\item{mean}{The bootstrap estimate of mean.}
-\item{bias}{The bootstrap estimate of bias.}
-\item{error}{The boostrap estimate of standard error.}
+\item{\code{original}}{The observed value.}
+\item{\code{mean}}{The bootstrap estimate of mean.}
+\item{\code{bias}}{The bootstrap estimate of bias.}
+\item{\code{error}}{The boostrap estimate of standard error.}
 \item{\code{lower}}{The lower limit of the bootstrap confidence interval at \code{level}.}
 \item{\code{upper}}{The upper limit of the bootstrap confidence interval at \code{level}.}
 }

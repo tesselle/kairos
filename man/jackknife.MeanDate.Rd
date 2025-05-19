@@ -22,10 +22,10 @@ If \code{f} is \code{NULL}, \code{jackknife()} returns a \code{\link{data.frame}
 elements (else, returns the result of \code{f} applied to the \code{n} resampled
 values) :
 \describe{
-\item{original}{The observed value.}
-\item{mean}{The jackknife estimate of mean.}
-\item{bias}{The jackknife estimate of bias.}
-\item{error}{The jackknife estimate of standard erro.}
+\item{\code{original}}{The observed value.}
+\item{\code{mean}}{The jackknife estimate of mean.}
+\item{\code{bias}}{The jackknife estimate of bias.}
+\item{\code{error}}{The jackknife estimate of standard erro.}
 }
 }
 \description{
