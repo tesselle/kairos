@@ -46,7 +46,7 @@ Suggests:
     rsvg,
     svglite,
     tabula (>= 3.3.0),
-    tinysnapshot,
+    tinysnapshot (>= 0.2.0),
     tinytest
 VignetteBuilder: 
     knitr

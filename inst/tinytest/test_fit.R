@@ -21,19 +21,18 @@ if (requireNamespace("folio", quietly = TRUE)) {
   expect_equal_to_reference(roll, file = "_snaps/fit_roll.rds")
 
   # Plot =======================================================================
-  if (at_home()) {
-    using("tinysnapshot")
-    source("helpers.R")
 
-    ## Plot abundance vs time
-    plot_time_abundance <- function() plot_time(counts, dates = dates, n = 3)
-    expect_snapshot_plot(plot_time_abundance, "plot_time_abundance")
+  using("tinysnapshot")
+  source("helpers.R")
 
-    ## Plot time vs abundance and highlight selection
-    plot_fit <- function() plot(freq, calendar = NULL, ncol = 3, xlab = "Phases")
-    expect_snapshot_plot(plot_fit, "plot_fit")
+  ## Plot abundance vs time
+  plot_time_abundance <- function() plot_time(counts, dates = dates, n = 3)
+  expect_snapshot_plot(plot_time_abundance, "plot_time_abundance")
 
-    plot_fit_roll <- function() plot(roll, calendar = NULL, ncol = 3, xlab = "Phases")
-    expect_snapshot_plot(plot_fit_roll, "plot_fit_roll")
-  }
+  ## Plot time vs abundance and highlight selection
+  plot_fit <- function() plot(freq, calendar = NULL, ncol = 3, xlab = "Phases")
+  expect_snapshot_plot(plot_fit, "plot_fit")
+
+  plot_fit_roll <- function() plot(roll, calendar = NULL, ncol = 3, xlab = "Phases")
+  expect_snapshot_plot(plot_fit_roll, "plot_fit_roll")
 }

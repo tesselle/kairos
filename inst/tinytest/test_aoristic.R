@@ -43,19 +43,19 @@ expect_identical(aorist_group[, 1, , drop = TRUE], aorist_A[, 1, , drop = TRUE])
 expect_identical(aorist_group[, 2, , drop = TRUE], aorist_B[, 1, , drop = TRUE])
 
 # Plot =========================================================================
+using("tinysnapshot")
+source("helpers.R")
+
+plot_aoristic_raw <- function() plot(aorist_raw, col = "grey")
+expect_snapshot_plot(plot_aoristic_raw, "plot_aoristic_raw")
+
+plot_aoristic_weight <- function() plot(aorist_weight, col = "grey")
+expect_snapshot_plot(plot_aoristic_weight, "plot_aoristic_weight")
+
+plot_aoristic_group <- function() plot(aorist_group, col = "grey")
+expect_snapshot_plot(plot_aoristic_group, "plot_aoristic_group")
+
 if (at_home()) {
-  using("tinysnapshot")
-  source("helpers.R")
-
-  plot_aoristic_raw <- function() plot(aorist_raw, col = "grey")
-  expect_snapshot_plot(plot_aoristic_raw, "plot_aoristic_raw")
-
-  plot_aoristic_weight <- function() plot(aorist_weight, col = "grey")
-  expect_snapshot_plot(plot_aoristic_weight, "plot_aoristic_weight")
-
-  plot_aoristic_group <- function() plot(aorist_group, col = "grey")
-  expect_snapshot_plot(plot_aoristic_group, "plot_aoristic_group")
-
   ## Rate of change
   roc_group <- with_seed(12345, roc(aorist_group))
   plot_roc_group <- function() plot(roc_group, col = "grey")

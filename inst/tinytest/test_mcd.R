@@ -41,23 +41,22 @@ dt <- mcd(zuni, dates = zuni_mid_dates)
 expect_equal_to_reference(as.data.frame(dt), file = "_snaps/mcd.rds")
 expect_error(mcd(zuni, dates = zuni_mid_dates[1:3]))
 
-# Plot =======================================================================
-if (at_home()) {
-  using("tinysnapshot")
-  source("helpers.R")
+# Plot =========================================================================
+using("tinysnapshot")
+source("helpers.R")
 
-  if (Sys.info()["sysname"] != "Darwin") {
-    ## Bootstrap
-    boot <- suppressWarnings(bootstrap(dt, n = 30, seed = 12345))
-    expect_equal_to_reference(boot, file = "_snaps/mcd_bootstrap.rds")
-  }
+for (i in c(TRUE, FALSE)) {
+  plot_mcd <- function() plot(dt, decreasing = i)
+  expect_snapshot_plot(plot_mcd, paste0("mcd_decreasing-", i))
+}
+
+# Resample =====================================================================
+if (at_home()) {
+  ## Bootstrap
+  boot <- suppressWarnings(bootstrap(dt, n = 30, seed = 12345))
+  expect_equal_to_reference(boot, file = "_snaps/mcd_bootstrap.rds")
 
   ## Jackknife
   jack <- jackknife(dt)
   expect_equal_to_reference(jack, file = "_snaps/mcd_jackknife.rds")
-
-  for (i in c(TRUE, FALSE)) {
-    plot_mcd <- function() plot(dt, decreasing = i)
-    expect_snapshot_plot(plot_mcd, paste0("mcd_decreasing-", i))
-  }
 }
