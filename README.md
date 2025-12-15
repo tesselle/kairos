@@ -39,6 +39,7 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5653896.svg)](https://doi.org/10.5281/zenodo.5653896)
+[![SWH](https://archive.softwareheritage.org/badge/origin/https://codeberg.org/tesselle/kairos/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://codeberg.org/tesselle/kairos)
 <!-- badges: end -->
 
 ## Overview
