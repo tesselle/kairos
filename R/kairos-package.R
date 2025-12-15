@@ -25,10 +25,9 @@
 #' @keywords internal
 "_PACKAGE"
 
-#' @import arkhe
 #' @import aion
+#' @import arkhe
+#' @import methods
 #' @importFrom extraDistr ptnorm
 #' @importFrom grDevices xy.coords
-#' @importFrom methods as callGeneric callNextMethod new setClass setGeneric
-#' setMethod validObject .valueClassTest
 NULL
